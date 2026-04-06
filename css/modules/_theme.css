@@ -1,0 +1,83 @@
+/* ===== _theme.css — Bootstrap token overrides (dark + light) + BSS-scope theming =====
+ * Part of jarilaru.fi styles — imported by styles.css
+ */
+/* ===== 1. THEME VARIABLES ===== */
+
+/* ===== Dark theme: Bootstrap-pohjavärien korvaus ===== */
+/* Kevennetty navy-paletti — aiempaa #131d2b kevyempi, parempi tason erottelu */
+[data-bs-theme="dark"] {
+  --bs-body-bg: #1a2638;
+  --bs-body-color: #dde4ee;
+  --bs-secondary-bg: #243549;
+  --bs-tertiary-bg: #1f2f42;
+  --bs-border-color: #354f68;
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== Light theme: viileä neutraali slate ===== */
+/* DNA-yhteys: body-color = tumman teeman taustasävy käännettynä tekstiksi */
+/* #1c2a38 (tekstiväri) ≈ #1a2638 (tumman body-bg) — sama perhe, eri rooli */
+html:not([data-bs-theme="dark"]) {
+  --bs-body-bg: #f4f6f9;
+  --bs-body-color: #1c2a38;
+  --bs-secondary-color: #48606e;
+  --bs-secondary-bg: #dde4ed;
+  --bs-tertiary-bg: #eef2f7;
+  --bs-border-color: #adbccc;
+  --bs-border-color-translucent: rgba(28, 42, 56, 0.13);
+  /* WCAG 1.4.3: Bootstrap default #0d6efc → 4.17:1 on #f4f6f9 (alle 4.5 AA)
+     Korjattu: #0453b4 → ~6.7:1 */
+  --bs-link-color: #0453b4;
+  --bs-link-color-rgb: 4, 83, 180;
+  --bs-link-hover-color: #023e8a;
+  --bs-link-hover-color-rgb: 2, 62, 138;
+}
+
+/* ===== BSS-SCOPE THEMING ===== */
+
+/* Light theme: bss-scope primary color + border reset */
+html:not([data-bs-theme="dark"]) .bss-scope {
+  --bs-primary: #0453b4;
+  --bs-primary-rgb: 4, 83, 180;
+  --bs-border-width: 1px;
+}
+
+/* Dark theme: bss-scope uses white as primary (white buttons on dark bg) */
+[data-bs-theme="dark"] .bss-scope {
+  --bs-primary: #ffffff;
+  --bs-primary-rgb: 255, 255, 255;
+  --bs-border-width: 0;
+}
+
+/* Light theme: btn-primary uses site blue */
+html:not([data-bs-theme="dark"]) .btn-primary {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #0453b4;
+  --bs-btn-border-color: #0453b4;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #023e8a;
+  --bs-btn-hover-border-color: #023e8a;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #023e8a;
+  --bs-btn-active-border-color: #023e8a;
+  --bs-btn-disabled-color: #ffffff;
+  --bs-btn-disabled-bg: #0453b4;
+  --bs-btn-disabled-border-color: #0453b4;
+  --bs-btn-focus-shadow-rgb: 4, 83, 180;
+}
+
+/* Light theme: btn-outline-primary uses site blue */
+html:not([data-bs-theme="dark"]) .btn-outline-primary {
+  --bs-btn-color: #0453b4;
+  --bs-btn-border-color: #0453b4;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #0453b4;
+  --bs-btn-hover-border-color: #0453b4;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #0453b4;
+  --bs-btn-active-border-color: #0453b4;
+  --bs-btn-disabled-color: #0453b4;
+  --bs-btn-disabled-border-color: #0453b4;
+  --bs-btn-focus-shadow-rgb: 4, 83, 180;
+}
+

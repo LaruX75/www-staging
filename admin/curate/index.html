@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kuratointi — jarilaru.fi</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    body { padding: 24px; background: #f8f9fa; }
+    .main-card { background: #fff; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.08); padding: 24px; }
+    .nav-tabs { margin-bottom: 0; }
+    .tab-content { border: 1px solid #dee2e6; border-top: none; border-radius: 0 0 6px 6px; background: #fff; }
+    .tab-pane { padding: 16px; }
+    .table th { font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; color: #6c757d; }
+    .table td { vertical-align: middle; }
+    tr.is-hidden td:not(:first-child) { opacity: .45; }
+    .status-bar { min-height: 28px; }
+    #auth-section { max-width: 420px; margin: 80px auto; text-align: center; }
+    .spinner-border { width: 1rem; height: 1rem; border-width: .15em; }
+    .nav-link .badge { font-size: .65rem; }
+  </style>
+</head>
+<body>
+
+<div id="auth-section" class="main-card">
+  <h2 class="mb-1">Kuratointi</h2>
+  <p class="text-muted mb-4">jarilaru.fi admin</p>
+  <button id="login-btn" class="btn btn-primary px-4">Kirjaudu GitHubiin</button>
+  <div id="login-error" class="text-danger small mt-2" style="display:none"></div>
+</div>
+
+<div id="app" style="display:none">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Kuratointi</h2>
+    <div class="d-flex align-items-center gap-2">
+      <span id="user-info" class="text-muted small"></span>
+      <a href="/admin/" class="btn btn-sm btn-outline-secondary">← CMS</a>
+    </div>
+  </div>
+
+  <div class="main-card p-0">
+    <ul class="nav nav-tabs px-3 pt-3" id="source-tabs" role="tablist"></ul>
+    <div class="tab-content" id="tab-panels"></div>
+  </div>
+</div>
+
+<script>
+const REPO = 'LaruX75/www';
+const BRANCH = 'main';
+const AUTH_URL = 'https://sveltia-cms-auth.fc4ydtm5bs.workers.dev';
+
+const SOURCES = [
+  { key: 'researchfi',  label: 'Research.fi' },
+  { key: 'slideshare',  label: 'SlideShare' },
+  { key: 'canva',       label: 'Canva' },
+  { key: 'finna',       label: 'Finna / AOE' },
+  { key: 'youtube',     label: 'YouTube' },
+  { key: 'theses',      label: 'Opinnäytetyöt' },
+];
+
+let token = null;
+// cache[source][filename] = { content, sha, parsed: { title, source_id, hidden } }
+const cache = {};
+
+// ── Auth ────────────────────────────────────────────────────────────────────
+
+function getStoredToken() {
+  const candidates = [
+    'github-token',
+    'netlify-cms-user',
+    'sveltia-cms-user',
+  ];
+  for (const key of candidates) {
+    const val = localStorage.getItem(key);
+    if (!val) continue;
+    try {
+      const p = JSON.parse(val);
+      if (p?.token) return p.token;
+    } catch { if (val.length > 20) return val; }
+  }
+  return null;
+}
+
+document.getElementById('login-btn').addEventListener('click', () => {
+  const popup = window.open(
+    `${AUTH_URL}/auth?provider=github&site_id=www.jarilaru.fi`,
+    'gh-auth', 'width=620,height=720,left=200,top=100'
+  );
+
+  const handler = (e) => {
+    if (!e.data || typeof e.data !== 'string') return;
+    if (e.data === 'authorizing:github') {
+      popup?.postMessage('authorizing:github', '*');
+      return;
+    }
+    const prefix = 'authorization:github:success:';
+    if (e.data.startsWith(prefix)) {
+      window.removeEventListener('message', handler);
+      popup?.close();
+      try {
+        const payload = JSON.parse(e.data.slice(prefix.length));
+        if (payload?.token) {
+          token = payload.token;
+          localStorage.setItem('github-token', token);
+          init();
+        }
+      } catch {
+        showLoginError('Kirjautuminen epäonnistui.');
+      }
+      return;
+    }
+    if (e.data.startsWith('authorization:github:error:')) {
+      window.removeEventListener('message', handler);
+      popup?.close();
+      showLoginError('GitHub-kirjautuminen hylättiin.');
+    }
+  };
+  window.addEventListener('message', handler);
+});
+
+function showLoginError(msg) {
+  const el = document.getElementById('login-error');
+  el.textContent = msg;
+  el.style.display = '';
+}
+
+// ── GitHub API ───────────────────────────────────────────────────────────────
+
+async function ghFetch(url, opts = {}) {
+  const r = await fetch(`https://api.github.com${url}`, {
+    ...opts,
+    headers: {
+      Authorization: `token ${token}`,
+      Accept: 'application/vnd.github.v3+json',
+      ...(opts.headers || {}),
+    },
+  });
+  return r;
+}
+
+async function graphql(query) {
+  const r = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: { Authorization: `bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query }),
+  });
+  return r.json();
+}
+
+async function loadSource(source) {
+  if (cache[source]) return cache[source];
+  cache[source] = {};
+
+  // GraphQL: get file contents + blob SHAs in one request
+  const data = await graphql(`{
+    repository(owner: "LaruX75", name: "www") {
+      object(expression: "${BRANCH}:src/curated/${source}") {
+        ... on Tree {
+          entries {
+            name
+            oid
+            object { ... on Blob { text } }
+          }
+        }
+      }
+    }
+  }`);
+
+  const entries = data?.data?.repository?.object?.entries ?? [];
+  for (const e of entries) {
+    if (!e.name.endsWith('.md')) continue;
+    const text = e.object?.text ?? '';
+    cache[source][e.name] = { content: text, sha: e.oid, parsed: parseFm(text) };
+  }
+  return cache[source];
+}
+
+function parseFm(content) {
+  const m = content.match(/^---\n([\s\S]*?)\n---/);
+  if (!m) return { title: '', source_id: '', hidden: false };
+  const fm = m[1];
+  const title = (fm.match(/^title:\s*"?(.+?)"?\s*$/m) ?? [])[1]?.trim() ?? '';
+  const sid   = (fm.match(/^source_id:\s*"?(.+?)"?\s*$/m) ?? [])[1]?.trim() ?? '';
+  return { title, source_id: sid, hidden: /^hidden:\s*true$/m.test(fm) };
+}
+
+async function saveFile(source, filename, newHidden) {
+  const f = cache[source]?.[filename];
+  if (!f) return false;
+
+  const newContent = f.content.replace(/^hidden:\s*(true|false)$/m, `hidden: ${newHidden}`);
+  const encoded = btoa(unescape(encodeURIComponent(newContent)));
+
+  const r = await ghFetch(`/repos/${REPO}/contents/src/curated/${source}/${filename}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      message: newHidden
+        ? `curate: hide item in ${source}`
+        : `curate: show item in ${source}`,
+      content: encoded,
+      sha: f.sha,
+      branch: BRANCH,
+    }),
+  });
+
+  if (r.ok) {
+    const result = await r.json();
+    f.sha = result.content.sha;
+    f.content = newContent;
+    f.parsed.hidden = newHidden;
+    return true;
+  }
+  return false;
+}
+
+// ── UI ───────────────────────────────────────────────────────────────────────
+
+function esc(s) {
+  return String(s ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function buildShell() {
+  const tabsEl  = document.getElementById('source-tabs');
+  const panelsEl = document.getElementById('tab-panels');
+
+  SOURCES.forEach((src, i) => {
+    const active = i === 0;
+
+    // Tab button
+    tabsEl.insertAdjacentHTML('beforeend', `
+      <li class="nav-item" role="presentation">
+        <button class="nav-link${active ? ' active' : ''}"
+          id="tab-${src.key}" data-bs-toggle="tab"
+          data-bs-target="#panel-${src.key}" type="button" role="tab">
+          ${esc(src.label)} <span class="badge bg-secondary ms-1" id="badge-${src.key}">…</span>
+        </button>
+      </li>`);
+
+    // Tab panel
+    panelsEl.insertAdjacentHTML('beforeend', `
+      <div class="tab-pane fade${active ? ' show active' : ''}"
+           id="panel-${src.key}" role="tabpanel" data-loaded="false">
+        <div class="d-flex flex-wrap gap-2 mb-3 align-items-center">
+          <button class="btn btn-sm btn-outline-secondary" onclick="selectAll('${src.key}')">Valitse kaikki</button>
+          <button class="btn btn-sm btn-outline-secondary" onclick="selectNone('${src.key}')">Poista valinnat</button>
+          <button class="btn btn-sm btn-danger"   onclick="applySelected('${src.key}', true)">🙈 Piilota valitut</button>
+          <button class="btn btn-sm btn-success"  onclick="applySelected('${src.key}', false)">👁 Näytä valitut</button>
+          <span class="ms-auto status-bar small text-muted" id="status-${src.key}"></span>
+        </div>
+        <div id="loading-${src.key}" class="text-muted py-4 text-center">
+          <span class="spinner-border me-2"></span>Ladataan…
+        </div>
+        <div id="table-wrap-${src.key}" style="display:none">
+          <table class="table table-sm table-hover mb-0">
+            <thead class="table-light">
+              <tr>
+                <th width="34">
+                  <input type="checkbox" id="selall-${src.key}"
+                    onchange="toggleAll('${src.key}', this.checked)">
+                </th>
+                <th>Otsikko</th>
+                <th width="170">ID</th>
+                <th width="130">Tila</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-${src.key}"></tbody>
+          </table>
+        </div>
+      </div>`);
+  });
+}
+
+async function loadTabData(source) {
+  const panel = document.getElementById(`panel-${source}`);
+  if (panel.dataset.loaded !== 'false') return;
+  panel.dataset.loaded = 'loading';
+
+  const files = await loadSource(source);
+  const tbody = document.getElementById(`tbody-${source}`);
+  const entries = Object.entries(files).sort(([, a], [, b]) =>
+    a.parsed.title.localeCompare(b.parsed.title, 'fi'));
+
+  for (const [filename, data] of entries) {
+    const { title, source_id, hidden } = data.parsed;
+    const tr = document.createElement('tr');
+    tr.id = `row-${source}-${filename}`;
+    if (hidden) tr.classList.add('is-hidden');
+    tr.innerHTML = `
+      <td><input type="checkbox" class="row-cb" data-source="${source}" data-file="${filename}"></td>
+      <td>${esc(title)}</td>
+      <td><code class="small text-muted">${esc(source_id)}</code></td>
+      <td>
+        <button class="btn btn-sm ${hidden ? 'btn-outline-success' : 'btn-outline-danger'} toggle-btn"
+          data-source="${source}" data-file="${filename}" data-hidden="${hidden}">
+          ${hidden ? '👁 Näytä' : '🙈 Piilota'}
+        </button>
+      </td>`;
+    tbody.appendChild(tr);
+  }
+
+  document.getElementById(`loading-${source}`).style.display = 'none';
+  document.getElementById(`table-wrap-${source}`).style.display = '';
+
+  updateBadge(source, files);
+  panel.dataset.loaded = 'true';
+}
+
+function updateBadge(source, files) {
+  const f = files ?? cache[source] ?? {};
+  const total   = Object.keys(f).length;
+  const hidden  = Object.values(f).filter(x => x.parsed.hidden).length;
+  const badge   = document.getElementById(`badge-${source}`);
+  badge.className = `badge ms-1 ${hidden ? 'bg-danger' : 'bg-secondary'}`;
+  badge.textContent = hidden ? `${hidden}/${total} piilotettu` : total;
+}
+
+// Single-row toggle
+document.addEventListener('click', async (e) => {
+  const btn = e.target.closest('.toggle-btn');
+  if (!btn) return;
+
+  const { source, file } = btn.dataset;
+  const currentHidden = btn.dataset.hidden === 'true';
+  const newHidden = !currentHidden;
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border"></span>';
+
+  const ok = await saveFile(source, file, newHidden);
+
+  btn.disabled = false;
+  if (ok) {
+    btn.dataset.hidden = String(newHidden);
+    btn.className = `btn btn-sm ${newHidden ? 'btn-outline-success' : 'btn-outline-danger'} toggle-btn`;
+    btn.textContent = newHidden ? '👁 Näytä' : '🙈 Piilota';
+    const row = document.getElementById(`row-${source}-${file}`);
+    newHidden ? row.classList.add('is-hidden') : row.classList.remove('is-hidden');
+    updateBadge(source);
+  } else {
+    btn.textContent = '⚠ Virhe';
+    setTimeout(() => {
+      btn.textContent = currentHidden ? '👁 Näytä' : '🙈 Piilota';
+    }, 2500);
+  }
+});
+
+async function applySelected(source, newHidden) {
+  const cbs = [...document.querySelectorAll(`#panel-${source} .row-cb:checked`)];
+  if (!cbs.length) { setStatus(source, 'Ei valittuja rivejä.'); return; }
+
+  setStatus(source, `Tallennetaan ${cbs.length} muutosta…`);
+
+  const results = await Promise.all(cbs.map(cb => saveFile(source, cb.dataset.file, newHidden)));
+
+  cbs.forEach((cb, i) => {
+    if (!results[i]) return;
+    const filename = cb.dataset.file;
+    const btn = document.querySelector(`#row-${source}-${filename} .toggle-btn`);
+    if (btn) {
+      btn.dataset.hidden = String(newHidden);
+      btn.className = `btn btn-sm ${newHidden ? 'btn-outline-success' : 'btn-outline-danger'} toggle-btn`;
+      btn.textContent = newHidden ? '👁 Näytä' : '🙈 Piilota';
+    }
+    const row = document.getElementById(`row-${source}-${filename}`);
+    newHidden ? row?.classList.add('is-hidden') : row?.classList.remove('is-hidden');
+    cb.checked = false;
+  });
+
+  document.getElementById(`selall-${source}`).checked = false;
+  updateBadge(source);
+
+  const ok = results.filter(Boolean).length;
+  setStatus(source, `✅ ${ok} / ${results.length} tallennettu`, 4000);
+}
+
+function setStatus(source, msg, clearAfterMs = 0) {
+  const el = document.getElementById(`status-${source}`);
+  el.textContent = msg;
+  if (clearAfterMs) setTimeout(() => { if (el.textContent === msg) el.textContent = ''; }, clearAfterMs);
+}
+
+function selectAll(source)  { document.querySelectorAll(`#panel-${source} .row-cb`).forEach(c => c.checked = true); }
+function selectNone(source) { document.querySelectorAll(`#panel-${source} .row-cb`).forEach(c => c.checked = false); }
+function toggleAll(source, v) { document.querySelectorAll(`#panel-${source} .row-cb`).forEach(c => c.checked = v); }
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+
+const ALLOWED_USERS = ['LaruX75'];
+
+async function init() {
+  document.getElementById('auth-section').style.display = 'none';
+
+  // Show username and verify access
+  const me = await ghFetch('/user').then(r => r.json()).catch(() => null);
+  if (!me?.login || !ALLOWED_USERS.includes(me.login)) {
+    token = null;
+    localStorage.removeItem('github-token');
+    document.getElementById('auth-section').style.display = '';
+    showLoginError(`Pääsy estetty (@${me?.login ?? '?'}). Vain valtuutetut käyttäjät voivat käyttää tätä sivua.`);
+    return;
+  }
+
+  document.getElementById('app').style.display = '';
+  document.getElementById('user-info').textContent = `@${me.login}`;
+
+  buildShell();
+
+  // Load first tab immediately
+  loadTabData(SOURCES[0].key);
+
+  // Lazy-load on tab click
+  document.getElementById('source-tabs').addEventListener('click', e => {
+    const btn = e.target.closest('[data-bs-toggle="tab"]');
+    if (!btn) return;
+    const source = btn.id.replace('tab-', '');
+    setTimeout(() => loadTabData(source), 0);
+  });
+}
+
+// Auto-login if token found
+token = getStoredToken();
+if (token) {
+  init();
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

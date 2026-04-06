@@ -1,0 +1,72 @@
+/* ===== _tables.css — Tables, badges and pagination =====
+ * Part of jarilaru.fi styles — imported by styles.css
+ */
+/* ===== TABLES, BADGES & PAGINATION ===== */
+
+/* Zotero citation text in dark mode */
+[data-bs-theme="dark"] .zotero-citation {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Table styling for dark mode */
+[data-bs-theme="dark"] table {
+  color: #e0e0e0;
+}
+
+[data-bs-theme="dark"] .table {
+  --bs-table-bg: rgba(189, 206, 228, 0.035);
+  --bs-table-striped-bg: rgba(189, 206, 228, 0.05);
+  --bs-table-hover-bg: rgba(189, 206, 228, 0.09);
+  --bs-table-border-color: rgba(189, 206, 228, 0.16);
+}
+
+[data-bs-theme="dark"] .table thead th {
+  background-color: rgba(189, 206, 228, 0.065);
+}
+
+[data-bs-theme="dark"] table th,
+[data-bs-theme="dark"] table td {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Badge styling for dark mode */
+[data-bs-theme="dark"] .badge.bg-primary,
+[data-bs-theme="dark"] .badge.text-bg-primary,
+[data-bs-theme="dark"] .badge.bg-info,
+[data-bs-theme="dark"] .badge.text-bg-info,
+[data-bs-theme="dark"] .badge.bg-warning,
+[data-bs-theme="dark"] .badge.text-bg-warning,
+[data-bs-theme="dark"] .badge.bg-success,
+[data-bs-theme="dark"] .badge.text-bg-success,
+[data-bs-theme="dark"] .badge.bg-danger,
+[data-bs-theme="dark"] .badge.bg-dark,
+[data-bs-theme="dark"] .badge.text-bg-secondary {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Pagination contrast for dark mode */
+[data-bs-theme="dark"] .pagination .page-item.active .page-link {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .pagination .page-link {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme="dark"] .pagination .page-link:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* Content wrapper for non-homepage pages */
+[data-bs-theme="dark"] .content-card-list {
+  background-color: #243347 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+

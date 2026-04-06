@@ -1,0 +1,34 @@
+/* ===== _typography.css — Fonts, overflow, container widths =====
+ * Part of jarilaru.fi styles — imported by styles.css
+ */
+/* ===== TYPOGRAPHY & LAYOUT ===== */
+
+.bss-scope h1,
+.bss-scope h2,
+.bss-scope h3,
+.bss-scope h4,
+.bss-scope h5,
+.bss-scope h6 {
+  font-family: 'Bree Serif', serif;
+}
+
+.bss-scope h4 {
+  margin-top: 8px;
+}
+
+/* Full-width main content to match hero width */
+#main-content .container,
+#main-content .container-sm,
+#main-content .container-md,
+#main-content .container-lg,
+#main-content .container-xl,
+#main-content .container-xxl {
+  max-width: 100% !important;
+}
+
+/* Prevent narrow right-side strip from horizontal overflow */
+html,
+body {
+  overflow-x: clip;
+}
+

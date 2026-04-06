@@ -1,0 +1,28 @@
+/*
+ * styles.css — jarilaru.fi
+ * ─────────────────────────────────────────────────────────────────────────────
+ * CSS modules are loaded directly via <link> tags in src/_includes/_meta.njk.
+ * This file documents the module structure and can be used as a standalone
+ * entry point (e.g. for tooling or local previews without _meta.njk).
+ *
+ * MODULE MAP
+ *
+ *  modules/_theme.css .......... Sections 1–2: Bootstrap token overrides + BSS-scope
+ *                                (inlined in <head> in _meta.njk — critical CSS for LCP)
+ *  modules/_typography.css ..... Section  3:   Fonts, overflow, container widths
+ *  modules/_home.css ........... Sections 4–15: All home-page sections
+ *  modules/_global.css ......... Sections 16–21: Search overlay, breadcrumbs,
+ *                                              mobile breakpoints, global light/dark mode,
+ *                                              button overrides
+ *  modules/_tables.css ......... Section 22:   Tables, badges & pagination
+ *  modules/_articles.css ....... Sections 23–25: Subpage hero, BBS article & terminal,
+ *                                              table header filters, shared components
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+/* _theme.css inlined in <head> (critical CSS) */
+@import "modules/_typography.css";
+@import "modules/_home.css";
+@import "modules/_global.css";
+@import "modules/_tables.css";
+@import "modules/_articles.css";

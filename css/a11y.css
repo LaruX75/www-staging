@@ -1,0 +1,248 @@
+/* Saavutettavuus-tyylit (Accessibility) */
+
+/* Vaalean teeman kontrastin hienosäätö */
+[data-bs-theme="light"] body {
+    color: #1f2937;
+}
+
+[data-bs-theme="light"] .text-muted {
+    color: #4b5563 !important;
+}
+
+[data-bs-theme="light"] .card,
+[data-bs-theme="light"] .bg-light,
+[data-bs-theme="light"] .bg-body-tertiary,
+[data-bs-theme="light"] .list-group-item {
+    border-color: #cfd6de !important;
+}
+
+[data-bs-theme="light"] .bss-scope a:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge):not(.home-path-card):not(.home-overview-item):not(.home-content-row):not(.home-ticker-item):not(.home-ticker-title):not([class*="home-path"]):not([class*="card"]):not(.home-hero-kpi-link) {
+    color: #0f4c81;
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.16em;
+    text-decoration-skip-ink: auto;
+}
+
+[data-bs-theme="light"] .bss-scope a:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge):not(.home-path-card):not(.home-overview-item):not(.home-content-row):not(.home-ticker-item):not(.home-ticker-title):not([class*="home-path"]):not([class*="card"]):not(.home-hero-kpi-link):hover {
+    color: #0b3a62;
+    text-decoration-thickness: 2px;
+}
+
+[data-bs-theme="light"] .bss-scope a.icon-only-link:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge) {
+    text-decoration: none;
+}
+
+/* 1. Tekstikoot */
+.a11y-text-large {
+    font-size: 115% !important;
+}
+
+.a11y-text-xlarge {
+    font-size: 130% !important;
+}
+
+/* 2. Suuri kontrasti (High Contrast) */
+html.a11y-high-contrast body {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+html.a11y-high-contrast * {
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+html.a11y-high-contrast a {
+    color: #ffff00 !important;
+    text-decoration: underline !important;
+}
+
+html.a11y-high-contrast .card,
+html.a11y-high-contrast .bg-light,
+html.a11y-high-contrast .bg-white,
+html.a11y-high-contrast .navbar {
+    background-color: #111111 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+}
+
+html.a11y-high-contrast .text-muted {
+    color: #dddddd !important;
+}
+
+html.a11y-high-contrast .badge {
+    border: 1px solid #ffffff !important;
+}
+
+/* High contrast: navbar + mega menu */
+html.a11y-high-contrast .site-navbar,
+html.a11y-high-contrast .site-navbar.navbar-hero-transparent,
+html.a11y-high-contrast .site-navbar.navbar-hero-solid,
+html.a11y-high-contrast .navbar .mega-dropdown .dropdown-menu,
+html.a11y-high-contrast .mega-menu-header,
+html.a11y-high-contrast .mega-menu-header-secondary,
+html.a11y-high-contrast .mega-menu-body {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+html.a11y-high-contrast .site-navbar .navbar-brand,
+html.a11y-high-contrast .site-navbar .nav-link,
+html.a11y-high-contrast .mega-menu-header h5,
+html.a11y-high-contrast .mega-menu-header p,
+html.a11y-high-contrast .mega-menu-item h6 a,
+html.a11y-high-contrast .mega-menu-item p {
+    color: #ffffff !important;
+}
+
+/* High contrast: ticker / skrolleri */
+html.a11y-high-contrast .ticker-item,
+html.a11y-high-contrast .content-card-list {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+}
+
+html.a11y-high-contrast .ticker-item h1,
+html.a11y-high-contrast .ticker-item h2,
+html.a11y-high-contrast .ticker-item h3,
+html.a11y-high-contrast .ticker-item h4,
+html.a11y-high-contrast .ticker-item h5,
+html.a11y-high-contrast .ticker-item h6,
+html.a11y-high-contrast .ticker-item h4 a,
+html.a11y-high-contrast .ticker-item p,
+html.a11y-high-contrast .ticker-item .text-muted {
+    color: #ffffff !important;
+}
+
+/* High contrast: Kynästä / Writings table views */
+html.a11y-high-contrast .pub-table,
+html.a11y-high-contrast .pub-table thead,
+html.a11y-high-contrast .pub-table tbody,
+html.a11y-high-contrast .pub-table tr,
+html.a11y-high-contrast .pub-table th,
+html.a11y-high-contrast .pub-table td,
+html.a11y-high-contrast .table > :not(caption) > * > * {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+html.a11y-high-contrast .pub-table a:not(.btn),
+html.a11y-high-contrast .pub-table .col-title a {
+    color: #ffff00 !important;
+    text-decoration: underline !important;
+}
+
+html.a11y-high-contrast .pub-table .text-muted,
+html.a11y-high-contrast .pub-table .col-authors,
+html.a11y-high-contrast .pub-table .col-pub,
+html.a11y-high-contrast .pub-table .col-desc,
+html.a11y-high-contrast .pub-table .font-monospace {
+    color: #ffffff !important;
+}
+
+html.a11y-high-contrast .pub-table .badge,
+html.a11y-high-contrast .pub-table .badge.text-bg-secondary,
+html.a11y-high-contrast .pub-table .badge.text-bg-light,
+html.a11y-high-contrast .pub-table .badge.text-dark {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+}
+
+/* 3. Vähennetyt animaatiot (Reduced Motion) */
+html.a11y-reduced-motion *,
+html.a11y-reduced-motion *::before,
+html.a11y-reduced-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+
+/* 4. Lukihäiriö-fontti (Dyslexia-friendly) */
+html.a11y-dyslexia-font {
+    --a11y-dyslexia-font-stack: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html.a11y-dyslexia-font body,
+html.a11y-dyslexia-font h1,
+html.a11y-dyslexia-font h2,
+html.a11y-dyslexia-font h3,
+html.a11y-dyslexia-font h4,
+html.a11y-dyslexia-font h5,
+html.a11y-dyslexia-font h6,
+html.a11y-dyslexia-font .h1,
+html.a11y-dyslexia-font .h2,
+html.a11y-dyslexia-font .h3,
+html.a11y-dyslexia-font .h4,
+html.a11y-dyslexia-font .h5,
+html.a11y-dyslexia-font .h6,
+html.a11y-dyslexia-font .display-1,
+html.a11y-dyslexia-font .display-2,
+html.a11y-dyslexia-font .display-3,
+html.a11y-dyslexia-font .display-4,
+html.a11y-dyslexia-font .display-5,
+html.a11y-dyslexia-font .display-6,
+html.a11y-dyslexia-font .lead,
+html.a11y-dyslexia-font .navbar-brand,
+html.a11y-dyslexia-font p,
+html.a11y-dyslexia-font a,
+html.a11y-dyslexia-font span,
+html.a11y-dyslexia-font div {
+    font-family: var(--a11y-dyslexia-font-stack) !important;
+    letter-spacing: 0.05em !important;
+    word-spacing: 0.1em !important;
+    line-height: 1.6 !important;
+}
+
+/* FAB Painike */
+.a11y-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--bs-primary);
+    color: #ffffff;
+    /* Pakotettu valkoinen vasten primääriväriä */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    z-index: 1040;
+    /* Alle offcanvasin mutta yli muun sisällön */
+    border: none;
+    transition: transform 0.2s ease, background-color 0.2s;
+}
+
+.a11y-fab i {
+    font-size: 1.5rem;
+}
+
+.a11y-fab:hover,
+.a11y-fab:focus {
+    transform: scale(1.05);
+    background-color: #000000;
+    color: #ffffff;
+}
+
+[data-bs-theme="dark"] .a11y-fab {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-bs-theme="dark"] .a11y-fab:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+html.a11y-high-contrast .a11y-fab {
+    background-color: #000000 !important;
+    border: 2px solid #ffffff !important;
+    box-shadow: none !important;
+}

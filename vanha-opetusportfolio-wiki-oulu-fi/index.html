@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="fi" data-bs-theme="auto">
+<head>
+    <script>
+    // Teeman alustus (estää välkkymisen) - tarkistaa sijainnin localStorage tai OS prefers-color-scheme
+    const getStoredTheme = () => localStorage.getItem('theme');
+    const getPreferredTheme = () => {
+      const storedTheme = getStoredTheme();
+      if (storedTheme) {
+        return storedTheme;
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    const setTheme = function (theme) {
+      if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-bs-theme', theme);
+      }
+    };
+    setTheme(getPreferredTheme());
+
+    // Saavutettavuusasetusten alustus (FOUC esto)
+    function applyA11ySettings(settings) {
+      const htmlEl = document.documentElement;
+
+      // Tekstikoko
+      htmlEl.classList.remove('a11y-text-large', 'a11y-text-xlarge');
+      if (settings.textSize === 'large') htmlEl.classList.add('a11y-text-large');
+      else if (settings.textSize === 'xlarge') htmlEl.classList.add('a11y-text-xlarge');
+
+      // Kontrasti
+      if (settings.highContrast) htmlEl.classList.add('a11y-high-contrast');
+      else htmlEl.classList.remove('a11y-high-contrast');
+
+      // Animaatiot
+      if (settings.reducedMotion) htmlEl.classList.add('a11y-reduced-motion');
+      else htmlEl.classList.remove('a11y-reduced-motion');
+
+      // Fontti
+      if (settings.dyslexiaFont) htmlEl.classList.add('a11y-dyslexia-font');
+      else htmlEl.classList.remove('a11y-dyslexia-font');
+    }
+
+    try {
+      const a11yStored = localStorage.getItem('a11y-settings');
+      if (a11yStored) {
+        applyA11ySettings(JSON.parse(a11yStored));
+      }
+    } catch(e) {}
+  </script>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net data:; img-src 'self' data: https: https://cdn.slidesharecdn.com; connect-src 'self'; frame-src 'self' https: https://www.slideshare.net;">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <style id="antiClickjack">body{display:none !important;}</style>
+  <script>
+    if (self === top) {
+      var antiClickjack = document.getElementById("antiClickjack");
+      antiClickjack.parentNode.removeChild(antiClickjack);
+    } else {
+      top.location = self.location;
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <title>Opetusportfolio — Jari Laru</title>
+  <meta name="description" content="Tämä opetusportfolio on tehty vuonna 2015 hakiessani nykyiseen tehtävääni. Tarkoitus on tehdä portfoliosta päivitetty versio dosentuurihakua varten, mutta tällaisenaankin saat tästä varsin hyvän kuvan työstäni ja saamastani palautteesta. n">
+  
+  <meta name="google-site-verification" content="13_OZFDuN1d5oaDd6KEGtPWGDkMLpDYzahvDFzr4enw">
+  
+  <meta name="robots" content="index, follow, noai, noimageai">
+  <meta name="author" content="Jari Laru">
+  <link rel="canonical" href="https://www.jarilaru.fi/vanha-opetusportfolio-wiki-oulu-fi/">
+  
+  <link rel="alternate" hreflang="fi" href="https://www.jarilaru.fi/vanha-opetusportfolio-wiki-oulu-fi/">
+  
+  
+  <link rel="alternate" hreflang="x-default" href="https://www.jarilaru.fi/vanha-opetusportfolio-wiki-oulu-fi/">
+  <meta property="og:site_name" content="Jari Laru">
+  <meta property="og:locale" content="fi_FI">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Opetusportfolio">
+  <meta property="og:description" content="Tämä opetusportfolio on tehty vuonna 2015 hakiessani nykyiseen tehtävääni. Tarkoitus on tehdä portfoliosta päivitetty versio dosentuurihakua varten, mutta tällaisenaankin saat tästä varsin hyvän kuvan työstäni ja saamastani palautteesta. n">
+  <meta property="og:url" content="https://www.jarilaru.fi/vanha-opetusportfolio-wiki-oulu-fi/">
+  <meta property="og:image" content="https://www.jarilaru.fi/img/WIN_20210329_16_06_01_Pro.jpg">
+  <meta property="og:image:alt" content="Jari Laru">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Opetusportfolio">
+  <meta name="twitter:description" content="Tämä opetusportfolio on tehty vuonna 2015 hakiessani nykyiseen tehtävääni. Tarkoitus on tehdä portfoliosta päivitetty versio dosentuurihakua varten, mutta tällaisenaankin saat tästä varsin hyvän kuvan työstäni ja saamastani palautteesta. n">
+  <meta name="twitter:image" content="https://www.jarilaru.fi/img/WIN_20210329_16_06_01_Pro.jpg">
+  <meta name="twitter:image:alt" content="Jari Laru">
+  
+  <link rel="stylesheet" href="/www-staging/css/bootstrap.min.css">
+  
+  <style>/* ===== _theme.css — Bootstrap token overrides (dark + light) + BSS-scope theming =====
+ * Part of jarilaru.fi styles — imported by styles.css
+ */
+/* ===== 1. THEME VARIABLES ===== */
+
+/* ===== Dark theme: Bootstrap-pohjavärien korvaus ===== */
+/* Kevennetty navy-paletti — aiempaa #131d2b kevyempi, parempi tason erottelu */
+[data-bs-theme="dark"] {
+  --bs-body-bg: #1a2638;
+  --bs-body-color: #dde4ee;
+  --bs-secondary-bg: #243549;
+  --bs-tertiary-bg: #1f2f42;
+  --bs-border-color: #354f68;
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== Light theme: viileä neutraali slate ===== */
+/* DNA-yhteys: body-color = tumman teeman taustasävy käännettynä tekstiksi */
+/* #1c2a38 (tekstiväri) ≈ #1a2638 (tumman body-bg) — sama perhe, eri rooli */
+html:not([data-bs-theme="dark"]) {
+  --bs-body-bg: #f4f6f9;
+  --bs-body-color: #1c2a38;
+  --bs-secondary-color: #48606e;
+  --bs-secondary-bg: #dde4ed;
+  --bs-tertiary-bg: #eef2f7;
+  --bs-border-color: #adbccc;
+  --bs-border-color-translucent: rgba(28, 42, 56, 0.13);
+  /* WCAG 1.4.3: Bootstrap default #0d6efc → 4.17:1 on #f4f6f9 (alle 4.5 AA)
+     Korjattu: #0453b4 → ~6.7:1 */
+  --bs-link-color: #0453b4;
+  --bs-link-color-rgb: 4, 83, 180;
+  --bs-link-hover-color: #023e8a;
+  --bs-link-hover-color-rgb: 2, 62, 138;
+}
+
+/* ===== BSS-SCOPE THEMING ===== */
+
+/* Light theme: bss-scope primary color + border reset */
+html:not([data-bs-theme="dark"]) .bss-scope {
+  --bs-primary: #0453b4;
+  --bs-primary-rgb: 4, 83, 180;
+  --bs-border-width: 1px;
+}
+
+/* Dark theme: bss-scope uses white as primary (white buttons on dark bg) */
+[data-bs-theme="dark"] .bss-scope {
+  --bs-primary: #ffffff;
+  --bs-primary-rgb: 255, 255, 255;
+  --bs-border-width: 0;
+}
+
+/* Light theme: btn-primary uses site blue */
+html:not([data-bs-theme="dark"]) .btn-primary {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #0453b4;
+  --bs-btn-border-color: #0453b4;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #023e8a;
+  --bs-btn-hover-border-color: #023e8a;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #023e8a;
+  --bs-btn-active-border-color: #023e8a;
+  --bs-btn-disabled-color: #ffffff;
+  --bs-btn-disabled-bg: #0453b4;
+  --bs-btn-disabled-border-color: #0453b4;
+  --bs-btn-focus-shadow-rgb: 4, 83, 180;
+}
+
+/* Light theme: btn-outline-primary uses site blue */
+html:not([data-bs-theme="dark"]) .btn-outline-primary {
+  --bs-btn-color: #0453b4;
+  --bs-btn-border-color: #0453b4;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #0453b4;
+  --bs-btn-hover-border-color: #0453b4;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #0453b4;
+  --bs-btn-active-border-color: #0453b4;
+  --bs-btn-disabled-color: #0453b4;
+  --bs-btn-disabled-border-color: #0453b4;
+  --bs-btn-focus-shadow-rgb: 4, 83, 180;
+}
+
+</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap">
+  </noscript>
+  <link rel="stylesheet" href="/www-staging/css/mega-menu.css">
+  <link rel="preload" as="style" href="/www-staging/css/modules/_typography.css">
+  <link rel="preload" as="style" href="/www-staging/css/modules/_global.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_typography.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_home.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_global.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_tables.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_articles.css">
+  <link rel="stylesheet" href="/www-staging/css/a11y.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preload" href="/www-staging/pagefind/pagefind-ui.css" as="style">
+  <link href="/www-staging/pagefind/pagefind-ui.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="/www-staging/pagefind/pagefind-ui.css" rel="stylesheet">
+  </noscript>
+  <script src="/www-staging/pagefind/pagefind-ui.js" defer=""></script>
+  
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Jari Laru",
+      "url": "https://www.jarilaru.fi",
+      "description": "Yliopistonlehtori, tutkija, kuntapäättäjä",
+      "inLanguage": "en-US",
+      "publisher": {
+        "@id": ""
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "",
+      "name": "Jari Laru",
+      "url": "https://www.jarilaru.fi",
+      "sameAs": ["https://orcid.org/0000-0003-0347-0182","https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en","https://www.linkedin.com/in/jarilaru/","https://www.researchgate.net/profile/Jari-Laru","https://www.youtube.com/jarilaru","https://www.slideshare.net/larux/presentations"]
+    }
+  </script>
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "",
+      "description": "",
+      "url": "",
+      "image": "https://www.jarilaru.fi/undefined",
+      "inLanguage": "en-US",
+      "author": {
+        "@id": ""
+      }
+    }
+  </script>
+  
+
+</head>
+<body>
+  
+  <a class="visually-hidden-focusable skip-link btn btn-primary m-2 position-absolute" style="z-index: 9999; top: 0; left: 0;" href="#main-content">Hyppää pääsisältöön</a>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav id="siteNav" class="navbar navbar-expand-md site-navbar sticky-top" aria-label="Päänavigaatio" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/www-staging/">Jari Laru</a>
+    <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNavFi" aria-controls="mobileNavFi" aria-expanded="false" aria-label="Avaa mobiilivalikko">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav align-items-md-center flex-md-nowrap evelenty-main-nav ms-md-2 me-auto">
+        <li class="nav-item">
+          <a class="nav-link " href="/www-staging/">
+            <i class="bi bi-house-door-fill"></i> Etusivu
+          </a>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/tietoa/">
+    <i class="bi bi-person-fill"></i> Minä
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleMeFi" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuMeFi" aria-label="Avaa alavalikko: Minä">
+    <span class="visually-hidden">Avaa alavalikko: Minä</span>
+  </button>
+</div>
+
+          <div id="megaMenuMeFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMeFi">
+            <div class="mega-wrap grid-8-4">
+              <div class="mega-left three-cols">
+                
+                  <section>
+                    <h5>Jari lyhyesti</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/tietoa/"><i class="bi bi-info-circle me-2"></i><span>Tietoa minusta</span></a>
+                      
+                      
+                        <small class="menu-link-desc">Henkilökuva, elämä ja harrastukset.</small>
+                      
+                    
+                      
+                        <div class="menu-link menu-link-inline-group">
+                          <i class="bi bi-file-earmark-person me-2"></i>
+                          <span class="menu-link-inline-items">
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/cv/">Ansioluettelo</a><span class="menu-link-inline-separator" aria-hidden="true">|</span>
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/portfolio/">Opetusportfolio</a>
+                            
+                          </span>
+                        </div>
+                      
+                      
+                        <small class="menu-link-desc">Koulutus, kokemus ja pedagoginen ajattelu yhdessä.</small>
+                      
+                    
+                      
+                        <a href="/www-staging/palkinnot/"><i class="bi bi-award me-2"></i>Palkinnot</a>
+                      
+                      
+                        <small class="">Saadut tunnustukset opetuksen ja avoimen tieteen työstä.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Vapaa-aika</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/autolomat/"><i class="bi bi-car-front me-2"></i><span>Autolomat</span></a>
+                      
+                      
+                        <small class="menu-link-desc">Euroopan halki omalla autolla.</small>
+                      
+                    
+                      
+                        <a href="https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi" target="_blank" rel="noopener noreferrer"><i class="bi bi-egg-fried me-2"></i>Kulinaristi</a>
+                      
+                      
+                        <small class="">Intohimoinen ruoanlaittaja, leipuri ja keittokirjojen keräilijä.</small>
+                      
+                    
+                      
+                        <a href="https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi" target="_blank" rel="noopener noreferrer"><i class="bi bi-hammer me-2"></i>Hartiapankkiremontoija</a>
+                      
+                      
+                        <small class="">1970-luvun talon remontteja kaivinkoneen ohjaimista tapetointiin.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Roolini</h5>
+                    
+                      
+                        <a href="/www-staging/tyoni-yliopistonlehtorina/"><i class="bi bi-mortarboard me-2"></i>Yliopistonlehtori</a>
+                      
+                      
+                        <small class="">Opetus, tutkimus ja ohjaus yliopiston arjessa.</small>
+                      
+                    
+                      
+                        <a href="/www-staging/politiikka/"><i class="bi bi-bank2 me-2"></i>Poliitikko</a>
+                      
+                      
+                        <small class="">Paikallispolitiikan teemat, tavoitteet ja päätöksenteko.</small>
+                      
+                    
+                      
+                        <a href="/www-staging/larux-tmi/"><i class="bi bi-building me-2"></i>Yrittäjä</a>
+                      
+                      
+                        <small class="">Koulutus- ja asiantuntijapalvelut Larux t:mi:n kautta.</small>
+                      
+                    
+                  </section>
+                
+              </div>
+              <aside class="mega-right showcase-card">
+                <img src="/www-staging/img/uploads/2020/01/jari.laru_1397908734_26-e1610053137214.jpg" alt="Jari Laru" class="img-fluid rounded-3 mb-3" loading="lazy" decoding="async">
+                <h5>Jari Laru</h5>
+                <p>Isä, kulinaristi ja automatkailija – kun ei olla töissä.</p>
+                
+                  <a class="btn btn-accent btn-lg w-100" href="/www-staging/yhteystiedot/">Ota yhteyttä</a>
+                
+              </aside>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/tyoni-yliopistonlehtorina/">
+    <i class="bi bi-briefcase-fill"></i> Työ
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleWorkFi" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuWorkFi" aria-label="Avaa alavalikko: Työ">
+    <span class="visually-hidden">Avaa alavalikko: Työ</span>
+  </button>
+</div>
+
+          <div id="megaMenuWorkFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWorkFi">
+            
+            
+            <div class="mega-wrap">
+              <div class="mega-left four-cols">
+                
+                  <section>
+                    <h5>Opetus</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/tyoni-yliopistonlehtorina/"><i class="bi bi-briefcase me-2"></i><span>Työni yliopistonlehtorina</span></a>
+                        
+                          <small class="menu-link-desc">Kurssit, opetusvastuut ja pedagoginen kehitystyö.</small>
+                        
+                      
+                    
+                      
+                        <div class="menu-link menu-link-inline-group">
+                          <i class="bi bi-file-earmark-person me-2"></i>
+                          <span class="menu-link-inline-items">
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/cv/">Ansioluettelo</a><span class="menu-link-inline-separator" aria-hidden="true">|</span>
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/portfolio/">Opetusportfolio</a>
+                            
+                          </span>
+                        </div>
+                        
+                          <small class="menu-link-desc">Koulutus, kokemus ja pedagoginen ajattelu yhdessä.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/esitykset/"><i class="bi bi-easel2 me-2"></i><span>Esitykset</span></a>
+                        
+                          <small class="menu-link-desc">Koulutus- ja konferenssiesityksiä eri teemoista.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/opinnaytteet/"><i class="bi bi-mortarboard me-2"></i><span>Opinnäytetyöt</span></a>
+                        
+                          <small class="menu-link-desc">Ohjatut kandidaatti- ja pro gradu -tutkielmat.</small>
+                        
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Tutkimus</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/tyoni-yliopistonlehtorina/"><i class="bi bi-briefcase me-2"></i><span>Työni yliopistonlehtorina</span></a>
+                        
+                          <small class="menu-link-desc">Tutkimusaiheet, opetus ja hankkeiden käytännön toteutus.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/cv/"><i class="bi bi-file-earmark-person me-2"></i><span>Ansioluettelo</span></a>
+                        
+                          <small class="menu-link-desc">Yhteenveto akateemisesta urasta, meriiteistä ja tehtävistä.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/julkaisut/"><i class="bi bi-journal-text me-2"></i><span>Julkaisuluettelo</span></a>
+                        
+                          <small class="menu-link-desc">Tieteelliset julkaisut, kirjoitukset ja muut tekstisisällöt.</small>
+                        
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Kouluttaja (yrittäjä)</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/larux-tmi/"><i class="bi bi-building me-2"></i><span>Tietoa yrityksestä</span></a>
+                        
+                          <small class="menu-link-desc">Larux t:mi:n palvelut, tausta ja toimintatapa.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/esitykset/"><i class="bi bi-easel2 me-2"></i><span>Esitykset</span></a>
+                        
+                          <small class="menu-link-desc">Näytteitä koulutus- ja keynote-esitysten sisällöistä.</small>
+                        
+                      
+                    
+                      
+                        <div class="work-inline-cta">
+                          <a class="menu-link" href="/www-staging/yhteystiedot/">
+                            <i class="bi bi-megaphone me-2"></i><span>Tilaa minut kouluttajaksi</span>
+                          </a>
+                          
+                            <small class="menu-link-desc">Koulutukset tekoälystä, oppimisteknologiasta ja modernista pedagogiikasta.</small>
+                          
+                          <a class="btn btn-accent btn-lg w-100 mt-2" href="/www-staging/yhteystiedot/">
+                            Pyydä tarjous
+                          </a>
+                        </div>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Sosiaalinen media</h5>
+                    
+                      
+                        <a class="menu-link" href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin me-2"></i><span>LinkedIN</span></a>
+                        
+                          <small class="menu-link-desc">Ammatillinen profiili, verkostot ja ajankohtaiset nostot.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer"><i class="bi bi-globe me-2"></i><span>ResearchGate</span></a>
+                        
+                          <small class="menu-link-desc">Tutkimusprofiili, julkaisut ja tutkimusverkostot.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="https://orcid.org/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer"><i class="bi bi-person-vcard me-2"></i><span>ORCID</span></a>
+                        
+                          <small class="menu-link-desc">Pysyvä tutkijatunniste ja julkaisujen metatiedot.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer"><i class="bi bi-mortarboard me-2"></i><span>Google Scholar</span></a>
+                        
+                          <small class="menu-link-desc">Viittaukset, h-indeksi ja julkaisujen näkyvyys.</small>
+                        
+                      
+                    
+                  </section>
+                
+              </div>
+            </div>
+            
+            
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/politiikka/">
+    <i class="bi bi-bank2"></i> Politiikka
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaTogglePoliticsFi" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuPoliticsFi" aria-label="Avaa alavalikko: Politiikka">
+    <span class="visually-hidden">Avaa alavalikko: Politiikka</span>
+  </button>
+</div>
+
+          <div id="megaMenuPoliticsFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaTogglePoliticsFi">
+            <div class="mega-wrap">
+              <div class="mega-left three-cols">
+                
+                  <section>
+                    <h5>Rooli &amp; läpinäkyvyys</h5>
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/politiikka/">
+                          <i class="bi bi-person-badge me-2"></i>
+                          <span>Jari Laru, poliitikko</span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Luottamustoimet, tavoitteet ja historia.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/sidonnaisuudet/">
+                          <i class="bi bi-link-45deg me-2"></i>
+                          <span>Sidonnaisuudet</span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Avoimet ilmoitukset jäsenyyksistä.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook me-2"></i>Facebook</a>
+                      
+                      
+                        <small class="">Ajankohtaiset päivitykset ja keskustelu somessa.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Vaikuttaminen</h5>
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/kynasta/#aloitteet">
+                          <i class="bi bi-megaphone me-2"></i>
+                          <span>Valtuustoaloitteet <span class="menu-link-count">9</span></span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Aloitteet kaupunginvaltuustossa.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/kynasta/#puheet">
+                          <i class="bi bi-mic me-2"></i>
+                          <span>Puheenvuorot <span class="menu-link-count">24</span></span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Valtuustopuheenvuorot ja esittelyt.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/kynasta/#mielipiteet">
+                          <i class="bi bi-chat-text me-2"></i>
+                          <span>Mielipiteet <span class="menu-link-count">42</span></span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Kannanotot ja lehtijutut.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/kynasta/"><i class="bi bi-pencil-square me-2"></i>Kaikki kirjoitukset</a>
+                      
+                      
+                        <small class="">Kooste puheista, aloitteista, kolumneista ja mielipiteistä.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Vaalihistoria</h5>
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/vaalihistoria/">
+                          <i class="bi bi-calendar-event me-2"></i>
+                          <span>Vaalikaudet</span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Vaalit ja luottamustoimet vaalikausittain.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/kunta-ja-aluevaalit-2025/"><i class="bi bi-chevron-right me-2"></i>Kuntavaalit 2025</a>
+                      
+                      
+                        <small class="">Kampanjateemat ja tulos kuntavaaleissa 2025.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/kuntavaalit-2021/"><i class="bi bi-chevron-right me-2"></i>Kuntavaalit 2021</a>
+                      
+                      
+                        <small class="">Vaaliteemat, tavoitteet ja kampanjasisällöt vuodelta 2021.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/jari-laru-aluevaltuustoon/"><i class="bi bi-chevron-right me-2"></i>Aluevaalit 2022</a>
+                      
+                      
+                        <small class="">Näkemykset hyvinvointialueen päätöksenteon kehittämiseen.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/kunnallisvaalit-2012/"><i class="bi bi-chevron-right me-2"></i>Kunnallisvaalit 2012</a>
+                      
+                      
+                        <small class="">Ensimmäisen kampanjan teemat ja taustatiedot.</small>
+                      
+                    
+                  </section>
+                
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/kynasta/">
+    <i class="bi bi-pencil-fill"></i> Kynästä
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleWritingsFi" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuWritingsFi" aria-label="Avaa alavalikko: Kynästä">
+    <span class="visually-hidden">Avaa alavalikko: Kynästä</span>
+  </button>
+</div>
+
+          <div id="megaMenuWritingsFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWritingsFi">
+            <div class="mega-wrap writings-mega-layout">
+              
+                <section class="writings-group-head">
+                  <h5>Minun kynästä ja suusta</h5>
+                  <p class="menu-desc">Kaikki tuotettu sisältö yhdessä paikassa.</p>
+                </section>
+                
+                  <section class="writings-main-col">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/kynasta/#aloitteet">
+                        <span><i class="bi bi-megaphone me-2"></i>Aloitteet</span>
+                        <span class="menu-link-count">9</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Valtuustoaloitteet ja muut kirjalliset avaukset päätöksentekoon.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/blogi/">
+                        <span><i class="bi bi-pen me-2"></i>Blogi</span>
+                        <span class="menu-link-count">58</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Ajankohtaiset kirjoitukset opetuksesta, teknologiasta ja yhteiskunnasta.</small>
+                      
+                    
+                  </section>
+                
+                  <section class="writings-main-col">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/esitykset/">
+                        <span><i class="bi bi-easel2 me-2"></i>Esitykset</span>
+                        <span class="menu-link-count">132</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Koulutus- ja konferenssiesityksiä tekoälystä, oppimisesta ja pedagogiikasta.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/julkaisut/">
+                        <span><i class="bi bi-journal-text me-2"></i>Julkaisuluettelo</span>
+                        <span class="menu-link-count">81</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Tieteelliset julkaisut, artikkelit ja muut kirjoitukset yhdessä näkymässä.</small>
+                      
+                    
+                  </section>
+                
+                  <section class="writings-main-col">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/kynasta/#kolumnit">
+                        <span><i class="bi bi-journal-richtext me-2"></i>Kolumnit</span>
+                        <span class="menu-link-count">9</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Taustoittavia näkökulmatekstejä yhteiskunnasta ja koulutuksesta.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/kynasta/#mielipiteet">
+                        <span><i class="bi bi-chat-text me-2"></i>Mielipiteet</span>
+                        <span class="menu-link-count">42</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Lehdissä julkaistuja kannanottoja paikallisista ja valtakunnallisista aiheista.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/kynasta/#puheet">
+                        <span><i class="bi bi-mic me-2"></i>Puheet</span>
+                        <span class="menu-link-count">24</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Valtuustossa ja tapahtumissa pidettyjä puheenvuoroja.</small>
+                      
+                    
+                  </section>
+                
+                
+                  <section class="writings-side-head">
+                    <h5>Katso myös</h5>
+                    
+                      <p class="menu-desc">Ohjaamiani opinnäytteitä</p>
+                    
+                  </section>
+                  <section class="writings-side-links">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/opinnaytteet/#card-bachelor">
+                        <span><i class="bi bi-book-half me-2"></i>Kandidaatintutkielmat</span>
+                        <span class="menu-link-count">26</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Ohjaamani opinnäytteet aihepiireittäin ja vuosittain.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/opinnaytteet/#card-master">
+                        <span><i class="bi bi-mortarboard me-2"></i>Pro gradut</span>
+                        <span class="menu-link-count">74</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Ohjaamani opinnäytteet aihepiireittäin ja vuosittain.</small>
+                      
+                    
+                  </section>
+                
+              
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/yhteystiedot/">
+    <i class="bi bi-envelope"></i> Ota yhteyttä
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleContactFi" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuContactFi" aria-label="Avaa alavalikko: Ota yhteyttä">
+    <span class="visually-hidden">Avaa alavalikko: Ota yhteyttä</span>
+  </button>
+</div>
+
+          <div id="megaMenuContactFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleContactFi">
+            <div class="mega-wrap">
+              <section class="w-100 mb-3">
+                <h5>Ota yhteyttä</h5>
+                <p class="menu-desc">Lähetä viesti tai valitse suora yhteydenottotapa.</p>
+              </section>
+              <div class="mega-left four-cols contact-mega-cols">
+                
+                  <section>
+                    <h5>Lähetä viesti</h5>
+                    
+                      <form class="contact-mega-form" action="https://formspree.io/f/xlgwqwzk" method="POST">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaNameFi">Nimi</label>
+                        <input id="contactMegaNameFi" type="text" name="name" class="form-control form-control-sm mb-2" placeholder="Nimi" autocomplete="name">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaEmailFi">Sähköposti</label>
+                        <input id="contactMegaEmailFi" type="email" name="email" class="form-control form-control-sm mb-2" placeholder="Sähköposti" autocomplete="email" required="">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaMessageFi">Viesti</label>
+                        <textarea id="contactMegaMessageFi" name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="Viesti" required=""></textarea>
+                        <button type="submit" class="btn btn-accent btn-lg w-100">Lähetä</button>
+                      </form>
+                      <a class="contact-mega-mobile-cta btn btn-accent btn-lg w-100 mt-2" href="/www-staging/yhteystiedot/">
+                        <i class="bi bi-envelope-check me-2"></i>Avaa yhteydenottolomake
+                      </a>
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Työyhteys</h5>
+                    
+                      
+                        <a class="menu-link" href="mailto:jari.laru@oulu.fi">
+                          <i class="bi bi-envelope me-2"></i><span>Sähköposti</span>
+                        </a>
+                      
+                        <a class="menu-link" href="tel:+358294483810">
+                          <i class="bi bi-telephone me-2"></i><span>Puhelin</span>
+                        </a>
+                      
+                        <a class="menu-link" href="http://www.zoom.us/my/larux" target="_blank" rel="noopener noreferrer">
+                          <i class="bi bi-camera-video me-2"></i><span>Zoom</span>
+                        </a>
+                      
+                        <a class="menu-link" href="https://www.oulu.fi" target="_blank" rel="noopener noreferrer">
+                          <i class="bi bi-building me-2"></i><span>Oulun yliopisto</span>
+                        </a>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Larux tmi &amp; politiikka</h5>
+                    
+                      
+                        <a class="menu-link" href="tel:+358405118478">
+                          <i class="bi bi-whatsapp me-2"></i><span>Yritysyhteys</span>
+                        </a>
+                      
+                        <a class="menu-link" href="mailto:jari.laru@ouka.fi">
+                          <i class="bi bi-bank2 me-2"></i><span>Politiikan sähköposti</span>
+                        </a>
+                      
+                        <a class="menu-link" href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer">
+                          <i class="bi bi-facebook me-2"></i><span>Facebook</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/yhteystiedot/">
+                          <i class="bi bi-person-lines-fill me-2"></i><span>Yhteystiedot-sivu</span>
+                        </a>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Pikalinkit</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/larux-tmi/">
+                          <i class="bi bi-briefcase me-2"></i><span>Larux tmi</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/esitykset/">
+                          <i class="bi bi-easel2 me-2"></i><span>Esitykset</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/politiikka/">
+                          <i class="bi bi-megaphone me-2"></i><span>Politiikka</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/tietosuojaseloste/">
+                          <i class="bi bi-shield-check me-2"></i><span>Tietosuojaseloste</span>
+                        </a>
+                      
+                    
+                  </section>
+                
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item ms-md-auto mt-2 mt-md-0">
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" data-search-toggle="" style="width: 38px; height: 38px;" aria-label="Hae sivustolta" title="Hae sivustolta">
+              <i class="bi bi-search"></i>
+            </button>
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="themeToggleBtn" data-theme-toggle="" style="width: 38px; height: 38px;" aria-label="Vaihda teemaa" title="Vaihda teemaa">
+              <i class="bi bi-moon-stars-fill" id="themeToggleIcon" data-theme-icon=""></i>
+            </button>
+          </div>
+        </li>
+        <li class="nav-item ms-md-2 mt-2 mt-md-0">
+          <a class="nav-link py-0 d-flex align-items-center gap-1 text-decoration-none" href="/www-staging/en/" lang="en" aria-label="Switch language to English">
+            <span aria-hidden="true">🇬🇧</span><span>EN</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileNavFi" aria-labelledby="mobileNavFiLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title fw-bold" id="mobileNavFiLabel">Valikko</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Sulje"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form class="mb-3" data-search-form="">
+      <label for="mobileNavFiSearchInput" class="form-label small text-muted">Hae sivustolta</label>
+      <div class="input-group input-group-sm">
+        <input id="mobileNavFiSearchInput" type="search" class="form-control" placeholder="Hae..." autocomplete="off" name="q">
+        <button class="btn btn-outline-primary" type="submit" aria-label="Avaa haku">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </form>
+    <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+      <div class="btn-group btn-group-sm" role="group" aria-label="Kielen vaihto">
+        <a class="btn btn-outline-primary active" href="/www-staging/vanha-opetusportfolio-wiki-oulu-fi/" lang="fi">FI</a>
+        <a class="btn btn-outline-primary" href="/www-staging/en/" lang="en">EN</a>
+      </div>
+      <button class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-2" type="button" data-theme-toggle="" aria-label="Vaihda teemaa">
+        <i class="bi bi-moon-stars-fill" data-theme-icon=""></i><span>Teema</span>
+      </button>
+    </div>
+    <div class="d-grid gap-2 mb-3">
+      <a class="btn btn-outline-primary rounded-pill" href="/www-staging/">Etusivu</a>
+    </div>
+    <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordionFi">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiMeHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiMe" aria-expanded="false" aria-controls="mobileNavFiMe">Minä</button>
+        </h2>
+        <div id="mobileNavFiMe" class="accordion-collapse collapse" aria-labelledby="mobileNavFiMeHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/tietoa/">Avaa Minä-sivu</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Jari lyhyesti</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/tietoa/">Tietoa minusta</a>
+                  
+                
+                  
+                    <div class="mobile-nav-link d-flex align-items-center gap-2 flex-wrap">
+                      
+                        <a class="mobile-nav-link inline-link" href="/www-staging/cv/">Ansioluettelo</a><span class="mobile-nav-inline-separator" aria-hidden="true">|</span>
+                      
+                        <a class="mobile-nav-link inline-link" href="/www-staging/portfolio/">Opetusportfolio</a>
+                      
+                    </div>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/palkinnot/">Palkinnot</a>
+                  
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Vapaa-aika</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/autolomat/">Autolomat</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi" target="_blank" rel="noopener noreferrer">Kulinaristi</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi" target="_blank" rel="noopener noreferrer">Hartiapankkiremontoija</a>
+                  
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Roolini</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/tyoni-yliopistonlehtorina/">Yliopistonlehtori</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/politiikka/">Poliitikko</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/larux-tmi/">Yrittäjä</a>
+                  
+                
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiWorkHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiWork" aria-expanded="false" aria-controls="mobileNavFiWork">Työ</button>
+        </h2>
+        <div id="mobileNavFiWork" class="accordion-collapse collapse" aria-labelledby="mobileNavFiWorkHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/tyoni-yliopistonlehtorina/">Avaa Työ-sivu</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Opetus</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/tyoni-yliopistonlehtorina/">Työni yliopistonlehtorina</a>
+                
+                  <a class="mobile-nav-link" href=".">Ansioluettelo | Opetusportfolio</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/esitykset/">Esitykset</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/opinnaytteet/">Opinnäytetyöt</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Tutkimus</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/tyoni-yliopistonlehtorina/">Työni yliopistonlehtorina</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/cv/">Ansioluettelo</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/julkaisut/">Julkaisuluettelo</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Kouluttaja (yrittäjä)</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/larux-tmi/">Tietoa yrityksestä</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/esitykset/">Esitykset</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/yhteystiedot/">Tilaa minut kouluttajaksi</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Sosiaalinen media</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer">LinkedIN</a>
+                
+                  <a class="mobile-nav-link" href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer">ResearchGate</a>
+                
+                  <a class="mobile-nav-link" href="https://orcid.org/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer">ORCID</a>
+                
+                  <a class="mobile-nav-link" href="https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+                
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiPoliticsHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiPolitics" aria-expanded="false" aria-controls="mobileNavFiPolitics">Politiikka</button>
+        </h2>
+        <div id="mobileNavFiPolitics" class="accordion-collapse collapse" aria-labelledby="mobileNavFiPoliticsHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/politiikka/">Avaa Politiikka-sivu</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Rooli &amp; läpinäkyvyys</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/politiikka/">Jari Laru, poliitikko</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/sidonnaisuudet/">Sidonnaisuudet</a>
+                
+                  <a class="mobile-nav-link" href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Vaikuttaminen</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/kynasta/#aloitteet">Valtuustoaloitteet</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/kynasta/#puheet">Puheenvuorot</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/kynasta/#mielipiteet">Mielipiteet</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/kynasta/">Kaikki kirjoitukset</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Vaalihistoria</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/vaalihistoria/">Vaalikaudet</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/kunta-ja-aluevaalit-2025/">Kuntavaalit 2025</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/kuntavaalit-2021/">Kuntavaalit 2021</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/jari-laru-aluevaltuustoon/">Aluevaalit 2022</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/kunnallisvaalit-2012/">Kunnallisvaalit 2012</a>
+                
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiWritingsHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiWritings" aria-expanded="false" aria-controls="mobileNavFiWritings">Kynästä</button>
+        </h2>
+        <div id="mobileNavFiWritings" class="accordion-collapse collapse" aria-labelledby="mobileNavFiWritingsHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/kynasta/">Avaa Kynästä-sivu</a>
+            
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/kynasta/#aloitteet">Aloitteet</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/blogi/">Blogi</a>
+                  
+                </div>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/esitykset/">Esitykset</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/julkaisut/">Julkaisuluettelo</a>
+                  
+                </div>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/kynasta/#kolumnit">Kolumnit</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/kynasta/#mielipiteet">Mielipiteet</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/kynasta/#puheet">Puheet</a>
+                  
+                </div>
+              
+              
+                <p class="text-uppercase small text-muted mb-1 mt-2">Katso myös</p>
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/opinnaytteet/#card-bachelor">Kandidaatintutkielmat</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/opinnaytteet/#card-master">Pro gradut</a>
+                  
+                </div>
+              
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiContactHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiContact" aria-expanded="false" aria-controls="mobileNavFiContact">Ota yhteyttä</button>
+        </h2>
+        <div id="mobileNavFiContact" class="accordion-collapse collapse" aria-labelledby="mobileNavFiContactHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/yhteystiedot/">Avaa Yhteystiedot</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Lähetä viesti</p>
+              
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Työyhteys</p>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="mailto:jari.laru@oulu.fi">Sähköposti</a>
+                  
+                    <a class="mobile-nav-link" href="tel:+358294483810">Puhelin</a>
+                  
+                    <a class="mobile-nav-link" href="http://www.zoom.us/my/larux" target="_blank" rel="noopener noreferrer">Zoom</a>
+                  
+                    <a class="mobile-nav-link" href="https://www.oulu.fi" target="_blank" rel="noopener noreferrer">Oulun yliopisto</a>
+                  
+                </div>
+              
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Larux tmi &amp; politiikka</p>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="tel:+358405118478">Yritysyhteys</a>
+                  
+                    <a class="mobile-nav-link" href="mailto:jari.laru@ouka.fi">Politiikan sähköposti</a>
+                  
+                    <a class="mobile-nav-link" href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/yhteystiedot/">Yhteystiedot-sivu</a>
+                  
+                </div>
+              
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Pikalinkit</p>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/larux-tmi/">Larux tmi</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/esitykset/">Esitykset</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/politiikka/">Politiikka</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/tietosuojaseloste/">Tietosuojaseloste</a>
+                  
+                </div>
+              
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="searchOverlay" class="search-overlay" role="dialog" aria-modal="true" aria-labelledby="searchOverlayTitle" aria-hidden="true" hidden="">
+  <div class="search-overlay-inner">
+    <div class="container py-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0" id="searchOverlayTitle"><i class="bi bi-search me-2"></i>Hae sivustolta</h3>
+        <button class="btn btn-sm rounded-circle" id="searchCloseBtn" aria-label="Sulje haku" style="width: 38px; height: 38px;">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div id="pagefindSearch"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  
+  
+  
+  
+
+  
+  <section class="subpage-hero-placeholder" aria-hidden="true">
+    <div class="subpage-hero-image"></div>
+  </section>
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="container py-2" aria-label="Murupolku">
+  <ol class="breadcrumb mb-0 small">
+    <li class="breadcrumb-item"><a href="/www-staging/">Etusivu</a></li>
+    
+      <li class="breadcrumb-item active" aria-current="page">Opetusportfolio</li>
+    
+  </ol>
+</nav>
+
+
+
+  <main id="main-content" class="site-main">
+    <div class="bss-scope">
+      <section>
+  <div class="container">
+    
+    <article class="page-content">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h1 class="display-6 fw-bold">Opetusportfolio</h1>
+          
+          <div class="content-prose"><section class="container py-4 legacy-portfolio-page">
+  <div class="card border-warning-subtle bg-warning-subtle mb-4">
+    <div class="card-body">
+      <h2 class="h4 mb-2">Huomio sivusta</h2>
+      <p class="mb-0">Tämä on vuoden 2015 opetusportfolio arkistoversiona. Sisältö on säilytetty alkuperäisenä, mutta näkymä on muutettu Bootstrap card -pohjaiseksi luettavuuden parantamiseksi.</p>
+    </div>
+  </div>
+  <div id="legacyPortfolioCards">
+<div><h4>Huom!</h4><div><p>Tämä opetusportfolio on tehty vuonna 2015 hakiessani nykyiseen tehtävääni. Tarkoitus on tehdä portfoliosta päivitetty versio dosentuurihakua varten, mutta tällaisenaankin saat tästä varsin hyvän kuvan työstäni ja saamastani palautteesta.</p></div></div>
+<h2>Jari Laru</h2>
+<p>KT, yliopistonlehtori, teknologiatuettu oppiminen ja opetus<br>Oulun yliopisto, Kasvatustieteiden tiedekunta, oppimisen ja koulutusteknologian tutkimusyksikkö</p>
+<p>etunimi.sukunimi@oulu.fi<br>0405118478 </p>
+<p>www:&nbsp;<a href="https://web.archive.org/web/20140811140100/http://www.jarilaru.eu/">www.jarilaru.fi</a><br>LinkedIn:&nbsp;<a href="http://fi.linkedin.com/in/jarilaru_">http://fi.linkedin.com/in/jarilaru</a><br>Slideshare:&nbsp;<a href="http://www.slideshare.net/larux_">http://www.slideshare.net/larux</a><br>Mendeley:&nbsp;<a href="http://www.mendeley.com/profiles/jari-laru/??">http://www.mendeley.com/profiles/jari-laru/</a></p>
+<p>Portfolioni kertoo kuinka hyvin ja millaisin keinoin olen pystynyt toteuttamaan ajatuksiani ja ideoitani opetuksen kehittämisestä ja sen yhdistämisestä tutkimukseen.</p>
+<div><div><div><div>Portfolion sisältö</div><span><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 320 512"><path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"></path></svg></span></div><div><ul><li><a href="#jari-laru">Jari Laru</a></li><li><a href="#opetusfilosofia">Opetusfilosofia</a></li><li><a href="#opetus-ja-ohjaushistoria">Opetus- ja ohjaushistoria</a></li><ul><li><a href="#kurssit-joita-olen-opettanut">Kurssit joita olen opettanut</a></li><ul><li><a href="#orientoivat-opinnot">Orientoivat opinnot</a></li><li><a href="#perusopinnot">Perusopinnot</a></li><li><a href="#aineopinnot">Aineopinnot</a></li></ul></ul><li><a href="#itsearvio-omasta-opetuksesta-ja-itsestä-opetusyhteisön-jäsenenä">Itsearvio omasta opetuksesta ja itsestä opetusyhteisön jäsenenä</a></li><li><a href="#opetuksen-arviointi">Opetuksen arviointi</a></li><ul><li><a href="#palaute-opiskelijoilta">Palaute opiskelijoilta</a></li><ul><li><a href="#spontaani-palaute">Spontaani palaute</a></li><li><a href="#kirjallinen-palaute">Kirjallinen palaute</a></li><ul><li><a href="#orientoivat-kurssit">Orientoivat kurssit</a></li><li><a href="#perusopinnot">perusopinnot</a></li><li><a href="#aineopinnot">Aineopinnot</a></li></ul></ul><li><a href="#palaute-kollegoilta">Palaute kollegoilta</a></li></ul><li><a href="#oppimateriaalin-tuottaminen-ja-hyödyntäminen">Oppimateriaalin tuottaminen ja hyödyntämine
+</a></li><ul><li><a href="#taito-tuottaa-opetuksen-kannalta-merkittävää-oppimateriaalia">Taito tuottaa opetuksen kannalta merkittävää oppimateriaalia</a></li><li><a href="#taito-ja-tavat-hyödyntää-erilaisia-oppimateriaaleja-sekä-tutkimustietoa-omassa-opetuksessani">Taito ja tavat hyödyntää erilaisia oppimateriaaleja sekä tutkimustietoa omassa opetuksessani</a></li></ul><li><a href="#pedagoginen-koulutus">pedagoginen koulutus</a></li><ul><li><a href="#tutkinnot">Tutkinnot</a></li><li><a href="#tutkijakoulut">Tutkijakoulut</a></li><li><a href="#tutkijakoulutuksen-yhteydessä-saatu-pedagoginen-koulutus">tutkijakoulutuksen yhteydessä saatu pedagoginen koulutus</a></li></ul><li><a href="#yliopistopedagoginen-aktiivisuus-ja-opetuksen-kehittäminen">yliopistopedagoginen aktiivisuus ja opetuksen kehittämine
+</a></li><li><a href="#kansainvälistyminen-kansainväliset-yhteydet">Kansainvälistyminen, kansainväliset yhteydet</a></li><ul><li><a href="#tutkimusvierailut">Tutkimusvierailut</a></li><li><a href="#kansainväliset-verkostot">Kansainväliset verkostot</a></li></ul><li><a href="#yhteiskunnallinen-vaikuttaminen">Yhteiskunnallinen vaikuttamine
+</a></li><li><a href="#palkinnot-apurahat-ja-muut-huomionosoitukset">Palkinnot, apurahat ja muut huomionosoitukset</a></li><li><a href="#luottamustoimet-työryhmien-ja-toimikuntien-jäsenyys">Luottamustoimet, työryhmien ja toimikuntien jäsenyys</a></li><ul><li><a href="#2013">2013</a></li><li><a href="#2012-ja-aiemmat-olennaiset-tiedeyhteisöön-liittyvät-luottamustoimet">2012 ja aiemmat (olennaiset tiedeyhteisöön liittyvät luottamustoimet)</a></li></ul><li><a href="#muu-opetustyöhön-liittyvä-toiminta">Muu opetustyöhön liittyvä toiminta</a></li><li><a href="#visiot-ja-omat-kehityssuunnitelmat">Visiot ja omat kehityssuunnitelmat</a></li></ul></div></div></div>
+<h2 id="Opetusportfolio-Opetusfilosofia">Opetusfilosofia</h2>
+<p>Opetusfilosofiani noudattelee&nbsp; ajatuksia, jotka kirjoitin ylös laatiessani väitöskirjani Lectio Precursoriaa:&nbsp;<a href="https://web.archive.org/web/20140811140100/http://jarilaru.eu/wordpress/lectio-precursoria-opiskelun-tukeminen-mobiililaitteiden-ja-pedagogisen-vaiheistuksen-avulla/">Opiskelun tukeminen mobiililaitteiden ja pedagogisen vaiheistuksen avulla</a>. Keskeistä omassa opetusfilosofiassani on pyrkiä eroon teknologiavetoisuudesta, kytkeä laitteet ja sovellukset osaksi oppimista ja osaamista sekä olla mukana koulun muutosprosessissa.</p>
+<p><strong><em>Teknologiavetoisuus</em></strong><strong>.</strong>&nbsp;Väitöskirjani toinen esitarkastaja, professori Teemu Leinonen totesi omassa lausunnossaan, että samalla kun puhelinten ja taulutietokoneiden määrä oppilaitoksissa on lisääntynyt räjähdysmäisesti, niiden opetuskäyttöä perustellaan usein lähinnä tarkemmin määrittelemättömillä kansalaistaidoilla ja uuden teknologian hyödyntämisen tärkeydellä. Opetusta ei voi kuitenkaan suunnitella opiskelijoiden tai opettajien uteliaisuuden tai muotivirtausten varaan – teknologian opetuskäyttö vaatii erittäin huolellista suunnittelua ja oppimisprosessien ymmärrystä.</p>
+<p><strong><em>Oppimisen ja osaaminen rooli yhteiskunnassa</em></strong>. Lapset ja nuoret varttuvat maailmassa, jossa digitaaliteknologia on kaikkialla vahvasti läsnä. Nuoret ovat laajalti alkaneet käyttää tietotekniikkaa ja verkkopalveluja jokapäiväisessä elämässään vapaa-ajan, viihteen ja sosiaalisen vuorovaikutuksen tarpeisiin ja se vaikuttaa heidän oppimistarpeisiinsa, -vaatimuksiinsa ja -odotuksiinsa. Älypuhelimet ja muut uudet teknologiset sovellukset mahdollistaisivat konstruktivististen oppimisympäristöjen suunnittelun ja toteuttamisen, jossa avulla opiskelija oppii 2000-luvun kansalaistaitoja, kuten yhteisöllisyyttä, vuorovaikutusta, digitaalista lukutaitoa, ongelman ratkaisua, kriittistä ajattelua, luovuutta ja tuottavuutta. On kuitenkin selvää, että pelkkien oppiainekohtaisten pienoissovellusten ja muiden yksinkertaisten ratkaisujen avulla tähän tavoitteeseen ei päästä. Sen sijaan opettajan täytyy 2010-luvullakin suunnitella perusteellisesti mihin ja miksi hän teknologiaa opetuksessaan käyttää.</p>
+<p><strong><em>Koulun tulee muuttua</em></strong>. Viime aikoina julkisuudessa on ollut paljon puhetta siitä, että tietotekniikka ei useita vuosia elätellyistä toiveista huolimatta ole kuitenkaan muuttunut normaaliksi osaksi peruskoulun ja lukion oppimisympäristöjä. Teknologian määrä on kyllä kouluissamme tasaisesti kasvanut, mutta tosiasiallisesti laitteet ovat jääneet pedagogisesti eristyksiin 1990-lukulaisiin atk-luokkiinsa tai käytössä ovat perinteiset tiedon tiedon siirtämiseen perustuvat mallit, joissa opettajan keskeinen rooli korostuu.Opetan tuleville lastentarhan-,luokan-,ja aineenopettajille, kasvatustieteiden opiskelijoille, sivuaineopiskelijoille ja maisteriopiskelijoille teknologiatuetun opetuksen ja oppimisen teoreettisia perusteita ja välinehallintaa.Olen hyvin tietoinen tieto- ja viestintätekniikan osaamisen heikosta tasosta maamme oppilaitoksissa ja omalta osaltani pyrin suunnittelemaan opetuksen ja oppimisen siten, että opiskelijat saisivat valmiuksia kentällä toimimiseen. Kunnianhimoinen tavoitteeni on tarjota orientoivien opintojen aikana koko iköluokalle läpileikkaus aihepiirin keskeisimmistä teoreettisista-, menetelmällisistä-, ja käytän öllisistä ilmiöistä. Sivuaineopinnoissa ja maisteriohjelman/ohjelmien opinnoissa vaatimustaso nousee ja opetus on luonteeltaan projektimaista tähdäten asiantuntijaksi kasvamiseen.</p>
+<p>Opiskelijat ovat useimmiten kiitelleet harjoituksissani vallitsevaa ilmapiiriä, sillä olen hyvin opiskelijalähtöinen ja helposti lähestyttävä luonne. Pyrin rakentamaan luennoistani ja harjoituksistani sellaisia, että opiskelijat tulevat sinne uteliaina ja kiinnostuneina, sen sijaan että he kokisivat ne pakollisiksi. Se ei kuitenkaan tarkoita sitä, ettenkö olisi hyvin kunnianhimoinen ja vaativa kurssieni sisältöjen ja mitoituksen suhteen. Kurssieni toteutukseen kuuluu aina lähitapaamisten ohella itse äistä reflektioita ja ryhmäprojekteja tarkoituksenmukaisissa oppimisympäristöissä.</p>
+<p>Tarkoituksenmukaisilla oppimisympäristöillä tarkoitan sellaisia välineitä, joita hyödynnetään päiväkodeissa, peruskouluissa, lukioissa ja muissa oppilaitoksissa. Olen hyvin aktiivisessa vuorovaikutuksessa muiden tieto- ja viestintätekniikan opettajien kanssa ja seuraan alan kehitystä hyvin tarkasti. Opetan opiskelijoille, että uuden teknologian käyttöönotto ja tehokas hyödyntäminen ei tarkoita hyväksi havaittujen metodien hyllyttämistä, vaan niiden jalostamista. Monissa oppiaineissa teknologian&nbsp; hyväksikäyttö voi avata aivan uusia mahdollisuuksia sekä luokkahuonetyöskentelyyn että luokan ulkopuolella tapahtuvaan opiskeluun. Opetuksen kehittäminen on kuitenkin haasteellista, sillä se vaatii huomion kiinnittämistä oppimisprosessien ymmärtämiseen ja tukemiseen, jotta pystymme hyödyntämään mahdollisimman tehokkaasti kulloinkin käytössä olevia laitteita ja sovelluksia.</p>
+<h2 id="Opetusportfolio-Opetus-jaohjaushistoria">Opetus- ja ohjaushistoria</h2>
+<p>Nykyisessä tehtävässäni aloitin tuntiopettajana kolme lukukautta sitten syksyllä 2010-2011 jolloin olin viimeistelemässä väitöskirjani viimeistä osajulkaisua. Tuntiopettajana sain vastuulleni luennot ja yhden opetusryhmän. Uudistin luentojen sisällöt välittömästi vastaamaan omaa käsitystäni teknologiatuetusta opetuksesta ja oppimisesta. Huomasin jo tuolloin tuntiopettajana että vuorovaikutus opiskelijoiden kanssa toimii hyvin. Seuraavana lukuvuonna (2011-2012) sain opetettavakseni luentojen ohella useamman ryhmän ja siirryin yliopisto-opettajan tehtävään jossa olen työskennellyt tähän saakka.</p>
+<p>Työssäni saan tarkastella tieto- ja viestintätekniikkaa eri näkökulmista, sillä työsuunnitelmaan kuuluu sekä tiedekunnan kieli-,viestintä- ja orientoiviin opintoihin kuuluvia opintojaksoja että LET:n sivuaine- ja LET maisteriopintojaksoja. Olen eritellyt alla oleviin taulukoihin vastuuni ja kokemukseni eri opintokokonaisuuksissa.</p>
+<h3 id="Opetusportfolio-Kurssitjoitaolenopettanut"><strong>Kurssit joita olen opettanut</strong></h3>
+<h4 id="Opetusportfolio-Orientoivatopinnot"><strong>Orientoivat opinnot</strong></h4>
+<p><em>Kasvatustieteiden tiedekunnan kieli-, viestintä- ja orientoivat opinnot</em></p>
+<figure><table><tbody><tr><th>Kurssi</th><th>Opintopistettä</th><th>Opetuskieli</th><th>Rooli</th><th>Kokemus</th></tr><tr><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=28086726">410014Y Tieto- ja viestintätekniikka pedagogisena työvälineenä (2012-2013)</a></td><td>3 op</td><td>Suomi</td><td>vastuuhenkilö</td><td>2 vuotta yliopisto-opettajana, vuosi tuntiopettajana</td></tr><tr><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/ktktvt/410017Y+Multimedia+oppimisprojektina">410017Y Multimedia oppimisprojektina</a></td><td>3 op</td><td>Suomi</td><td>vastuuhenkilö</td><td>2 vuotta yliopisto-opettajana, vuosi tuntiopettajana</td></tr><tr><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=26675925">405021Y Tietotyö pedagogisena haasteena</a></td><td>3 op</td><td>Suomi</td><td>vastuuhenkilö</td><td>2 vuotta yliopisto-opettajana, vuosi tuntiopettajana</td></tr><tr><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=29068623">050091A Tieto- ja viestintätekniikka opetuksessa ja opiskelussa (aineenopettajat)</a></td><td>3 op</td><td>Suomi</td><td>Vastuuhenkilö</td><td>ensimmäinen toteutus</td></tr></tbody></table></figure>
+<h4 id="Opetusportfolio-Perusopinnot">Perusopinnot</h4>
+<p><em>Koulutusteknologian perusopinnot</em>&nbsp;(sivuaine)<br><em>Koulutusteknologian perusopinnot</em>&nbsp;(Edutool)<br><em>Minor Subject Studies: Introductory Studies in Educational Technology</em>&nbsp;(LET Master's programme)</p>
+<figure><table><tbody><tr><th>Kurssi</th><th>Opintopistettä</th><th>Opetuskieli</th><th>Rooli</th><th>Kokemus</th></tr><tr><td>418019P&nbsp;<a href="https://web.archive.org/web/20140811140100/http://www.oulu.fi/koulutusteknologia/node/11370">Johdatus oppimiseen ja koulutusteknologiaa
+</a><br>418019P&nbsp;<em>Introductio
+</em>&nbsp;to Learning and&nbsp;<em>Educational Technology</em></td><td>6 cr</td><td>Suomi/Englanti</td><td>Harjoituksien vastuuhenkilö, luentoja</td><td>2 vuotta</td></tr><tr><td>418021P Designing Technology-Enhanced Learning (TEL1)</td><td>6 cr</td><td>Englanti</td><td>Teknologiatprojektien vastuuhenkilö, ohjaaja ja oppimisympäristötoteutusten arvioija</td><td>1 vuosi (1. englanninkielinen toteutus)</td></tr><tr><td>418022P Educational Projects (PROJECT)</td><td>6 cr</td><td>Englanti</td><td>Projektiryhmien ohjausta tarvittaessa</td><td>1 vuosi (1. englanninkielinen toteutus)</td></tr></tbody></table></figure>
+<h4 id="Opetusportfolio-Aineopinnot">Aineopinnot</h4>
+<p><em>Kasvatustieteen syventävät opinnot</em>&nbsp;(Edutool)<em>Major Subject Studies: Advanced Studies in Educational Sciences</em>&nbsp;(LET master's programme)</p>
+<figure><table><tbody><tr><th>Kurssi</th><th>Opintopistettä</th><th>Opetuskieli</th><th>Rooli</th><th>Kokemus</th></tr><tr><td>413311S Self-Regulated Learning (SRL)</td><td>7.5 cr</td><td>Englanti</td><td>Teknologinen asiantuntija suunnittelun yhteydessä</td><td>-</td></tr><tr><td>413314S&nbsp;<a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/LETs/TEL2+%28Designing+TEL+in+global+school+systems%29">Designing Technology-Enhanced Learning in Global School Systems (TEL2)</a></td><td>7.5 cr</td><td>Suomi 2013 &lt;-<br>Englanti 2014-&gt;</td><td>Vastuuhenkilö</td><td>1 vuosi</td></tr><tr><td>413315S-01&nbsp;<a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/LETs/QUALI">Research Methodology: Qualitative Research (QUALI)</a></td><td>5 cr</td><td>Englanti</td><td>Vastuuhenkilö</td><td>1 vuosi</td></tr><tr><td>413008S Master's Thesis (RESEARCH)</td><td>&nbsp;</td><td>Englanti</td><td>Graduohjaaja (Fatiu Arilesere)</td><td>1 vuosi</td></tr></tbody></table></figure>
+<p><em>Major – Advanced Studies in Education. Master's Degree Programme in Education and Globalisatio
+</em>&nbsp;(EDGLO)</p>
+<figure><table><tbody><tr><th>Kurssi</th><th>Opintopistettä</th><th>Opetuskieli</th><th>Rooli</th><th>Kokemus</th></tr><tr><td>408515S,&nbsp;<a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/learntech/Frontpage">K13 New learning environments and technology</a></td><td>6 ects</td><td>Englanti</td><td>Vastuuhenkilö (harjoitukset)</td><td>2 vuotta</td></tr><tr><td>408510S Master’s Thesis</td><td>40 ects</td><td>Englanti</td><td>Graduohjaaja (Erkkie Haipinge)</td><td>1 vuosi</td></tr></tbody></table></figure>
+<p><em>Kasvatustieteen aineopinnot (luokanopettajakoulutus)</em></p>
+<figure><table><tbody><tr><th>Kurssi</th><th>Opintopistettä</th><th>Opetuskieli</th><th>Rooli</th><th>Ryhmän nimi</th></tr><tr><td>407030A Kandidaatintutkielma</td><td>9 op</td><td>Suomi / Englanti</td><td>Kandiryhmän vetäjä (alkaen lukukausi 2013-2014)</td><td>malu-aineet ja tvt:n käyttö opetuksessa ja oppimisessa</td></tr></tbody></table></figure>
+<h2 id="Opetusportfolio-Itsearvioomastaopetuksestajaitsestäopetusyhteisönjäsenenä">Itsearvio omasta opetuksesta ja itsestä opetusyhteisön jäsenenä</h2>
+<p>Olen työskennellyt tiedekunnassa kymmenen vuotta ja sitä ennen opiskellut samassa paikassa kuusi vuotta, joten tunnen sekä opetus- että tutkimushenkilökunnan erittäin hyvin. Lukuvuoden 2012-2013 aikana olen resurssieni puitteissa tukenut mm. tekstiilityötä, kuvaamataitoa ja tekstiilityötä opettavien henkilöiden teknologian opetuskäyttöä. Tavoitteenani on lisätä&nbsp; oman osaamisen siirtämistä myös muiden aineiden opettajien käyttöön, sillä pelkkä tieto- ja viestintätekniikan opettaminen erillise ä oppiaineena ei riitä tieto- ja viestintätekniikan laajamittaiseen hyödyntämiseen opettajankoulutuksessa. Oppimisen ja koulutusteknologian tutkimusyksikön (LET) toteuttamat opinnot edellyttävät puolestaan runsaasti suunnittelu- ja järjestelytyötä, sillä kursseilla on yleensä useita opettajia joiden vastuut täytyy sovittaa yhteen. Olen työskennellyt LET ryhmässä vuodesta 2003. Olen kiinteä osa LET ryhmää ja LET:n kansainvälistä opetus- ja tutkimusverkostoa.</p>
+<p>Opettajana olen hyvin ihmisläheinen ja opiskelijapalautteen perusteella opiskelijoiden arvostama asiantuntija ja opettaja. Pyrin rakentamaan opintojaksoistani kokonaisuuksia, joissa teknologiaa ja sovelluksia käytetään pedagogisesti tarkoituksenmukaisella tavalla. Olen luopunut pääosin opettajajohtoisista harjoituksista ja luennoitsijan yksinpuheluna pitämistä luennoista, harjoituksissani tehdään joko itse äisiä tai ryhmätehtäviä ja luennoillani keskustellaan yhdessä. Kurssin päätyttyä saan yleensä hyvää palautetta erityisesti harjoituksista, mutta myös luennoista. Kehitettävää minulla on luentomateriaalien esitystavassa ja luentojen sisällöissä, sillä luentoni ovat varsin visuaalisia ja sisältävät hyvin runsaasti asiaa. Opiskelijat ovat kokeneet luentojeni seuraamisen joskus raskaaksi, vaikka tarjoankin heille mahdollisuuden katsella/kuunnella luennot myöhemmin tallenteina. Kerään palautetta systemaattisesti, sillä kehitän opetustani vuosittain palautteen perusteella. Tämän kesän kehityskohteena ovat erityisesti orientoivien opintojen luentojen sisällöt.</p>
+<h2 id="Opetusportfolio-Opetuksenarviointi">Opetuksen arviointi</h2>
+<h3 id="Opetusportfolio-Palauteopiskelijoilta">Palaute opiskelijoilta</h3>
+<p>Olen kerännyt omilta kursseiltani palautetta koko opetushistoriani ajan. Orientoivien ja vapaavalintaisten opintojaksojen (kurssien) arviot ovat usein perustuneet Webpropol tai Surveymonkey lomakekyselyyn. LET-maisteriohjelmissa ja sivuaineissa kysely on toteutettu kurssien päätöstilaisuuksissa paperisena. Saan myös runsaasti spontaania palautetta opiskelijoilta, josta esimerkki alla.</p>
+<h4 id="Opetusportfolio-Spontaanipalaute"><strong>Spontaani palaute</strong></h4>
+<blockquote><p>Oulun yliopiston ylioppilaskunta OYY järjestää torstaiaamupäivänä 20.9. Opelle omppu -tempauksen, jolla nostetaan esille laadukkaan opetuksen tärkeyttä. Kotimaisia syysomenoita jaetaan klo 11 alkaen Linnanmaan kampuksen keskusaulassa vihreiden naulakoiden läheisyydessä. Opiskelijat voivat ottaa omenoita mukaansa ja viedä opettajille tai ohjaajille kiitokseksi laadukkaasta opetuksesta.</p></blockquote>
+<p>Opiskelijat toivat minulle 20.9.2012 useita omenoita. Oikeiden omenoiden lisäksi sähköpostiini lähetettiin virtuaalisia omenoita, joista yksi esimerkki on alla:</p>
+<blockquote><p>Aihe: Hyvälle opelle omena-­‐ päivä<br>Päivämäärä: torstai 20. syyskuuta 2012 15.54.50<br>Lähettäjä: Raija Leiviskä-Pehkonen &lt;POISTETTU@mail.student.oulu.fi&gt;<br>Vastaanottaja: jari.laru@oulu.fi &lt;POISTETTU@oulu.fi&gt;<br>Moi!<br>Tässä hyvälle opelle omena koko LO11-­‐B ryhmältä!!! :D</p></blockquote>
+<h4 id="Opetusportfolio-Kirjallinenpalaute">Kirjallinen palaute</h4>
+<p>Seuraaavassa esimerkkejä positiivisesta ja kehittävästä palautteesta orientoivilta kursseilta ja perusopinnoista.</p>
+<h6 id="Opetusportfolio-Orientoivatkurssit"><strong>Orientoivat kurssit</strong></h6>
+<figure><table><tbody><tr><th>Kurssin nimi</th><th>Harjoitusten vetäjä oli<br>aihepiirin vahva asiantuntija*</th><th>Luentojen vetäjä oli<br>aihepiirin vahva asiantuntija*</th><th>Koko arviointiraportti</th></tr><tr><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=28086726">410014Y Tieto- ja viestintätekniikka pedagogisena työvälineenä (2012-2013)</a></td><td>1,57</td><td>1,2</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/download/attachments/29803010/410014Y%20Tieto-%20ja%20viestintatekniikka%20pedagogisena%20tyovalineena%282%29.pdf?version=1&amp;modificatioDate=1369567227000&amp;api=v2">410014Y Tieto- ja viestintatekniikka pedagogisena tyovalineena(2).pdf</a></td></tr><tr><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/ktktvt/410017Y+Multimedia+oppimisprojektina">410017Y Multimedia oppimisprojektina</a></td><td>1,61</td><td>1,19</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/download/attachments/29803010/410017Y%20Multimedia%20oppimisprojektina.pdf?version=1&amp;modificatioDate=1369567352000&amp;api=v2">410017Y Multimedia oppimisprojektina.pdf</a></td></tr><tr><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=26675925">405021Y Tietotyö pedagogisena haasteena</a></td><td>(kysely toteutettu eri tavalla)</td><td>(kysely toteutettu eri tavalla)</td><td>Surveymonkey ei anna ladata raporttia ilman maksullisen pro-tason käyttöönottoa.</td></tr><tr><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=29068623">050091A Tieto- ja viestintätekniikka opetuksessa ja opiskelussa (aineenopettajat)</a></td><td>1,09</td><td>1,18</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/download/attachments/29803010/050091A%20Tieto-%20ja%20viestintatekniikka%20opetuksessa%20ja%20opiskelussa%20%28aineenopettajat%29.pdf?version=1&amp;modificatioDate=1369567519000&amp;api=v2">050091A Tieto- ja viestintatekniikka opetuksessa ja opiskelussa (aineenopettajat).pdf</a></td></tr></tbody></table></figure>
+<p>SELITE: *1 = täysin samaa mieltä, 2: jokseenkin samaa mieltä, 3: jokseenkin eri mieltä, 4: täysin eri mieltä</p>
+<p><strong>Esimerkkejä positiivisesta palautteesta:</strong></p>
+<blockquote><p>Erittäin hyvä kurssi. Mahtava opettaja. Opin uutta ja heräsi ajatuksia. Kiitos! (&nbsp;<a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=28086726">410014Y Tieto- ja viestintätekniikka pedagogisena työvälineenä (2012-2013)</a>, KAKO12A)</p><p>Luennot olivat hyödyllisiä ja mielenkiintoisia, vaikka ensimmäisellä luennolla olikin hieman pakokauhuinen olo. Opin luennoilla paljon uutta ja niitä oli helppo seurata. Luentoihin pohjautuvat blogitehtävät syvensivät mielestäni ymmärrystä aiheesta, vaikka blogin käyttö tuntuikin aluksi todella hankalalta, sillä minulla ei ole ennestään ollut omaa blogia enkä ole tottunut käyttämään wordpressiä. (<a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=28086726">410014Y Tieto- ja viestintätekniikka pedagogisena työvälineenä (2012-2013)</a>, LO12B</p><p>Opintojakso antoi jonkinlaista vahvistusta kehittää omaa opettamisen ideologiaa tai tausta-ajatusta. Kurssi yhdessä "Opetussuunnitelma ja koulun kehittäminen"-kurssin kanssa herätti pohtimaan omaa opettajuuttani ja niitä asioita mihin toiminnallani haluan pyrkiä. (<a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=26675925">405021Y Tietotyö pedagogisena haasteena</a>, TEKNO11)</p><p>Tästä todella on apua tulevassa työssäni. Kiitos ihanasta kurssista (<a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=29068623">050091A Tieto- ja viestintätekniikka opetuksessa ja opiskelussa (aineenopettajat)</a>, Auskultantti 2013).</p><p>Harjoituskerrat olivat mielekkäitä ja niillä tehtävien harjoitusten yhdistäminen kokonaisuudeksi on motivoiva lisä. Omatoimista työskentelyä voisi lisätä läsnäolokertojen kustannuksella tai vaihtoehtoisesti läsnäolo tulisi olla vapaaehtoista. Nyt osa tunneista oli turhan helppoja ja työt olivat valmiita jo alussa. Kaiken kaikkiaan erittäin hyvä kurssi!!! (<a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/ktktvt/410017Y+Multimedia+oppimisprojektina">410017Y Multimedia oppimisprojektina</a>, LO12C)</p></blockquote>
+<p><strong>Esimerkkejä kehittävästä palautteesta:</strong></p>
+<blockquote><p>Luennot oli välillä hirviää sahausta, hypittiin liikaa isomman skeeman sisällä aiheesta toiseen ja tarttumapinta jäi välillä olemattomaksi. Jäi niistä silti asiaa mieleen. Jos dioja on liikaa niin ennemmin vähentää kuin pyöräyttää jokaista sen alle 10 s näkyvillä. Valmiudet hyödyntää pilvipalveluita ja eri ohjelmistoja/laitteita parani kurssin myötä, josta on varmasti hyötyä jatkossa. Aineenopettaja äkökulmaa voisi ehkä vielä enemmän painottaa. En ole kurssin jäljestäkään täysin vakuuttunut älytaulujen erinomaisuudesta; ehkä niistäkin voisi repiä e ämpi irti? (<a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=29068623">050091A Tieto- ja viestintätekniikka opetuksessa ja opiskelussa (aineenopettajat)</a>, Auskultantti 2013).</p><p>Tutkimustyöhön kuuluneet case-tehtävät olivat vaativia ja tuntuivat liian työteliäiltä, koska ohjelma ei monesti toiminut kunnolla. Muutoin kurssin toteutus oli todella hyvä ja hyvää oli että joka tunnilla tehtiin jokin harjoitustyö (<a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/ktktvt/410017Y+Multimedia+oppimisprojektina">410017Y Multimedia oppimisprojektina</a>, LO12B).</p><p>Vähän laittaisin kommenttia luennoilla käytetyistä power pointeista. Niissä oli ihan liikaa tavaraa ja tekstiä että luentoa olisi voinut kuunella hyödyllisesti samaan aikaan. Ihmiset lukevat automaattisesti power pointit läpi ja jos siellä on pitkiä tekstejä jää luennoitsijan puheista pakostakin asoita pois. Toinen asia mitä kritisoisin vähän sitä että käytetään ipadia power pointin käyttöön.. Tiedän että sillä on hyödyllisiä käyttötarkoituksia, mutta vaikka teknologiaa voi käyttää johonkin tarkoitukseen ei tarkoita että sitä aina tarvitsee. Luennoilla parasta oli ryhmä keskustelut ja on sääli että niille ei ollut enempää aikaa. Ymmärrän kyllä että luentoon oli mahduttava niitten lisäksi kurssin asiasisältöä. (<a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=28086726">410014Y Tieto- ja viestintätekniikka pedagogisena työvälineenä (2012-2013)</a>, ITE12)</p></blockquote>
+<h6 id="Opetusportfolio-perusopinnot"><strong>perusopinnot</strong></h6>
+<figure><table><tbody><tr><th>Kurssi</th><th>The course was interesting<br>for you</th><th>The course was useful<br>for you</th><th>Koko arviointiraportti</th></tr><tr><td>418019P&nbsp;<a href="https://web.archive.org/web/20140811140100/http://www.oulu.fi/koulutusteknologia/node/11370">Johdatus oppimiseen ja koulutusteknologiaa
+</a>&nbsp;(JOKO)<br>418019P&nbsp;<em>Introductio
+</em>&nbsp;to Learning and&nbsp;<em>Educational Technology</em>&nbsp;(INTRO)</td><td>- (ei kysytty)<br>4,53</td><td>4,52<br>4,47</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/download/attachments/29803010/JOKO-opintojakson%20palautekysely051211%20%282%29.pdf?version=1&amp;modificatioDate=1369638956000&amp;api=v2">JOKO-opintojakson palautekysely051211 (2).pdf</a><br><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/download/attachments/29803010/INTRO_palaute_15_opiskelijaa%20%282%29.pdf?version=1&amp;modificatioDate=1369639478000&amp;api=v2">INTRO_palaute_15_opiskelijaa (2).pdf</a></td></tr><tr><td>418021P Designing Technology-Enhanced Learning (TEL1)</td><td>4,72</td><td>4,62</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/download/attachments/29803010/TEL1%20kurssipalaute.pdf?version=1&amp;modificatioDate=1369638384000&amp;api=v2">TEL1 kurssipalaute.pdf</a></td></tr><tr><td>418022P Educational Projects (PROJECT)</td><td>-</td><td>-</td><td>-</td></tr></tbody></table></figure>
+<p><strong>Selite:&nbsp;</strong>&nbsp;(1=totally disagree, 5=totally agree)<br><strong>Esimerkkejä positiivisesta palautteesta:</strong></p>
+<blockquote><p>The course was one of the best so far! The only thing I might add is to have some feedback from Jari on the technological script as we did from Venla on the pedagogical script, that was really useful, as it made us confident that we're on the right track (418021P Designing Technology-Enhanced Learning (TEL1))</p><p>I would like to say a lot of thanks to our great teachers: Venla and Jari. (418021P Designing Technology-Enhanced Learning (TEL1))</p><p>It was a really nice course. I enjoyed it very much. I cannot wait for TEL2 :) Thank you! (418021P Designing Technology-Enhanced Learning (TEL1))</p><p>Jarin opetustyyli harjoituksissa. Sekä mahtavat sähköpostiohjeet mitä oli tehty ja mitä pitäisi tehdä. Sekä myös se että nettisivuilta näki mitä oli käsitelty ja mitä käsiteltiin jos niitä tarvi jossain kohdissa kurssia muistella. (418019P Johdatus oppimiseen ja koulutusteknologiaan)</p><p>The structure of the course. The assistance of the teachers even if in different directions, with Venla giving real assistance and guidance and Jari giving us a hard time understanding what we were supposed to do. Both were productive in their own way. (418019P&nbsp;<em>Introductio
+</em>&nbsp;to Learning and&nbsp;<em>Educational Technology)</em></p><p>Jari is always answering to all questions and the atmosphere is very nice and relaxed and you can easily ask. However, the instructions could be given and explained in the beginning of the workshop so that you don't need to ask so much.<br>In spite of these comments I must say that I enjoyed the workshops. Jari is an inspiring person and just the right person to teach about the technological tools :) (418019P&nbsp;<em>Introductio
+</em>&nbsp;to Learning and&nbsp;<em>Educational Technology)</em></p></blockquote>
+<p><strong>Esimerkkejä kehittävästä palautteesta:</strong></p>
+<blockquote><p>Liiallinen tiedonmäärä liian lyhyessä ajassa. Monimutkainen Jarin blogi, josta oli määrä löytyä "kaikkia". Varmaan löytyykin, jos löytää. (418019P Johdatus oppimiseen ja koulutusteknologiaan - EDUTOOL &amp; Sivuaine 2012-2013)</p><p>Informaation suuri määrä ja sen esittämisen poukkoilevuus Jarin harjoituksissa.(418019P Johdatus oppimiseen ja koulutusteknologiaan)</p><p>Harjoituksia voitaisiin selkiyttää ja punainen lanka niissä voisi tulla keskeisemmin näkyviin. Nyt olo oli vähän sellainen että siellä käytiin asioita vähän sitä mukaan, mitä opettajalla sattui mieleen juolahtamaan (opettajan tajunnanvirtaa). Lisäksi voisi olla paikallaan jollakin tavalla selvittää opiskelijoiden lähtötaso tietoteknisten sovellutusten suhteen ja jakaa porukka niiden mukaan pienempiin ryhmiin. Lisäksi harjoituksissa oli vähän kiireen tuntu ja osa ohjelmista käytiin turhan nopeaa...olisi ollut mielenkiintoista esimerkiksi kunnolla ymmärtää Diigon ja Mendeleyn tarjoamat mahdollisuudet. Tehtävät opettajan blogissa olivat sekavasti esillä. Yleensäkin ohjeistusta ja tehtävänantoja harjoituksissa voisi selkeyttää. Jarille kuitenkin pisteitä todellisesta innostuneisuudesta ja kiinnostuneisuudesta aihealueeseen. Toivoisin myös vähän enemmän kritiikkiä sosiaalista mediaa kohtaan - tietoturvan ja yksityisyyden suojan kannalta kaikki eivät halua kaikkea julkiseksi. (418019P Johdatus oppimiseen ja koulutusteknologiaan - EDUTOOL maisteriohjelma ja sivuaine)&nbsp;Kommentti: palautteen perusteella harjoitusten sisältöjä on kehitetty, yksinkertaistettu ja otettu huomioon esim. yksityisyyteen liittyviä kysymyksiä.</p></blockquote>
+<h6 id="Opetusportfolio-Aineopinnot.1"><strong>Aineopinnot</strong></h6>
+<p>Aineopintoihin liittyvän palautteen keruu on parhaillaan käynnissä. Olen aloittanut aineopintojen opettamisen lukuvuonna 2012-2013.</p>
+<h3 id="Opetusportfolio-Palautekollegoilta">Palaute kollegoilta</h3>
+<p>Niina Impiö</p>
+<blockquote><p>Olen työskennellyt Jari Larun kanssa Oulun yliopiston Kasvatustieteiden tiedekunnassa vuodesta 2002 lähtien. Yhteinen työhistoriamme liittyy tutkimus- ja opetustyöhön osana Oppimisen ja koulutusteknologian tutkimusyksikön tiimiä. Erityisesti olemme tehneet yhteistyötä LET-maisteriohjelman opetuksen suunnittelussa sekä tiedekuntamme henkilökunnan tvt-taitojen kouluttamisen kehittämisessä.Opettajana Jari on innovatiivinen ja työlleen omistautunut. Hän seuraa teknologian kehitystä ja soveltaa sitä monipuolisesti opetukseensa. Hänen vahvuutensa on teknologis-pedagoginen osaaminen sekä nopea uuden tiedon omaksuminen.Kollegana Jari on idearikas ja helposti lähestyttävä. Hän hahmottaa hyvin laajoja kokonaisuuksia sekä edistää sinnikkäästi teknologian opetuskäyttöön liittyviä kehitysideoita työyhteisössämme.</p></blockquote>
+<p>Pirkko Hyvönen on työtoverini koulutusteknologian aineopintojen (sivuaine/maisteriopinnot) puolelta sekä tutkimuksen parista. Alla olevassa viestissä Pirkko arvioi osaamistani:</p>
+<blockquote><p>From:&nbsp;&nbsp; &nbsp;Pirkko Hyvöne
+<br>Sent:&nbsp;&nbsp; &nbsp;27. toukokuuta 2013 13:07<br>To:&nbsp;&nbsp; &nbsp;Jari Laru<br>Subject:&nbsp;&nbsp; &nbsp;Re: Hei! Voitko auttaa pikkuisen portfolion kanssa?</p><p>Olen työskennellyt Jarin kollegana vuodesta 2007 lähtien ja seurannut läheltä hänen kehittymispolkuaan oppimise
+<br>ja koulutusteknologian asiantuntijaksi.<br>Olen havainnut että Jari on&nbsp; omistautunut työlleen niin opettajana, teknologina kuin tutkijanakin. Utelias ja<br>tiedonhaluinen mieli sekä taito omaksua uusia asioita nopeasti pitää hänet kehityksen kärjessä. Mielestäni Jari osaa<br>sopivalla tavalla korostaa oleellista epäoleellisesta, esimerkiksi juuri teknologian opetuskäytössä.</p><p>Pirkko Hyvöne
+<br>Tutkijatohtori, oppiminen ja koulutusteknologia</p></blockquote>
+<p>Venla Vuorjoki on yliopisto-opettaja, jonka vastuualueena ovat koulutusteknologian perusopinnot. Olen Venlan kanssa opettanut lukuvuosina 2011-2013 kursseja:&nbsp;<em>418019P</em>&nbsp;<a href="https://web.archive.org/web/20140811140100/http://www.oulu.fi/koulutusteknologia/node/11370">Johdatus oppimiseen ja koulutusteknologiaa
+</a>&nbsp;<em>(JOKO), 418019P Introduction to Learning and Educational Technology (INTRO), 418021P Designing Technology-Enhanced Learning (TEL1) ja 418022P Educational Projects (PROJECT).</em>&nbsp;Seuraavaksi Venlan arvio minusta työkaverina:</p>
+<blockquote><p><strong>Aihe:</strong>&nbsp;RE: Hei! Voitko auttaa pikkuisen portfolion kanssa?<br><strong> Päivämäärä: </strong>&nbsp;tiistai 21. toukokuuta 2013 12.25.04<br>*Lähettäjä: *Venla Vuorjoki &lt;POISTETTU@oulu.fi&gt;<br><strong>Vastaanottaja:</strong>&nbsp;Jari Laru &lt;POISTETTU@oulu.fi&gt;</p><p>Hei Jari,</p><p>Tässäpä sinulle palautetta ja kommentteja. Luonnollisestikin minun osaltani palaute koskee sinua opettajana, eikä niinkään tutkijana.</p><p>Jari Laru on innostunut ja innostava opettaja, joka elää ja hengittää koulutusteknologiaa. Jari tarjoaa opiskelijoilleen viihdyttävää, innostavaa ja vauhdikasta opetusta, joka parhaimmillaan sytyttää myös opiskelijoissa samanlaisen palon (koulutus)teknologiaa kohtaan.</p><p>Erityise ä vahvuutena Jarilla on spontaani esiintymistapa ja intohimoinen suhtautuminen erityisesti teknologiaa kohtaan. Nämä yhdistettynä ihmisläheisyyteen ja vahvaan teknologiaosaamiseen tekevät hänestä hyvän ja joustavan opettajan koulutusteknologian ja muiden vastaavien oppisisältöjen osalta.</p><p>Vauhti ja energia, jotka ovat Jarin ehdottomia vahvuuksia, voivat toisinaan kääntyä myös heikkouksiksi, mikäli opiskelijan tapa oppia kaipaisi rauhallisempaa, systemaattisempaa ja maltillisempaa lähestymistapaa. En kuitenkaan epäile yhtään, etteikö Jari osaisi myös nämä opiskelijat ottaa hyvin huomioon niin halutessaan.</p><p>Lisäksi Jari on idearikas ja avulias kollega, jolla löytyy mielipiteitä asiaan kuin asiaan, ja joka ei silti ota itseään ja asiantuntemustaan liian vakavasti. Toisinaan Jarin lennokas työskentelytapa vaatii kollegoilta kärsivällisyyttä ja ulkopuolista organisointia, mutta enimmäkseen hän tuo persoonallaan väriä, energiaa ja uusia ideoita työyhteisöön.</p></blockquote>
+<p>Päivi Tikkala on LEAF/Vuoroverkko -hankkeen projektipäällikkö. Päivin kanssa en varsinaisesti opeta tai tutki, sillä LEAF/Vuoroverkko on infrastruktuurin kehittämishanke.Alla päivin arvio minusta työkaverina:</p>
+<blockquote><p>Minulla on ollut ilo työskennellä Jari Larun kollegana Oulun yliopiston kasvatustieteiden tiedekunnassa. Jari on kokenut ja työteliäs yliopisto-opettaja ja tutkija, jolla on erinomaiset kyvyt opetuksen strategisesta suunnittelusta aina toteuttamiseen asti. Jarin työskentelyä leimaa positiivinen ote ja hänen opintojaksototeutuksissaan korostuu oppimisen ilo ja monimuotoisuus. Jarilla on laaja ymmärrys teknologiatuetusta opetuksesta ja oppimisesta. Hän ymmärtää asioiden teoreettiset perusteet sekä niiden pedagogisen soveltamisen ja pystyy tarvittaessa jäsentämään hyvinkin monimutkaisia teknisiä kokonaisuuksia aina bittitasolle asti.</p><p>Jari on ollut kantavana voimana mukana tiedekunnan innovatiivisessa LeaForum-hankkeessa, jossa tuotteistetaan kasvatustieteellisen tutkimuksen teoreettinen ja menetelmällinen tutkimusosaaminen sekä rakennetaan vuorovaikutuslaboratorio. Jarin asiantuntijuutta on tarvittu hankkeen valmistelussa sekä infrastruktuurin ja hankintojen suunnittelussa. Jarin tiedot ja taidot ovat todellinen vahvuus erityisesti organisaatiolle, joka arvostaa monitieteisyyttä, opetuksen kehittämistä sekä alueellista ja kansainvälistä verkostoitumista. (Päivi Tikkala, projektipäällikkö, Vuoroverkko (LEAF) -hanke. Lausunto myös LinkedIN palvelussa:&nbsp;<a href="https://web.archive.org/web/20140811140100/http://fi.linkedin.com/in/jarilaru">http://fi.linkedin.com/in/jarilaru</a>)</p></blockquote>
+<p>Vesa-Matti Sarenius on matematiikan didaktiikan yliopisto-opettaja, luokanopettajakoulutusten harjoittelukoordinaattori. Vesa-Matin kanssa emme ole opettaneet vielä yhdessä, mutta ensi lukukaudella vedämme yhdessä vapaa-valintaisen matematiikan oppimateriaalien tuottamiseen liittyvän kurssin sekä aloitamme kandiryhmän "malu-aineet ja tvt:n käyttö opetuksessa ja oppimisessa". Seuraavassa Vesa-Matin luonnehdintoja minusta:</p>
+<blockquote><p>Aihe: Re: Pystytkö antamaan lausunnon opetusportfoliota<br>Päivämäärä: keskiviikko 22. toukokuuta 2013 12.39.47<br>Lähettäjä:&nbsp; Vesa-­‐Matti Sarenius &lt;POISTETTU@oulu.fi&gt;<br>Vastaanottaja: Jari Laru &lt;POISTETTU@oulu.fi&gt;<br>Re: Pystytkö antamaan "lausunnon" opetusportfoliota varten&nbsp;</p><p>Tämmöstä?</p><p>Minulla on ollut ilo työskennellä Jarin kanssa usean vuoden ajan. Käytännön työskentelyä enemmän olemme keskustelleet opetuksen kehittämisestä, erityisesti tietenkin tieto-­‐ ja viestintätekniikan opetuskäytön osalta.</p><p>Jari ei pelkää kokeilla opetuksessaan uusia asioita ja hänen opetuksensa onkin samalla jatkuvaa opetuksen kehittämistä. Silloin kun puhutaan teknologian opetuskäytöstä, tällainen on välttämätöntä. Täytyy olla opettajia, jotka eivät vain käytä teknologiaa opetuksessaan tai vain opeta sen käyttöä vaan myös luovat uusia, ennen kokeilemattomia tapoja käyttää sitä. Opettajankoulutuksen tehtävä on nimenomaan olla luomassa uusia pedagogisia malleja opettamiseen, ei toistaa vanhoja malleja, ja tässä työssä Jarilla on ollut tiedekunnassamme ensiarvoisen tärkeä rooli.</p><p>Jari on mielellään aina auttamassa kollegoitaan erityisesti tietotekniikan opetuskäytössä opettajankoulutuksessa. Hänen tietojaan pystyisivät hyödyntämään tämänhetkistä useammatkin opettajat. Jarilla on taito antaa ammattimaisia neuvoja niin, että opettajien kynnys käyttää erilaisia välineitä on matala. Hän on myös erittäin innostunut lähtemään mukaan erilaisiin opetuskokeiluihin ja opettajankoulutusta kehittäviin projekteihin.</p><p>Pidän Jarin merkitystä tiedekunnan tutkimus-­‐ ja opetusinfran kehittämisessä keskeise ä. Molempien infrastruktuurien kehittäminen vaatii vahvaa tutkimustaustaa ja vahvaa kiinnostusta asiasta. Jarin panos tässä kehittämistyössä on nimenomaan siitä, että hän kykenee tutkimustaustansa vuoksi näkemään muutaman askeleen edelle ja suunnittelemaan tulevaisuuden opettajien tarpeita palvelevaa infrastruktuuria opettajankoulutuksen käyttöön.</p><p>On vaikeaa löytää toista ihmistä, jossa yhdistyy lapsenkaltainen innostus kaikkeen uuteen teknologiaan ja tutkijankaltainen näkemys sen hyödyntämiseen.</p><p>Vesa-­‐Matti Sarenius</p></blockquote>
+<p>Heikki Kontturi on ubiko-hankkeen projektipäällikkö ja tvt-vastaava Oulun normaalikoulun perusasteella. Heikki arvioi seuraavassa viestilainauksessa Oulun normaalikoulun ja minun yhteistyösuhteita:</p>
+<blockquote><p>From:&nbsp;&nbsp; &nbsp;Heikki Kontturi &lt;heikki.kontturi@oulu.fi&gt;<br>Sent:&nbsp;&nbsp; &nbsp;22. toukokuuta 2013 9:03<br>To:&nbsp;&nbsp; &nbsp;Jari Laru<br>Subject:&nbsp;&nbsp; &nbsp;VS: Heips! Saisinko sinulta eli pienen kuvauksen portfoliooni..</p><p>Toimin Oulun normaalikoulun perusasteella TVT-vastaavana ja UBIKO-hankkeen projektipäällikkö ä. Jari Laru<br>on toiminut yhteistyökumppaninamme sekä pedagogisten käytänteiden kehittämisessä että laitehankintoje
+<br>suunnittelussa. Hänen tekninen asiantuntemuksensa sekä tutkimukseen perustuva pedagoginen osaamisensa<br>ovat olleet merkittävä apu koulumme kehittämisessä. Hän on toiminut myös asiantuntijana koulumme<br>vanhempainilloissa.<br>Tieto- ja viestintätekniikan opetuskäyttö elää tällä hetkellä murroskautta mobiiliteknologian käytön kasvaessa<br>kouluissa räjähdysmäisesti. Tästä näkökulmasta tarkasteltuna pidän&nbsp; Jari Larua kansainvälisestikin arvioide
+<br>erittäin arvokkaana voimavarana Oululaisen opettajankoulutuksen kehittämiselle.</p><p>Oulussa 22. toukokuuta 2013</p><p>Heikki Kontturi, Lehtori/Projektipäällikkö<br>Oulun normaalikoulun perusaste</p></blockquote>
+<h2 id="Opetusportfolio-Oppimateriaalintuottaminenjahyödyntäminen">Oppimateriaalin tuottaminen ja hyödyntämine
+</h2>
+<p>Hyödynnän opetuksen suunnittelussa, oppimateriaalin tuottamisessa ja valmiiden materiaalien etsimisessä väitöskirjatyössäni syntynyttä osaamista. Väitöskirjani osoitti että emme automaattisesti osaa hyödyntää uusinta teknologiaa ja pedagogisia menetelmiä opiskelumme tukena. Päinvastoin, käyttäminen vaatii paljon päämäärätietoista ponnistelua. Henkilökohtaiset tekijät, kuten aiemmat kokemukset, opiskelutaidot, mutta myös tilannesidonnaiset tekijät kuten opetusmenetelmät vaikuttavat opiskelijoiden kykyyn hyödyntää uutta teknologiaa opiskelussa. Kognitiivisten työkalujen tehokas hyödyntäminen vaatiikin välinehallinnan opettelun ohella täydellisen keskittymisen itse tehtävään ja riittävän pedagogisen vaiheistuksen muine tukirakenteineen.</p>
+<p>Kehittämäni "oppimateriaali" koostuukin useimmiten kurssiwikin, luentojen, blogiartikkeleiden ym. muodostamasta kokonaisuudesta, josta rakennetaan oppimisympäristö pedagogisen vaiheistamisen avulla.</p>
+<h3 id="Opetusportfolio-Taitotuottaaopetuksenkannaltamerkittävääoppimateriaalia">Taito tuottaa opetuksen kannalta merkittävää oppimateriaalia</h3>
+<p>Pyrin kehittämään oppimateriaaleja koko ajan. Hyödynnän hyvin monipuolisesti saatavilla olevaa välineistöä, ovat ne sitten verkkosovelluksia tai esim. mobiililaitteita. Esim. luentomateriaalit suunnittelen siten, että pystyn tarvittaessa yhdistämään luentodioihini luennoitsijan sekä yleisön äänen. Tähän tarkoitukseen käytän joko Slideshare -palvelun slidecast-palvelua tai Ouliun yliopiston Adobe Connect -järjestelmää.</p>
+<p>Ohjenuorani oppimateriaaleja laatiessani on se, että niiden tulee olla perustua tutkimukseen ja niiden tulee ottaa kantaa tieto- ja viestintätekniikan ajankohtaisiin ilmiöihin. Olen hyvin tinkimätön verkkomateriaalien -ja oppimisympäristöjen suunnittelija, sillä kursseillani sekä minä että opiskelijat käyttävät niin blogeja, wikejä kuin muitakin nykyaikaisia verkkopohjaisia välineitä opetuksen ja opiskelun tukena (katso taulukko alla).</p>
+<p>Suunnittelen kurssiympäristöt ja oppimateriaalit siten, että opiskelijat tuottavat itsekin oppimateriaaleja reflektoidessaan oppimaansa tai tehdessään erilaisia yhteisöllisiä projekteja.</p>
+<p>Perusvälinei ä hyödynnän Oulun yliopiston Confluence wikiä (kurssiympäristö, ryhmätyöväline) sekä vapaasti käytettävissä olevaa Slideshare. et -materiaalinjakoyhteisöä. Olen jakanut kaiken tekemäni sisällön edelleen käytettäväksi ja muokattavaksi Creative Commons -lisenssillä.</p>
+<h3 id="Opetusportfolio-Taitojatavathyödyntääerilaisiaoppimateriaalejasekätutkimustietoaomassaopetuksessani">Taito ja tavat hyödyntää erilaisia oppimateriaaleja sekä tutkimustietoa omassa opetuksessani</h3>
+<p>Hyödynnän oman opetukseni suunnittelussa sekä uusinta tutkimustietoa teknologiatuetusta opetuksesta ja oppimisesta että&nbsp; opettajayhteisön ja muiden kollegoiden kokemusta.</p>
+<p>Olen saanut monipuolisen teoreettisen ja menetelmällisen koulutuksen valtakunnallisessa&nbsp;<a href="https://web.archive.org/web/20140811140100/http://www.edu.utu.fi/tutkijakoulut/opmon/fi/">oppimisympäristöjen monitieteisessä tutkijakoulussa</a>&nbsp;(OPMON). Oma väitöskirjani käsitteli opiskelun tukemista yhteisöllisten skriptien ja mobiililaitteiden avulla. Toisinsanoen, olen väitöskirjassani suunnitellut erilaisia opetus-, oppimis- ja vuorovaikutustilanteita ja tätä osaamispääomaa olen voinut hyödyntää suunnitellessani tiedekunnan tieto- ja viestintätekniikan opetusta. Olen edelleen aktiivisesti mukana teknologiatuetun oppimisen ja opettamisen keskeisimmissä tutkimusyhteisöissä, kuten&nbsp;<em><a href="https://web.archive.org/web/20140811140100/http://www.isls.org/index.html">The International Society of the Learning Sciences</a></em>&nbsp;(ISLS) tai&nbsp;<a href="https://web.archive.org/web/20140811140100/http://www.earli.org/">European Association for Research on Learning and Instructio
+</a>&nbsp;(EARLI).</p>
+<p>Opettajayhteisöjen ja muiden asiantuntijaverkostojen osaamista ja oppimateriaaleja hyödynnän luontevasti toimimalla aktiivisesti erilaisissa opettajayhteisöissä. Eräs merkittävimmistä yhteisöistä on Facebookissa toimiva&nbsp;<a href="https://web.archive.org/web/20140811140100/https://www.facebook.com/groups/237930856866/">Tieto-ja viestintätekniikka opetuksessa/ICT in Educatio
+</a>&nbsp;-ryhmä, jossa on 3563 tieto- ja viestintätekniikan opetuskäytöstä kiinnostunutta jäsentä. Hyödynnän mahdollisuuksien mukaan toisten opettajien ja tutkijoiden laatimia materiaaleja, jotka on julkaistu Creative Commons -lisensseillä edelleen käytettäviksi ja muokattaviksi.</p>
+<figure><table><tbody><tr><th>Kurssin nimi</th><th>Materiaali</th><th>Kieli</th><th>Osoite</th></tr><tr><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=28086726">410014Y Tieto- ja viestintätekniikka pedagogisena työvälineenä (2012-2013)</a></td><td>Luentomateriaalit</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/ktktvt/Luennot">https://wiki.oulu.fi/display/ktktvt/Luennot</a><a href="https://web.archive.org/web/20140811140100/http://www.slideshare.net/larux">http://www.slideshare.net/larux</a></td></tr><tr><td>&nbsp;</td><td>Kurssiwiki</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=28086726">https://wiki.oulu.fi/pages/viewpage.action?pageId=28086726</a></td></tr><tr><td>&nbsp;</td><td>Opiskelijoiden blogit</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/ktktvt/Blogit">https://wiki.oulu.fi/display/ktktvt/Blogit</a></td></tr><tr><td>&nbsp;</td><td>Opiskelijoiden wikisivut</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/ktktvt/Opiskelijaryhmien+wikisivut">https://wiki.oulu.fi/display/ktktvt/Opiskelijaryhmien+wikisivut</a></td></tr><tr><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/ktktvt/410017Y+Multimedia+oppimisprojektina">410017Y Multimedia oppimisprojektina</a></td><td>Luentomateriaalit</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/ktktvt/Kurssin+luennot+ja+materiaalit">https://wiki.oulu.fi/display/ktktvt/Kurssin+luennot+ja+materiaalit</a><a href="https://web.archive.org/web/20140811140100/http://www.slideshare.net/larux">http://www.slideshare.net/larux</a></td></tr><tr><td>&nbsp;</td><td>Kurssiwiki</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/ktktvt/410017Y+Multimedia+oppimisprojektina">https://wiki.oulu.fi/display/ktktvt/410017Y+Multimedia+oppimisprojektina</a></td></tr><tr><td>&nbsp;</td><td>Opiskelijoiden blogit</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/ktktvt/Blogit">https://wiki.oulu.fi/display/ktktvt/Blogit</a></td></tr><tr><td>&nbsp;</td><td>Opiskelijoiden wikit</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=29067642">https://wiki.oulu.fi/pages/viewpage.action?pageId=29067642</a></td></tr><tr><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=26675925">405021Y Tietotyö pedagogisena haasteena</a></td><td>Luentomateriaalit</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/ktktvt/Materiaalit">https://wiki.oulu.fi/display/ktktvt/Materiaalit</a><a href="https://web.archive.org/web/20140811140100/http://www.slideshare.net/larux">http://www.slideshare.net/larux</a></td></tr><tr><td>&nbsp;</td><td>Kurssiwiki</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=26675925">https://wiki.oulu.fi/pages/viewpage.action?pageId=26675925</a></td></tr><tr><td>&nbsp;</td><td>Opiskelijoiden wikit</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/display/ktktvt/Ryhmien+wikiartikkelit">https://wiki.oulu.fi/display/ktktvt/Ryhmien+wikiartikkelit</a></td></tr><tr><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=29068623">050091A Tieto- ja viestintätekniikka opetuksessa ja opiskelussa (aineenopettajat)</a></td><td>Luentomateriaalit</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=29800310#050091AKurssinrakennejateht%C3%A4v%C3%A4t-Luennot">https://wiki.oulu.fi/pages/viewpage.action?pageId=29800310#050091AKurssinrakennejateht%C3%A4v%C3%A4t-Luennot</a>[http://www.slideshare.net/larux<br>]</td></tr><tr><td>&nbsp;</td><td>Kurssiwiki</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/https://wiki.oulu.fi/pages/viewpage.action?pageId=29068623">https://wiki.oulu.fi/pages/viewpage.action?pageId=29068623</a></td></tr><tr><td>&nbsp;</td><td>Edmodo kurssiympäristö (suljettu ryhmä)</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/http://www.edmodo.com/public/aineenopettajien%20tvt-koulutus/group_id/5258208">http://www.edmodo.com/public/aineenopettajien%20tvt-koulutus/group_id/5258208</a></td></tr><tr><td>&nbsp;</td><td>Facebook ryhmä (suljettu)</td><td>Suomi</td><td><a href="https://web.archive.org/web/20140811140100/https://www.facebook.com/groups/tvtaineope/">https://www.facebook.com/groups/tvtaineope/</a></td></tr></tbody></table></figure>
+<h2 id="Opetusportfolio-pedagoginenkoulutus">pedagoginen koulutus</h2>
+<h3 id="Opetusportfolio-Tutkinnot">Tutkinnot</h3>
+<p><strong>KT, Kasvatustieteiden tohtori</strong></p>
+<ul><li><em>Valmistumispäivä 20.11.2012</em></li><li><em>Pääaine:</em>&nbsp;kasvatustiede</li><li><em>Laaja sivuaine:</em>&nbsp;koulutusteknologia, cum laude</li><li><em>Väitöskirjan aihe:</em>&nbsp;”Scaffolding learning activities with collaborative scripts and mobile devices” (opiskelun tukeminen mobiililaitteiden ja yhteisöllisten skriptien avulla)</li></ul>
+<p><strong>KM, Kasvatustieteen maisteri, teknologiapainotteinen luokanopettaja</strong></p>
+<ul><li><em>Valmistumispäivä:</em>&nbsp;13.5.2003</li><li><em>Pääaine:</em>&nbsp;kasvatustiede</li><li><em>Opettajankelpoisuus:</em>&nbsp;Peruskoulussa opetettavien aineiden ja aihekokonaisuuksien monialaiset opinnot (Oulu)</li><li><em>Sivuaine I:</em>&nbsp;koulutusteknologia, aprobatur</li><li><em>Sivuaine II:&nbsp;</em>tietojenkäsittelytiede, aprobatur</li><li><em>Pro gradu --tutkielman aihe:</em>&nbsp;Langattomat päätelaitteet hajautetun asiantuntijuuden ja yhteisöllisen tiedonrakentelun tukena</li></ul>
+<h3 id="Opetusportfolio-Tutkijakoulut">Tutkijakoulut</h3>
+<ul><li>Oppimisympäristöjen monitieteinen tutkijakoulu</li><li>Virtual Doctoral School, EU FP6 IST Kaleidoscope Network of Excellence</li></ul>
+<h3 id="Opetusportfolio-tutkijakoulutuksenyhteydessäsaatupedagoginenkoulutus">tutkijakoulutuksen yhteydessä saatu pedagoginen koulutus</h3>
+<figure><table><tbody><tr><th>Kurssin nimi</th><th>Vuosi</th><th>Järjestäjä</th><th>Aihe</th></tr><tr><td>Uudet teknologiat ja oppimisympäristöjen kehittäminen (seminaari), Helsinki</td><td>2005</td><td>MediaLab, Taideteollinen korkeakoulu</td><td>Teknologiset oppimisympäristöt ja niiden suunnittelu</td></tr><tr><td>SCIL Summer Institute on Designing Learning Spaces, Stanford, USA</td><td>2005</td><td>SCIL, Stanford University, USA</td><td>Oppimisympäristöjen suunnittelu (sis. luokkahuoneet)</td></tr><tr><td>CSCL SIG: State of the art of technology enhanced learning, Hailuoto</td><td>2005</td><td>Kaleidoscope (6th framework EU) Virtual Doctoral School &amp; CSCL SIG</td><td>Teknologiatuettu oppimine
+</td></tr><tr><td>CSCL SIG: Context-aware learning - workshop, Oulu</td><td>2006</td><td>Kaleidoscope (6th framework EU) CSCL SIG</td><td>Kontekstitietoiset oppimissovellukset</td></tr><tr><td>Mobile support for integrated learning, Grenoble, Ranska</td><td>2006</td><td>Kaleidoscope (6th framework EU) MOSIL JEIRP</td><td>Mobiilioppimine
+</td></tr><tr><td>Mobile learning SIG: Workshop, Birmingham, Iso-Britannia</td><td>2007</td><td>Kaleidoscope (6th framework EU) Mobile Learning SIG</td><td>Mobiilioppimine
+</td></tr><tr><td>Beyond Mobile Learning Workshop, Villars, Sveitsi</td><td>2007</td><td>Kaleidoscope (6th framework EU) Mobile Learning SIG</td><td>Mobiilioppimine
+</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>Design Challenges for Future Learning, Lausanne, Sveitsi</td><td>2007</td><td>Kaleidoscope (6th framework EU) Virtual Doctoral School &amp; Mobile learning SIG</td><td>Oppimisen ja vuorovaikutuksen suunnittelu, mobiilioppimine
+</td></tr><tr><td>Perspectives on Learning, Göteborg, Ruotsi</td><td>2007</td><td>Pohjoismainen tutkijakouluyhteistyö</td><td>Oppimisteoriat</td></tr><tr><td>ICO International Winter School (28.1.-1.2.08)&nbsp; Rantasipi, Laajavuori, Jyväskylä.</td><td>2008</td><td>ICO (Hollanti) ja KASVA (Suomi)</td><td>Oppimisteoriat ja analyysimenetelmät</td></tr></tbody></table></figure>
+<h2 id="Opetusportfolio-yliopistopedagoginenaktiivisuusjaopetuksenkehittäminen">yliopistopedagoginen aktiivisuus ja opetuksen kehittämine
+</h2>
+<p>Opettajankoulutuksen&nbsp;perusidea&nbsp;on&nbsp;tutkimuspainotteisuus,&nbsp;joka&nbsp;tarkoittaa&nbsp;sitä,&nbsp;että&nbsp;kaikki<br>kurssit&nbsp;kytketään&nbsp;jollakin&nbsp;tavalla&nbsp;tutkimukseen,&nbsp;mutta&nbsp;erityisesti&nbsp;on&nbsp;huomattava,&nbsp;että<br>tutkimuksellisuus&nbsp;ulottuu&nbsp;myös&nbsp;harjoitteluun.</p>
+<ul><li>Olen opetustyöni ohella pyrkinyt edistämään tieto- ja viestintätekniikan käyttöä tiedekunnassamme sekä laatimalla oman työn ohessa AV-välineistön hankintaesityksen että olemalla käytettävissä jos muilla opettajilla on kysyttävää sovellusten ja välineiden käytöstä osana opetusta ja oppimista.</li><li>Olen esitellyt tiedekuntamme tvt-haasteita henkilöstöpäivänä syksyllä 2012 ja sain runsaasti positiivista palautetta työyhteisömme jäseniltä.</li><li>Olen Kasvatustieteiden tiedekunnan tvt-strategiatyöryhmän jäse
+</li><li>Kytken opettamani opintojaksot tiedekunnassa tehtäviin tutkimusprojekteihin aina jos se on mahdollista ja tarkoituksenmukaista. Perustan opetukseni kehittämisen itse tekemääni ja tiedekunnassa tehtävään tutkimukseen.</li></ul>
+<h2 id="Opetusportfolio-Kansainvälistyminen,kansainvälisetyhteydet">Kansainvälistyminen, kansainväliset yhteydet</h2>
+<h3 id="Opetusportfolio-Tutkimusvierailut">Tutkimusvierailut</h3>
+<ul><li>SCIL Summer Institute 2006 on Designing Learning Spaces. Jul. 19-21, 2006. Stanford University,CA, United States</li><li>CRAFT Laboratory, Polytechnic University of Lausanne (EPFL). Switzerland, October 2005</li></ul>
+<h3 id="Opetusportfolio-Kansainvälisetverkostot">Kansainväliset verkostot</h3>
+<ul><li>NAPLES: Network of Academic Programs in the Learning Sciences. International Society of the Learning Sciences (2012-)</li><li>EU FP6 IST NoE (Network of Excellence) Kaleidoscope<ul><li>Member of CSCL SIG</li><li>Member of MOBILearn SIG</li></ul></li><li>NORDFORSK: LEAF – Learning Ecosystems and Activities of the Future</li><li>EARLI: European Association for Research on Learning and Instructio
+</li><li>ISLS: The International Society of the Learning Sciences</li></ul>
+<h2 id="Opetusportfolio-Yhteiskunnallinenvaikuttaminen">Yhteiskunnallinen vaikuttamine
+</h2>
+<p>Suomalainen opettajayhteisö ei seuraa tieteellisiä julkaisuja, kuten me yliopistolla työskentelevät. Maassamme on hyvin runsaasti ESR/EAKR/OPH -rahoituksen turvin käynnistettyjä kehittämishankkeita ja niiden suojissa syntyneitä blogeja, materiaalipankkeja ja muita sivustoja. Eri hankkeista ja muista toimenpiteistä tiedotetaan lähinnä sosiaalisen median kanavia pitkin muille opettajille. Olen tieto- ja viestintätekniikka opetuksessa -ryhmä (Facebook, n. 4000 jäsentä) jäsen jo usean vuoden ajan ja tuonut käytävään keskusteluun yliopistollista näkökulmaa. Julkaisin myös oman väitöskirjani videotallenteen ja osajulkaisujen käsikirjoituskappaleet em. ryhmässä, jossa ne herättivät ansaittua mielenkiintoa.</p>
+<p>Olen myös luennoinut oman asiantuntemukseni alueelta virtuaalisissa (webinaari) tai tavallisissa tapahtumissa. Alla olevassa taulukossa on muutama esimerkkiluento.</p>
+<figure><table><tbody><tr><th>Ajankohta</th><th>Aihe</th><th>Tilaaja</th><th>Diat</th><th>Videotallenne</th></tr><tr><td>13.2.2013</td><td>TVT-Koulun johtamisen välineenä luento: ”mobiilioppiminen” – mitä se teknologia tahtoo</td><td>TOPIK - täydentävien opintojen keskus, Oulun yliopisto</td><td><a href="https://web.archive.org/web/20140811140100/http://tinyurl.com/oyno56d">http://tinyurl.com/oyno56d</a></td><td><a href="https://web.archive.org/web/20140811140100/http://connectpro.oulu.fi/p65911990">http://connectpro.oulu.fi/p65911990</a></td></tr><tr><td>21.2.2013</td><td>Teknologia, oppiminen ja osaaminen yhteiskunnassa - uudet teknologiat isännän vai rengin roolissa?</td><td>EKO - Etäopetuksen koordinointihanke, Turku</td><td><a href="https://web.archive.org/web/20140811140100/http://tinyurl.com/pc37kef">http://tinyurl.com/pc37kef</a></td><td><a href="https://web.archive.org/web/20140811140100/http://opetus.adobeconnect.com/p224ht2vbfx/">http://opetus.adobeconnect.com/p224ht2vbfx/</a></td></tr><tr><td>17.4.2012</td><td>Mobiililaitteiden mahdollisuudet oppimisen tukena</td><td>OK-opintokeskus</td><td><a href="https://web.archive.org/web/20140811140100/http://tinyurl.com/p8gdqfp">http://tinyurl.com/p8gdqfp</a></td><td><a href="https://web.archive.org/web/20140811140100/http://www.youtube.com/watch?v=xTpiDVWSguc">http://www.youtube.com/watch?v=xTpiDVWSguc</a></td></tr></tbody></table></figure>
+<p>Jaan kaiken tekemäni materiaalin ellei toisin sovita sosiaalisen median palveluissa. Yllä olevat luennot herättivät varsin paljon keskustelua sekä Facebookissa että yksittäisten opettajien blogeissa. Alla esimerkki Anne Rongaksen blogista:</p>
+<blockquote><p>Perkasin tänään viikolla kasautunutta sähköpostisumaa.&nbsp;<a href="https://web.archive.org/web/20140811140100/http://www.slideshare.net/">SlideShare</a>, tuo mainio diaesitysten (ja pdf) jakelupalvelu, lähettää mukavasti harvakseltaan viestin sisällöistä, joita suosittelee minulle. Viesti on nopea silmäillä. Tämän viikon suosituksista tarttui heti silmään Jari Larun esitys&nbsp;<a href="https://web.archive.org/web/20140811140100/http://www.slideshare.net/larux/mobiilioppiminen-mit-se-teknologia-tahtoo">"Mobiilioppiminen" – mitä se teknologia tahtoo?</a>&nbsp;Tekijän tunnistin heti luotettavaksi ja kiinnostavaksi. Otsikointi houkutteli, varsinkin mobiilioppimisen laittaminen hipsujen sisään – ihan kuin itsekin tykkäisin laitella, jos hipsuttelu ei muuten olisi kieliopillisesti tuomittavaa.</p><p>Kurkistin diasarjaa. Mielenkiinto kohisi. Osa dioista ei auennut katsomalla, kaipasin selityksiä. Onneksi siirsin näyttöä vähän allemmas ja huomasin, että taustatiedoissa oli&nbsp;<a href="https://web.archive.org/web/20140811140100/http://connectpro.oulu.fi/p65911990/?launcher=false&amp;fcsContent=true&amp;pbMode=normal">linkki luentotallenteesee
+</a>. 45 minuuttia täyttä asiaa, huippuluento, jossa on mukana vankkaa asiatietoa, kiinnitys tutkimuksiin sekä käytäntöön, näkemyksellisyyttä ja asioiden suhteuttamista sekä kullan arvoisia vinkkejä siitä, miten olisi hyvä toimia. (<a href="https://web.archive.org/web/20140811140100/http://opeblogi.blogspot.fi/2013/02/oppimisharpakkeet-ja-kyky-nahda.html">http://opeblogi.blogspot.fi/2013/02/oppimisharpakkeet-ja-kyky-nahda.html</a>)</p><p>MUOKKAA TÄSTÄKIN!&nbsp;<a href="https://web.archive.org/web/20140811140100/http://teromakotero.blogspot.com/2012/04/koulutus-taskussa-on-taskukoulu.html">http://teromakotero.blogspot.com/2012/04/koulutus-taskussa-on-taskukoulu.html</a></p></blockquote>
+<h2 id="Opetusportfolio-Palkinnot,apurahatjamuuthuomionosoitukset">Palkinnot, apurahat ja muut huomionosoitukset</h2>
+<ul><li>2005 Suomen kulttuurirahasto, Urpo ja Maija-Liisa Harvan rahastosta. 16400 eur (yksivuotinen apuraha)</li><li>2009 Oulun yliopiston matka-apuraha, EARLI 2009 konferenssi, 1500 eur (matka-apuraha)</li><li>2010 Suomen kulttuurirahasto, Xerox Oy:n rahastosta. 21000 eur (yksivuotinen apuraha)</li></ul>
+<h2 id="Opetusportfolio-Luottamustoimet,työryhmienjatoimikuntienjäsenyys">Luottamustoimet, työryhmien ja toimikuntien jäsenyys</h2>
+<h3 id="Opetusportfolio-2013">2013</h3>
+<ul><li>Kasvatustieteiden tiedekunnan tieto- ja viestintätekniikan opetuskäytön strategiatyöryhmä, jäse
+</li><li>Kasvatustieteiden tiedekunnan tilastrategiatyöryhmä, jäse
+</li><li>LEAF tilatyöryhmä, käyttäjän edustaja</li><li>Vuoroverkko EAKR-hanke, ohjausryhmän jäse
+</li></ul>
+<h3 id="Opetusportfolio-2012jaaiemmat(olennaisettiedeyhteisöönliittyvätluottamustoimet)">2012 ja aiemmat (olennaiset tiedeyhteisöön liittyvät luottamustoimet)</h3>
+<ul><li>Järjestelytoimikunnan jäsen: "multiple technologies and toolf for supporting CSCL - a step further" Workshop, 21-23.10.2005. Oulu</li><li>Kutsuttu erityisasiantuntija strategiatyössä: Mobiiliteknologian käyttö ja&nbsp; palvelut yliopistoissa 2003-2006, Mobiiliteknologioiden määrittely Suomen&nbsp; virtuaaliyliopiston palveluihin (Suomen virtuaaliyliopisto)</li><li>Tiedekuntaneuvoston, yksikköneuvoston ym. jäsenyyksiä useina eri vuosina vuosituhannen vaihteessa.</li><li>Oulun yliopiston ylioppilaskunta, hallituksen jäsen 2000</li></ul>
+<h2 id="Opetusportfolio-Muuopetustyöhönliittyvätoiminta">Muu opetustyöhön liittyvä toiminta</h2>
+<p>Päivittäisen opetustyöni ohella työskentelen LEAF (Vuoroverkko) -hankkeen edistämiseksi. Olen osallistunut mahdollisuuksien mukaan vuoroverkko-hankkeen viikkopalavereihin ja keskustelen päivittäin laboratoriomestari Juha Heimovirran kanssa opetusteknologiaan liittyvistä kysymyksistä. Vuoroverkko/LEAF&nbsp; on laajempi hankekokonaisuus, joka valmistuessaan parantaa merkittävästi tiedekunnan tutkimusinfrastuktuuria.</p>
+<p>LEAF on valmistuessaan myös yhteisöllisen oppimisen ja vuorovaikutuksen tutkimusta tukeva opetustila, jonne hankitaan myös hyvin modernia opetusta ja oppimista tukevaa teknologiaa. Tutkimusinfrastruktuurin kehittämisen ohella olen ollut mukana parantamassa tiedekunnan opetustilojen varustelua, sillä syksyllä 2012 valmistelin oman työni ohessa esityksen tiedekunnan omien opetustilojen A/V-varustelun parantamiseksi.</p>
+<h2 id="Opetusportfolio-Visiotjaomatkehityssuunnitelmat">Visiot ja omat kehityssuunnitelmat</h2>
+<p>Tieto- ja viestintätekniikan osuus opetuksen ja oppimisen apuvälineenä ei tule vähenemään lähivuosina, päinvastoin. Oulun seudun ja koko maamme talouden kehityssuunta kuitenkin on johtamassa kunnat taloudellisten haasteiden äärelle, näen lähitulevaisuuden isona haasteena edullisten tai ilmaisten, mutta pedagogisesti pätevien teknologiaratkaisujen löytämisen. Pystyn tarkastelemaan opetusta- ja oppimista tukevia välineitä merkkiriippumattomasti hyödyntäen niin avoimen lähdekoodin kuin kaupallisten yritystenkin tarjonnan. Opetuksen ja oppimisen tukeminen on kuitenkin haasteellista, sillä se vaatii huomion kiinnittämistä oppimisprosessien ymmärtämiseen ja tukemiseen, jotta pystymme hyödyntämään mahdollisimman tehokkaasti kulloinkin käytössä olevia laitteita ja sovelluksia ovat ne sitten ilmaisia tai kaupallisia.</p>
+<p>Tutkijakoulutuksen saaneena ja mobiilioppimisesta väitelleenä haluan säilyttää edelleen yhteyden tutkimukseen ja tutkijoihin, jotta pystyn integroimaan opetukseeni uusimpia teknologiatuetun oppimisen menetelmällisiä ja teoreetitisia sisältöjä. Keväällä 2013 alistin luokanopettajien "multimedia oppimisprojektina" Prospects -tutkimushankkeen tutkimuskohteeksi. Opiskelijat käyttivät VCRI-työkalua opiskelun tukena ja suunnittelivat tapauksia, joissa he kytkivät harjoituksien käsiteltyjä sovelluksia ja teemoja koulukontekstiin. Suurin osa opiskelijoista oli hyvin tyytyväisiä tapaustyöskentelyyn ja aionkin ottaa sen osaksi opetustani myös tulevilla kursseilla.</p>
+  </div>
+</section>
+<style>
+  .legacy-portfolio-page .card-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  .legacy-portfolio-page .card-body h3 {
+    font-size: 1.1rem;
+    margin-top: 1.2rem;
+  }
+  .legacy-portfolio-page .card-body h4,
+  .legacy-portfolio-page .card-body h5,
+  .legacy-portfolio-page .card-body h6 {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+  .legacy-portfolio-page blockquote {
+    border-left: 4px solid var(--bs-secondary-border-subtle);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--bs-secondary-color);
+  }
+  .legacy-portfolio-page figure {
+    margin: 1rem 0;
+  }
+  .legacy-portfolio-page table {
+    width: 100%;
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const root = document.getElementById("legacyPortfolioCards");
+    if (!root) return;
+    // Legacy-HTML on osin rikkinäistä, joten jaetaan sisältö raakana h2-otsikoiden perusteella.
+    const raw = root.innerHTML;
+    const cleaned = raw.replace(/<div[^>]*>\s*Portfolion sisältö[\s\S]*?<\/ul>\s*<\/div>\s*<\/div>\s*<\/div>/i, "");
+    const chunks = cleaned.split(/(?=<h2\b)/i).filter((c) => c.trim().length > 0);
+    const frag = document.createDocumentFragment();
+
+    function appendCard(title, bodyHtml, id) {
+      const card = document.createElement("article");
+      card.className = "card shadow-sm mb-4";
+      if (id) card.id = id + "-card";
+
+      const header = document.createElement("div");
+      header.className = "card-header bg-body-tertiary";
+      header.innerHTML = `<h2 class="h5 mb-0">${title}</h2>`;
+
+      const body = document.createElement("div");
+      body.className = "card-body";
+      body.innerHTML = bodyHtml;
+
+      card.appendChild(header);
+      card.appendChild(body);
+      frag.appendChild(card);
+    }
+
+    chunks.forEach((chunk, index) => {
+      const probe = document.createElement("div");
+      probe.innerHTML = chunk;
+      const h2 = probe.querySelector("h2");
+
+      if (!h2) {
+        appendCard(index === 0 ? "Yhteenveto" : "Lisäsisältö", chunk, index === 0 ? "legacy-summary" : "");
+        return;
+      }
+
+      const id = h2.getAttribute("id") || "";
+      const title = (h2.textContent || "").trim() || "Osio";
+      h2.remove();
+      appendCard(title, probe.innerHTML, id);
+    });
+
+    root.innerHTML = "";
+    root.appendChild(frag);
+
+    root.querySelectorAll("table").forEach((table) => {
+      table.classList.add("table", "table-striped", "table-hover", "table-sm", "align-middle");
+      if (!table.parentElement.classList.contains("table-responsive")) {
+        const wrap = document.createElement("div");
+        wrap.className = "table-responsive";
+        table.parentNode.insertBefore(wrap, table);
+        wrap.appendChild(table);
+      }
+    });
+  });
+</script>
+</div>
+          
+          
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+    </div>
+  </main>
+
+  
+<footer class="py-3 border-top bg-body-tertiary mt-3">
+  <div class="container">
+    <div class="row align-items-center gy-2">
+      <div class="col-md-4 text-center text-md-start">
+        <p class="mb-0 text-body-secondary small">
+          
+          &copy; Jari Laru. Kaikki oikeudet pidätetään.
+          
+        </p>
+        <div class="footer-social-links mt-1 d-inline-flex align-items-center gap-2" aria-label="Sosiaalisen median linkit">
+          <a href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-social-link"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+          <a href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate" class="footer-social-link"><i class="bi bi-globe" aria-hidden="true"></i></a>
+          <a href="https://orcid.org/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer" aria-label="ORCID" class="footer-social-link"><i class="bi bi-person-vcard" aria-hidden="true"></i></a>
+          <a href="https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" class="footer-social-link"><i class="bi bi-mortarboard" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/jarilaru" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="footer-social-link"><i class="bi bi-youtube" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        
+        <a href="/www-staging/saavutettavuus/" class="footer-wcag-badge text-decoration-none d-inline-flex align-items-center gap-2 px-3 py-1 rounded border" aria-label="WCAG 2.1 taso AA -vaatimustenmukaisuus – katso saavutettavuusseloste">
+          <span class="footer-wcag-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2"></circle>
+              <text x="16" y="12" text-anchor="middle" font-size="7" font-weight="700" font-family="sans-serif" fill="currentColor">W3C</text>
+              <text x="16" y="21" text-anchor="middle" font-size="6" font-weight="600" font-family="sans-serif" fill="currentColor">WCAG 2.1</text>
+              <text x="16" y="28" text-anchor="middle" font-size="5.5" font-weight="700" font-family="sans-serif" fill="currentColor">Taso AA</text>
+            </svg>
+          </span>
+          <span class="footer-wcag-label">
+            <span class="d-block fw-semibold" style="font-size:0.7rem;line-height:1.2;">WCAG 2.1 AA</span>
+            <span class="d-block" style="font-size:0.65rem;line-height:1.2;">Saavutettavuusseloste</span>
+          </span>
+        </a>
+        
+      </div>
+      <div class="col-md-4 text-center text-md-end">
+        <p class="mb-0 text-body-secondary small">
+          
+          Rakennettu <a href="/www-staging/miten-sivusto-on-rakennettu/" class="text-decoration-none text-body-secondary fw-semibold">Eleventyllä</a> · <a href="/www-staging/tietosuojaseloste/#upotusten-suostumuksen-hallinta" class="text-decoration-none text-body-secondary fw-semibold">Tietosuojaseloste</a> · <a href="/www-staging/sivuston-muutokset/" class="text-decoration-none text-body-secondary fw-semibold"><i class="bi bi-github me-1" aria-hidden="true"></i>GitHub-muutokset</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <section class="site-news-ticker site-news-ticker--footer" aria-label="Uusimmat sisällöt">
+    <div class="site-news-ticker-inner">
+      <span class="site-news-ticker-label">Uusimmat</span>
+      <div class="site-news-ticker-viewport">
+        <div class="site-news-ticker-track" data-latest-track=""></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" defer=""></script>
+  <script src="/www-staging/js/bootstrap.min.js" defer=""></script>
+  <script src="/www-staging/js/external-media-consent.js" defer=""></script>
+  <script src="/www-staging/js/site-ui.js" defer=""></script>
+
+  <!-- Accessibility panel / Saavutettavuuspaneeli -->
+  <button class="a11y-fab" type="button" data-bs-toggle="offcanvas" data-bs-target="#a11yOffcanvas" aria-controls="a11yOffcanvas" aria-label="Avaa saavutettavuusasetukset">
+    <i class="bi bi-person-wheelchair"></i>
+  </button>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="a11yOffcanvas" aria-labelledby="a11yOffcanvasLabel">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title fw-bold" id="a11yOffcanvasLabel"><i class="bi bi-universal-access-circle me-2"></i>Saavutettavuus</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Sulje"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted small mb-4">Mukauta sivuston ulkoasua omiin tarpeisiisi sopivaksi. Valinnat tallentuvat selaimeesi.</p>
+
+      <div class="mb-4">
+        <label for="a11yTextSize" class="form-label fw-bold">Tekstin koko</label>
+        <select class="form-select" id="a11yTextSize">
+          <option value="normal">Normaali koko</option>
+          <option value="large">Suuri (+15%)</option>
+          <option value="xlarge">Maksimi (+30%)</option>
+        </select>
+      </div>
+
+      <div class="mb-3 form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="a11yHighContrast">
+        <label class="form-check-label" for="a11yHighContrast">Korkea kontrasti</label>
+      </div>
+
+      <div class="mb-3 form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="a11yReducedMotion">
+        <label class="form-check-label" for="a11yReducedMotion">Vähennä animaatioita</label>
+      </div>
+
+      <div class="mb-4 form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="a11yDyslexiaFont">
+        <label class="form-check-label" for="a11yDyslexiaFont">Lukihäiriöystävällinen fontti</label>
+      </div>
+
+      <hr>
+      <button type="button" class="btn btn-outline-danger w-100 mt-2" id="a11yResetBtn">
+        <i class="bi bi-arrow-counterclockwise me-1"></i> Palauta oletukset
+      </button>
+    </div>
+  </div>
+
+  <script src="/www-staging/js/table-filters.js" defer=""></script>
+  <script src="/www-staging/js/a11y.js" defer=""></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>Jari Laru</title>
+  <subtitle>Educational technology researcher. University lecturer. City councillor.</subtitle>
+  <link href="https://www.jarilaru.fi/en/feed.xml" rel="self" />
+  <link href="https://www.jarilaru.fi/en/" />
+  <updated>2024-01-01T00:00:00Z</updated>
+  <id>https://www.jarilaru.fi/en/</id>
+  <author>
+    <name>Jari Laru</name>
+  </author>
+  
+</feed>

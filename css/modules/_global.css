@@ -1,0 +1,410 @@
+/* ===== _global.css — Cross-page global styles =====
+ * Sections: MOBILE BREAKPOINTS (incl. search overlay, breadcrumbs,
+ *           global light/dark mode, button overrides)
+ * Part of jarilaru.fi styles — imported by styles.css
+ */
+/* ===== MOBILE BREAKPOINTS ===== */
+
+@media (max-width: 767.98px) {
+  .home-hero-backdrop {
+    min-height: 520px;
+    background-position: left center, left center, left center;
+  }
+
+  .home-hero-role-item + .home-hero-role-item::before {
+    display: none;
+  }
+
+  .home-feature-section .ticker-item {
+    width: 280px;
+    min-height: 350px;
+    max-height: none;
+  }
+
+  .home-feature-image-col {
+    display: block;
+    height: 220px;
+  }
+
+  .home-feature-image-col > div {
+    height: 220px !important;
+  }
+}
+
+/* ============================================ */
+/* GLOBAL LIGHT MODE ENHANCEMENTS               */
+/* ============================================ */
+
+html:not([data-bs-theme="dark"]) body {
+  background-color: #f4f6f9 !important;
+  /* Soft off-white to contrast with cards */
+}
+
+html:not([data-bs-theme="dark"]) .card,
+html:not([data-bs-theme="dark"]) .ticker-item {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+}
+
+/* Keep ticker card headings visually consistent in light mode */
+html:not([data-bs-theme="dark"]) .ticker-item h3,
+html:not([data-bs-theme="dark"]) .ticker-item h3 a,
+html:not([data-bs-theme="dark"]) .ticker-item .ticker-title-link {
+  color: var(--bs-body-color) !important;
+}
+
+html:not([data-bs-theme="dark"]) .bg-light,
+html:not([data-bs-theme="dark"]) section.bg-light {
+  background-color: #f4f6f9 !important;
+  /* Keep sections unified with body bg */
+}
+
+html:not([data-bs-theme="dark"]) .bg-body-tertiary {
+  background-color: #dbe2ec !important;
+}
+
+/* Fix contrast for badges in light mode */
+html:not([data-bs-theme="dark"]) .badge.bg-primary,
+html:not([data-bs-theme="dark"]) .badge.text-bg-primary,
+html:not([data-bs-theme="dark"]) .badge.bg-info,
+html:not([data-bs-theme="dark"]) .badge.text-bg-info,
+html:not([data-bs-theme="dark"]) .badge.bg-warning,
+html:not([data-bs-theme="dark"]) .badge.text-bg-warning,
+html:not([data-bs-theme="dark"]) .badge.bg-success,
+html:not([data-bs-theme="dark"]) .badge.text-bg-success,
+html:not([data-bs-theme="dark"]) .badge.bg-dark {
+  background-color: #e9ecef !important;
+  color: #000000 !important;
+  border: 1px solid #ced4da !important;
+}
+
+/* Fix contrast for pagination active items in light mode */
+html:not([data-bs-theme="dark"]) .pagination .page-item.active .page-link {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+html:not([data-bs-theme="dark"]) .pagination .page-link {
+  color: #000000;
+}
+
+html:not([data-bs-theme="dark"]) .pagination .page-link:hover {
+  background-color: #6c757d; /* 3.93:1 against #f4f6f9 body bg (WCAG 1.4.11) */
+  color: #ffffff !important; /* 4.69:1 against #6c757d (WCAG 1.4.3) */
+}
+
+/* Fix contrast for text colors (like the counters) in light mode */
+html:not([data-bs-theme="dark"]) .text-primary {
+  color: #0d4a82 !important;
+  /* Darker blue for contrast */
+}
+
+html:not([data-bs-theme="dark"]) .text-info {
+  color: #0a525f !important;
+  /* Darker teal for contrast */
+}
+
+/* Form field contrast fixes for light mode */
+html:not([data-bs-theme="dark"]) .form-control,
+html:not([data-bs-theme="dark"]) .form-select,
+html:not([data-bs-theme="dark"]) textarea.form-control {
+  background-color: #ffffff !important;
+  color: #122f4d !important;
+  border-color: #8fa4be !important;
+}
+
+html:not([data-bs-theme="dark"]) .form-control::placeholder,
+html:not([data-bs-theme="dark"]) textarea.form-control::placeholder {
+  color: #5b6f87 !important;
+}
+
+html:not([data-bs-theme="dark"]) .form-control:focus,
+html:not([data-bs-theme="dark"]) .form-select:focus,
+html:not([data-bs-theme="dark"]) textarea.form-control:focus {
+  border-color: #2d5f93 !important;
+  box-shadow: 0 0 0 0.2rem rgba(45, 95, 147, 0.16) !important;
+}
+
+html:not([data-bs-theme="dark"]) .input-group-text {
+  background-color: #f1f5fb !important;
+  color: #163a60 !important;
+  border-color: #8fa4be !important;
+}
+
+html:not([data-bs-theme="dark"]) input:not([type="checkbox"]):not([type="radio"]),
+html:not([data-bs-theme="dark"]) textarea,
+html:not([data-bs-theme="dark"]) select {
+  background-color: #ffffff !important;
+  color: #122f4d !important;
+  border: 1px solid #8fa4be !important;
+}
+
+/* ============================================ */
+/* GLOBAL DARK MODE — unifies all pages         */
+/* with the front page color scheme             */
+/* ============================================ */
+
+/* Body & main background */
+[data-bs-theme="dark"] body {
+  background-color: #1a2232 !important;
+  color: #e0e0e0;
+}
+
+/* Sections with bg-light should blend in dark mode */
+[data-bs-theme="dark"] .bg-light,
+[data-bs-theme="dark"] section.bg-light {
+  background-color: #1e2a3a !important;
+  color: #e0e0e0;
+}
+
+[data-bs-theme="dark"] .bg-body-tertiary {
+  background-color: #243549 !important;
+}
+
+/* All headings should be white in dark mode */
+[data-bs-theme="dark"] h1,
+[data-bs-theme="dark"] h2,
+[data-bs-theme="dark"] h3,
+[data-bs-theme="dark"] h4,
+[data-bs-theme="dark"] h5,
+[data-bs-theme="dark"] h6 {
+  color: #ffffff;
+}
+
+/* Links */
+[data-bs-theme="dark"] a:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge) {
+  color: #7db8f0;
+}
+
+[data-bs-theme="dark"] a:not(.btn):not(.nav-link):not(.navbar-brand):not(.badge):hover {
+  color: #a8d4ff;
+}
+
+/* Cards */
+[data-bs-theme="dark"] .card {
+  background-color: #2b3e56 !important;
+  border-color: rgba(255, 255, 255, 0.10) !important;
+  color: #e0e0e0;
+}
+
+[data-bs-theme="dark"] .card .text-muted {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* Card title links should be white in dark mode, not the global blue link color */
+[data-bs-theme="dark"] .card .card-title a,
+[data-bs-theme="dark"] .card h1 a,
+[data-bs-theme="dark"] .card h2 a,
+[data-bs-theme="dark"] .card h3 a,
+[data-bs-theme="dark"] .card h4 a,
+[data-bs-theme="dark"] .card h5 a,
+[data-bs-theme="dark"] .card h6 a {
+  color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .card .card-title a:hover,
+[data-bs-theme="dark"] .card h2 a:hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* List groups (used on /julkaisut/ page and elsewhere) */
+[data-bs-theme="dark"] .list-group-item {
+  background-color: #243347 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #e0e0e0;
+}
+
+[data-bs-theme="dark"] .list-group-item:hover {
+  background-color: #2e3f59 !important;
+}
+
+[data-bs-theme="dark"] .list-group-item .text-muted {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* Form field contrast fixes for dark mode */
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select,
+[data-bs-theme="dark"] textarea.form-control {
+  background-color: #223247 !important;
+  color: #e9f2ff !important;
+  border-color: rgba(189, 206, 228, 0.28) !important;
+}
+
+[data-bs-theme="dark"] .form-control::placeholder,
+[data-bs-theme="dark"] textarea.form-control::placeholder {
+  color: rgba(221, 233, 250, 0.62) !important;
+}
+
+[data-bs-theme="dark"] .form-control:focus,
+[data-bs-theme="dark"] .form-select:focus,
+[data-bs-theme="dark"] textarea.form-control:focus {
+  border-color: #8bb2de !important;
+  box-shadow: 0 0 0 0.2rem rgba(125, 184, 240, 0.2) !important;
+}
+
+[data-bs-theme="dark"] .input-group-text {
+  background-color: #243347 !important;
+  color: #d7e6fb !important;
+  border-color: rgba(189, 206, 228, 0.28) !important;
+}
+
+[data-bs-theme="dark"] input:not([type="checkbox"]):not([type="radio"]),
+[data-bs-theme="dark"] textarea,
+[data-bs-theme="dark"] select {
+  background-color: #223247 !important;
+  color: #e9f2ff !important;
+  border: 1px solid rgba(189, 206, 228, 0.28) !important;
+}
+
+/* General text-muted */
+[data-bs-theme="dark"] .text-muted {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* Page content inside bss-scope */
+[data-bs-theme="dark"] .bss-scope {
+  color: #e0e0e0;
+  /* --bs-primary: #ffffff and --bs-border-width: 0 are set near top of file */
+}
+
+/* Borders & dividers */
+[data-bs-theme="dark"] hr {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Alerts & info boxes */
+[data-bs-theme="dark"] .alert-warning {
+  background-color: rgba(255, 193, 7, 0.15) !important;
+  border-color: rgba(255, 193, 7, 0.25) !important;
+  color: #ffc107 !important;
+}
+
+/* Shadow adjustments */
+[data-bs-theme="dark"] .shadow-sm,
+[data-bs-theme="dark"] .shadow {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3) !important;
+}
+
+/* ============================================ */
+/* GLOBAL BUTTON OVERRIDES — unified site-wide  */
+/* ============================================ */
+
+/* Light mode: black outline style for ALL buttons (except close/link) */
+.btn:not(.btn-close):not(.btn-link) {
+  background-color: transparent !important;
+  color: #000000 !important;
+  border: 1px solid #000000 !important;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn:not(.btn-close):not(.btn-link):hover {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+/* Dark mode: white translucent outline for ALL buttons (except close/link) */
+[data-bs-theme="dark"] .btn:not(.btn-close):not(.btn-link) {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+[data-bs-theme="dark"] .btn:not(.btn-close):not(.btn-link):hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Citation export modals need local button styles instead of the global outline override */
+.citation-export-modal .citation-export-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.citation-export-modal .citation-export-actions .btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.citation-export-modal .citation-export-actions .btn img {
+  flex-shrink: 0;
+}
+
+.citation-export-modal .citation-export-actions .btn.btn-outline-secondary {
+  background-color: #ffffff !important;
+  color: #343a40 !important;
+  border-color: #ced4da !important;
+}
+
+.citation-export-modal .citation-export-actions .btn.btn-outline-secondary:hover,
+.citation-export-modal .citation-export-actions .btn.btn-outline-secondary:focus-visible {
+  background-color: #f3f4f6 !important;
+  color: #111827 !important;
+  border-color: #adb5bd !important;
+}
+
+.citation-export-modal .citation-export-actions .btn.btn-primary {
+  background-color: #111827 !important;
+  color: #ffffff !important;
+  border-color: #111827 !important;
+}
+
+.citation-export-modal .citation-export-actions .btn.btn-primary:hover,
+.citation-export-modal .citation-export-actions .btn.btn-primary:focus-visible {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+@media (min-width: 576px) {
+  .citation-export-modal .citation-export-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .citation-export-modal .citation-export-actions .btn {
+    width: auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .citation-export-modal .citation-export-actions {
+    justify-content: flex-end;
+  }
+}
+
+[data-bs-theme="dark"] .citation-export-modal .citation-export-actions .btn.btn-outline-secondary {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  color: #f8f9fa !important;
+  border-color: rgba(255, 255, 255, 0.32) !important;
+}
+
+[data-bs-theme="dark"] .citation-export-modal .citation-export-actions .btn.btn-outline-secondary:hover,
+[data-bs-theme="dark"] .citation-export-modal .citation-export-actions .btn.btn-outline-secondary:focus-visible {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.48) !important;
+}
+
+[data-bs-theme="dark"] .citation-export-modal .citation-export-actions .btn.btn-primary {
+  background-color: #f8f9fa !important;
+  color: #111827 !important;
+  border-color: #f8f9fa !important;
+}
+
+[data-bs-theme="dark"] .citation-export-modal .citation-export-actions .btn.btn-primary:hover,
+[data-bs-theme="dark"] .citation-export-modal .citation-export-actions .btn.btn-primary:focus-visible {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+}
+

@@ -1,0 +1,20 @@
+---
+permalink: /js/ticker-data.json
+eleventyExcludeFromCollections: true
+---
+[
+{% set comma = joiner(",") %}
+{% for item in collections.all | sort(true, false, "date") %}
+  {% set inputPath = item.inputPath or "" %}
+  {% if item.url and item.data and item.data.title and inputPath and ("src/blog/" in inputPath or "src/publications/" in inputPath or "src/presentations/" in inputPath or "src/politics/" in inputPath) %}
+    {{ comma() }}
+    {
+      "title": {{ (item.data.title or "") | dump | safe }},
+      "url": {{ (item.url or "") | dump | safe }},
+      "date": {{ (item.date | dateToRfc3339) | dump | safe }},
+      "lang": {{ (item.data.lang or "") | dump | safe }},
+      "kind": {{ ("Blog" if "src/blog/" in inputPath else ("Publication" if "src/publications/" in inputPath else ("Presentation" if "src/presentations/" in inputPath else "Politics"))) | dump | safe }}
+    }
+  {% endif %}
+{% endfor %}
+]

@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <script>
+    // Teeman alustus (estää välkkymisen) - tarkistaa sijainnin localStorage tai OS prefers-color-scheme
+    const getStoredTheme = () => localStorage.getItem('theme');
+    const getPreferredTheme = () => {
+      const storedTheme = getStoredTheme();
+      if (storedTheme) {
+        return storedTheme;
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    const setTheme = function (theme) {
+      if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-bs-theme', theme);
+      }
+    };
+    setTheme(getPreferredTheme());
+
+    // Saavutettavuusasetusten alustus (FOUC esto)
+    function applyA11ySettings(settings) {
+      const htmlEl = document.documentElement;
+
+      // Tekstikoko
+      htmlEl.classList.remove('a11y-text-large', 'a11y-text-xlarge');
+      if (settings.textSize === 'large') htmlEl.classList.add('a11y-text-large');
+      else if (settings.textSize === 'xlarge') htmlEl.classList.add('a11y-text-xlarge');
+
+      // Kontrasti
+      if (settings.highContrast) htmlEl.classList.add('a11y-high-contrast');
+      else htmlEl.classList.remove('a11y-high-contrast');
+
+      // Animaatiot
+      if (settings.reducedMotion) htmlEl.classList.add('a11y-reduced-motion');
+      else htmlEl.classList.remove('a11y-reduced-motion');
+
+      // Fontti
+      if (settings.dyslexiaFont) htmlEl.classList.add('a11y-dyslexia-font');
+      else htmlEl.classList.remove('a11y-dyslexia-font');
+    }
+
+    try {
+      const a11yStored = localStorage.getItem('a11y-settings');
+      if (a11yStored) {
+        applyA11ySettings(JSON.parse(a11yStored));
+      }
+    } catch(e) {}
+  </script>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net data:; img-src 'self' data: https: https://cdn.slidesharecdn.com; connect-src 'self'; frame-src 'self' https: https://www.slideshare.net;">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <style id="antiClickjack">body{display:none !important;}</style>
+  <script>
+    if (self === top) {
+      var antiClickjack = document.getElementById("antiClickjack");
+      antiClickjack.parentNode.removeChild(antiClickjack);
+    } else {
+      top.location = self.location;
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <title>Keyword — Jari Laru</title>
+  <meta name="description" content="Yliopistonlehtori, tutkija, kuntapäättäjä">
+  
+  <meta name="google-site-verification" content="13_OZFDuN1d5oaDd6KEGtPWGDkMLpDYzahvDFzr4enw">
+  
+  <meta name="robots" content="index, follow, noai, noimageai">
+  <meta name="author" content="Jari Laru">
+  <link rel="canonical" href="https://www.jarilaru.fi/en/keywords/kempele/">
+  
+  
+  <link rel="alternate" hreflang="x-default" href="https://www.jarilaru.fi/">
+  <meta property="og:site_name" content="Jari Laru">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Keyword">
+  <meta property="og:description" content="Yliopistonlehtori, tutkija, kuntapäättäjä">
+  <meta property="og:url" content="https://www.jarilaru.fi/en/keywords/kempele/">
+  <meta property="og:image" content="https://www.jarilaru.fi/img/WIN_20210329_16_06_01_Pro.jpg">
+  <meta property="og:image:alt" content="Jari Laru">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Keyword">
+  <meta name="twitter:description" content="Yliopistonlehtori, tutkija, kuntapäättäjä">
+  <meta name="twitter:image" content="https://www.jarilaru.fi/img/WIN_20210329_16_06_01_Pro.jpg">
+  <meta name="twitter:image:alt" content="Jari Laru">
+  
+  <link rel="stylesheet" href="/www-staging/css/bootstrap.min.css">
+  
+  <style>/* ===== _theme.css — Bootstrap token overrides (dark + light) + BSS-scope theming =====
+ * Part of jarilaru.fi styles — imported by styles.css
+ */
+/* ===== 1. THEME VARIABLES ===== */
+
+/* ===== Dark theme: Bootstrap-pohjavärien korvaus ===== */
+/* Kevennetty navy-paletti — aiempaa #131d2b kevyempi, parempi tason erottelu */
+[data-bs-theme="dark"] {
+  --bs-body-bg: #1a2638;
+  --bs-body-color: #dde4ee;
+  --bs-secondary-bg: #243549;
+  --bs-tertiary-bg: #1f2f42;
+  --bs-border-color: #354f68;
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== Light theme: viileä neutraali slate ===== */
+/* DNA-yhteys: body-color = tumman teeman taustasävy käännettynä tekstiksi */
+/* #1c2a38 (tekstiväri) ≈ #1a2638 (tumman body-bg) — sama perhe, eri rooli */
+html:not([data-bs-theme="dark"]) {
+  --bs-body-bg: #f4f6f9;
+  --bs-body-color: #1c2a38;
+  --bs-secondary-color: #48606e;
+  --bs-secondary-bg: #dde4ed;
+  --bs-tertiary-bg: #eef2f7;
+  --bs-border-color: #adbccc;
+  --bs-border-color-translucent: rgba(28, 42, 56, 0.13);
+  /* WCAG 1.4.3: Bootstrap default #0d6efc → 4.17:1 on #f4f6f9 (alle 4.5 AA)
+     Korjattu: #0453b4 → ~6.7:1 */
+  --bs-link-color: #0453b4;
+  --bs-link-color-rgb: 4, 83, 180;
+  --bs-link-hover-color: #023e8a;
+  --bs-link-hover-color-rgb: 2, 62, 138;
+}
+
+/* ===== BSS-SCOPE THEMING ===== */
+
+/* Light theme: bss-scope primary color + border reset */
+html:not([data-bs-theme="dark"]) .bss-scope {
+  --bs-primary: #0453b4;
+  --bs-primary-rgb: 4, 83, 180;
+  --bs-border-width: 1px;
+}
+
+/* Dark theme: bss-scope uses white as primary (white buttons on dark bg) */
+[data-bs-theme="dark"] .bss-scope {
+  --bs-primary: #ffffff;
+  --bs-primary-rgb: 255, 255, 255;
+  --bs-border-width: 0;
+}
+
+/* Light theme: btn-primary uses site blue */
+html:not([data-bs-theme="dark"]) .btn-primary {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #0453b4;
+  --bs-btn-border-color: #0453b4;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #023e8a;
+  --bs-btn-hover-border-color: #023e8a;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #023e8a;
+  --bs-btn-active-border-color: #023e8a;
+  --bs-btn-disabled-color: #ffffff;
+  --bs-btn-disabled-bg: #0453b4;
+  --bs-btn-disabled-border-color: #0453b4;
+  --bs-btn-focus-shadow-rgb: 4, 83, 180;
+}
+
+/* Light theme: btn-outline-primary uses site blue */
+html:not([data-bs-theme="dark"]) .btn-outline-primary {
+  --bs-btn-color: #0453b4;
+  --bs-btn-border-color: #0453b4;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #0453b4;
+  --bs-btn-hover-border-color: #0453b4;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #0453b4;
+  --bs-btn-active-border-color: #0453b4;
+  --bs-btn-disabled-color: #0453b4;
+  --bs-btn-disabled-border-color: #0453b4;
+  --bs-btn-focus-shadow-rgb: 4, 83, 180;
+}
+
+</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap">
+  </noscript>
+  <link rel="stylesheet" href="/www-staging/css/mega-menu.css">
+  <link rel="preload" as="style" href="/www-staging/css/modules/_typography.css">
+  <link rel="preload" as="style" href="/www-staging/css/modules/_global.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_typography.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_home.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_global.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_tables.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_articles.css">
+  <link rel="stylesheet" href="/www-staging/css/a11y.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preload" href="/www-staging/pagefind/pagefind-ui.css" as="style">
+  <link href="/www-staging/pagefind/pagefind-ui.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="/www-staging/pagefind/pagefind-ui.css" rel="stylesheet">
+  </noscript>
+  <script src="/www-staging/pagefind/pagefind-ui.js" defer=""></script>
+  
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Jari Laru",
+      "url": "https://www.jarilaru.fi",
+      "description": "Yliopistonlehtori, tutkija, kuntapäättäjä",
+      "inLanguage": "en-US",
+      "publisher": {
+        "@id": ""
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "",
+      "name": "Jari Laru",
+      "url": "https://www.jarilaru.fi",
+      "sameAs": ["https://orcid.org/0000-0003-0347-0182","https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en","https://www.linkedin.com/in/jarilaru/","https://www.researchgate.net/profile/Jari-Laru","https://www.youtube.com/jarilaru","https://www.slideshare.net/larux/presentations"]
+    }
+  </script>
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "",
+      "description": "",
+      "url": "",
+      "image": "https://www.jarilaru.fi/undefined",
+      "inLanguage": "en-US",
+      "author": {
+        "@id": ""
+      }
+    }
+  </script>
+  
+
+</head>
+<body>
+  
+  <a class="visually-hidden-focusable skip-link btn btn-primary m-2 position-absolute" style="z-index: 9999; top: 0; left: 0;" href="#main-content">Skip to main content</a>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav id="siteNav" class="navbar navbar-expand-md site-navbar sticky-top" aria-label="Main Navigation" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/www-staging/en/">Jari Laru</a>
+    <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNavEn" aria-controls="mobileNavEn" aria-expanded="false" aria-label="Open mobile navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMainEn">
+      <ul class="navbar-nav align-items-md-center flex-md-nowrap evelenty-main-nav ms-md-2 me-auto">
+        <li class="nav-item">
+          <a class="nav-link " href="/www-staging/en/">
+            <i class="bi bi-house-door-fill"></i> Home
+          </a>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/en/about/">
+    <i class="bi bi-person-fill"></i> Me
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleMeEn" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuMeEn" aria-label="Open submenu: Me">
+    <span class="visually-hidden">Open submenu: Me</span>
+  </button>
+</div>
+
+          <div id="megaMenuMeEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMeEn">
+            <div class="mega-wrap grid-8-4">
+              <div class="mega-left three-cols">
+                
+                  <section>
+                    <h5>About Jari</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/about/"><i class="bi bi-info-circle me-2"></i><span>About me</span></a>
+                      
+                      
+                        <small class="menu-link-desc">Biography, life and hobbies.</small>
+                      
+                    
+                      
+                        <div class="menu-link menu-link-inline-group">
+                          <i class="bi bi-file-earmark-person me-2"></i>
+                          <span class="menu-link-inline-items">
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/en/cv/">Curriculum Vitae</a><span class="menu-link-inline-separator" aria-hidden="true">|</span>
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/en/portfolio/">Teaching Portfolio</a>
+                            
+                          </span>
+                        </div>
+                      
+                      
+                        <small class="menu-link-desc">Education, skills, and pedagogical profile in one place.</small>
+                      
+                    
+                      
+                        <a href="/www-staging/en/awards/"><i class="bi bi-award me-2"></i>Awards</a>
+                      
+                      
+                        <small class="">Recognition received for teaching and open science work.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Free Time</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/road-trips/"><i class="bi bi-car-front me-2"></i><span>Road Trips</span></a>
+                      
+                      
+                        <small class="menu-link-desc">Across Europe by car.</small>
+                      
+                    
+                      
+                        <a href="https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi" target="_blank" rel="noopener noreferrer"><i class="bi bi-egg-fried me-2"></i>Foodie</a>
+                      
+                      
+                        <small class="">Passionate home cook, baker, and cookbook collector.</small>
+                      
+                    
+                      
+                        <a href="https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi" target="_blank" rel="noopener noreferrer"><i class="bi bi-hammer me-2"></i>DIY Renovator</a>
+                      
+                      
+                        <small class="">1970s house renovations from excavator work to wallpapering.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>My Roles</h5>
+                    
+                      
+                        <a href="/www-staging/en/work/"><i class="bi bi-mortarboard me-2"></i>University Lecturer</a>
+                      
+                      
+                        <small class="">Teaching, research, and supervision in university work.</small>
+                      
+                    
+                      
+                        <a href="/www-staging/en/politics/"><i class="bi bi-bank2 me-2"></i>Politician</a>
+                      
+                      
+                        <small class="">Local politics, priorities, and public decision-making.</small>
+                      
+                    
+                      
+                        <a href="/www-staging/en/company/"><i class="bi bi-building me-2"></i>Entrepreneur</a>
+                      
+                      
+                        <small class="">Training and expert services through Larux.</small>
+                      
+                    
+                  </section>
+                
+              </div>
+              <aside class="mega-right showcase-card">
+                <img src="/www-staging/img/uploads/2020/01/jari.laru_1397908734_26-e1610053137214.jpg" alt="Jari Laru" class="img-fluid rounded-3 mb-3" loading="lazy" decoding="async">
+                <h5>Jari Laru</h5>
+                <p>Father, foodie and road tripper – the person behind the work.</p>
+                
+                  <a class="btn btn-accent btn-lg w-100" href="/www-staging/en/contact/">Get in touch</a>
+                
+              </aside>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/en/work/">
+    <i class="bi bi-briefcase-fill"></i> Work
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleWorkEn" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuWorkEn" aria-label="Open submenu: Work">
+    <span class="visually-hidden">Open submenu: Work</span>
+  </button>
+</div>
+
+          <div id="megaMenuWorkEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWorkEn">
+            
+            
+            <div class="mega-wrap">
+              <div class="mega-left four-cols">
+                
+                  <section>
+                    <h5>Teaching</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/work/"><i class="bi bi-briefcase me-2"></i><span>My Work as a University Lecturer</span></a>
+                        
+                          <small class="menu-link-desc">Courses, teaching responsibilities, and pedagogical development.</small>
+                        
+                      
+                    
+                      
+                        <div class="menu-link menu-link-inline-group">
+                          <i class="bi bi-file-earmark-person me-2"></i>
+                          <span class="menu-link-inline-items">
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/en/cv/">Curriculum Vitae</a><span class="menu-link-inline-separator" aria-hidden="true">|</span>
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/en/portfolio/">Teaching Portfolio</a>
+                            
+                          </span>
+                        </div>
+                        
+                          <small class="menu-link-desc">Education, experience, and pedagogical thinking in one place.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/presentations/"><i class="bi bi-easel2 me-2"></i><span>Presentations</span></a>
+                        
+                          <small class="menu-link-desc">Training and conference presentations across core topics.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/theses/"><i class="bi bi-mortarboard me-2"></i><span>Theses</span></a>
+                        
+                          <small class="menu-link-desc">Bachelor&#39;s and master&#39;s theses supervised by me.</small>
+                        
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Research</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/work/"><i class="bi bi-briefcase me-2"></i><span>My Work as a University Lecturer</span></a>
+                        
+                          <small class="menu-link-desc">Research themes, teaching, and project implementation.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/cv/"><i class="bi bi-file-earmark-person me-2"></i><span>Curriculum Vitae</span></a>
+                        
+                          <small class="menu-link-desc">Academic profile, key roles, and professional merits.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/publications/"><i class="bi bi-journal-text me-2"></i><span>Publication List</span></a>
+                        
+                          <small class="menu-link-desc">Scientific publications, essays, and related outputs.</small>
+                        
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Trainer (Entrepreneur)</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/company/"><i class="bi bi-building me-2"></i><span>About the Company</span></a>
+                        
+                          <small class="menu-link-desc">Larux services, background, and collaboration model.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/presentations/"><i class="bi bi-easel2 me-2"></i><span>Presentations</span></a>
+                        
+                          <small class="menu-link-desc">Selected decks and keynote examples for different audiences.</small>
+                        
+                      
+                    
+                      
+                        <div class="work-inline-cta">
+                          <a class="menu-link" href="/www-staging/en/contact/">
+                            <i class="bi bi-megaphone me-2"></i><span>Book me for training</span>
+                          </a>
+                          
+                            <small class="menu-link-desc">Expert talks on AI, EdTech, and modern pedagogy.</small>
+                          
+                          <a class="btn btn-accent btn-lg w-100 mt-2" href="/www-staging/en/contact/">
+                            Request a quote
+                          </a>
+                        </div>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Social Media</h5>
+                    
+                      
+                        <a class="menu-link" href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin me-2"></i><span>LinkedIn</span></a>
+                        
+                          <small class="menu-link-desc">Professional profile, network, and current updates.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer"><i class="bi bi-globe me-2"></i><span>ResearchGate</span></a>
+                        
+                          <small class="menu-link-desc">Research profile with publications and collaboration links.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="https://orcid.org/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer"><i class="bi bi-person-vcard me-2"></i><span>ORCID</span></a>
+                        
+                          <small class="menu-link-desc">Persistent researcher identifier and publication metadata.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer"><i class="bi bi-mortarboard me-2"></i><span>Google Scholar</span></a>
+                        
+                          <small class="menu-link-desc">Citation metrics, h-index, and publication visibility.</small>
+                        
+                      
+                    
+                  </section>
+                
+              </div>
+            </div>
+            
+            
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/en/politics/">
+    <i class="bi bi-bank2"></i> Politics
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaTogglePoliticsEn" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuPoliticsEn" aria-label="Open submenu: Politics">
+    <span class="visually-hidden">Open submenu: Politics</span>
+  </button>
+</div>
+
+          <div id="megaMenuPoliticsEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaTogglePoliticsEn">
+            <div class="mega-wrap">
+              <div class="mega-left three-cols">
+                
+                  <section>
+                    <h5>Role &amp; Transparency</h5>
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/en/politics/">
+                          <i class="bi bi-person-badge me-2"></i>
+                          <span>Jari Laru, politician</span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Positions of trust and goals.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/en/affiliations/">
+                          <i class="bi bi-link-45deg me-2"></i>
+                          <span>Affiliations &amp; Disclosures</span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Open declarations of affiliations.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook me-2"></i>Facebook</a>
+                      
+                      
+                        <small class="">Current updates and public discussion on Facebook.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Activities</h5>
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/en/writings/#aloitteet">
+                          <i class="bi bi-megaphone me-2"></i>
+                          <span>Initiatives <span class="menu-link-count">9</span></span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Motions in the city council.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/en/writings/#puheet">
+                          <i class="bi bi-mic me-2"></i>
+                          <span>Speeches <span class="menu-link-count">24</span></span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Council speeches and statements.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/en/writings/#mielipiteet">
+                          <i class="bi bi-chat-text me-2"></i>
+                          <span>Opinion pieces <span class="menu-link-count">42</span></span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Columns and newspaper articles.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/en/writings/"><i class="bi bi-pencil-square me-2"></i>All writings</a>
+                      
+                      
+                        <small class="">A full archive of speeches, initiatives, and opinion texts.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Election History</h5>
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/en/election-history/">
+                          <i class="bi bi-calendar-event me-2"></i>
+                          <span>Election history</span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Elections and terms of office.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/en/municipal-and-wellbeing-elections-2025/"><i class="bi bi-chevron-right me-2"></i>Municipal &amp; wellbeing elections 2025</a>
+                      
+                      
+                        <small class="">Campaign priorities and election outcome in 2025.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/kuntavaalit-2021/"><i class="bi bi-chevron-right me-2"></i>Municipal elections 2021</a>
+                      
+                      
+                        <small class="">Campaign priorities and materials from the 2021 election.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/jari-laru-aluevaltuustoon/"><i class="bi bi-chevron-right me-2"></i>Wellbeing area elections 2022</a>
+                      
+                      
+                        <small class="">Themes and goals for regional wellbeing governance.</small>
+                      
+                    
+                  </section>
+                
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/en/writings/">
+    <i class="bi bi-pencil-fill"></i> Writings
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleWritingsEn" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuWritingsEn" aria-label="Open submenu: Writings">
+    <span class="visually-hidden">Open submenu: Writings</span>
+  </button>
+</div>
+
+          <div id="megaMenuWritingsEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWritingsEn">
+            <div class="mega-wrap writings-mega-layout">
+              
+                <section class="writings-group-head">
+                  <h5>From my pen and voice</h5>
+                  <p class="menu-desc">All produced content.</p>
+                </section>
+                
+                  <section class="writings-main-col">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/writings/#mielipiteet">
+                        <span><i class="bi bi-chat-text me-2"></i>Articles</span>
+                        <span class="menu-link-count">42</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Opinion texts and public commentary published in media.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/blog/">
+                        <span><i class="bi bi-pen me-2"></i>Blog</span>
+                        <span class="menu-link-count">58</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Posts on education, technology, and public life themes.</small>
+                      
+                    
+                  </section>
+                
+                  <section class="writings-main-col">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/writings/#kolumnit">
+                        <span><i class="bi bi-journal-richtext me-2"></i>Columns</span>
+                        <span class="menu-link-count">9</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Long-form columns on education, society, and local development.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/writings/#aloitteet">
+                        <span><i class="bi bi-megaphone me-2"></i>Initiatives</span>
+                        <span class="menu-link-count">9</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Council initiatives and concrete proposals in local politics.</small>
+                      
+                    
+                  </section>
+                
+                  <section class="writings-main-col">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/presentations/">
+                        <span><i class="bi bi-easel2 me-2"></i>Presentations</span>
+                        <span class="menu-link-count">132</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Talks and training decks on AI, learning, and pedagogy.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/publications/">
+                        <span><i class="bi bi-journal-text me-2"></i>Publication List</span>
+                        <span class="menu-link-count">81</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Scientific publications, reports, and broader written outputs.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/writings/#puheet">
+                        <span><i class="bi bi-mic me-2"></i>Speeches</span>
+                        <span class="menu-link-count">24</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Public speeches and council statements in one archive.</small>
+                      
+                    
+                  </section>
+                
+                
+                  <section class="writings-side-head">
+                    <h5>See also</h5>
+                    
+                      <p class="menu-desc">Theses supervised by me</p>
+                    
+                  </section>
+                  <section class="writings-side-links">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/theses/#card-bachelor">
+                        <span><i class="bi bi-book-half me-2"></i>Bachelor&#39;s theses</span>
+                        <span class="menu-link-count">26</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Supervised theses listed by topic and year.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/theses/#card-master">
+                        <span><i class="bi bi-mortarboard me-2"></i>Master&#39;s theses</span>
+                        <span class="menu-link-count">74</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Supervised theses listed by topic and year.</small>
+                      
+                    
+                  </section>
+                
+              
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/en/contact/">
+    <i class="bi bi-envelope"></i> Contact
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleContactEn" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuContactEn" aria-label="Open submenu: Contact">
+    <span class="visually-hidden">Open submenu: Contact</span>
+  </button>
+</div>
+
+          <div id="megaMenuContactEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleContactEn">
+            <div class="mega-wrap">
+              <section class="w-100 mb-3">
+                <h5>Contact</h5>
+                <p class="menu-desc">Send a message or choose a direct channel.</p>
+              </section>
+              <div class="mega-left four-cols contact-mega-cols">
+                
+                  <section>
+                    <h5>Send a message</h5>
+                    
+                      <form class="contact-mega-form" action="https://formspree.io/f/xlgwqwzk" method="POST">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaNameEn">Name</label>
+                        <input id="contactMegaNameEn" type="text" name="name" class="form-control form-control-sm mb-2" placeholder="Name" autocomplete="name">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaEmailEn">Email</label>
+                        <input id="contactMegaEmailEn" type="email" name="email" class="form-control form-control-sm mb-2" placeholder="Email" autocomplete="email" required="">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaMessageEn">Message</label>
+                        <textarea id="contactMegaMessageEn" name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="Message" required=""></textarea>
+                        <button type="submit" class="btn btn-accent btn-lg w-100">Send</button>
+                      </form>
+                      <a class="contact-mega-mobile-cta btn btn-accent btn-lg w-100 mt-2" href="/www-staging/en/contact/">
+                        <i class="bi bi-envelope-check me-2"></i>Open contact form
+                      </a>
+                    
+                  </section>
+                
+                  <section>
+                    <h5>University contact</h5>
+                    
+                      
+                        <a class="menu-link" href="mailto:jari.laru@oulu.fi">
+                          <i class="bi bi-envelope me-2"></i><span>Email</span>
+                        </a>
+                      
+                        <a class="menu-link" href="tel:+358294483810">
+                          <i class="bi bi-telephone me-2"></i><span>Phone</span>
+                        </a>
+                      
+                        <a class="menu-link" href="http://www.zoom.us/my/larux" target="_blank" rel="noopener noreferrer">
+                          <i class="bi bi-camera-video me-2"></i><span>Zoom</span>
+                        </a>
+                      
+                        <a class="menu-link" href="https://www.oulu.fi" target="_blank" rel="noopener noreferrer">
+                          <i class="bi bi-building me-2"></i><span>University of Oulu</span>
+                        </a>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Company &amp; politics</h5>
+                    
+                      
+                        <a class="menu-link" href="tel:+358405118478">
+                          <i class="bi bi-whatsapp me-2"></i><span>Business contact</span>
+                        </a>
+                      
+                        <a class="menu-link" href="mailto:jari.laru@ouka.fi">
+                          <i class="bi bi-bank2 me-2"></i><span>Politics email</span>
+                        </a>
+                      
+                        <a class="menu-link" href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer">
+                          <i class="bi bi-facebook me-2"></i><span>Facebook</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/en/contact/">
+                          <i class="bi bi-person-lines-fill me-2"></i><span>Contact page</span>
+                        </a>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Quick links</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/company/">
+                          <i class="bi bi-briefcase me-2"></i><span>Company</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/en/presentations/">
+                          <i class="bi bi-easel2 me-2"></i><span>Presentations</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/en/politics/">
+                          <i class="bi bi-megaphone me-2"></i><span>Politics</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/en/privacy/">
+                          <i class="bi bi-shield-check me-2"></i><span>Privacy</span>
+                        </a>
+                      
+                    
+                  </section>
+                
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item ms-md-auto mt-2 mt-md-0">
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" data-search-toggle="" style="width: 38px; height: 38px;" aria-label="Search site" title="Search site">
+              <i class="bi bi-search"></i>
+            </button>
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="themeToggleBtn" data-theme-toggle="" style="width: 38px; height: 38px;" aria-label="Toggle theme" title="Toggle theme">
+              <i class="bi bi-moon-stars-fill" id="themeToggleIcon" data-theme-icon=""></i>
+            </button>
+          </div>
+        </li>
+        <li class="nav-item ms-md-2 mt-2 mt-md-0">
+          <a class="nav-link py-0 d-flex align-items-center gap-1 text-decoration-none" href="/www-staging/" lang="fi" aria-label="Vaihda kieleksi suomi">
+            <span aria-hidden="true">🇫🇮</span><span>FI</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileNavEn" aria-labelledby="mobileNavEnLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title fw-bold" id="mobileNavEnLabel">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form class="mb-3" data-search-form="">
+      <label for="mobileNavEnSearchInput" class="form-label small text-muted">Search this site</label>
+      <div class="input-group input-group-sm">
+        <input id="mobileNavEnSearchInput" type="search" class="form-control" placeholder="Search..." autocomplete="off" name="q">
+        <button class="btn btn-outline-primary" type="submit" aria-label="Open search">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </form>
+    <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+      <div class="btn-group btn-group-sm" role="group" aria-label="Language switcher">
+        <a class="btn btn-outline-primary" href="/www-staging/" lang="fi">FI</a>
+        <a class="btn btn-outline-primary active" href="/www-staging/en/" lang="en">EN</a>
+      </div>
+      <button class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-2" type="button" data-theme-toggle="" aria-label="Toggle theme">
+        <i class="bi bi-moon-stars-fill" data-theme-icon=""></i><span>Theme</span>
+      </button>
+    </div>
+    <div class="d-grid gap-2 mb-3">
+      <a class="btn btn-outline-primary rounded-pill" href="/www-staging/en/">Home</a>
+    </div>
+    <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordionEn">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavEnMeHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnMe" aria-expanded="false" aria-controls="mobileNavEnMe">Me</button>
+        </h2>
+        <div id="mobileNavEnMe" class="accordion-collapse collapse" aria-labelledby="mobileNavEnMeHead" data-bs-parent="#mobileNavAccordionEn">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/en/about/">Open Me page</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">About Jari</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/about/">About me</a>
+                  
+                
+                  
+                    <div class="mobile-nav-link d-flex align-items-center gap-2 flex-wrap">
+                      
+                        <a class="mobile-nav-link inline-link" href="/www-staging/en/cv/">Curriculum Vitae</a><span class="mobile-nav-inline-separator" aria-hidden="true">|</span>
+                      
+                        <a class="mobile-nav-link inline-link" href="/www-staging/en/portfolio/">Teaching Portfolio</a>
+                      
+                    </div>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/awards/">Awards</a>
+                  
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Free Time</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/road-trips/">Road Trips</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi" target="_blank" rel="noopener noreferrer">Foodie</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi" target="_blank" rel="noopener noreferrer">DIY Renovator</a>
+                  
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">My Roles</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/work/">University Lecturer</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/politics/">Politician</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/company/">Entrepreneur</a>
+                  
+                
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavEnWorkHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnWork" aria-expanded="false" aria-controls="mobileNavEnWork">Work</button>
+        </h2>
+        <div id="mobileNavEnWork" class="accordion-collapse collapse" aria-labelledby="mobileNavEnWorkHead" data-bs-parent="#mobileNavAccordionEn">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/en/work/">Open Work page</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Teaching</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/work/">My Work as a University Lecturer</a>
+                
+                  <a class="mobile-nav-link" href=".">CV | Teaching Portfolio</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/presentations/">Presentations</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/theses/">Theses</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Research</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/work/">My Work as a University Lecturer</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/cv/">Curriculum Vitae</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/publications/">Publication List</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Trainer (Entrepreneur)</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/company/">About the Company</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/presentations/">Presentations</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/contact/">Book me for training</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Social Media</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                
+                  <a class="mobile-nav-link" href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer">ResearchGate</a>
+                
+                  <a class="mobile-nav-link" href="https://orcid.org/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer">ORCID</a>
+                
+                  <a class="mobile-nav-link" href="https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+                
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavEnPoliticsHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnPolitics" aria-expanded="false" aria-controls="mobileNavEnPolitics">Politics</button>
+        </h2>
+        <div id="mobileNavEnPolitics" class="accordion-collapse collapse" aria-labelledby="mobileNavEnPoliticsHead" data-bs-parent="#mobileNavAccordionEn">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/en/politics/">Open Politics page</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Role &amp; Transparency</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/politics/">Jari Laru, politician</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/affiliations/">Affiliations &amp; Disclosures</a>
+                
+                  <a class="mobile-nav-link" href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Activities</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/writings/#aloitteet">Initiatives</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/writings/#puheet">Speeches</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/writings/#mielipiteet">Opinion pieces</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/writings/">All writings</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Election History</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/election-history/">Election history</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/municipal-and-wellbeing-elections-2025/">Municipal &amp; wellbeing elections 2025</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/kuntavaalit-2021/">Municipal elections 2021</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/jari-laru-aluevaltuustoon/">Wellbeing area elections 2022</a>
+                
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavEnWritingsHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnWritings" aria-expanded="false" aria-controls="mobileNavEnWritings">Writings</button>
+        </h2>
+        <div id="mobileNavEnWritings" class="accordion-collapse collapse" aria-labelledby="mobileNavEnWritingsHead" data-bs-parent="#mobileNavAccordionEn">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/en/writings/">Open Writings page</a>
+            
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/writings/#mielipiteet">Articles</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/blog/">Blog</a>
+                  
+                </div>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/writings/#kolumnit">Columns</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/writings/#aloitteet">Initiatives</a>
+                  
+                </div>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/presentations/">Presentations</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/publications/">Publication List</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/writings/#puheet">Speeches</a>
+                  
+                </div>
+              
+              
+                <p class="text-uppercase small text-muted mb-1 mt-2">See also</p>
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/theses/#card-bachelor">Bachelor&#39;s theses</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/theses/#card-master">Master&#39;s theses</a>
+                  
+                </div>
+              
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavEnContactHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnContact" aria-expanded="false" aria-controls="mobileNavEnContact">Contact</button>
+        </h2>
+        <div id="mobileNavEnContact" class="accordion-collapse collapse" aria-labelledby="mobileNavEnContactHead" data-bs-parent="#mobileNavAccordionEn">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/en/contact/">Open Contact page</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Send a message</p>
+              
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">University contact</p>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="mailto:jari.laru@oulu.fi">Email</a>
+                  
+                    <a class="mobile-nav-link" href="tel:+358294483810">Phone</a>
+                  
+                    <a class="mobile-nav-link" href="http://www.zoom.us/my/larux" target="_blank" rel="noopener noreferrer">Zoom</a>
+                  
+                    <a class="mobile-nav-link" href="https://www.oulu.fi" target="_blank" rel="noopener noreferrer">University of Oulu</a>
+                  
+                </div>
+              
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Company &amp; politics</p>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="tel:+358405118478">Business contact</a>
+                  
+                    <a class="mobile-nav-link" href="mailto:jari.laru@ouka.fi">Politics email</a>
+                  
+                    <a class="mobile-nav-link" href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/contact/">Contact page</a>
+                  
+                </div>
+              
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Quick links</p>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/company/">Company</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/presentations/">Presentations</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/politics/">Politics</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/privacy/">Privacy</a>
+                  
+                </div>
+              
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="searchOverlay" class="search-overlay" role="dialog" aria-modal="true" aria-labelledby="searchOverlayTitle" aria-hidden="true" hidden="">
+  <div class="search-overlay-inner">
+    <div class="container py-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0" id="searchOverlayTitle"><i class="bi bi-search me-2"></i>Search</h3>
+        <button class="btn btn-sm rounded-circle" id="searchCloseBtn" aria-label="Close search" style="width: 38px; height: 38px;">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div id="pagefindSearch"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  
+  
+  
+  
+
+  
+  <section class="subpage-hero-placeholder" aria-hidden="true">
+    <div class="subpage-hero-image"></div>
+  </section>
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="container py-2" aria-label="Breadcrumb">
+  <ol class="breadcrumb mb-0 small">
+    <li class="breadcrumb-item"><a href="/www-staging/en/">Home</a></li>
+    
+      <li class="breadcrumb-item active" aria-current="page">Keyword</li>
+    
+  </ol>
+</nav>
+
+
+
+  <main id="main-content" class="site-main">
+    <div class="bss-scope">
+      <section>
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h1 class="h3 mb-0">kempele</h1>
+      <a class="btn btn-outline-primary btn-sm" href="/www-staging/en/keywords/">All keywords</a>
+    </div>
+    <p class="text-muted">Total 4 posts.</p>
+
+    <div class="row g-4">
+      
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 content-card">
+            
+            <div class="card-body">
+              <h3 class="h6">
+                <a href="/www-staging/2008/09/25/rantalakeus-249-ei-suur-oulu-vaan-laajempi-yhteinen-oulu/" class="text-decoration-none">Rantalakeus 24.9: Ei suur-Oulu vaan laajempi yhteinen Oulu</a>
+              </h3>
+              <p class="text-muted small mb-2">25 September 2008</p>
+              <p class="text-muted">Postilaatikkoon tupsahti perunamarkkinoiden alla Rantalakeus, joka muiden lehtien tavoin tuli luettua erittäin tarkasti. Lehdessä pisti silmää mielenkiintoinen Kempeleläisen ehdokkaan mielipidekirjoitus vaalipostia</p>
+              
+                <div class="mt-2">
+                  
+                    <a class="badge text-bg-secondary me-1 text-decoration-none" href="/www-staging/en/categories/luokittelematon/">Luokittelematon</a>
+                  
+                    <a class="badge text-bg-secondary me-1 text-decoration-none" href="/www-staging/en/categories/politiikka/">politiikka</a>
+                  
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 content-card">
+            
+            <div class="card-body">
+              <h3 class="h6">
+                <a href="/www-staging/2008/10/20/te-muut-voisitte-menna-vaikka-kahville-vastine-pauli-maatan-kirjoitukseen-ihanseutuyhteistyosta-2/" class="text-decoration-none">&quot;Te muut voisitte mennä vaikka kahville&quot; - vastine Pauli Määtän kirjoitukseen seutuyhteistyöstä</a>
+              </h3>
+              <p class="text-muted small mb-2">20 October 2008</p>
+              <p class="text-muted">Sattumalta törmäsin tähää Pauli Määtä (Kempele, kesk.) vaaliblogissa olevaan mielenkiintoiseen kirjoitukseen &quot; te muut voisitte mennä vaikka kahville &quot;, jossa ehdokas Määttä käsitteli omasta äkökulmasta</p>
+              
+                <div class="mt-2">
+                  
+                    <a class="badge text-bg-secondary me-1 text-decoration-none" href="/www-staging/en/categories/politiikka/">politiikka</a>
+                  
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 content-card">
+            
+            <div class="card-body">
+              <h3 class="h6">
+                <a href="/www-staging/2008/10/20/te-muut-voisitte-menna-vaikka-kahville-vastine-pauli-maatan-kirjoitukseen-ihanseutuyhteistyosta/" class="text-decoration-none">&quot;Te muut voisitte mennä vaikka kahville&quot;- vastine Pauli Määtän kirjoitukseen seutuyhteistyöstä</a>
+              </h3>
+              <p class="text-muted small mb-2">20 October 2008</p>
+              <p class="text-muted">Sattumalta törmäsin tähää Pauli Määtä (Kempele, kesk.) vaaliblogissa olevaan mielenkiintoiseen kirjoitukseen &quot; te muut voisitte mennä vaikka kahville &quot;, jossa ehdokas Määttä käsitteli omasta äkökulmasta</p>
+              
+                <div class="mt-2">
+                  
+                    <a class="badge text-bg-secondary me-1 text-decoration-none" href="/www-staging/en/categories/politiikka/">politiikka</a>
+                  
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 content-card">
+            
+            <div class="card-body">
+              <h3 class="h6">
+                <a href="/www-staging/2018/01/11/vierailu-kempeleen-kunnassa-aiheena-asukkaiden-huoli-jatevesilietteiden-kasittelyyn-liittyen/" class="text-decoration-none">Vierailu Kempeleen kunnassa. Aiheena asukkaiden huoli jätevesilietteiden käsittelyyn liittyen.</a>
+              </h3>
+              <p class="text-muted small mb-2">11 January 2018</p>
+              <p class="text-muted">Tammikuussa 2018 kävin kempeleläisten kutsumana kertomassa jääliläisten &quot;lietesaagasta&quot;</p>
+              
+                <div class="mt-2">
+                  
+                    <a class="badge text-bg-secondary me-1 text-decoration-none" href="/www-staging/en/categories/asukasyhdistys/">Asukasyhdistys</a>
+                  
+                    <a class="badge text-bg-secondary me-1 text-decoration-none" href="/www-staging/en/categories/muut/">Muut</a>
+                  
+                    <a class="badge text-bg-secondary me-1 text-decoration-none" href="/www-staging/en/categories/poliitiikka/">Poliitiikka</a>
+                  
+                    <a class="badge text-bg-secondary me-1 text-decoration-none" href="/www-staging/en/categories/puheet/">Puheet</a>
+                  
+                    <a class="badge text-bg-secondary me-1 text-decoration-none" href="/www-staging/en/categories/yhdistystoiminta/">yhdistystoiminta</a>
+                  
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</section>
+
+    </div>
+  </main>
+
+  
+<footer class="py-3 border-top bg-body-tertiary mt-3">
+  <div class="container">
+    <div class="row align-items-center gy-2">
+      <div class="col-md-4 text-center text-md-start">
+        <p class="mb-0 text-body-secondary small">
+          
+          &copy; Jari Laru. All rights reserved.
+          
+        </p>
+        <div class="footer-social-links mt-1 d-inline-flex align-items-center gap-2" aria-label="Social media links">
+          <a href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-social-link"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+          <a href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate" class="footer-social-link"><i class="bi bi-globe" aria-hidden="true"></i></a>
+          <a href="https://orcid.org/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer" aria-label="ORCID" class="footer-social-link"><i class="bi bi-person-vcard" aria-hidden="true"></i></a>
+          <a href="https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" class="footer-social-link"><i class="bi bi-mortarboard" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/jarilaru" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="footer-social-link"><i class="bi bi-youtube" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        
+        <a href="/www-staging/en/accessibility/" class="footer-wcag-badge text-decoration-none d-inline-flex align-items-center gap-2 px-3 py-1 rounded border" aria-label="WCAG 2.1 Level AA conformant – view accessibility statement">
+          <span class="footer-wcag-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2"></circle>
+              <text x="16" y="12" text-anchor="middle" font-size="7" font-weight="700" font-family="sans-serif" fill="currentColor">W3C</text>
+              <text x="16" y="21" text-anchor="middle" font-size="6" font-weight="600" font-family="sans-serif" fill="currentColor">WCAG 2.1</text>
+              <text x="16" y="28" text-anchor="middle" font-size="5.5" font-weight="700" font-family="sans-serif" fill="currentColor">Level AA</text>
+            </svg>
+          </span>
+          <span class="footer-wcag-label">
+            <span class="d-block fw-semibold" style="font-size:0.7rem;line-height:1.2;">WCAG 2.1 AA</span>
+            <span class="d-block" style="font-size:0.65rem;line-height:1.2;">Accessibility statement</span>
+          </span>
+        </a>
+        
+      </div>
+      <div class="col-md-4 text-center text-md-end">
+        <p class="mb-0 text-body-secondary small">
+          
+          Built with <a href="/www-staging/en/how-this-site-is-built/" class="text-decoration-none text-body-secondary fw-semibold">Eleventy</a> · <a href="/www-staging/en/privacy/#manage-embed-consent" class="text-decoration-none text-body-secondary fw-semibold">Privacy notice</a> · <a href="/www-staging/en/site-changes/" class="text-decoration-none text-body-secondary fw-semibold"><i class="bi bi-github me-1" aria-hidden="true"></i>GitHub changes</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <section class="site-news-ticker site-news-ticker--footer" aria-label="Latest content">
+    <div class="site-news-ticker-inner">
+      <span class="site-news-ticker-label">Latest</span>
+      <div class="site-news-ticker-viewport">
+        <div class="site-news-ticker-track" data-latest-track=""></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" defer=""></script>
+  <script src="/www-staging/js/bootstrap.min.js" defer=""></script>
+  <script src="/www-staging/js/external-media-consent.js" defer=""></script>
+  <script src="/www-staging/js/site-ui.js" defer=""></script>
+
+  <!-- Accessibility panel / Saavutettavuuspaneeli -->
+  <button class="a11y-fab" type="button" data-bs-toggle="offcanvas" data-bs-target="#a11yOffcanvas" aria-controls="a11yOffcanvas" aria-label="Open accessibility settings">
+    <i class="bi bi-person-wheelchair"></i>
+  </button>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="a11yOffcanvas" aria-labelledby="a11yOffcanvasLabel">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title fw-bold" id="a11yOffcanvasLabel"><i class="bi bi-universal-access-circle me-2"></i>Accessibility</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted small mb-4">Customise the appearance to suit your needs. Settings are saved in your browser.</p>
+
+      <div class="mb-4">
+        <label for="a11yTextSize" class="form-label fw-bold">Text size</label>
+        <select class="form-select" id="a11yTextSize">
+          <option value="normal">Normal</option>
+          <option value="large">Large (+15%)</option>
+          <option value="xlarge">Maximum (+30%)</option>
+        </select>
+      </div>
+
+      <div class="mb-3 form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="a11yHighContrast">
+        <label class="form-check-label" for="a11yHighContrast">High contrast</label>
+      </div>
+
+      <div class="mb-3 form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="a11yReducedMotion">
+        <label class="form-check-label" for="a11yReducedMotion">Reduce animations</label>
+      </div>
+
+      <div class="mb-4 form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="a11yDyslexiaFont">
+        <label class="form-check-label" for="a11yDyslexiaFont">Dyslexia-friendly font</label>
+      </div>
+
+      <hr>
+      <button type="button" class="btn btn-outline-danger w-100 mt-2" id="a11yResetBtn">
+        <i class="bi bi-arrow-counterclockwise me-1"></i> Reset to defaults
+      </button>
+    </div>
+  </div>
+
+  <script src="/www-staging/js/table-filters.js" defer=""></script>
+  <script src="/www-staging/js/a11y.js" defer=""></script>
+</body>
+</html>

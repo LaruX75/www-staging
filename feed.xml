@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="fi">
+  
+  <title>Jari Laru</title>
+  <subtitle>Koulutusteknologian asiantuntija. Yliopistonlehtori. Kaupunginvaltuutettu.</subtitle>
+  <link href="https://www.jarilaru.fi/www-staging/feed.xml" rel="self" />
+  <link href="https://www.jarilaru.fi/www-staging/" />
+  <updated>2023-05-21T00:00:00Z</updated>
+  <id>https://www.jarilaru.fi/www-staging/</id>
+  <author>
+    <name>Jari Laru</name>
+  </author>
+  <entry>
+    <title>Silloin sitä oltiin Large&#39;s Securityn SysOp — BBS-muisteluja</title>
+    <link href="https://www.jarilaru.fi/www-staging/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/" />
+    <updated>1998-02-16T00:00:00Z</updated>
+    <id>https://www.jarilaru.fi/www-staging/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/</id>
+    <content type="html">
+&lt;!-- HERO --&gt;
+&lt;section class=&quot;bbs-hero py-5&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;bbs-terminal-header mb-3&quot;&gt;
+      &lt;span class=&quot;bbs-prompt&quot;&gt;C:&#92;LARGES_SECURITY&amp;gt;&lt;/span&gt;&lt;span class=&quot;bbs-cursor&quot;&gt;█&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;h1 class=&quot;bbs-hero-title mb-2&quot;&gt;Large&#39;s Security BBS&lt;/h1&gt;
+    &lt;p class=&quot;bbs-hero-sub mb-4&quot;&gt;Muisteluja 1990-luvun nörttiharrastuksesta Raahessa&lt;/p&gt;
+    &lt;div class=&quot;row g-2&quot;&gt;
+      &lt;div class=&quot;col-auto&quot;&gt;
+        &lt;div class=&quot;bbs-stat-pill&quot;&gt;SysOp: Jari Laru&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col-auto&quot;&gt;
+        &lt;div class=&quot;bbs-stat-pill&quot;&gt;Fidonet Node · 1991&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col-auto&quot;&gt;
+        &lt;div class=&quot;bbs-stat-pill&quot;&gt;300 → 2400 baud&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col-auto&quot;&gt;
+        &lt;div class=&quot;bbs-stat-pill&quot;&gt;14–17 v · Raahe&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;div class=&quot;container py-4&quot;&gt;
+
+  &lt;!-- Navigaatio lukuihin --&gt;
+  &lt;nav class=&quot;d-flex flex-wrap gap-2 mb-5&quot; aria-label=&quot;Luvut&quot;&gt;
+    &lt;a href=&quot;https://www.jarilaru.fi/www-staging/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/#luku-c64&quot; class=&quot;badge text-bg-dark text-decoration-none py-2 px-3 fs-bbs&quot;&gt;01 · Commodore 64&lt;/a&gt;
+    &lt;a href=&quot;https://www.jarilaru.fi/www-staging/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/#luku-pc&quot; class=&quot;badge text-bg-dark text-decoration-none py-2 px-3 fs-bbs&quot;&gt;02 · PC &amp;amp; Modeemi&lt;/a&gt;
+    &lt;a href=&quot;https://www.jarilaru.fi/www-staging/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/#luku-bbs&quot; class=&quot;badge text-bg-dark text-decoration-none py-2 px-3 fs-bbs&quot;&gt;03 · Large&#39;s Security BBS&lt;/a&gt;
+    &lt;a href=&quot;https://www.jarilaru.fi/www-staging/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/#luku-fido&quot; class=&quot;badge text-bg-dark text-decoration-none py-2 px-3 fs-bbs&quot;&gt;04 · Fidonet &amp;amp; ANSI&lt;/a&gt;
+    &lt;a href=&quot;https://www.jarilaru.fi/www-staging/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/#luku-html&quot; class=&quot;badge text-bg-dark text-decoration-none py-2 px-3 fs-bbs&quot;&gt;05 · HTML &amp;amp; Uusi sivu&lt;/a&gt;
+  &lt;/nav&gt;
+
+  &lt;!-- HUOMIO-callout --&gt;
+  &lt;div class=&quot;bbs-callout mb-5&quot;&gt;
+    &lt;div class=&quot;bbs-callout-header&quot;&gt;&lt;i class=&quot;bi bi-exclamation-triangle-fill me-2&quot;&gt;&lt;/i&gt;HUOMIO — lue ensin&lt;/div&gt;
+    &lt;div class=&quot;bbs-callout-body&quot;&gt;
+      &lt;p class=&quot;mb-2&quot;&gt;Alla oleva teksti sisältää &lt;strong&gt;&quot;nuorisokieltä&quot;&lt;/strong&gt; — se on kirjoitettu alun perin vuonna 1998, kun opiskelin Oulun seudun ammattikorkeakoulussa automaatiotekniikkaa. Laadin tekstin tuolloin ensimmäisille www-sivuilleni.&lt;/p&gt;
+      &lt;p class=&quot;mb-2&quot;&gt;&lt;strong&gt;Kyseinen teksti on muistelu&lt;/strong&gt;, jossa 17-vuotias opiskelija muistelee yläasteen lopun ja lukion alun BBS-harrastustaan. Varsinainen tarina sijoittuu vuosiin 1989–1993.&lt;/p&gt;
+      &lt;p class=&quot;mb-0&quot;&gt;Olen päivittänyt tekstiä upottamalla videoita ja linkkejä, mutta itse teksti on säilynyt alkuperäisenä. Katso myös: &lt;a href=&quot;https://www.jarilaru.fi/www-staging/2006/02/16/98x-suuntanumeroalueen-bbs-puhelinluettelo-vuodelta-1991/&quot;&gt;98x-telealueen BBS-puhelinluettelo vuodelta 1991&lt;/a&gt;.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- LUKU 1: Commodore 64 --&gt;
+  &lt;article id=&quot;luku-c64&quot; class=&quot;bbs-chapter mb-5&quot; style=&quot;--chapter-color:#fd7e14&quot;&gt;
+    &lt;div class=&quot;bbs-chapter-header&quot;&gt;
+      &lt;span class=&quot;bbs-chapter-num&quot;&gt;01&lt;/span&gt;
+      &lt;div&gt;
+        &lt;h2 class=&quot;bbs-chapter-title&quot;&gt;Commodore 64 — ensimmäinen koneeni&lt;/h2&gt;
+        &lt;p class=&quot;bbs-chapter-sub text-muted small mb-0&quot;&gt;~1987–1989 · ala-aste · Raahe&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;bbs-chapter-body&quot;&gt;
+      &lt;p&gt;Olen harrastanut koneiden kanssa värkkäilyä pienen ikäni. Ensimmäisen koneeni sain ala-asteella ollessani, kuten niin moni muukin. Se oli legendaarinen &lt;strong&gt;Commodore 64&lt;/strong&gt; varustettuna oikullisella kasettiasemalla ja parilla renkkanalla joystickilla. Käyttäminen oli pitkälti pelailua, koska eihän koneen ominaisuudet riittäneet esim. piirtämiseen lainkaan! Vierekkäiset värit eivät halunneet pysyä omissa lokeroissansa, vaan levisivät miten halusivat..&lt;/p&gt;
+
+      &lt;div class=&quot;row g-3 mt-2&quot;&gt;
+        &lt;div class=&quot;col-md-6&quot;&gt;
+          &lt;p class=&quot;bbs-video-label&quot;&gt;&lt;i class=&quot;bi bi-play-circle-fill me-1&quot;&gt;&lt;/i&gt;100 legendaarista C64-peliä&lt;/p&gt;
+          &lt;div class=&quot;bbs-video-wrap&quot;&gt;
+            &lt;div class=&quot;external-media-consent&quot; data-external-media-provider=&quot;external&quot;&gt;&lt;div class=&quot;external-media-consent__notice&quot; data-external-media-notice&gt;&lt;p class=&quot;external-media-consent__text&quot; data-external-media-text&gt;&lt;/p&gt;&lt;div class=&quot;external-media-consent__actions&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; data-external-media-load&gt;&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-secondary btn-sm&quot; data-external-media-allow-all&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;iframe data-consent-src=&quot;https://www.youtube-nocookie.com/embed/eY2gK1MPgh8&quot; data-external-media-managed=&quot;true&quot; class=&quot;external-media-consent__iframe&quot; hidden title=&quot;100 legendaarista Commodore 64 peliä&quot; loading=&quot;lazy&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p class=&quot;bbs-caption&quot;&gt;Kyllähän niitä pelattiin ja kovasti.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-md-6&quot;&gt;
+          &lt;p class=&quot;bbs-video-label&quot;&gt;&lt;i class=&quot;bi bi-play-circle-fill me-1&quot;&gt;&lt;/i&gt;C64 + akustinen modeemi&lt;/p&gt;
+          &lt;div class=&quot;bbs-video-wrap&quot;&gt;
+            &lt;div class=&quot;external-media-consent&quot; data-external-media-provider=&quot;external&quot;&gt;&lt;div class=&quot;external-media-consent__notice&quot; data-external-media-notice&gt;&lt;p class=&quot;external-media-consent__text&quot; data-external-media-text&gt;&lt;/p&gt;&lt;div class=&quot;external-media-consent__actions&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; data-external-media-load&gt;&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-secondary btn-sm&quot; data-external-media-allow-all&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;iframe data-consent-src=&quot;https://www.youtube-nocookie.com/embed/gAAJ1FGudE&quot; data-external-media-managed=&quot;true&quot; class=&quot;external-media-consent__iframe&quot; hidden title=&quot;Commodore 64 akustinen modeemi&quot; loading=&quot;lazy&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p class=&quot;bbs-caption&quot;&gt;C64:een oli jo saatavilla akustinen 300 baudin modeemi. Katselin tällaista ihmettä raahelaisen kirjakaupan näyteikkunassa. Aika ei kuitenkaan ollut vielä kypsä.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+
+  &lt;!-- LUKU 2: PC &amp; Modeemi --&gt;
+  &lt;article id=&quot;luku-pc&quot; class=&quot;bbs-chapter mb-5&quot; style=&quot;--chapter-color:#0d6efd&quot;&gt;
+    &lt;div class=&quot;bbs-chapter-header&quot;&gt;
+      &lt;span class=&quot;bbs-chapter-num&quot;&gt;02&lt;/span&gt;
+      &lt;div&gt;
+        &lt;h2 class=&quot;bbs-chapter-title&quot;&gt;Ensimmäinen PC ja ensimmäinen modeemi&lt;/h2&gt;
+        &lt;p class=&quot;bbs-chapter-sub text-muted small mb-0&quot;&gt;~1989–1991 · 1200 → 2400 bps&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;bbs-chapter-body&quot;&gt;
+      &lt;p&gt;Kauan pitikin kitkutella CBM64:n varassa, kunnes sain käyttööni huippumodernin &lt;strong&gt;Acer 915v-AT&lt;/strong&gt; -koneen (Näitä koneita Rautaruukki myi tuolloin edullisesti omille työntekijöilleen). Koneessa modeemi, joka sai aikaan &lt;em&gt;valtavaa&lt;/em&gt; innostusta koneen käyttämisen suhteen ja myös valtavia puhelinlaskuja.&lt;/p&gt;
+      &lt;p&gt;Modeemi oli aluksi &lt;strong&gt;1200 bps&lt;/strong&gt;, mutta kun tekniikka halpeni hurjaa kyytiä sain lopulta v22bis modeemin (&lt;strong&gt;2400 bps&lt;/strong&gt;). Jo ensimmäisen modeemin aikana pidin omaa BBS-järjestelmää.&lt;/p&gt;
+
+      &lt;div class=&quot;row g-3 mt-2&quot;&gt;
+        &lt;div class=&quot;col-md-4&quot;&gt;
+          &lt;p class=&quot;bbs-video-label&quot;&gt;&lt;i class=&quot;bi bi-play-circle-fill me-1&quot;&gt;&lt;/i&gt;Acer 915V tietokone&lt;/p&gt;
+          &lt;div class=&quot;bbs-video-wrap&quot;&gt;
+            &lt;div class=&quot;external-media-consent&quot; data-external-media-provider=&quot;external&quot;&gt;&lt;div class=&quot;external-media-consent__notice&quot; data-external-media-notice&gt;&lt;p class=&quot;external-media-consent__text&quot; data-external-media-text&gt;&lt;/p&gt;&lt;div class=&quot;external-media-consent__actions&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; data-external-media-load&gt;&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-secondary btn-sm&quot; data-external-media-allow-all&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;iframe data-consent-src=&quot;https://www.youtube-nocookie.com/embed/MdTt0Mm35_U&quot; data-external-media-managed=&quot;true&quot; class=&quot;external-media-consent__iframe&quot; hidden title=&quot;Acer 915V tietokone&quot; loading=&quot;lazy&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-md-4&quot;&gt;
+          &lt;p class=&quot;bbs-video-label&quot;&gt;&lt;i class=&quot;bi bi-play-circle-fill me-1&quot;&gt;&lt;/i&gt;Modeemin äänet&lt;/p&gt;
+          &lt;div class=&quot;bbs-video-wrap&quot;&gt;
+            &lt;div class=&quot;external-media-consent&quot; data-external-media-provider=&quot;external&quot;&gt;&lt;div class=&quot;external-media-consent__notice&quot; data-external-media-notice&gt;&lt;p class=&quot;external-media-consent__text&quot; data-external-media-text&gt;&lt;/p&gt;&lt;div class=&quot;external-media-consent__actions&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; data-external-media-load&gt;&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-secondary btn-sm&quot; data-external-media-allow-all&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;iframe data-consent-src=&quot;https://www.youtube-nocookie.com/embed/ckc6XSSh52w&quot; data-external-media-managed=&quot;true&quot; class=&quot;external-media-consent__iframe&quot; hidden title=&quot;Modeemin äänet&quot; loading=&quot;lazy&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p class=&quot;bbs-caption&quot;&gt;Meidän kotimme äänimaisemaa 90-luvun taitteesta.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-md-4&quot;&gt;
+          &lt;p class=&quot;bbs-video-label&quot;&gt;&lt;i class=&quot;bi bi-play-circle-fill me-1&quot;&gt;&lt;/i&gt;BBS — &quot;Facebook ennen vanhaan&quot;&lt;/p&gt;
+          &lt;div class=&quot;bbs-video-wrap&quot;&gt;
+            &lt;div class=&quot;external-media-consent&quot; data-external-media-provider=&quot;external&quot;&gt;&lt;div class=&quot;external-media-consent__notice&quot; data-external-media-notice&gt;&lt;p class=&quot;external-media-consent__text&quot; data-external-media-text&gt;&lt;/p&gt;&lt;div class=&quot;external-media-consent__actions&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; data-external-media-load&gt;&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-secondary btn-sm&quot; data-external-media-allow-all&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;iframe data-consent-src=&quot;https://www.youtube-nocookie.com/embed/JWdr4zeE3JU&quot; data-external-media-managed=&quot;true&quot; class=&quot;external-media-consent__iframe&quot; hidden title=&quot;Mikä on BBS&quot; loading=&quot;lazy&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p class=&quot;bbs-caption&quot;&gt;Tämmöisiä pyöritin myös minä kotonani vanhempien suureksi ihmetykseksi.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+
+  &lt;!-- LUKU 3: Large&#39;s Security BBS --&gt;
+  &lt;article id=&quot;luku-bbs&quot; class=&quot;bbs-chapter mb-5&quot; style=&quot;--chapter-color:#198754&quot;&gt;
+    &lt;div class=&quot;bbs-chapter-header&quot;&gt;
+      &lt;span class=&quot;bbs-chapter-num&quot;&gt;03&lt;/span&gt;
+      &lt;div&gt;
+        &lt;h2 class=&quot;bbs-chapter-title&quot;&gt;Large&#39;s Security BBS — SysOpin vuodet&lt;/h2&gt;
+        &lt;p class=&quot;bbs-chapter-sub text-muted small mb-0&quot;&gt;~1990–1993 · MBBS-softa · satoja käyttäjiä&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;bbs-chapter-body&quot;&gt;
+      &lt;p&gt;Aloittaessani BBS-harrastukseni alueella oli vain pioneerina toiminut &lt;strong&gt;Kari Ratilaisen ylläpitämä MicroBox&lt;/strong&gt;, joka toimii nykyäänkin, sekä &lt;strong&gt;Jani Lehtisen legendaarinen Gadolin&#39;s Inn&lt;/strong&gt;. Jani oli oman purkkini perustamisen suhteen &quot;isoveli&quot;, joka auttoi monissa mutkissa ja murheissa.&lt;/p&gt;
+      &lt;p&gt;Aloitin norjalaisella &lt;strong&gt;MBBS-softalla&lt;/strong&gt; ja nimeksi päätin laittaa vajavaisella englanninkielen taidollani &lt;em&gt;largen salaisuus&lt;/em&gt;, joten siitähän tuli &lt;strong&gt;Large&#39;s Security&lt;/strong&gt;. Systeemini toimi vain öisin, koska päivisin puhelinlinjaa luonnollisesti tarvittiin muuhun tarkoitukseen. Huolimatta oudoista aukioloajoista, yhteydenottoja oli varsin runsaasti — purkkissani oli &lt;strong&gt;satoja käyttäjiä!&lt;/strong&gt;&lt;/p&gt;
+
+      &lt;div class=&quot;row g-4 mt-1 align-items-start&quot;&gt;
+        &lt;div class=&quot;col-md-6&quot;&gt;
+          &lt;figure class=&quot;bbs-figure&quot;&gt;
+            &lt;img src=&quot;https://www.jarilaru.fi/www-staging/img/uploads/2021/01/ekaskan-1.gif&quot; alt=&quot;Omakuva ja Large&#39;s Security BBS yhteystiedot 1991&quot; class=&quot;img-fluid rounded&quot;&gt;
+            &lt;figcaption class=&quot;bbs-caption mt-2&quot;&gt;Olin hyvin ahkera mainostaja. Tässä omakuva, jonka yhteydessä ovat BBS:n yhteystiedot. Kuva on skannattu vuonna 1991 käsiskannerilla — olin lukion ensimmäisellä luokalla Saloisten lukiossa Raahessa.&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-md-6&quot;&gt;
+          &lt;figure class=&quot;bbs-figure&quot;&gt;
+            &lt;img src=&quot;https://www.jarilaru.fi/www-staging/img/uploads/2021/01/majorbbsdemo.jpg&quot; alt=&quot;MajorBBS etusivu&quot; class=&quot;img-fluid rounded&quot;&gt;
+            &lt;figcaption class=&quot;bbs-caption mt-2&quot;&gt;MajorBBS:n (MBBS) etusivu. Tästä BBS-järjestelmästä löytyy simulaattori, jonka voit asentaa ja fiilistellä kultaisia aikoja! &lt;a href=&quot;https://www.mbbsemu.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;mbbsemu.com&lt;/a&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+          &lt;div class=&quot;mt-3&quot;&gt;
+            &lt;p class=&quot;bbs-video-label&quot;&gt;&lt;i class=&quot;bi bi-play-circle-fill me-1&quot;&gt;&lt;/i&gt;Mikä oli SysOpin ja käyttäjän ero?&lt;/p&gt;
+            &lt;div class=&quot;bbs-video-wrap&quot;&gt;
+              &lt;div class=&quot;external-media-consent&quot; data-external-media-provider=&quot;external&quot;&gt;&lt;div class=&quot;external-media-consent__notice&quot; data-external-media-notice&gt;&lt;p class=&quot;external-media-consent__text&quot; data-external-media-text&gt;&lt;/p&gt;&lt;div class=&quot;external-media-consent__actions&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; data-external-media-load&gt;&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-secondary btn-sm&quot; data-external-media-allow-all&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;iframe data-consent-src=&quot;https://www.youtube-nocookie.com/embed/-qjDzrDF67s&quot; data-external-media-managed=&quot;true&quot; class=&quot;external-media-consent__iframe&quot; hidden title=&quot;SysOp vs käyttäjä&quot; loading=&quot;lazy&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+
+  &lt;!-- LUKU 4: Fidonet &amp; ANSI-taide --&gt;
+  &lt;article id=&quot;luku-fido&quot; class=&quot;bbs-chapter mb-5&quot; style=&quot;--chapter-color:#6f42c1&quot;&gt;
+    &lt;div class=&quot;bbs-chapter-header&quot;&gt;
+      &lt;span class=&quot;bbs-chapter-num&quot;&gt;04&lt;/span&gt;
+      &lt;div&gt;
+        &lt;h2 class=&quot;bbs-chapter-title&quot;&gt;Fidonet, POH-NET ja ANSI-taide&lt;/h2&gt;
+        &lt;p class=&quot;bbs-chapter-sub text-muted small mb-0&quot;&gt;1991 · Fidonet Node · salama tappoi harrastuksen&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;bbs-chapter-body&quot;&gt;
+      &lt;p&gt;Me oulunläänin nörtinalut pistimme viisaat päät yhteen ja perustimme &lt;strong&gt;POH-NET&lt;/strong&gt; ja &lt;strong&gt;Circus-Laplandia-NET&lt;/strong&gt; nimiset viestinvälitysverkot, jotka olivat kytköksissä valtakunnallisesti ja maailmanlaajuisesti BBS-harrastajien &lt;strong&gt;FidoNET&lt;/strong&gt;-verkkoon. Idea oli se, että kone soitteli yöllä hiljaisimpaan aikaan toisen harrastajan koneeseen ja vaihtoi viestit keskenään.&lt;/p&gt;
+
+      &lt;!-- Rivi 1: Fidonet-kuva + selitysteksti --&gt;
+      &lt;div class=&quot;row g-4 mt-1 align-items-start&quot;&gt;
+        &lt;div class=&quot;col-md-5&quot;&gt;
+          &lt;figure class=&quot;bbs-figure&quot;&gt;
+            &lt;img src=&quot;https://www.jarilaru.fi/www-staging/img/uploads/2021/01/fidonet.png&quot; alt=&quot;Fidonet-arkisto 1991&quot; class=&quot;img-fluid rounded&quot;&gt;
+            &lt;figcaption class=&quot;bbs-caption mt-2&quot;&gt;Globaalissa Fidonet-arkistossa näkyy, että olin vuonna 1991 (16-vuotiaana) 8 kk ajan yksi Fidonet-verkoston solmuista. Fidonet yhdisti BBS-harrastajien koneita yhteen — eräänlainen &quot;internetin&quot; esiaste.&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-md-7&quot;&gt;
+          &lt;p&gt;BBS-harrastus ei ollut pelkkää keskustelua ja tiedostojen vaihtamista, vaan myös &lt;strong&gt;taidetta tehtiin&lt;/strong&gt;. MBBS:n lisäksi ehdin kokeilla muitakin BBS-softia: QuickBBS, Maximus, Opus, RemoteAccess, SuperBBS. FrontDoor FidoNET-viestienvälittäjänä palveli uskollisesti vuosikausia. Myös &lt;strong&gt;TheDraw-ansigrafiikan&lt;/strong&gt; piirto-ohjelma aiheutti monelle soittajalle ongelmia, sillä BBS-systeemini oli koristeltu makeasti ANSI-animaatioilla.&lt;/p&gt;
+          &lt;p class=&quot;bbs-video-label&quot;&gt;&lt;i class=&quot;bi bi-play-circle-fill me-1&quot;&gt;&lt;/i&gt;Mikä ihmeen Fidonet?&lt;/p&gt;
+          &lt;div class=&quot;bbs-video-wrap&quot;&gt;
+            &lt;div class=&quot;external-media-consent&quot; data-external-media-provider=&quot;external&quot;&gt;&lt;div class=&quot;external-media-consent__notice&quot; data-external-media-notice&gt;&lt;p class=&quot;external-media-consent__text&quot; data-external-media-text&gt;&lt;/p&gt;&lt;div class=&quot;external-media-consent__actions&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; data-external-media-load&gt;&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-secondary btn-sm&quot; data-external-media-allow-all&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;iframe data-consent-src=&quot;https://www.youtube-nocookie.com/embed/Ng0NE4lDP2U&quot; data-external-media-managed=&quot;true&quot; class=&quot;external-media-consent__iframe&quot; hidden title=&quot;Mikä on Fidonet&quot; loading=&quot;lazy&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Rivi 2: ANSI-video | ANSI-kuva | ICEHURWE-gif (tasalevyiset) --&gt;
+      &lt;div class=&quot;row g-3 mt-3 align-items-start&quot;&gt;
+        &lt;div class=&quot;col-md-4&quot;&gt;
+          &lt;p class=&quot;bbs-video-label&quot;&gt;&lt;i class=&quot;bi bi-play-circle-fill me-1&quot;&gt;&lt;/i&gt;ANSI-taide&lt;/p&gt;
+          &lt;div class=&quot;bbs-video-wrap&quot;&gt;
+            &lt;div class=&quot;external-media-consent&quot; data-external-media-provider=&quot;external&quot;&gt;&lt;div class=&quot;external-media-consent__notice&quot; data-external-media-notice&gt;&lt;p class=&quot;external-media-consent__text&quot; data-external-media-text&gt;&lt;/p&gt;&lt;div class=&quot;external-media-consent__actions&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; data-external-media-load&gt;&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-secondary btn-sm&quot; data-external-media-allow-all&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;iframe data-consent-src=&quot;https://www.youtube-nocookie.com/embed/oQrBbm5ZMlo&quot; data-external-media-managed=&quot;true&quot; class=&quot;external-media-consent__iframe&quot; hidden title=&quot;ANSI-taide BBS-kulttuurissa&quot; loading=&quot;lazy&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-md-4&quot;&gt;
+          &lt;p class=&quot;bbs-video-label&quot;&gt;&lt;i class=&quot;bi bi-image-fill me-1&quot;&gt;&lt;/i&gt;Oma ANSI-teokseni&lt;/p&gt;
+          &lt;figure class=&quot;bbs-figure&quot;&gt;
+            &lt;img src=&quot;https://www.jarilaru.fi/www-staging/img/uploads/2021/01/ansiart.png&quot; alt=&quot;ANSI-taide omakuva&quot; class=&quot;img-fluid rounded&quot; style=&quot;width:100%&quot;&gt;
+            &lt;figcaption class=&quot;bbs-caption mt-1&quot;&gt;Konverterilla muunnettu valokuva ANSI-teokseksi. Vanhoja varsinaisia töitäni ei ole tallella.&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-md-4&quot;&gt;
+          &lt;p class=&quot;bbs-video-label&quot;&gt;&lt;i class=&quot;bi bi-image-fill me-1&quot;&gt;&lt;/i&gt;BBS-mainos kaverille&lt;/p&gt;
+          &lt;figure class=&quot;bbs-figure&quot;&gt;
+            &lt;img src=&quot;https://www.jarilaru.fi/www-staging/img/uploads/2021/01/ICEHURWE.gif&quot; alt=&quot;BBS-mainos Acer Box&quot; class=&quot;img-fluid rounded&quot; style=&quot;width:100%&quot;&gt;
+            &lt;figcaption class=&quot;bbs-caption mt-1&quot;&gt;Mainos kaverini &lt;em&gt;Acer Box&lt;/em&gt; -BBS:lle. Piirretty pelkästään hiirtä käyttämällä.&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Salama + Internet kills BBS --&gt;
+      &lt;div class=&quot;bbs-lightning-box mt-4&quot;&gt;
+        &lt;div class=&quot;d-flex align-items-start gap-3&quot;&gt;
+          &lt;span style=&quot;font-size:2rem&quot;&gt;⚡&lt;/span&gt;
+          &lt;div&gt;
+            &lt;strong&gt;BBS-harrastukseni päättyi salaman iskuun&lt;/strong&gt;
+            &lt;p class=&quot;mb-0 mt-1&quot;&gt;Innostus SysOpina toimimiseen alkoi laskea, kun yhä useammalla BBS:n pitäjällä alkoi olla varaa hankkia toinen puhelinlinja. Lopullisesti harrastukseni tuhosi kesäukkonen — salaman aiheuttama ylijännite hajotti modeemini.&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;mt-4&quot;&gt;
+        &lt;p class=&quot;bbs-video-label&quot;&gt;&lt;i class=&quot;bi bi-play-circle-fill me-1&quot;&gt;&lt;/i&gt;Kuinka Internet lopulta tappoi BBS-kulttuurin&lt;/p&gt;
+        &lt;div class=&quot;bbs-video-wrap&quot;&gt;
+          &lt;div class=&quot;external-media-consent&quot; data-external-media-provider=&quot;external&quot;&gt;&lt;div class=&quot;external-media-consent__notice&quot; data-external-media-notice&gt;&lt;p class=&quot;external-media-consent__text&quot; data-external-media-text&gt;&lt;/p&gt;&lt;div class=&quot;external-media-consent__actions&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; data-external-media-load&gt;&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-secondary btn-sm&quot; data-external-media-allow-all&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;iframe data-consent-src=&quot;https://www.youtube-nocookie.com/embed/YTBImnpUBUw&quot; data-external-media-managed=&quot;true&quot; class=&quot;external-media-consent__iframe&quot; hidden title=&quot;Internet tappoi BBS:n&quot; loading=&quot;lazy&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;p class=&quot;bbs-caption&quot;&gt;BBS Documentary sarjassa muistellaan kuinka Internet lopulta tappoi BBS-kulttuurin. Niin kävi minullekin — vaikka lopetin myös resurssien puutteeseen.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+
+  &lt;!-- LUKU 5: Pentium &amp; HTML --&gt;
+  &lt;article id=&quot;luku-html&quot; class=&quot;bbs-chapter mb-5&quot; style=&quot;--chapter-color:#0dcaf0&quot;&gt;
+    &lt;div class=&quot;bbs-chapter-header&quot;&gt;
+      &lt;span class=&quot;bbs-chapter-num&quot;&gt;05&lt;/span&gt;
+      &lt;div&gt;
+        &lt;h2 class=&quot;bbs-chapter-title&quot;&gt;Pentium, HTML ja uusi sivu alkaa&lt;/h2&gt;
+        &lt;p class=&quot;bbs-chapter-sub text-muted small mb-0&quot;&gt;~1995–1998 · OAMK · ensimmäiset kotisivut&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;bbs-chapter-body&quot;&gt;
+      &lt;p&gt;Vasta v.95 kehityksen ratas kääntyi taas suosiolliseen suuntaan tietokoneharrastustani ajatellen, kun perheeseemme hankittiin ihkaoikia &lt;strong&gt;Pentium&lt;/strong&gt;. Silloin pääsin käsiksi HTML-kieleen rakastuen siihen oitis.&lt;/p&gt;
+      &lt;p&gt;HTML-koodaaminen on mukavaa, koska siitä saa toteuttaa itseään sekä tekniikan että taiteen saralla. Tähän mennessä (1998) olen tehnyt itselleni kahdet kotisivut, Tekno97-ryhmällemme kotisivut ja Pedagogian ylioppilaat ry:n kotisivut — enkä usko listan jäävän näin lyhyeksi.&lt;/p&gt;
+
+      &lt;div class=&quot;row g-4 align-items-center mt-1&quot;&gt;
+        &lt;div class=&quot;col-md-7&quot;&gt;
+          &lt;div class=&quot;bbs-spec-box&quot;&gt;
+            &lt;p class=&quot;bbs-spec-title mb-2&quot;&gt;&lt;i class=&quot;bi bi-cpu-fill me-2&quot;&gt;&lt;/i&gt;Lopuksi vielä tietoa vuosituhannen vaihteen koneistani&lt;/p&gt;
+            &lt;ul class=&quot;mb-0 small&quot; style=&quot;font-family:monospace&quot;&gt;
+              &lt;li&gt;Expert 120 MHz Cyrix · 32 MB RAM · 2,5 GB HDD&lt;/li&gt;
+              &lt;li&gt;Matrox Millennium · SoundBlaster 32 · 28k modeemi&lt;/li&gt;
+              &lt;li&gt;IomegaZip · Win NT · Adobe Photoshop 4.0&lt;/li&gt;
+              &lt;li class=&quot;mt-1&quot;&gt;→ Päivitetty: AMD K6-II 3DNow! 400 MHz · 64 MB · 10 GB&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-md-5&quot;&gt;
+          &lt;figure class=&quot;bbs-figure&quot;&gt;
+            &lt;img src=&quot;https://i.imgur.com/Sk3G58d.png&quot; alt=&quot;Alkuperäiset kotisivut 1998&quot; class=&quot;img-fluid rounded border&quot;&gt;
+            &lt;figcaption class=&quot;bbs-caption mt-2&quot;&gt;Teksti perustuu näillä alkuperäisillä kotisivuilla olevaan versioon. Varsinaiset OAMK:n aikana tehdyt sivut ovat kadonneet, mutta teksti on sama. &lt;a href=&quot;http://www.student.oulu.fi/~jlaru/indexv.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;student.oulu.fi/~jlaru&lt;/a&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+
+  &lt;!-- LINKIT &amp; LIITTYVÄT --&gt;
+  &lt;section class=&quot;py-4 border-top&quot;&gt;
+    &lt;h2 class=&quot;h5 fw-bold mb-3&quot;&gt;Liittyvät linkit &amp;amp; lähteet&lt;/h2&gt;
+    &lt;div class=&quot;row g-3&quot;&gt;
+      &lt;div class=&quot;col-md-4&quot;&gt;
+        &lt;a href=&quot;https://www.jarilaru.fi/www-staging/2006/02/16/98x-suuntanumeroalueen-bbs-puhelinluettelo-vuodelta-1991/&quot; class=&quot;card text-decoration-none bbs-link-card h-100&quot;&gt;
+          &lt;div class=&quot;card-body&quot;&gt;
+            &lt;div class=&quot;bbs-link-icon mb-2&quot;&gt;&lt;i class=&quot;bi bi-telephone-fill&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;h3 class=&quot;h6 fw-bold mb-1&quot;&gt;98x telealueen BBS-puhelinluettelo&lt;/h3&gt;
+            &lt;p class=&quot;small text-muted mb-0&quot;&gt;Minun ja Jari Huhtamäen ylläpitämä luettelo kaikista Oulun läänin BBS-järjestelmistä vuodelta 1991.&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col-md-4&quot;&gt;
+        &lt;a href=&quot;https://web.archive.org/web/20160103142508/https://www.isoc.org/inet98/proceedings/7f/7f_1.htm&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;card text-decoration-none bbs-link-card h-100&quot;&gt;
+          &lt;div class=&quot;card-body&quot;&gt;
+            &lt;div class=&quot;bbs-link-icon mb-2&quot;&gt;&lt;i class=&quot;bi bi-file-earmark-text-fill&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;h3 class=&quot;h6 fw-bold mb-1&quot;&gt;Toni Alatalo (ANT): BBS-harrastus&lt;/h3&gt;
+            &lt;p class=&quot;small text-muted mb-0&quot;&gt;Oululaisen Toni Alatalon yksityiskohtainen selostus BBS-harrastuksesta (INET98, englanniksi) — archive.org.&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col-md-4&quot;&gt;
+        &lt;a href=&quot;http://www.bbsdocumentary.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;card text-decoration-none bbs-link-card h-100&quot;&gt;
+          &lt;div class=&quot;card-body&quot;&gt;
+            &lt;div class=&quot;bbs-link-icon mb-2&quot;&gt;&lt;i class=&quot;bi bi-camera-video-fill&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;h3 class=&quot;h6 fw-bold mb-1&quot;&gt;BBS Documentary&lt;/h3&gt;
+            &lt;p class=&quot;small text-muted mb-0&quot;&gt;Kattava dokumenttisarja BBS-kulttuurista — videot, haastattelut ja historia.&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Kategoriat &amp; avainsanat --&gt;
+  &lt;div class=&quot;py-3 border-top&quot;&gt;
+    &lt;div class=&quot;d-flex flex-wrap gap-2 align-items-center&quot;&gt;
+      &lt;span class=&quot;small text-muted&quot;&gt;Kategoriat:&lt;/span&gt;
+      &lt;a class=&quot;badge text-bg-secondary text-decoration-none&quot; href=&quot;https://www.jarilaru.fi/www-staging/kategoriat/harrastukset/&quot;&gt;Harrastukset&lt;/a&gt;
+      &lt;a class=&quot;badge text-bg-secondary text-decoration-none&quot; href=&quot;https://www.jarilaru.fi/www-staging/kategoriat/tietotekniikka/&quot;&gt;tietotekniikka&lt;/a&gt;
+      &lt;span class=&quot;small text-muted ms-2&quot;&gt;Avainsanat:&lt;/span&gt;
+      &lt;a class=&quot;badge text-bg-light text-dark border text-decoration-none&quot; href=&quot;https://www.jarilaru.fi/www-staging/avainsanat/bbs/&quot;&gt;bbs&lt;/a&gt;
+      &lt;a class=&quot;badge text-bg-light text-dark border text-decoration-none&quot; href=&quot;https://www.jarilaru.fi/www-staging/avainsanat/fidonet/&quot;&gt;fidonet&lt;/a&gt;
+      &lt;a class=&quot;badge text-bg-light text-dark border text-decoration-none&quot; href=&quot;https://www.jarilaru.fi/www-staging/avainsanat/modeemi/&quot;&gt;modeemi&lt;/a&gt;
+      &lt;a class=&quot;badge text-bg-light text-dark border text-decoration-none&quot; href=&quot;https://www.jarilaru.fi/www-staging/avainsanat/sysop/&quot;&gt;sysop&lt;/a&gt;
+      &lt;a class=&quot;badge text-bg-light text-dark border text-decoration-none&quot; href=&quot;https://www.jarilaru.fi/www-staging/avainsanat/retro/&quot;&gt;retro&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;mt-3&quot;&gt;
+      &lt;a href=&quot;https://www.jarilaru.fi/www-staging/blogi/&quot; class=&quot;btn btn-outline-secondary btn-sm&quot;&gt;&amp;larr; Takaisin blogiin&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>98x BBS-purkkilista — 28.04.1991</title>
+    <link href="https://www.jarilaru.fi/www-staging/98x-bbs-purkkilista/" />
+    <updated>2006-02-16T00:00:00Z</updated>
+    <id>https://www.jarilaru.fi/www-staging/98x-bbs-purkkilista/</id>
+    <content type="html">    &lt;blockquote class=&quot;blockquote border-start border-4 border-secondary ps-3 mb-4&quot;&gt;
+      &lt;p class=&quot;mb-0 fst-italic&quot;&gt;Tämmöinenkin löytyi: 98x BBS.. Toimin aikoinaan kaimapojan kanssa listan moderaattoreina. Harmi etteivät veikeät ascii-grafiikat näy kunnolla tässä :-(.. huom: &amp;ldquo;listan tietojen muutteleminen on ikävä teko josta et tule selviämään ilman väkivaltaa&amp;rdquo; hmmm.. :-) On sitä ainakin ollut suuret luulot ja leveät puheet aikoinaan. Napsaisin puhelinnumeroista pois kolme viimeistä numeroa etteivät ihmiset kaiva modeemeita kaapeistaan ja lähde soittelemaan listan numeroihin.. No, liekkö kellään enää edes lankaliittymiä.. O:-I&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;pre class=&quot;bbs-list-pre&quot;&gt;
+ÛßßÛ     ÜßßÜ    Û     Û        ÛßßßÜ    ÛßßßÜ    Üßßßß
+Û    Û   Û    Û    Û   Û         Û    Û   Û    Û   Û
+Û    Û   Û    Û     ÛÜÛ          ÛÜÜÜß    ÛÜÜÜß    ßÜÜÜ
+ÛÜÜßÛ    ÛÜÜÛ      ÛßÛ     ßß   Û   Û    Û   Û        Û
+Û   Û    Û    Û   Û         Û    Û   Û    Û        Û
+Û    Û   Û    Û   Û     Û        ÛÜÜÜß    ÛÜÜÜß    ÜÜÜÜß
+ßßßß     ßßßß   ß       ß
+
+Listan tämä versio on päivältä 28.04.1991
+***********************************************************************
+› Listan tietojen muutteleminen ilman lupaa on kaikinpuolin
+› ikävä teko,josta et tule selviämään ilman väkivaltaa..      ››
+***********************************************************************
+› Listaa ylläpitävät :
+***********************************************************************
+›  Jari Laru                 ›  Jari Huhtamäki
+›  Large&#39;s Security          ›  Acer Box
+›  982-263xxx                ›  982-263xxx
+›  Ark.21-12 La-Su 21-09     ›  21-07.30
+›  227/602                   ›  227/603
+***********************************************************************
+›                                                           ›
+Huom julli. joka purkkiin on halpa läänintaksa!
+-----------------------------------------------
+Jos listasta löytyy virhe/virheitä. Ota oitis yhteys listan
+ylläpitäjään.
+
+Listaan kelpuutetaan vain 98x alueilla majailevia boxeja.
+Muuta rajaa hommaan ei olekaan. eli kaikki pääsevät listaan.
+
+Kun ilmoitat Boxisi listaan,muista seuraavat asiat :
+- Purkin nimi
+- SysOpin nimi
+- Puhelinumero
+- Aukioloajat
+- Modeemin nopeus
+- Fido-osoite Ohjetta:
+----------------------------------------------------------------------------
+Boxin nimi                › Puhelin num. › SysOpin nimi tai  › Fido osoite ›
+aukioloajat               › Mod.Nopeus   › SysOppien nimet   ›           ›
+----------------------------------------------------------------------------
+
+ÛÛÛÛ  ÛÛÛÛ  Û
+Û  Û  Û  Û  Û
+ÛÛÛÛ  ÛÛÛÛ  Û
+Û  Û  Û  Û
+ÛÛÛÛ  ÛÛÛÛ  Û
+----------------------------------------------------------------------------
+HoviBox SBBS              › 981-229 xxx  › Jyrki Gerlander   › 2:515/521   ›
+18-08                     › V22bis       › Anssi kman        ›            ›
+----------------------------------------------------------------------------
+Sky Castle                › 981-381 xxx  › Jari Mikkilä      › -          ›
+22.01-07.01               › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+Star Base SBBS            › 981-482 xxx  › Vinski Bräysy     › 2:227/500  ›
+24h                       › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+POKS SBBS                 › 981-392 xxx  › Joe Fagerholm     › -          ›
+22.30-08.00               › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+Co-Kakola SBBS            › 981-515 xxx  › Jussi Juvani      › -          ›
+22-06                     › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+OuluBoxi UNaXess  981-352 xxx / 352 xxx  › Jarkko Oikarinen  › -          ›
+24h                       › V22bis       › Oulun YO          ›            ›
+----------------------------------------------------------------------------
+Haapa-Box MBBS            › 981-530 1xxx › Janne Päkkilä     › -          ›
+21.30-23.30               › V22          ›                   ›            ›
+----------------------------------------------------------------------------
+TaskForce BBS             › 981-335 xxx  › Tuomas Tonteri    ›            ›
+21-06                     › V22bis       ›                               ›
+----------------------------------------------------------------------------
+
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+Û  Û  Û  Û     Û
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+Û  Û  Û  Û
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+Û  Û  Û     Û
+ÛÛÛÛ  ÛÛÛÛ   ÛÛÛ
+Û  Û  Û     Û
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+----------------------------------------------------------------------------
+Gadolin&#39;s Inn Opus        › 982-270 xxx  › Jani Lehtinen     › 2:227/666  ›
+24h                       › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+MicroBox SBBS             › 982-220 xxx  › Kari Ratilainen   › -          ›
+NWRK                      › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+Pooki MBBS                › 982-221 xxx  › Juhani Kaukoranta › -          ›
+24h                       › V22bis       › Kaarina Hakala    ›            ›
+----------------------------------------------------------------------------
+Acer Box SBBS             › 982-263 xxx  › Jari Huhtamäki    › 2:227/603  ›
+21 - 07.30                › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+Large&#39;s Security SBBS     › 982-263 xxx  › Jari Laru         › 2:227/602  ›
+Ma-Pe 21-12, La-Su 21-09  › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+Ski Boge SBBS             › 982-222 xxx  › Mikko Saariaho    › 2:227/603.5›
+24h                       › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+NikuBOX SBBS              › 982-274 xxx  › Arto Korkiakoski  › -          ›
+22-06                     › V22bis       › Markus Valtokari  ›            ›
+----------------------------------------------------------------------------
+Mike&#39;s Mansion SBBS       › 982-264 xxx  › Mikko Pekkala     › 2:227/605  ›
+22-06                     › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+Gofer&#39;s Opus-CBCS         › 982-274 xxx  › Markus Valtokari  › tulossa    ›
+22-03                     › V22          ›                   ›            ›
+----------------------------------------------------------------------------
+Sensible Choice SBBS      › 982-263 xxx  › Tommi Mertala     › -          ›
+21-07                     › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+Û  Û  Û  Û  Û
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+Û  Û  Û  Û  Û
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+----------------------------------------------------------------------------
+UnderGround Intelligence  › 983-420 xxx  › Toni Mykkänen     › 2:227/608  ›
+21 - 07                   › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+Zero&#39;s Solution OPUS      › 983-422 xxx  › Tero Soukka       › 2:227/604  ›
+22 - 06                   › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+Rotten MBBS               › 983-429 4xxx › Tuomas Haarala    › -          ›
+24h                       › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+Û  Û  Û  Û  Û
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+Û  Û  Û  Û  Û
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+----------------------------------------------------------------------------
+Top Secret BBS            › 986-82 1xx   › Markku Karjalainen› -          ›
+21-07                     › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+Splash! SBBS              › 986-871 5xx  › Jussi Kantola     › 2:227/666.6›
+22-24                     › V22          ›                   ›            ›
+----------------------------------------------------------------------------
+Iskra TeleGard            › 986-13  xxx  › Jussi-Pekka Par-  › tulossa.   ›
+21-07.00                  › V22bis       › tanen             ›            ›
+----------------------------------------------------------------------------
+Ivanhoe Telegard          › 986-29 xxx   › Juha-antti Huusko › 2:227/607  ›
+21-07                     › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+Something Special SBBS    › 986-86xxx    › Jani Kontio       › 2:227/610  ›
+22-08                     › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+PetoBox Telegard          › 986-360 xx   › Tomi Jylhä        ›  -         ›
+24h                       › V32/HST      ›                   ›            ›
+----------------------------------------------------------------------------
+Himlen Telegard           › 986-507 xx   › Simo Huotari      ›  -         ›
+24h                       › V22bis       ›                   ›            ›
+----------------------------------------------------------------------------
+Kurreboxi MBBS            › 986-380 xx   › Jukka Oravasaari  ›  -         ›
+24h                       › V32          › Mikko Oravasaari  ›            ›
+----------------------------------------------------------------------------
+Masla SBBS                › 986-710 xxx  › Kimmo Väisänen    ›  -         ›
+24h                       › V32/HST      ›                   ›            ›
+----------------------------------------------------------------------------
+
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+Û  Û  Û  Û  Û  Û
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+Û  Û  Û  Û  Û
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+----------------------------------------------------------------------------
+PhantasMagoria TeleGard   › 988-21 3xx   › Jarmo Puolakanaho ›  -         ›
+21.30-07.30               › V32          ›                   ›            ›
+----------------------------------------------------------------------------
+
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+Û  Û  Û  Û  Û  Û
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+Û  Û  Û     Û
+ÛÛÛÛ  ÛÛÛÛ  ÛÛÛÛ
+----------------------------------------------------------------------------
+PoroBoxi MBBS             › 989-204 60xx › Antti Heiänen     ›  -         ›
+17-08                     › V22bis       › Kuusamon lukio    ›            ›
+----------------------------------------------------------------------------
+Karhu Tassu MBBS          › 989-204 24xx › Jouni Viinikka    ›  -         ›
+24h                       › V22bis       › Kuusamon T-tupa   ›            ›
+----------------------------------------------------------------------------
+
+°°°°°°°°°°°°°°°°°°°°°°°°±²ÛModeemityypitÛ²±°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+V21    = CCITT V21 300bps. Full-duplex
+B103   = BELL  103 300bps. Full-duplex
+V22    = CCITT V22 1200bps  Full-duplex
+V22bis = CCITT V22bis 1200/2400bps. Full-duplex
+V23    = CCITT V23 75/1200bps. Asymmetrinen
+V32    = CCITT V32 1200/2400/4800/9600bps. Full-duplex
+V42    = CCITT V42bis. Lap-M virheenkorjaus/tiedonpakkaustapa
+HST    = USR HST 4800/7200/9600/12000/14400bps. Toinen
+         kanava 300/450bps. Asymmetrinen.
+Vadic  = Racal Vadic 1200bps. (vain toisen Vadicin kanssa.) Full-duplex
+MNP    = Microcom networking protocol, virheenkorjaus tasoilla
+         1-4. Tasolla 5 lisäksi tiedonpakkaus.
+MNP nokia = Samoin kuin edellinen mutta 4800/9600bps nopeuksilla
+             korkein mahdollinen taso 4. HDLC LAP-B virheenkorjaus
+             myös mahdollinen joissain tapauksissa
+
+THE END
+    &lt;/pre&gt;
+
+    &lt;p class=&quot;mt-3 text-muted small&quot;&gt;
+      &lt;a href=&quot;https://www.jarilaru.fi/www-staging/1998/02/16/silloin-kun-sita-oltiin-larges-securityn-sysop-bbs-muisteluita/&quot; class=&quot;text-decoration-none&quot;&gt;&amp;larr; Lue myös: BBS-muisteluja — Large&amp;rsquo;s Security SysOpina&lt;/a&gt;
+    &lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Berliinissä uutena vuotena 2007</title>
+    <link href="https://www.jarilaru.fi/www-staging/2007/01/01/berliinissa-uutena-vuotena-2007/" />
+    <updated>2007-01-01T00:00:00Z</updated>
+    <id>https://www.jarilaru.fi/www-staging/2007/01/01/berliinissa-uutena-vuotena-2007/</id>
+    <content type="html">&lt;p&gt;Pääsimme tekemään pienen matkan kahdestaan Berliiniin vuodentaitteessa. Oli aika ovelaa olla ilman Hillaa matkalla, sillä olemmehan käyneet tenavan kanssa jo kertaalleen kartoittamassa Maltan pientä saarivaltakuntaa ja suuren Amerikan valloitusturneen.
+Berliinin matka oli taas jälleen kerran sellainen &amp;quot;heräteostos&amp;quot; Stockan hulluilta päiviltä. Päätimme tuolloin että kyllä se tenava pari yötä mummolassa pärjää. No lentoaikataulut olivat sellaiset että öiden määräksi tuli lopulta kolme. Hillahan ei asiasta ollut moksiskaan, mummoloissahan tahtoo saada yleensä luxus kohtelun. Meitä Hillan mietteet lienevät askarruttaneet enemmän kuin tenavaa itseään..
+No. Berliiniin lennettiin uudenvuoden aatonaattona ja jo lentokentällä selvisi mitä tuleman piti. Joku nainen nimittäin kanniskeli Nokian &amp;quot;VIP&amp;quot; kylttiä termillä: &amp;quot;nokia new year&#39;s eve 2007&amp;quot;.. Silloin hoksasin, että Berliini oli tosiaan yksi näistä &amp;quot;bilepaikoista&amp;quot;. Me jätimme asian hautumaan ja suuntasimme hotellistamme ensimmäiseksi KaDeWe tavarataloon joka oli miellyttävästi Hotellimme nurkalla.
+KaDeWessa ostelusta oli tehty hyvin miellyttävää, sillä elintarvikeosastolla pystyi ostamaan ruokaa ja juomaa kukin oman varallisuutensa rajoissa. Me otimme lasit shamppanjaa ja söimme Crepejä. Oulun Stockmann asettui omaan mittakaavaansa tuolla tavaratalossa :). Mutta niinhän sitä sanotaan, että mitä isot edellä sitä pienet perässä.
+KaDeWe otti sen verran voimille, että päätimme mennä hotelliin keräämään hieman lisäenergiaa. Etenkin Hannalle uni maittoi sillä tenavan kuljettaminen kohdusta lienee töisevää touhua. Huomasimme pian nukkuneemme kolme tuntia jonka jälkeen suunnistimme vielä hetkiseksi KaDeWelle odottelemaan Kabareen alkua. Olimme bonganneet Kabareen ilmoituksen läheisen &amp;quot;Urania&amp;quot; monitoimikeskuksen ikkunasta ja päättäneet mennä tätä musiikki-iloittelua katselemaan. Varoittelin Hannaa tosin &amp;quot;Tranvester&amp;quot; termistä. Epäilin että siellä on jotain transu -meininkiä. No, niinhän siellä oli  .. Alkujärkytyksen jälkeen katselu sujui rattoisasti naisiksi pukeutuneita miehiä ihmetellessä.
+Seuraavana aamuna haukkasimme KaDeWelta ostettua leivänkänttyä naamaan ja lähdimme matkustamaan kohti Itä-Berliinin nuorekkaita kaupunginosia. Tarkoituksenamme oli syödä brunssia Mondon Berliini oppaan ohjeiden mukaiesti. Eikä Houdini pettänyt meitäkään, mitättömällä hinnalla söimme kuin presidentit. Ruokailun ohella saimme ihmetellä kaupunginosan asukkaiden hedelmällisyyttä, sillä ikkunan edestä meni katkeamaton ketju lastenvaunuja lykkiviä nuoria perheenisiä ja -äitejä. Aamupalan jälkeen kävimme katselemassa Joulutoria ja tekemässä edullisia koristeostoksia.
+Kahdeksan aikaan illalla menimme katsomaan Nokian New Year&#39;s Eve -tilaisuutta. Ihmisiä oli jo tuolloin kerääntynyt aikalailla Brandenburg Torin ja Siegelsäulen väliselle 3,5km alueelle. Kävimme pyörähtämässä maailmanpyörässä ja juomassa lasilliset hehkuviiniä ennenkuin kyllästyimme odottelemaan vuoden vaihtumista. Tietämättämme teimme aikamoisen virheen kun poistuimme juhla-alueelta, sillä väkimäärän lisääntyessä alueta ryhdyttiin sulkemaan. Toki Hanna huomautti että kukaan ei tule portista sisään ja väitti että se on pelkkä ulosmenotie, minä taas nerokkaana siihen että kyllä se on sisäänmeno myös, koska portissa luki ettei raketteja saa tuoda jne. Kumpikaan meistä ei ymmärtänyt sitä, että menimme ulos suljetulta alueelta jonne ei enää otettu uusia ihmisiä. Tämä koski siis ihan Brandenburgin portin lähintä aluetta jossa pääesiintymislava sijaitsi. No, kävimme siitä syömässä jonka jälkeen pyrimme palaamaan alueellle. Yhtäkkiä törmäsimme aina vain poliisin katusulkuihin ja hyvin provokatiivisesti varusteltuihin poliisiautoihin. Poliisit pyrkivät hallitsemaan miljoonien ihmisten kulkua ja erityisesti pettyneiden ihmisten purkauksia, jotka eivät päässeet enää Nokian tapahtumaan. No, yksi poliiseista sanoi että Siegessäulen päässä (juhla-alueen toisessa päässä) olisi vielä sisäänpääsy auki. Lähdimme Tiergarten puiston läpi sitä tavoittelemaan hurjan väkimassan mukana. Puistossa oli täysi sotatila käynnissä kun humalaiset saksalaiset räjäyttelivät rakettejaan kävelijöiden seassa. Vältyimme suuremmilta ongelmilta ja onnistuimme kuin ihmeenkaupalla menemään yhdestä kulkuaukosta väkisin sisään. Tämä aukko oli polisien vartioima poistumistie, mutta polisin huomio ollessa muualla teimme siitä sisäänkulkutien.
+Pääsimme juuri sopivasti katselemaan pääesiintyjä Scissor Sistersiä joka ei kyllä meitä juurikaan puhutellut. Lienemme jo sen verran kalkkiksia ettei se uponnut. Minua huvittikin suuresti kun kuulin Ylexiltä heti Suomeen palattuamme Scissoria - se taitanee ollakin ihan suosittu yhtye? Minua itseäni lämmitti enemmän päälavasta seuraavana ollut kadun ylittänyt DJ vyöhyke jossa soitettiin hyvin monipuolisesti discoa, technoa, housea, soulia jne. eli sellaista musiikkia mitä itse päivittäin kuuntelen. Jäimme odottelemaan puolen yön ilotulitusta tähän jättimäisen valo/ääni-rakennelman eteen.
+Kuten seuraava youtube-videoklippi osoittaa, odotus palkittiin:
+&lt;a href=&quot;http://www.youtube.com/watch?v=07kfVOx1rss&quot;&gt;http://www.youtube.com/watch?v=07kfVOx1rss&lt;/a&gt;
+(en upottanut youtube videota, se kun jostain syystä rikkoo muotoilun&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Onko nykymuotoinen tohtorikoulutus tiensä päässä (siirretty)</title>
+    <link href="https://www.jarilaru.fi/www-staging/2007/01/02/onko-nykymuotoinen-tohtorikoulutus-tiensa-paassa-siirretty/" />
+    <updated>2007-01-02T00:00:00Z</updated>
+    <id>https://www.jarilaru.fi/www-staging/2007/01/02/onko-nykymuotoinen-tohtorikoulutus-tiensa-paassa-siirretty/</id>
+    <content type="html">&lt;p&gt;January 4th, 2007 &lt;!-- by jlaru --&gt;
+Uusi vuosi 2007 alkaa koulutuspoliittisesti hyvin mielenkiintoisissa merkeissä. Vanhasen hallitus ei pystynyt päättämään opintotuen nostamisesta ja nyt istuva pääministeri haluaisi korkeakoulupolitiikan seuraavan hallitusohjelman yhdeksi tärkeimmistä asioista. Hämmästyttävää on vain se, että tulevan ohjelman yksi keskeisistä tavoitteista on vahvistaa akateemista tutkimusta tekemällä jatko-opinnoista maksullisia. Hokkus Pokkus.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;quot;Se on mielenkiintoista jatko-opiskelijoiden kohdalla. En ole sitä itse pohtinut, mutta en halua tyrmätä tuon tyyppisiä ideoita. Näen ne ensisijaisesti yliopistojärjestelmän vahvistamisena, Vanhanen sanoo.&amp;quot; (Aamulehti 31.12.2006)
+Vanhanen pohjustaa ajatuksensa Keskustan johdolla toteutettuun globalisaatioraporttiin jonka perusviesti on huoli maamme kilpailukyvystä globalisaation puristuksessa. Vanhasen tilaaman raportin väittämät ovat nykyajan alkemiaa, sillä raportin mukaan &amp;quot;maksullisuuden kautta yliopistojen koulutusresursseja ja kannustimia ulkomaalaisten jatko-opiskelijoiden ja tutkijoiden hankkimiseksi Suomeen voitaisiin merkittävästi parantaa.&amp;quot; Mitä tekee muutamalla ulkomaalaisella jatko-opiskelijalla jos yksikään kotimainen opiskelija ei enää ryhtyisi tekemään jatko-opintoja?
+Siteeratessaan sokeasti globaalisaatioraporttia pääministeri Vanhanen ei ota ollenkaan huomioon juuri julkaistua OECD raporttia jossa Suomi pärjäsi varsin hyvin. Vielä hämmästyttävämpää on keskustapuolueen mitä ilmeisin tietämättömyys Suomen korkeakoulujärjestelmän todellisesta tilasta. Me jatko-opiskelijat olemme Suomalaisen tutkimusjärjestelmän nöyrä työrukkanen. Yhdyn Suomen valtiotietelijöiden liiton puheenjohtajan Elina Moison (STT, 4.1.2007) pääministerille antamaan kehotukseen tutustua jatko-opiskelijoiden taloudelliseen asemaan.
+Globaalisaatioraportin esitys maksullisten jatko-opintojen subventoimisesta opintotukijärjestelmää muuttamalla on naiviuudessaan hämmästyttävä. Jatko-opintoja tehdään äärimmäisen harvoin opintorahalla. Useimmiten jatko-opiskelija hankkii rahoituksensa itselleen taistelemalla paikan tutkijakoulusta tai työskentelee apurahalla. On myös enemmän kuin poikkeus että opintoja tehdään työn ohessa. Pääministerin &amp;quot;maistelema&amp;quot; ajatus maksullisista jatko-opinnoista olisi sietänyt ottaa tarkempaan valmisteluun ennen julkisuuteen päästämistä - olen tähän saakka uskonut virkamiesten valmistelevan taustalla mitä politikot suustaan päästävät. Näköjään olen ollut väärässä.
+Keskustan tavoite ottaa korkeakoulupolitiikka seuraavan hallitusohjelman keskiöön tulee olemaan puolueelle merkittävä haaste. Keskustan tulee ensimmäiseksi pyrkiä lunastamaan akateemisten äänestäjien luottamus siitä että Keskusta pystyy tekemään maamme kannalta järkevää koulutuspolitiikkaa. Piikkilangasta väännettynä tämä tarkoittaa sitä että keskustan tulee päästä hallitusvastuuseen. Pääministeri omilla lausunnoillaan ei tätä tietä ainakaan siloita. Meidän jatko-opiskelijoiden puolesta toivotankin keskustalle auvoisaa oppositiota. Sieltä on hyvä tehdä vastaavia järjettömiä lausuntoja.
+Jari Laru, jatko-opiskelija, Oulun yliopistonpuheenjohtaja, merikosken kokoomus&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Blogi on muuttanut (eikä ihan naarmuitta)</title>
+    <link href="https://www.jarilaru.fi/www-staging/2008/01/02/blogi-on-muuttanut-eika-ihan-naarmuitta/" />
+    <updated>2008-01-02T00:00:00Z</updated>
+    <id>https://www.jarilaru.fi/www-staging/2008/01/02/blogi-on-muuttanut-eika-ihan-naarmuitta/</id>
+    <content type="html">&lt;p&gt;Hohhoijaa. Päätin nyt siirtää blogini tänne hostattuun wordpress.com-palveluun. En jaksa/uskalla toimia teknisenä ylläpitäjänä wordpressille joten tähän mentiin.
+HARMI, että siirron yhteydessä kaikki uusimmat jutut (vuoden takaa :)) katosivat. Export-tiedosto on ihan ok, mutta ilmeisesti wordpress sukupolvet eivät ole veljeksiä keskenään.
+Niin, nyt olisi siis tarkoitus aktivoitua bloggaajana ;-D&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Ulkoiset RSS-syötteet kohdalleen</title>
+    <link href="https://www.jarilaru.fi/www-staging/2008/01/03/ulkoiset-rss-syotteet-kohdalleen/" />
+    <updated>2008-01-03T00:00:00Z</updated>
+    <id>https://www.jarilaru.fi/www-staging/2008/01/03/ulkoiset-rss-syotteet-kohdalleen/</id>
+    <content type="html">&lt;p&gt;Laittelen tässä hiljalleen tätä blogia kirjoituskuntoon. Tänään laitan RSS-syötteitä sivupalkkeihin. Että eipäs tässä sen kummempaa :-D&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Tervetuloa!</title>
+    <link href="https://www.jarilaru.fi/www-staging/2008/09/24/etusivu/" />
+    <updated>2008-09-24T00:00:00Z</updated>
+    <id>https://www.jarilaru.fi/www-staging/2008/09/24/etusivu/</id>
+    <content type="html">&lt;p&gt;**
+Käy katsomassa &lt;a href=&quot;http://larux.wordpress.com/2008/09/27/kayppas-katsomassa-vastauksiani-vaalikoneissa/&quot;&gt;mitä olen vastannut vaalikoneisii&lt;/a&gt;!**
+Lokakuun lopulla Suomen kunnissa tulee valituksi taas uusi valtuusto. Kiimingissä tuore valtuusto joutuu heti isojen päätösten eteen eikä työ tule olemaan helppo. Kiimingin kunna
+&lt;a href=&quot;http://www.pekkasimonen.com/Aloitteet/Selvitys.pdf&quot;&gt;talous on ollut kuralla koko 2000-luvu&lt;/a&gt;, tällä hetkellä haasteinamme ovat mahdollisen Ideaparkin  jätti-investoinnit että peruspalveluiden toteuttaminen siten, että molempiin riittää rahaa ja kunta pysyy tässä ryti ässä vielä joltiseenkin itsenäisenä.
+Valtuusto ja valtuustoryhmien pohjalta kasattavat muut instanssit (kuten lautakunnat) tekevät runsaasti meidän jokapäiväiseen arkeen vaikuttavia päätöksiä. Useimmat tyytyvät pienen klikin päätöksiin ja &lt;a href=&quot;http://blogit.hs.fi/perassahiihtaja/?p=11&quot;&gt;jättävät jopa äänestämättä&lt;/a&gt;, mutta toiset haluavat muokata asioita paremmiksi ja avoimempaa päätöksentekoa. Useissa pienissä kunnissa tuntuu olevan sama vaiva - avoin ja rehellinen päätöksenteko on kadoksissa. Tästä hyvänä esimerkkinä on naapurikuntamme Haukipudas, jossa päättäjät kunnanjohtajaa myöten ovat olleet iha
+&lt;a href=&quot;http://keskustelu.suomi24.fi/show.fcgi?category=115&amp;amp;conference=4500000000001567&amp;amp;posting=22000000032609203&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://keskustelu.suomi24.fi/show.fcgi?category=115&amp;amp;conference=4500000000001615&amp;amp;posting=22000000033537521#22000000033537521&quot;&gt;ilmiriidoissa&lt;/a&gt; päätöksenteon ongelmien kanssa.
+Me &lt;a href=&quot;http://www.kiiminginkokoomus.et&quot;&gt;Kiimingin kokoomuksessa&lt;/a&gt; olemme tulleet siihen tulokseen, että tähän on tultava muutos! Päätökset eivät voi syntyä yhden puolueen ryhmäkokouksissa tai tupailloissa. Kyseenalaistan henkilökohtaisesti myös Oulun seudun kuntarakenteen, kannatan voimakkaasti syyskuun lopulla esitettyä visiota &lt;a href=&quot;http://www.oulujoenkaupunki.fi&quot;&gt;Oulujoen kaupungista&lt;/a&gt;.
+Kuntaliitoshan ei synny sormia napsauttamalla. Kiimingin valtuustossakin Keskusta-puoluetta pienemmillä ryhmittymillä on ollut tahtotilana kuntaliitoksen selvittäminen jo hyvän aikaa, suurinta ryhmää asia ei ole kuitenkaan vielä kiinnostanut. **Mielestäni Kiimingin valtuuston tulee seuraavalla valtuustokaudella kyetä teettämään puolueeton selvitys kuntaliitoksen eduista ja haitoista. **
+&lt;strong&gt;Lisää ajatuksiani kunnallispolitiikan haasteista löytyy &lt;a href=&quot;http://larux.wordpress.com/teesit/&quot;&gt;vaaliohjelmastani&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Rantalakeus 24.9: Ei suur-Oulu vaan laajempi yhteinen Oulu</title>
+    <link href="https://www.jarilaru.fi/www-staging/2008/09/25/rantalakeus-249-ei-suur-oulu-vaan-laajempi-yhteinen-oulu/" />
+    <updated>2008-09-25T00:00:00Z</updated>
+    <id>https://www.jarilaru.fi/www-staging/2008/09/25/rantalakeus-249-ei-suur-oulu-vaan-laajempi-yhteinen-oulu/</id>
+    <content type="html">&lt;p&gt;Postilaatikkoon tupsahti perunamarkkinoiden alla Rantalakeus, joka muiden lehtien tavoin tuli luettua erittäin tarkasti. Lehdessä pisti silmään mielenkiintoinen Kempeleläisen ehdokkaan mielipidekirjoitus vaalipostia-palstalla. Jutussa puoluetoveri &lt;a href=&quot;http://www.koivukangas.info/blogi.html&quot;&gt;Henry Koivukangas&lt;/a&gt; kirjoittaa:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;yksittäisten kuntien voimavarat eivät enää tähän (kilpailukyvyn ylläpitämiseen) riitä. Sisäänpäin kääntyminen ei ole ratkaisu ja hallinnolliset rajat ovat yllättävän tehokas, pahimmillaan este ja parhaimmillaankin hidaste toimintojen tehostamiselle ja palveluiden parantamiselle.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;En voi juurikaan enempää ajatella hänen kanssaan täsmälleen samalla tavoin. Kuinka monta kertaa olen katsellut kateellisena kaupungin infrastruktuuria ja hämmästellyt kuinka suuri ero voikaan olla kahden vierekkäisen asuinpaikan välillä. Oulun huoliteltujen istutusten, kattavan pyörätieverkoston ja muutenkin kunnossapidetyn julkisen infran jälkeen on suorastaan shokki muuttaa tänne &amp;quot;maalle&amp;quot; .. Katuvaloja on pahimmillaan 500m välein tai ei ollenkaan, tiet ovat kuoppaisia ja pyörätieverkosto sanalla sanoen erittäin epälooginen. Ajakaapas vaikkapa laivakankaantien reunaa ;) Hyvin lyhyen asumisen jälkeen selvisi mm. että välikylään kaivattaisiin päiväkotia, mutta sitä ei ole voitu toteuttaa tarpeesta huolimatta - ei ole rahaa. Esimerkkejä olisi vaikka kuinka.
+Uskon että yhdessä toimimalla Oulun seudun kunnat saisivat käyttöönsä &amp;quot;leveämmät hartiat&amp;quot; sekä peruspalvelujen järjestämiseen että strategisten/suurten investointien toteuttamiseen. Hiekkalaatikkoleikkien ja sulle/mulle -politiikan aika on ohi. Olen samaa mieltä Henryn kanssa että  mahdollisella kuntaliitoksella ei tule pelotella meitä veronmaksajia:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Kuntalaisia ei pidä aliarvioida väittämällä, että Oulu on mörkö, joka haluaa näivettää Kempeleläisten elinolosuhteita&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Toivon että seuraavalla valtuustokaudella voidaan tehdä selvitys kuntaliitoksesta ja päättää sen tuomien faktojen perusteella jäämmekö itse äiseksi vai liitymmekö suurempaan kokonaisuuteen. Kotipaikkakunnallani Raahessa kaupunkiin liitetyn Pattijoen omaleimaisuus ja identiteetti ei ole mihinkään hävinnyt. Ex-kunnan pesäpallojoukkuekin porskuttaa. Voittivathan he kultaa tänä vuonna!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Kommentoin Facebookissa toivetta saada lisäresursseja ennaltaehkäisevään työhön (case kauhajoki)</title>
+    <link href="https://www.jarilaru.fi/www-staging/2008/09/25/kommentoin-facebookissa-toivetta-saada-lisaresursseja-ennaltaehkaisevaan-tyohon-case-kauhajoki/" />
+    <updated>2008-09-25T00:00:00Z</updated>
+    <id>https://www.jarilaru.fi/www-staging/2008/09/25/kommentoin-facebookissa-toivetta-saada-lisaresursseja-ennaltaehkaisevaan-tyohon-case-kauhajoki/</id>
+    <content type="html">&lt;p&gt;Facebookkia katselin tässä illan ratoksi ja siellä silmään pisti juuri perustettu ryhmä &amp;quot;&lt;a href=&quot;http://www.ew.facebook.com/topic.php?topic=5773&amp;amp;uid=27763908913#/group.php?gid=27763908913&quot;&gt;Valtio satsaamaan ennaltaehkäisevään oppilashuoltotyöhön!&lt;/a&gt;&amp;quot; . Mielestäni asia on erinomaisen tärkeä - veriteot pitää nyt kertakaikkiaan saada loppumaan. Provoisoiduin kuitenkin asiaa Facebookissa kommentoimaan, sillä mielestäni pelkkä viranomaisten lisäresurssointi ei muuta yhteiskuntamme syviä virtauksia. Mielestäni ongelma on perhetasolla. Alla olevassa lainauksessa on kirjoitukseni Facebookin keskustelusta:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Taisipas olla Ilta-Sanomat josta luin tähän liittyvän kolumnin. Siitä kirjoitta ilmaisi huolensa rakenteiden hyvinvoinnista, mutta hoidettavien pahoinvoinnista. Vaikka julkisen sektorin ennaltaehkäisevää työtä resurssoitaisiin kuinka voivat hoidettavat silti jäädä tavoittamatta. Mielestäni emme voi ulkoistaa tätä ongelmaa valtiolle - meidän on kertakaikkiaan muututtava yksilöinä, perheinä ja yhteisöinä suuntaan jossa omien itsekkäiden urapyrkimysten sijaan pysähtyisime kuuntelemaan mitä lapsillemme ja niiden kavereille oikein kuuluu ja miten heillä menee. Pitääkö perheen isille ja äideille lailla säätää ylityökielto että pelkkä tietokone ja jääkaappi ei kouluikäisiä kotona hoitaisi?&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Käyppäs katsomassa vastauksiani vaalikoneissa</title>
+    <link href="https://www.jarilaru.fi/www-staging/2008/09/27/kayppas-katsomassa-vastauksiani-vaalikoneissa/" />
+    <updated>2008-09-27T00:00:00Z</updated>
+    <id>https://www.jarilaru.fi/www-staging/2008/09/27/kayppas-katsomassa-vastauksiani-vaalikoneissa/</id>
+    <content type="html">&lt;p&gt;Jos täältä blogista ei ole vielä selvinnyt mitä mieltä olen asioista, lisää tietoa löydät vastauksistani vaalikoneissa. Olen säntillisesti pyrkinyt myös perustelemaan vastaukseni (mikä näyttää olevan harvinaista vaalikoneissa). Linkit johtavat suoraan vastauksiini:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://palvelu.kaleva.fi/vaalit/kunn08/kaleva/index.cfm?tila=vaalikone&amp;amp;j=146&amp;amp;haetunnus=56795&amp;amp;tmpPaikka=121&quot;&gt;Kalevan vaalikone&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.yle.fi/vaalikone08/vaalikone.php?emp=l-.d-255.rt-1.ri-9063.s-5.q-1.ps-1&quot;&gt;Yleisradion vaalikone&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://kone7.zef.fi/kunnallisvaalikone/tulokset/9240/&quot;&gt;Mainostelevision vaalikone&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.terveydenhuollonvaalikone.fi/index.php?page=aanestajat&amp;amp;showEhdokas=6376&quot;&gt;Terveydenhuollon vaalikone&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://irc-galleria.net/vaalikone.php?page=view_candidate&amp;amp;candidate_id=1417&quot;&gt;IRC-Gallerian kunnallisvaalikone&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.sosiaalinenvaalikone.com/ehdokas.php?id=672318115&quot;&gt;Facebookin sosiaalinen vaalikone&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.flug.fi/linuxhallintoon/kunta2008/vastaukset/Ehdokas_Kiiminki_7_Jari_Laru.html&quot;&gt;Suomen Linux käyttäjien yhdistyksen (FLUG) kunnallisvaalikysely&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Tervemenoa katselemaan vastauksiani ;) HUOM! Lisäksi olen vastannut Kalevan kulttuuritoimituksen vaalikyselyyn (olen se toinen Kiiminkiläinen joka vastasi).. Linkki löytyy &lt;a href=&quot;http://larux.wordpress.com/2008/10/22/kalevaplus-kulttuuri-kay-vaaliteemaksi-lue-vastaukseni-kalevan-kyselyyn/&quot;&gt;täältä&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+</feed>

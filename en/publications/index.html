@@ -1,0 +1,3410 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <script>
+    // Teeman alustus (estää välkkymisen) - tarkistaa sijainnin localStorage tai OS prefers-color-scheme
+    const getStoredTheme = () => localStorage.getItem('theme');
+    const getPreferredTheme = () => {
+      const storedTheme = getStoredTheme();
+      if (storedTheme) {
+        return storedTheme;
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    const setTheme = function (theme) {
+      if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-bs-theme', theme);
+      }
+    };
+    setTheme(getPreferredTheme());
+
+    // Saavutettavuusasetusten alustus (FOUC esto)
+    function applyA11ySettings(settings) {
+      const htmlEl = document.documentElement;
+
+      // Tekstikoko
+      htmlEl.classList.remove('a11y-text-large', 'a11y-text-xlarge');
+      if (settings.textSize === 'large') htmlEl.classList.add('a11y-text-large');
+      else if (settings.textSize === 'xlarge') htmlEl.classList.add('a11y-text-xlarge');
+
+      // Kontrasti
+      if (settings.highContrast) htmlEl.classList.add('a11y-high-contrast');
+      else htmlEl.classList.remove('a11y-high-contrast');
+
+      // Animaatiot
+      if (settings.reducedMotion) htmlEl.classList.add('a11y-reduced-motion');
+      else htmlEl.classList.remove('a11y-reduced-motion');
+
+      // Fontti
+      if (settings.dyslexiaFont) htmlEl.classList.add('a11y-dyslexia-font');
+      else htmlEl.classList.remove('a11y-dyslexia-font');
+    }
+
+    try {
+      const a11yStored = localStorage.getItem('a11y-settings');
+      if (a11yStored) {
+        applyA11ySettings(JSON.parse(a11yStored));
+      }
+    } catch(e) {}
+  </script>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net data:; img-src 'self' data: https: https://cdn.slidesharecdn.com; connect-src 'self'; frame-src 'self' https: https://www.slideshare.net;">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <style id="antiClickjack">body{display:none !important;}</style>
+  <script>
+    if (self === top) {
+      var antiClickjack = document.getElementById("antiClickjack");
+      antiClickjack.parentNode.removeChild(antiClickjack);
+    } else {
+      top.location = self.location;
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <title>Publications — Jari Laru</title>
+  <meta name="description" content="Yliopistonlehtori, tutkija, kuntapäättäjä">
+  
+  <meta name="google-site-verification" content="13_OZFDuN1d5oaDd6KEGtPWGDkMLpDYzahvDFzr4enw">
+  
+  <meta name="robots" content="index, follow, noai, noimageai">
+  <meta name="author" content="Jari Laru">
+  <link rel="canonical" href="https://www.jarilaru.fi/en/publications/">
+  
+  <link rel="alternate" hreflang="fi" href="https://www.jarilaru.fi/julkaisut/">
+  
+  
+  <link rel="alternate" hreflang="en" href="https://www.jarilaru.fi/en/publications/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://www.jarilaru.fi/julkaisut/">
+  <meta property="og:site_name" content="Jari Laru">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Publications">
+  <meta property="og:description" content="Yliopistonlehtori, tutkija, kuntapäättäjä">
+  <meta property="og:url" content="https://www.jarilaru.fi/en/publications/">
+  <meta property="og:image" content="https://www.jarilaru.fi/img/WIN_20210329_16_06_01_Pro.jpg">
+  <meta property="og:image:alt" content="Jari Laru">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Publications">
+  <meta name="twitter:description" content="Yliopistonlehtori, tutkija, kuntapäättäjä">
+  <meta name="twitter:image" content="https://www.jarilaru.fi/img/WIN_20210329_16_06_01_Pro.jpg">
+  <meta name="twitter:image:alt" content="Jari Laru">
+  
+  <link rel="stylesheet" href="/www-staging/css/bootstrap.min.css">
+  
+  <style>/* ===== _theme.css — Bootstrap token overrides (dark + light) + BSS-scope theming =====
+ * Part of jarilaru.fi styles — imported by styles.css
+ */
+/* ===== 1. THEME VARIABLES ===== */
+
+/* ===== Dark theme: Bootstrap-pohjavärien korvaus ===== */
+/* Kevennetty navy-paletti — aiempaa #131d2b kevyempi, parempi tason erottelu */
+[data-bs-theme="dark"] {
+  --bs-body-bg: #1a2638;
+  --bs-body-color: #dde4ee;
+  --bs-secondary-bg: #243549;
+  --bs-tertiary-bg: #1f2f42;
+  --bs-border-color: #354f68;
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== Light theme: viileä neutraali slate ===== */
+/* DNA-yhteys: body-color = tumman teeman taustasävy käännettynä tekstiksi */
+/* #1c2a38 (tekstiväri) ≈ #1a2638 (tumman body-bg) — sama perhe, eri rooli */
+html:not([data-bs-theme="dark"]) {
+  --bs-body-bg: #f4f6f9;
+  --bs-body-color: #1c2a38;
+  --bs-secondary-color: #48606e;
+  --bs-secondary-bg: #dde4ed;
+  --bs-tertiary-bg: #eef2f7;
+  --bs-border-color: #adbccc;
+  --bs-border-color-translucent: rgba(28, 42, 56, 0.13);
+  /* WCAG 1.4.3: Bootstrap default #0d6efc → 4.17:1 on #f4f6f9 (alle 4.5 AA)
+     Korjattu: #0453b4 → ~6.7:1 */
+  --bs-link-color: #0453b4;
+  --bs-link-color-rgb: 4, 83, 180;
+  --bs-link-hover-color: #023e8a;
+  --bs-link-hover-color-rgb: 2, 62, 138;
+}
+
+/* ===== BSS-SCOPE THEMING ===== */
+
+/* Light theme: bss-scope primary color + border reset */
+html:not([data-bs-theme="dark"]) .bss-scope {
+  --bs-primary: #0453b4;
+  --bs-primary-rgb: 4, 83, 180;
+  --bs-border-width: 1px;
+}
+
+/* Dark theme: bss-scope uses white as primary (white buttons on dark bg) */
+[data-bs-theme="dark"] .bss-scope {
+  --bs-primary: #ffffff;
+  --bs-primary-rgb: 255, 255, 255;
+  --bs-border-width: 0;
+}
+
+/* Light theme: btn-primary uses site blue */
+html:not([data-bs-theme="dark"]) .btn-primary {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #0453b4;
+  --bs-btn-border-color: #0453b4;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #023e8a;
+  --bs-btn-hover-border-color: #023e8a;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #023e8a;
+  --bs-btn-active-border-color: #023e8a;
+  --bs-btn-disabled-color: #ffffff;
+  --bs-btn-disabled-bg: #0453b4;
+  --bs-btn-disabled-border-color: #0453b4;
+  --bs-btn-focus-shadow-rgb: 4, 83, 180;
+}
+
+/* Light theme: btn-outline-primary uses site blue */
+html:not([data-bs-theme="dark"]) .btn-outline-primary {
+  --bs-btn-color: #0453b4;
+  --bs-btn-border-color: #0453b4;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #0453b4;
+  --bs-btn-hover-border-color: #0453b4;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #0453b4;
+  --bs-btn-active-border-color: #0453b4;
+  --bs-btn-disabled-color: #0453b4;
+  --bs-btn-disabled-border-color: #0453b4;
+  --bs-btn-focus-shadow-rgb: 4, 83, 180;
+}
+
+</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap">
+  </noscript>
+  <link rel="stylesheet" href="/www-staging/css/mega-menu.css">
+  <link rel="preload" as="style" href="/www-staging/css/modules/_typography.css">
+  <link rel="preload" as="style" href="/www-staging/css/modules/_global.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_typography.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_home.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_global.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_tables.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_articles.css">
+  <link rel="stylesheet" href="/www-staging/css/a11y.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preload" href="/www-staging/pagefind/pagefind-ui.css" as="style">
+  <link href="/www-staging/pagefind/pagefind-ui.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="/www-staging/pagefind/pagefind-ui.css" rel="stylesheet">
+  </noscript>
+  <script src="/www-staging/pagefind/pagefind-ui.js" defer=""></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js" defer=""></script>
+  
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Jari Laru",
+      "url": "https://www.jarilaru.fi",
+      "description": "Yliopistonlehtori, tutkija, kuntapäättäjä",
+      "inLanguage": "en-US",
+      "publisher": {
+        "@id": ""
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "",
+      "name": "Jari Laru",
+      "url": "https://www.jarilaru.fi",
+      "sameAs": ["https://orcid.org/0000-0003-0347-0182","https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en","https://www.linkedin.com/in/jarilaru/","https://www.researchgate.net/profile/Jari-Laru","https://www.youtube.com/jarilaru","https://www.slideshare.net/larux/presentations"]
+    }
+  </script>
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "",
+      "description": "",
+      "url": "",
+      "image": "https://www.jarilaru.fi/undefined",
+      "inLanguage": "en-US",
+      "author": {
+        "@id": ""
+      }
+    }
+  </script>
+  
+
+</head>
+<body>
+  
+  <a class="visually-hidden-focusable skip-link btn btn-primary m-2 position-absolute" style="z-index: 9999; top: 0; left: 0;" href="#main-content">Skip to main content</a>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav id="siteNav" class="navbar navbar-expand-md site-navbar sticky-top" aria-label="Main Navigation" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/www-staging/en/">Jari Laru</a>
+    <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNavEn" aria-controls="mobileNavEn" aria-expanded="false" aria-label="Open mobile navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMainEn">
+      <ul class="navbar-nav align-items-md-center flex-md-nowrap evelenty-main-nav ms-md-2 me-auto">
+        <li class="nav-item">
+          <a class="nav-link " href="/www-staging/en/">
+            <i class="bi bi-house-door-fill"></i> Home
+          </a>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/en/about/">
+    <i class="bi bi-person-fill"></i> Me
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleMeEn" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuMeEn" aria-label="Open submenu: Me">
+    <span class="visually-hidden">Open submenu: Me</span>
+  </button>
+</div>
+
+          <div id="megaMenuMeEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMeEn">
+            <div class="mega-wrap grid-8-4">
+              <div class="mega-left three-cols">
+                
+                  <section>
+                    <h5>About Jari</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/about/"><i class="bi bi-info-circle me-2"></i><span>About me</span></a>
+                      
+                      
+                        <small class="menu-link-desc">Biography, life and hobbies.</small>
+                      
+                    
+                      
+                        <div class="menu-link menu-link-inline-group">
+                          <i class="bi bi-file-earmark-person me-2"></i>
+                          <span class="menu-link-inline-items">
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/en/cv/">Curriculum Vitae</a><span class="menu-link-inline-separator" aria-hidden="true">|</span>
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/en/portfolio/">Teaching Portfolio</a>
+                            
+                          </span>
+                        </div>
+                      
+                      
+                        <small class="menu-link-desc">Education, skills, and pedagogical profile in one place.</small>
+                      
+                    
+                      
+                        <a href="/www-staging/en/awards/"><i class="bi bi-award me-2"></i>Awards</a>
+                      
+                      
+                        <small class="">Recognition received for teaching and open science work.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Free Time</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/road-trips/"><i class="bi bi-car-front me-2"></i><span>Road Trips</span></a>
+                      
+                      
+                        <small class="menu-link-desc">Across Europe by car.</small>
+                      
+                    
+                      
+                        <a href="https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi" target="_blank" rel="noopener noreferrer"><i class="bi bi-egg-fried me-2"></i>Foodie</a>
+                      
+                      
+                        <small class="">Passionate home cook, baker, and cookbook collector.</small>
+                      
+                    
+                      
+                        <a href="https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi" target="_blank" rel="noopener noreferrer"><i class="bi bi-hammer me-2"></i>DIY Renovator</a>
+                      
+                      
+                        <small class="">1970s house renovations from excavator work to wallpapering.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>My Roles</h5>
+                    
+                      
+                        <a href="/www-staging/en/work/"><i class="bi bi-mortarboard me-2"></i>University Lecturer</a>
+                      
+                      
+                        <small class="">Teaching, research, and supervision in university work.</small>
+                      
+                    
+                      
+                        <a href="/www-staging/en/politics/"><i class="bi bi-bank2 me-2"></i>Politician</a>
+                      
+                      
+                        <small class="">Local politics, priorities, and public decision-making.</small>
+                      
+                    
+                      
+                        <a href="/www-staging/en/company/"><i class="bi bi-building me-2"></i>Entrepreneur</a>
+                      
+                      
+                        <small class="">Training and expert services through Larux.</small>
+                      
+                    
+                  </section>
+                
+              </div>
+              <aside class="mega-right showcase-card">
+                <img src="/www-staging/img/uploads/2020/01/jari.laru_1397908734_26-e1610053137214.jpg" alt="Jari Laru" class="img-fluid rounded-3 mb-3" loading="lazy" decoding="async">
+                <h5>Jari Laru</h5>
+                <p>Father, foodie and road tripper – the person behind the work.</p>
+                
+                  <a class="btn btn-accent btn-lg w-100" href="/www-staging/en/contact/">Get in touch</a>
+                
+              </aside>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link active" href="/www-staging/en/work/" aria-current="page">
+    <i class="bi bi-briefcase-fill"></i> Work
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleWorkEn" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuWorkEn" aria-label="Open submenu: Work">
+    <span class="visually-hidden">Open submenu: Work</span>
+  </button>
+</div>
+
+          <div id="megaMenuWorkEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWorkEn">
+            
+            
+            <div class="mega-wrap">
+              <div class="mega-left four-cols">
+                
+                  <section>
+                    <h5>Teaching</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/work/"><i class="bi bi-briefcase me-2"></i><span>My Work as a University Lecturer</span></a>
+                        
+                          <small class="menu-link-desc">Courses, teaching responsibilities, and pedagogical development.</small>
+                        
+                      
+                    
+                      
+                        <div class="menu-link menu-link-inline-group">
+                          <i class="bi bi-file-earmark-person me-2"></i>
+                          <span class="menu-link-inline-items">
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/en/cv/">Curriculum Vitae</a><span class="menu-link-inline-separator" aria-hidden="true">|</span>
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/en/portfolio/">Teaching Portfolio</a>
+                            
+                          </span>
+                        </div>
+                        
+                          <small class="menu-link-desc">Education, experience, and pedagogical thinking in one place.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/presentations/"><i class="bi bi-easel2 me-2"></i><span>Presentations</span></a>
+                        
+                          <small class="menu-link-desc">Training and conference presentations across core topics.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/theses/"><i class="bi bi-mortarboard me-2"></i><span>Theses</span></a>
+                        
+                          <small class="menu-link-desc">Bachelor&#39;s and master&#39;s theses supervised by me.</small>
+                        
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Research</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/work/"><i class="bi bi-briefcase me-2"></i><span>My Work as a University Lecturer</span></a>
+                        
+                          <small class="menu-link-desc">Research themes, teaching, and project implementation.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/cv/"><i class="bi bi-file-earmark-person me-2"></i><span>Curriculum Vitae</span></a>
+                        
+                          <small class="menu-link-desc">Academic profile, key roles, and professional merits.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/publications/"><i class="bi bi-journal-text me-2"></i><span>Publication List</span></a>
+                        
+                          <small class="menu-link-desc">Scientific publications, essays, and related outputs.</small>
+                        
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Trainer (Entrepreneur)</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/company/"><i class="bi bi-building me-2"></i><span>About the Company</span></a>
+                        
+                          <small class="menu-link-desc">Larux services, background, and collaboration model.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/presentations/"><i class="bi bi-easel2 me-2"></i><span>Presentations</span></a>
+                        
+                          <small class="menu-link-desc">Selected decks and keynote examples for different audiences.</small>
+                        
+                      
+                    
+                      
+                        <div class="work-inline-cta">
+                          <a class="menu-link" href="/www-staging/en/contact/">
+                            <i class="bi bi-megaphone me-2"></i><span>Book me for training</span>
+                          </a>
+                          
+                            <small class="menu-link-desc">Expert talks on AI, EdTech, and modern pedagogy.</small>
+                          
+                          <a class="btn btn-accent btn-lg w-100 mt-2" href="/www-staging/en/contact/">
+                            Request a quote
+                          </a>
+                        </div>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Social Media</h5>
+                    
+                      
+                        <a class="menu-link" href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin me-2"></i><span>LinkedIn</span></a>
+                        
+                          <small class="menu-link-desc">Professional profile, network, and current updates.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer"><i class="bi bi-globe me-2"></i><span>ResearchGate</span></a>
+                        
+                          <small class="menu-link-desc">Research profile with publications and collaboration links.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="https://orcid.org/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer"><i class="bi bi-person-vcard me-2"></i><span>ORCID</span></a>
+                        
+                          <small class="menu-link-desc">Persistent researcher identifier and publication metadata.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer"><i class="bi bi-mortarboard me-2"></i><span>Google Scholar</span></a>
+                        
+                          <small class="menu-link-desc">Citation metrics, h-index, and publication visibility.</small>
+                        
+                      
+                    
+                  </section>
+                
+              </div>
+            </div>
+            
+            
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/en/politics/">
+    <i class="bi bi-bank2"></i> Politics
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaTogglePoliticsEn" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuPoliticsEn" aria-label="Open submenu: Politics">
+    <span class="visually-hidden">Open submenu: Politics</span>
+  </button>
+</div>
+
+          <div id="megaMenuPoliticsEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaTogglePoliticsEn">
+            <div class="mega-wrap">
+              <div class="mega-left three-cols">
+                
+                  <section>
+                    <h5>Role &amp; Transparency</h5>
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/en/politics/">
+                          <i class="bi bi-person-badge me-2"></i>
+                          <span>Jari Laru, politician</span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Positions of trust and goals.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/en/affiliations/">
+                          <i class="bi bi-link-45deg me-2"></i>
+                          <span>Affiliations &amp; Disclosures</span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Open declarations of affiliations.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook me-2"></i>Facebook</a>
+                      
+                      
+                        <small class="">Current updates and public discussion on Facebook.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Activities</h5>
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/en/writings/#aloitteet">
+                          <i class="bi bi-megaphone me-2"></i>
+                          <span>Initiatives <span class="menu-link-count">9</span></span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Motions in the city council.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/en/writings/#puheet">
+                          <i class="bi bi-mic me-2"></i>
+                          <span>Speeches <span class="menu-link-count">24</span></span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Council speeches and statements.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/en/writings/#mielipiteet">
+                          <i class="bi bi-chat-text me-2"></i>
+                          <span>Opinion pieces <span class="menu-link-count">42</span></span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Columns and newspaper articles.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/en/writings/"><i class="bi bi-pencil-square me-2"></i>All writings</a>
+                      
+                      
+                        <small class="">A full archive of speeches, initiatives, and opinion texts.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Election History</h5>
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/en/election-history/">
+                          <i class="bi bi-calendar-event me-2"></i>
+                          <span>Election history</span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Elections and terms of office.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/en/municipal-and-wellbeing-elections-2025/"><i class="bi bi-chevron-right me-2"></i>Municipal &amp; wellbeing elections 2025</a>
+                      
+                      
+                        <small class="">Campaign priorities and election outcome in 2025.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/kuntavaalit-2021/"><i class="bi bi-chevron-right me-2"></i>Municipal elections 2021</a>
+                      
+                      
+                        <small class="">Campaign priorities and materials from the 2021 election.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/jari-laru-aluevaltuustoon/"><i class="bi bi-chevron-right me-2"></i>Wellbeing area elections 2022</a>
+                      
+                      
+                        <small class="">Themes and goals for regional wellbeing governance.</small>
+                      
+                    
+                  </section>
+                
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/en/writings/">
+    <i class="bi bi-pencil-fill"></i> Writings
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleWritingsEn" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuWritingsEn" aria-label="Open submenu: Writings">
+    <span class="visually-hidden">Open submenu: Writings</span>
+  </button>
+</div>
+
+          <div id="megaMenuWritingsEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWritingsEn">
+            <div class="mega-wrap writings-mega-layout">
+              
+                <section class="writings-group-head">
+                  <h5>From my pen and voice</h5>
+                  <p class="menu-desc">All produced content.</p>
+                </section>
+                
+                  <section class="writings-main-col">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/writings/#mielipiteet">
+                        <span><i class="bi bi-chat-text me-2"></i>Articles</span>
+                        <span class="menu-link-count">42</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Opinion texts and public commentary published in media.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/blog/">
+                        <span><i class="bi bi-pen me-2"></i>Blog</span>
+                        <span class="menu-link-count">58</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Posts on education, technology, and public life themes.</small>
+                      
+                    
+                  </section>
+                
+                  <section class="writings-main-col">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/writings/#kolumnit">
+                        <span><i class="bi bi-journal-richtext me-2"></i>Columns</span>
+                        <span class="menu-link-count">9</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Long-form columns on education, society, and local development.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/writings/#aloitteet">
+                        <span><i class="bi bi-megaphone me-2"></i>Initiatives</span>
+                        <span class="menu-link-count">9</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Council initiatives and concrete proposals in local politics.</small>
+                      
+                    
+                  </section>
+                
+                  <section class="writings-main-col">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/presentations/">
+                        <span><i class="bi bi-easel2 me-2"></i>Presentations</span>
+                        <span class="menu-link-count">132</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Talks and training decks on AI, learning, and pedagogy.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/publications/">
+                        <span><i class="bi bi-journal-text me-2"></i>Publication List</span>
+                        <span class="menu-link-count">81</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Scientific publications, reports, and broader written outputs.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/writings/#puheet">
+                        <span><i class="bi bi-mic me-2"></i>Speeches</span>
+                        <span class="menu-link-count">24</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Public speeches and council statements in one archive.</small>
+                      
+                    
+                  </section>
+                
+                
+                  <section class="writings-side-head">
+                    <h5>See also</h5>
+                    
+                      <p class="menu-desc">Theses supervised by me</p>
+                    
+                  </section>
+                  <section class="writings-side-links">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/theses/#card-bachelor">
+                        <span><i class="bi bi-book-half me-2"></i>Bachelor&#39;s theses</span>
+                        <span class="menu-link-count">26</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Supervised theses listed by topic and year.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/en/theses/#card-master">
+                        <span><i class="bi bi-mortarboard me-2"></i>Master&#39;s theses</span>
+                        <span class="menu-link-count">74</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Supervised theses listed by topic and year.</small>
+                      
+                    
+                  </section>
+                
+              
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/en/contact/">
+    <i class="bi bi-envelope"></i> Contact
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleContactEn" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuContactEn" aria-label="Open submenu: Contact">
+    <span class="visually-hidden">Open submenu: Contact</span>
+  </button>
+</div>
+
+          <div id="megaMenuContactEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleContactEn">
+            <div class="mega-wrap">
+              <section class="w-100 mb-3">
+                <h5>Contact</h5>
+                <p class="menu-desc">Send a message or choose a direct channel.</p>
+              </section>
+              <div class="mega-left four-cols contact-mega-cols">
+                
+                  <section>
+                    <h5>Send a message</h5>
+                    
+                      <form class="contact-mega-form" action="https://formspree.io/f/xlgwqwzk" method="POST">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaNameEn">Name</label>
+                        <input id="contactMegaNameEn" type="text" name="name" class="form-control form-control-sm mb-2" placeholder="Name" autocomplete="name">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaEmailEn">Email</label>
+                        <input id="contactMegaEmailEn" type="email" name="email" class="form-control form-control-sm mb-2" placeholder="Email" autocomplete="email" required="">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaMessageEn">Message</label>
+                        <textarea id="contactMegaMessageEn" name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="Message" required=""></textarea>
+                        <button type="submit" class="btn btn-accent btn-lg w-100">Send</button>
+                      </form>
+                      <a class="contact-mega-mobile-cta btn btn-accent btn-lg w-100 mt-2" href="/www-staging/en/contact/">
+                        <i class="bi bi-envelope-check me-2"></i>Open contact form
+                      </a>
+                    
+                  </section>
+                
+                  <section>
+                    <h5>University contact</h5>
+                    
+                      
+                        <a class="menu-link" href="mailto:jari.laru@oulu.fi">
+                          <i class="bi bi-envelope me-2"></i><span>Email</span>
+                        </a>
+                      
+                        <a class="menu-link" href="tel:+358294483810">
+                          <i class="bi bi-telephone me-2"></i><span>Phone</span>
+                        </a>
+                      
+                        <a class="menu-link" href="http://www.zoom.us/my/larux" target="_blank" rel="noopener noreferrer">
+                          <i class="bi bi-camera-video me-2"></i><span>Zoom</span>
+                        </a>
+                      
+                        <a class="menu-link" href="https://www.oulu.fi" target="_blank" rel="noopener noreferrer">
+                          <i class="bi bi-building me-2"></i><span>University of Oulu</span>
+                        </a>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Company &amp; politics</h5>
+                    
+                      
+                        <a class="menu-link" href="tel:+358405118478">
+                          <i class="bi bi-whatsapp me-2"></i><span>Business contact</span>
+                        </a>
+                      
+                        <a class="menu-link" href="mailto:jari.laru@ouka.fi">
+                          <i class="bi bi-bank2 me-2"></i><span>Politics email</span>
+                        </a>
+                      
+                        <a class="menu-link" href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer">
+                          <i class="bi bi-facebook me-2"></i><span>Facebook</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/en/contact/">
+                          <i class="bi bi-person-lines-fill me-2"></i><span>Contact page</span>
+                        </a>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Quick links</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/en/company/">
+                          <i class="bi bi-briefcase me-2"></i><span>Company</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/en/presentations/">
+                          <i class="bi bi-easel2 me-2"></i><span>Presentations</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/en/politics/">
+                          <i class="bi bi-megaphone me-2"></i><span>Politics</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/en/privacy/">
+                          <i class="bi bi-shield-check me-2"></i><span>Privacy</span>
+                        </a>
+                      
+                    
+                  </section>
+                
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item ms-md-auto mt-2 mt-md-0">
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" data-search-toggle="" style="width: 38px; height: 38px;" aria-label="Search site" title="Search site">
+              <i class="bi bi-search"></i>
+            </button>
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="themeToggleBtn" data-theme-toggle="" style="width: 38px; height: 38px;" aria-label="Toggle theme" title="Toggle theme">
+              <i class="bi bi-moon-stars-fill" id="themeToggleIcon" data-theme-icon=""></i>
+            </button>
+          </div>
+        </li>
+        <li class="nav-item ms-md-2 mt-2 mt-md-0">
+          <a class="nav-link py-0 d-flex align-items-center gap-1 text-decoration-none" href="/www-staging/julkaisut/" lang="fi" aria-label="Vaihda kieleksi suomi">
+            <span aria-hidden="true">🇫🇮</span><span>FI</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileNavEn" aria-labelledby="mobileNavEnLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title fw-bold" id="mobileNavEnLabel">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form class="mb-3" data-search-form="">
+      <label for="mobileNavEnSearchInput" class="form-label small text-muted">Search this site</label>
+      <div class="input-group input-group-sm">
+        <input id="mobileNavEnSearchInput" type="search" class="form-control" placeholder="Search..." autocomplete="off" name="q">
+        <button class="btn btn-outline-primary" type="submit" aria-label="Open search">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </form>
+    <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+      <div class="btn-group btn-group-sm" role="group" aria-label="Language switcher">
+        <a class="btn btn-outline-primary" href="/www-staging/julkaisut/" lang="fi">FI</a>
+        <a class="btn btn-outline-primary active" href="/www-staging/en/publications/" lang="en">EN</a>
+      </div>
+      <button class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-2" type="button" data-theme-toggle="" aria-label="Toggle theme">
+        <i class="bi bi-moon-stars-fill" data-theme-icon=""></i><span>Theme</span>
+      </button>
+    </div>
+    <div class="d-grid gap-2 mb-3">
+      <a class="btn btn-outline-primary rounded-pill" href="/www-staging/en/">Home</a>
+    </div>
+    <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordionEn">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavEnMeHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnMe" aria-expanded="false" aria-controls="mobileNavEnMe">Me</button>
+        </h2>
+        <div id="mobileNavEnMe" class="accordion-collapse collapse" aria-labelledby="mobileNavEnMeHead" data-bs-parent="#mobileNavAccordionEn">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/en/about/">Open Me page</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">About Jari</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/about/">About me</a>
+                  
+                
+                  
+                    <div class="mobile-nav-link d-flex align-items-center gap-2 flex-wrap">
+                      
+                        <a class="mobile-nav-link inline-link" href="/www-staging/en/cv/">Curriculum Vitae</a><span class="mobile-nav-inline-separator" aria-hidden="true">|</span>
+                      
+                        <a class="mobile-nav-link inline-link" href="/www-staging/en/portfolio/">Teaching Portfolio</a>
+                      
+                    </div>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/awards/">Awards</a>
+                  
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Free Time</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/road-trips/">Road Trips</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi" target="_blank" rel="noopener noreferrer">Foodie</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi" target="_blank" rel="noopener noreferrer">DIY Renovator</a>
+                  
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">My Roles</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/work/">University Lecturer</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/politics/">Politician</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/company/">Entrepreneur</a>
+                  
+                
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavEnWorkHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnWork" aria-expanded="false" aria-controls="mobileNavEnWork">Work</button>
+        </h2>
+        <div id="mobileNavEnWork" class="accordion-collapse collapse" aria-labelledby="mobileNavEnWorkHead" data-bs-parent="#mobileNavAccordionEn">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/en/work/">Open Work page</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Teaching</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/work/">My Work as a University Lecturer</a>
+                
+                  <a class="mobile-nav-link" href=".">CV | Teaching Portfolio</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/presentations/">Presentations</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/theses/">Theses</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Research</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/work/">My Work as a University Lecturer</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/cv/">Curriculum Vitae</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/publications/">Publication List</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Trainer (Entrepreneur)</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/company/">About the Company</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/presentations/">Presentations</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/contact/">Book me for training</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Social Media</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                
+                  <a class="mobile-nav-link" href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer">ResearchGate</a>
+                
+                  <a class="mobile-nav-link" href="https://orcid.org/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer">ORCID</a>
+                
+                  <a class="mobile-nav-link" href="https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+                
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavEnPoliticsHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnPolitics" aria-expanded="false" aria-controls="mobileNavEnPolitics">Politics</button>
+        </h2>
+        <div id="mobileNavEnPolitics" class="accordion-collapse collapse" aria-labelledby="mobileNavEnPoliticsHead" data-bs-parent="#mobileNavAccordionEn">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/en/politics/">Open Politics page</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Role &amp; Transparency</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/politics/">Jari Laru, politician</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/affiliations/">Affiliations &amp; Disclosures</a>
+                
+                  <a class="mobile-nav-link" href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Activities</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/writings/#aloitteet">Initiatives</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/writings/#puheet">Speeches</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/writings/#mielipiteet">Opinion pieces</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/writings/">All writings</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Election History</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/election-history/">Election history</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/en/municipal-and-wellbeing-elections-2025/">Municipal &amp; wellbeing elections 2025</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/kuntavaalit-2021/">Municipal elections 2021</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/jari-laru-aluevaltuustoon/">Wellbeing area elections 2022</a>
+                
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavEnWritingsHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnWritings" aria-expanded="false" aria-controls="mobileNavEnWritings">Writings</button>
+        </h2>
+        <div id="mobileNavEnWritings" class="accordion-collapse collapse" aria-labelledby="mobileNavEnWritingsHead" data-bs-parent="#mobileNavAccordionEn">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/en/writings/">Open Writings page</a>
+            
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/writings/#mielipiteet">Articles</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/blog/">Blog</a>
+                  
+                </div>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/writings/#kolumnit">Columns</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/writings/#aloitteet">Initiatives</a>
+                  
+                </div>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/presentations/">Presentations</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/publications/">Publication List</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/writings/#puheet">Speeches</a>
+                  
+                </div>
+              
+              
+                <p class="text-uppercase small text-muted mb-1 mt-2">See also</p>
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/theses/#card-bachelor">Bachelor&#39;s theses</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/theses/#card-master">Master&#39;s theses</a>
+                  
+                </div>
+              
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavEnContactHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavEnContact" aria-expanded="false" aria-controls="mobileNavEnContact">Contact</button>
+        </h2>
+        <div id="mobileNavEnContact" class="accordion-collapse collapse" aria-labelledby="mobileNavEnContactHead" data-bs-parent="#mobileNavAccordionEn">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/en/contact/">Open Contact page</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Send a message</p>
+              
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">University contact</p>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="mailto:jari.laru@oulu.fi">Email</a>
+                  
+                    <a class="mobile-nav-link" href="tel:+358294483810">Phone</a>
+                  
+                    <a class="mobile-nav-link" href="http://www.zoom.us/my/larux" target="_blank" rel="noopener noreferrer">Zoom</a>
+                  
+                    <a class="mobile-nav-link" href="https://www.oulu.fi" target="_blank" rel="noopener noreferrer">University of Oulu</a>
+                  
+                </div>
+              
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Company &amp; politics</p>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="tel:+358405118478">Business contact</a>
+                  
+                    <a class="mobile-nav-link" href="mailto:jari.laru@ouka.fi">Politics email</a>
+                  
+                    <a class="mobile-nav-link" href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/contact/">Contact page</a>
+                  
+                </div>
+              
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Quick links</p>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/company/">Company</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/presentations/">Presentations</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/politics/">Politics</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/en/privacy/">Privacy</a>
+                  
+                </div>
+              
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="searchOverlay" class="search-overlay" role="dialog" aria-modal="true" aria-labelledby="searchOverlayTitle" aria-hidden="true" hidden="">
+  <div class="search-overlay-inner">
+    <div class="container py-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0" id="searchOverlayTitle"><i class="bi bi-search me-2"></i>Search</h3>
+        <button class="btn btn-sm rounded-circle" id="searchCloseBtn" aria-label="Close search" style="width: 38px; height: 38px;">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div id="pagefindSearch"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  
+  
+  
+  
+    
+  
+
+  
+  <section class="subpage-hero-placeholder" aria-hidden="true">
+    <div class="subpage-hero-image"></div>
+  </section>
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="container py-2" aria-label="Breadcrumb">
+  <ol class="breadcrumb mb-0 small">
+    <li class="breadcrumb-item"><a href="/www-staging/en/">Home</a></li>
+    
+      
+      
+        
+      
+        
+          
+            <li class="breadcrumb-item">
+              
+                <a href="/www-staging/en/work/">Work</a>
+              
+            </li>
+          
+        
+      
+        
+          
+            <li class="breadcrumb-item active" aria-current="page">Publications</li>
+          
+        
+      
+      
+    
+  </ol>
+</nav>
+
+
+
+  <main id="main-content" class="site-main">
+    <div class="bss-scope">
+      <section class="bg-light">
+  <div class="container py-4">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8">
+        <p class="text-uppercase small text-muted mb-2">Publications</p>
+        <h1 class="display-6 fw-bold mb-2">Publications & Analytics</h1>
+        <p class="text-muted">My scientific publications, updated directly from my <a href="https://research.fi/en/results/person/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer">Research.fi profile</a>.</p>
+      </div>
+      <div class="col-lg-4">
+        <div class="d-flex flex-wrap gap-2 justify-content-lg-end" id="headerMetrics">
+          <span class="badge text-bg-primary text-dark fs-6">55 publications</span>
+          <span class="badge text-bg-info fs-6">11 articles</span>
+          <span class="badge text-bg-secondary fs-6">23 conference papers</span>
+          <span class="badge text-bg-warning fs-6 d-none" id="dynamicTotalCitations" title="Source: OpenAlex + Semantic Scholar">... citations</span>
+          <span class="badge text-bg-success fs-6 d-none" id="dynamicHIndex" title="Source: OpenAlex + Semantic Scholar">... h-index</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANALYTIIKKA-DASHBOARD -->
+<section class="py-4 bg-body-tertiary">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Julkaisut vuosittain -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-bar-chart-fill me-2"></i>Publications & citations by year</h2>
+            <canvas id="yearChart" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Julkaisutyypit -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-pie-chart-fill me-2"></i>Publication types</h2>
+            <canvas id="typeChart" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Open Access & Vertaisarvioitu -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-unlock-fill me-2"></i>Quality indicators</h2>
+            <canvas id="qualityChart" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Yhteistyöverkosto -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-people-fill me-2"></i>Top 10 co-authors</h2>
+            <div class="table-responsive">
+              <table class="table table-sm table-hover align-middle mb-0 pub-table" id="coauthorTable">
+                <thead><tr><th>Researcher</th><th class="text-end">Co-publications</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aihepiirijakauma -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-tags-fill me-2"></i>Keywords (from titles)</h2>
+            <div id="wordCloud" class="d-flex flex-wrap gap-2 align-items-center"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- JULKAISULISTA -->
+<section id="researchfi-julkaisut" class="py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="mb-0">All publications</h3>
+    </div>
+
+    
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+        
+      
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+      
+      
+      
+
+      
+      
+      <div class="card shadow-sm mb-5 section-card" id="card-pub-table-a">
+        <div class="card-header bg-transparent py-3">
+          <div class="d-flex align-items-start justify-content-between">
+            <div>
+              <h4 class="h5 mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>A - Peer-reviewed scientific articles</h4>
+              
+              <div class="mt-1 d-flex flex-wrap">
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">A1</strong>&nbsp;Original article in a scientific journal
+                  </span>
+                  
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">A2</strong>&nbsp;Review article in a scientific journal
+                  </span>
+                  
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">A3</strong>&nbsp;Chapter in an edited scientific volume
+                  </span>
+                  
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">A4</strong>&nbsp;Article in conference proceedings
+                  </span>
+                  
+                
+              </div>
+              
+            </div>
+            <span class="badge text-bg-primary">27</span>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="p-3 border-bottom publication-filter-bar">
+            <div class="row g-2 align-items-end">
+              <div class="col-md-9">
+                <label for="search-pub-table-a" class="form-label small text-muted mb-1">Filter</label>
+                <input type="search" id="search-pub-table-a" class="form-control form-control-sm" placeholder="Search title, author, or venue..." autocomplete="off" data-pub-search="pub-table-a">
+              </div>
+            </div>
+          </div>
+          <div id="pub-table-a">
+            <div class="table-responsive">
+              <table class="table table-sm table-hover align-middle mb-0 pub-table">
+                <thead>
+                  <tr>
+                    <th class="text-center" style="width:70px">Year</th>
+                    <th style="width:80px">Class</th>
+                    <th>Title & Venue</th>
+                    <th style="width:200px">Author(s)</th>
+                    <th style="width:100px" class="text-center">Links</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2026</td>
+                    <td><span class="badge bg-secondary" title="Type A1">A1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Co-constructing adaptive lesson plans with GenAI: Pre-service teachers&#39; Intelligent-TPACK and prompt engineering strategies</span>
+                      <span class="text-muted small d-block fst-italic">Computers and education</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>7</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Celik, Ismail; Kontkanen, Sini; Laru, Jari; Dalyanci, Alanur Ahsen</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1016/j.compedu.2025.105485" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2025</td>
+                    <td><span class="badge bg-secondary" title="Type A4">A4</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">An XAI Social Media Platform for Teaching K-12 Students AI-Driven Profiling, Clustering, and Engagement-Based Recommending</span>
+                      <span class="text-muted small d-block fst-italic">Proceedings of the AAAI conference on artificial intelligence</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>3</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Pope, Nicolas; Kahila, Juho; Vartiainen, Henriikka; Saqr, Mohammed; López-Pernas, Sonsoles; Roos, Teemu; Laru, Jari; Tedre, Matti</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1609/aaai.v39i28.35194" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2025</td>
+                    <td><span class="badge bg-secondary" title="Type A1">A1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">The antecedents of pre-service teachers&#39; AI literacy: perceptions about own AI driven applications, attitude towards AI and knowledge in machine learning</span>
+                      <span class="text-muted small d-block fst-italic">European journal of teacher education</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>13</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari; Celik, Ismail; Jokela, Iiris; Makitalo, Kati</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1080/02619768.2025.2535623" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2024</td>
+                    <td><span class="badge bg-secondary" title="Type A4">A4</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">An Educational Tool for Learning about Social Media Tracking, Profiling, and Recommendation</span>
+                      <span class="text-muted small d-block fst-italic">IEEE International Conference on Advanced Learning Technologies</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>5</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Pope, Nicolas; Kahila, Juho; Laru, Jari; Vartiainen, Henriikka; Roos, Teemu; Tedre, Matti</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1109/icalt61570.2024.00038" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2024</td>
+                    <td><span class="badge bg-secondary" title="Type A4">A4</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">A No-Code AI Education Tool for Learning AI in K-12 by Making Machine Learning-Driven Apps</span>
+                      <span class="text-muted small d-block fst-italic">IEEE International Conference on Advanced Learning Technologies</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>10</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Pope, Nicolas; Vartiainen, Henriikka; Kahila, Juho; Laru, Jari; Tedre, Matti</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1109/icalt61570.2024.00037" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2024</td>
+                    <td><span class="badge bg-secondary" title="Type A3">A3</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Manifesto in Defence of Human-Centred Education in the Age of Artificial Intelligence</span>
+                      <span class="text-muted small d-block fst-italic">Palgrave Studies in Creativity and Culture</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>11</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Romero, Margarida; Frosig, Thomas; Taylor-Beswick, Amanda M.L.; Laru, Jari; Bernasco, Bastienne; Urmeneta, Alex; Strutynska, Oksana; Girard, Marc André</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1007/978-3-031-55272-4_12" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2024</td>
+                    <td><span class="badge bg-secondary" title="Type A3">A3</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Learning AI literacy in collaborative projects with an AI education tool by making machine-learning-driven apps: A case study from Finnish pre-service teacher education</span>
+                      <span class="text-muted small d-block fst-italic">Effective Practices in AI Literacy Education: Case Studies and Reflections</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>3</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari; Celik, Ismail; Kivioja, Iiris; Mäkitalo, Kati</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1108/978-1-83608-852-320241015" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2023</td>
+                    <td><span class="badge bg-secondary" title="Type A1">A1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Alakoululaiset yhteisöllisinä oppijoina– Tapaustutkimus 4. luokkalaisten STEAM-projektin kontekstissa</span>
+                      <span class="text-muted small d-block fst-italic">Ainedidaktiikka</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>1</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Vuopala, Essi; Laru, Jari; Näykki, Jussi</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.23988/ad.120462" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2022</td>
+                    <td><span class="badge bg-secondary" title="Type A4">A4</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">How the Pre-service Teachers Associate Computational Thinking with Programming? A Case Study of an Introductory Programming Course in Teacher Education</span>
+                      <span class="text-muted small d-block fst-italic">Proceedings of international conference on computational thinking education</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Iwata, Megumi; Laru, Jari; Mäkitalo, Kati</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.34641/ctestem.2022.467" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2020</td>
+                    <td><span class="badge bg-secondary" title="Type A1">A1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Exploring Potentials and Challenges to Develop Twenty-First Century Skills and Computational Thinking in K-12 Maker Education</span>
+                      <span class="text-muted small d-block fst-italic">Frontiers in education</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>48</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Iwata, Megumi; Pitkänen, Kati; Laru, Jari; Mäkitalo, Kati</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.3389/feduc.2020.00087" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2020</td>
+                    <td><span class="badge bg-secondary" title="Type A4">A4</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Interactive Visible Light Communications (iVLC): Supporting Wireless Communications and Smart Visual Interaction with a Common Lighting Infrastructure</span>
+                      <span class="text-muted small d-block fst-italic">2nd South American Colloquium on Visible Light Communications, SACVC 2020</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>8</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Katz, M.; Ahmed, I.; Laru, J.; Häkkinen, J.</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1109/SACVLC50805.2020.9129897" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2020</td>
+                    <td><span class="badge bg-secondary" title="Type A1">A1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">STEAM in Oulu: Scaffolding the development of a Community of Practice for local educators around STEAM and digital fabrication</span>
+                      <span class="text-muted small d-block fst-italic">International journal of child-computer interaction</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>58</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Milara, I.S.; Pitkänen, K.; Laru, J.; Iwata, M.; Orduña, M.C.; Riekki, J.</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1016/j.ijcci.2020.100197" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2020</td>
+                    <td><span class="badge bg-secondary" title="Type A1">A1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Exploring technology-oriented Fab Lab facilitators’ role as educators in K-12 education: Focus on scaffolding novice students’ learning in digital fabrication activities</span>
+                      <span class="text-muted small d-block fst-italic">International journal of child-computer interaction</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>34</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Pitkänen, K.; Iwata, M.; Laru, J.</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1016/j.ijcci.2020.100207" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2020</td>
+                    <td><span class="badge bg-secondary" title="Type A4">A4</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Integrating computational thinking in k-12 education: Exploring digital fabrication activities through ctpack framework</span>
+                      <span class="text-muted small d-block fst-italic">Proceedings of international conference on computational thinking education</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Iwata, Megumi; Laru, Jari; Mäkitalo, Kati; Pitkänen, Kati</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2019</td>
+                    <td><span class="badge bg-secondary" title="Type A4">A4</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Supporting Fab Lab facilitators to develop pedagogical practices   to improve learning in digital fabrication  activities</span>
+                      <span class="text-muted small d-block fst-italic">Proceedings of the FabLearn Europe 2019 Conference , 28-29 May, Oulu, Finland</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>28</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Pitkänen, Kati; Iwata, Megumi; Laru, Jari</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1145/3335055.3335061" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2019</td>
+                    <td><span class="badge bg-secondary" title="Type A1">A1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Affective Learning in Digital Education—Case Studies of Social Networking Systems, Games for Learning, and Digital Fabrication</span>
+                      <span class="text-muted small d-block fst-italic">Frontiers in education</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>38</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Näykki, Piia; Laru, Jari; Vuopala, Essi; Siklander, Pirkko; Järvelä, Sanna</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.3389/feduc.2019.00128" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2019</td>
+                    <td><span class="badge bg-secondary" title="Type A3">A3</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Designing Seamless Learning Activities for School Visitors in the Context of Fab Lab Oulu</span>
+                      <span class="text-muted small d-block fst-italic">Lecture notes in educational technology</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>11</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari; Vuopala, Essi; Iwata, Megumi; Pitkänen, Kati; Sánchez Milara, Iván; Mäntyniemi, Antti; Packalen, Markus; Näykki, Jussi</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1007/978-981-13-3071-1_8" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2019</td>
+                    <td><span class="badge bg-secondary" title="Type A4">A4</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Developing computational thinking practices through digital fabrication activities</span>
+                      <span class="text-muted small d-block fst-italic">Proceedings of international conference on computational thinking education</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Iwata, Megumi; Pitkänen, Kati; Laru, Jari; Mäkitalo, Kati</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2016</td>
+                    <td><span class="badge bg-secondary" title="Type A1">A1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Socially shared regulation of learning in CSCL: understanding and prompting individual- and group-level shared regulatory activities</span>
+                      <span class="text-muted small d-block fst-italic">International journal of computer-supported collaborative learning</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>235</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Järvelä, Sanna; Kirschner, Paul A.; Hadwin, Allyson; Järvenoja, Hanna; Malmberg, Jonna; Miller, Mariel; Laru, Jari</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1007/s11412-016-9238-2" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2015</td>
+                    <td><span class="badge bg-secondary" title="Type A4">A4</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Designing Simple Tools for Socially Shared Regulation: Experiences of Using Google Docs and Mobile SRL Tools in Mathematics Education</span>
+                      <span class="text-muted small d-block fst-italic">Computer-supported collaborative learning</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari; Malmberg, Jonna; Järvenoja, Hanna; Sarenius, Vesa-Matti; Järvelä, Sanna</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2015</td>
+                    <td><span class="badge bg-secondary" title="Type A3">A3</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Integrated Use of Multiple Social Software Tools and Face-to-Face Activities to Support Self-Regulated Learning: A Case Study in a Higher Education Context</span>
+                      <span class="text-muted small d-block fst-italic">Seamless Learning in the Age of Mobile Connectivity : Part IV</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>19</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari; Järvelä, Sanna</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1007/978-981-287-113-8_24" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2015</td>
+                    <td><span class="badge bg-secondary" title="Type A1">A1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Four Stages of Research on the Educational Use of Ubiquitous Computing</span>
+                      <span class="text-muted small d-block fst-italic">IEEE transactions on learning technologies</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>44</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari; Näykki, Piia; Järvelä, Sanna</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1109/TLT.2014.2360862" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2013</td>
+                    <td><span class="badge bg-secondary" title="Type A4">A4</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Using Gartner’s Hype Cycle as a basis to analyze research on theeducational use of ubiquitous computing</span>
+                      <span class="text-muted small d-block fst-italic">To See the World and a Grain of Sand. Learning Across Levels of Space, Time, and Scale: CSCL 2013  Conference Proceedings Volume I. Full Papers &amp; Symposia</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari; Järvelä, Sanna</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2012</td>
+                    <td><span class="badge bg-secondary" title="Type A1">A1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Supporting collaborative inquiry during a biology field trip with mobile peer-to-peer tools for learning: a case study with K-12 learners</span>
+                      <span class="text-muted small d-block fst-italic">Interactive learning environments</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>55</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru J.; Järvelä S.; Clariana R.</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1080/10494821003771350" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2012</td>
+                    <td><span class="badge bg-secondary" title="Type A1">A1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Supporting small-group learning using multiple Web 2.0 tools : A case study in the higher education context</span>
+                      <span class="text-muted small d-block fst-italic">Internet and higher education</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>149</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari; Näykki, Piia; Järvelä, Sanna</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1016/j.iheduc.2011.08.004" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2009</td>
+                    <td><span class="badge bg-secondary" title="Type A4">A4</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Onko olemassa mobiilioppimista tai ubiikkioppimista? Kolme tapaustutkimusta yhteisöllisen opiskelun tukemisesta kannettavilla pienoistietok</span>
+                      <span class="text-muted small d-block fst-italic">Interaktiivisen median tutkimuksia</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2009</td>
+                    <td><span class="badge bg-secondary" title="Type A4">A4</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Does social software fit for all?  Examining students profiles and activities in collaborative learning mediated by social software</span>
+                      <span class="text-muted small d-block fst-italic">Proceedings of the international conference on Computer supported collaborative learning</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, J., Näykki, P., &amp; Järvelä, S.</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      
+      <div class="card shadow-sm mb-5 section-card" id="card-pub-table-b">
+        <div class="card-header bg-transparent py-3">
+          <div class="d-flex align-items-start justify-content-between">
+            <div>
+              <h4 class="h5 mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>B - Non-peer-reviewed scientific writings</h4>
+              
+              <div class="mt-1 d-flex flex-wrap">
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">B1</strong>&nbsp;Writing in a scientific journal
+                  </span>
+                  
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">B2</strong>&nbsp;Chapter in an edited volume
+                  </span>
+                  
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">B3</strong>&nbsp;Non-peer-reviewed conference article
+                  </span>
+                  
+                
+              </div>
+              
+            </div>
+            <span class="badge text-bg-info">9</span>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="p-3 border-bottom publication-filter-bar">
+            <div class="row g-2 align-items-end">
+              <div class="col-md-9">
+                <label for="search-pub-table-b" class="form-label small text-muted mb-1">Filter</label>
+                <input type="search" id="search-pub-table-b" class="form-control form-control-sm" placeholder="Search title, author, or venue..." autocomplete="off" data-pub-search="pub-table-b">
+              </div>
+            </div>
+          </div>
+          <div id="pub-table-b">
+            <div class="table-responsive">
+              <table class="table table-sm table-hover align-middle mb-0 pub-table">
+                <thead>
+                  <tr>
+                    <th class="text-center" style="width:70px">Year</th>
+                    <th style="width:80px">Class</th>
+                    <th>Title & Venue</th>
+                    <th style="width:200px">Author(s)</th>
+                    <th style="width:100px" class="text-center">Links</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2025</td>
+                    <td><span class="badge bg-secondary" title="Type B3">B3</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">An Explainable AI Tools for K-12 Classroom: Generation AI Teachable Machine</span>
+                      <span class="text-muted small d-block fst-italic">Proceedings : annual meeting of the international society of the learning sciences</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Iwata, Megumi; Merikanto-Tolonen, Sanna; Laru, Jari; Mäkitalo, Kati</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2023</td>
+                    <td><span class="badge bg-secondary" title="Type B1">B1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Editorial: Looking ahead: computational thinking in K12 education</span>
+                      <span class="text-muted small d-block fst-italic">Frontiers in education</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>2</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Mäkitalo, Kati; Laru, Jari; Dagienë, Valentina</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.3389/feduc.2023.1248509" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2019</td>
+                    <td><span class="badge bg-secondary" title="Type B3">B3</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">&quot;The STEAM path&quot; : building a Community of Practice for local schools around STEAM and Digital Fabrication</span>
+                      <span class="text-muted small d-block fst-italic">FabLearn Europe &#39;19 : Proceedings of the FabLearn Europe 2019 Conference Oulu, Finland — May 28 - 29, 2019</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>7</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Sánchez Milara, Iván; Pitkänen, Kati; Niva, Arto; Iwata, Megumi; Laru, Jari; Riekki, Jukka</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1145/3335055.3335072" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2019</td>
+                    <td><span class="badge bg-secondary" title="Type B3">B3</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">How are Mobile Makerspaces Utilized in Schools?</span>
+                      <span class="text-muted small d-block fst-italic">Proceedings of the FabLearn Europe 2019 Conference, 28-29 May, Oulu, Finland</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>7</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Iwata, Megumi; Pitkänen, Kati; Ylioja, Jani; Sánchez Milara, Iván; Laru, Jari</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1145/3335055.3335069" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2008</td>
+                    <td><span class="badge bg-secondary" title="Type B3">B3</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Collaborative-inquiry learning in the environment. Design experiment with distributed face-to-face and mobile scaffolds</span>
+                      <span class="text-muted small d-block fst-italic">Fifth IEEE international conference on wireless, mobile, and ubiqutious technologies in education, 23-26 March 2008, Beijing, China</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>1</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari &amp; Järvelä, Sanna</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1109/WMUTE.2008.41" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2008</td>
+                    <td><span class="badge bg-secondary" title="Type B3">B3</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Using web2.0 software and mobile devices for creating shared uunderstanding among virtual learning communities</span>
+                      <span class="text-muted small d-block fst-italic">Fifth IEEE international conference on wireless, mobile, and ubiqutious technologies in education, 23-26 March 2008, Beijing, China</span>
+                      
+                        <span class="badge text-bg-warning rounded-pill mt-1" title="Citations"><i class="bi bi-quote me-1"></i>9</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari &amp; Järvelä, Sanna</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.1109/WMUTE.2008.42" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2006</td>
+                    <td><span class="badge bg-secondary" title="Type B2">B2</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Augmenting students&#39; collaborative inquiry learning in the nature trail with mobile tools</span>
+                      <span class="text-muted small d-block fst-italic">Emerging practices in educational technology</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari &amp; Järvelä, Sanna</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2004</td>
+                    <td><span class="badge bg-secondary" title="Type B3">B3</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Scaffolding different learning activities with mobile tools in three everyday contexts</span>
+                      <span class="text-muted small d-block fst-italic">Special interest meeting 2004 of EARLI SIG 6 and SIG 7, July 7ht-9th, 2004 in Tübingen/Germany</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari &amp; Järvelä, Sanna</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2003</td>
+                    <td><span class="badge bg-secondary" title="Type B3">B3</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Applying wireless technology for coordinating collaboration in distributed university teachers&#39; team</span>
+                      <span class="text-muted small d-block fst-italic">International conference on computer support for collaborative learning, CSCL2003. Community events, communication and interaction, June 14-18, 2003 Bergen, Norway</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari &amp; Järvelä, Sanna</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      
+      <div class="card shadow-sm mb-5 section-card" id="card-pub-table-c">
+        <div class="card-header bg-transparent py-3">
+          <div class="d-flex align-items-start justify-content-between">
+            <div>
+              <h4 class="h5 mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>C - Scientific books</h4>
+              
+              <div class="mt-1 d-flex flex-wrap">
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">C1</strong>&nbsp;Published scientific monograph
+                  </span>
+                  
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">C2</strong>&nbsp;Edited book, proceedings, or special issue
+                  </span>
+                  
+                
+              </div>
+              
+            </div>
+            <span class="badge text-bg-warning">1</span>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="p-3 border-bottom publication-filter-bar">
+            <div class="row g-2 align-items-end">
+              <div class="col-md-9">
+                <label for="search-pub-table-c" class="form-label small text-muted mb-1">Filter</label>
+                <input type="search" id="search-pub-table-c" class="form-control form-control-sm" placeholder="Search title, author, or venue..." autocomplete="off" data-pub-search="pub-table-c">
+              </div>
+            </div>
+          </div>
+          <div id="pub-table-c">
+            <div class="table-responsive">
+              <table class="table table-sm table-hover align-middle mb-0 pub-table">
+                <thead>
+                  <tr>
+                    <th class="text-center" style="width:70px">Year</th>
+                    <th style="width:80px">Class</th>
+                    <th>Title & Venue</th>
+                    <th style="width:200px">Author(s)</th>
+                    <th style="width:100px" class="text-center">Links</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2023</td>
+                    <td><span class="badge bg-secondary" title="Type C2">C2</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Research topic: Looking Ahead: Computational Thinking in K12 education</span>
+                      <span class="text-muted small d-block fst-italic">Frontiers in education</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Mäkitalo, Kati; Laru, Jari;  Dagienë, Valentina</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      
+      <div class="card shadow-sm mb-5 section-card" id="card-pub-table-d">
+        <div class="card-header bg-transparent py-3">
+          <div class="d-flex align-items-start justify-content-between">
+            <div>
+              <h4 class="h5 mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>D - Publications for professional communities</h4>
+              
+              <div class="mt-1 d-flex flex-wrap">
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">D1</strong>&nbsp;Article in a professional magazine
+                  </span>
+                  
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">D2</strong>&nbsp;Article in a professional edited volume
+                  </span>
+                  
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">D3</strong>&nbsp;Article in a professional conference publication
+                  </span>
+                  
+                
+              </div>
+              
+            </div>
+            <span class="badge text-bg-secondary">5</span>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="p-3 border-bottom publication-filter-bar">
+            <div class="row g-2 align-items-end">
+              <div class="col-md-9">
+                <label for="search-pub-table-d" class="form-label small text-muted mb-1">Filter</label>
+                <input type="search" id="search-pub-table-d" class="form-control form-control-sm" placeholder="Search title, author, or venue..." autocomplete="off" data-pub-search="pub-table-d">
+              </div>
+            </div>
+          </div>
+          <div id="pub-table-d">
+            <div class="table-responsive">
+              <table class="table table-sm table-hover align-middle mb-0 pub-table">
+                <thead>
+                  <tr>
+                    <th class="text-center" style="width:70px">Year</th>
+                    <th style="width:80px">Class</th>
+                    <th>Title & Venue</th>
+                    <th style="width:200px">Author(s)</th>
+                    <th style="width:100px" class="text-center">Links</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2026</td>
+                    <td><span class="badge bg-secondary" title="Type D2">D2</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Ohjelmoinnista ohjelmoinnilliseen ajatteluun ja tekoälytaitojen edistämiseen</span>
+                      <span class="text-muted small d-block fst-italic">Esi- ja alkuopetuksen käsikirja</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari; Mäkitalo, Kati; Tedre, Matti; Valtonen, Teemu; Vartiainen, Henriikka</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2023</td>
+                    <td><span class="badge bg-secondary" title="Type D3">D3</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Identifying Computational Thinking Behaviors in the Robotics Programming Activity</span>
+                      <span class="text-muted small d-block fst-italic">16th International Conference on Informatics in Schools: Situation, Evolution, and Perspectives, ISSEP 2023, Local Proceedings</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Iwata,Megumi; Zabolotna, Kateryna; Mäkitalo, Kati; Laru, Jari; Malmberg, Jonna</td>
+                    <td class="text-center">
+                      
+                        <a href="https://doi.org/10.5281/zenodo.8431953" target="_blank" class="btn btn-sm btn-outline-primary py-0 px-2 rounded-pill" rel="noopener noreferrer" title="Open publication" aria-label="Open publication in a new tab"><i class="bi bi-box-arrow-up-right"></i></a>
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2020</td>
+                    <td><span class="badge bg-secondary" title="Type D2">D2</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Lukivaikeuksien kompensointi ja oppimisen tukeminen tieto- ja viestintäteknologian avulla</span>
+                      <span class="text-muted small d-block fst-italic">Luku- ja kirjoitustaidon pedagogiikkaa yläkouluun</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Nitovuori, Veli-Pekka; Laru, Jari</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2020</td>
+                    <td><span class="badge bg-secondary" title="Type D2">D2</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Ohjelmoinnista digitaaliseen ajatteluun – kuinka edistää   ohjelmoinnin ja tietotekniikan oppimista esi- ja alkuopetuksessa</span>
+                      <span class="text-muted small d-block fst-italic">Esi- ja alkuopetuksen käsikirja</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari; Mäkitalo, Kati; Tedre, Matti; Valtonen, Teemu; Vartiainen, Henriikka</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2012</td>
+                    <td><span class="badge bg-secondary" title="Type D2">D2</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Pienryhmätyöskentelyn tukeminen sosiaalisen median sovelluksilla: tapaustutkimus korkeakoulukontekstissa</span>
+                      <span class="text-muted small d-block fst-italic">Oulun yliopiston oppimateriaalia. e, kasvatustieteet</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      
+      <div class="card shadow-sm mb-5 section-card" id="card-pub-table-e">
+        <div class="card-header bg-transparent py-3">
+          <div class="d-flex align-items-start justify-content-between">
+            <div>
+              <h4 class="h5 mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>E - Publications for general audiences</h4>
+              
+              <div class="mt-1 d-flex flex-wrap">
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">E1</strong>&nbsp;Popular article or newspaper article
+                  </span>
+                  
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">E2</strong>&nbsp;Popular monograph
+                  </span>
+                  
+                
+              </div>
+              
+            </div>
+            <span class="badge bg-dark">3</span>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="p-3 border-bottom publication-filter-bar">
+            <div class="row g-2 align-items-end">
+              <div class="col-md-9">
+                <label for="search-pub-table-e" class="form-label small text-muted mb-1">Filter</label>
+                <input type="search" id="search-pub-table-e" class="form-control form-control-sm" placeholder="Search title, author, or venue..." autocomplete="off" data-pub-search="pub-table-e">
+              </div>
+            </div>
+          </div>
+          <div id="pub-table-e">
+            <div class="table-responsive">
+              <table class="table table-sm table-hover align-middle mb-0 pub-table">
+                <thead>
+                  <tr>
+                    <th class="text-center" style="width:70px">Year</th>
+                    <th style="width:80px">Class</th>
+                    <th>Title & Venue</th>
+                    <th style="width:200px">Author(s)</th>
+                    <th style="width:100px" class="text-center">Links</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2025</td>
+                    <td><span class="badge bg-secondary" title="Type E1">E1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Mikä tekoäly?</span>
+                      <span class="text-muted small d-block fst-italic">50 Myyttiä tekoälystä ja datasta</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Davies, Sini; Faisal, Kamrul; Gröhn, Tommi; Honkela, Antti; Iwata, Megumi; Kangas, Kaiju; Laru, Jari; Merikanto-Tolonen, Sanna ; Mäkelin, Marianne; Mäkitalo, Kati; Roos, Teemu; Snell, Karoliina; Sormunen, Kati; Tedre, Matti; Ylikoski, Petri</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2025</td>
+                    <td><span class="badge bg-secondary" title="Type E1">E1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Tekoäly ja data ihmisten arjessa</span>
+                      <span class="text-muted small d-block fst-italic">50 Myyttiä tekoälystä ja datasta</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Iwata, Megumi; Kahila, Juho; Laru, Jari; Lehto, Iiris; Lindroos-Hovinheimo, Susanna; Merikanto-Tolonen, Sanna ; Mäkitalo, Kati; Pietarinen, Tarja Hannele; Roos, Teemu; Silvennoinen, Elisa ; Snell, Karoliina; Sormunen, Milka</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2025</td>
+                    <td><span class="badge bg-secondary" title="Type E1">E1</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Mitä tekoälyllä ja datalla tehdään?</span>
+                      <span class="text-muted small d-block fst-italic">50 Myyttiä tekoälystä ja datasta</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Alastalo, Marja; Faisal, Kamrul; Iisakka, Essi ; Iwata, Megumi; Laru, Jari; Lehto, Iiris; Merikanto-Tolonen, Sanna ; Mäkelin, Marianne; Mäkitalo, Kati; Tedre, Matti; Vartiainen, Henriikka; Vesikukka, Teppo Pentti Johannes</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      
+      <div class="card shadow-sm mb-5 section-card" id="card-pub-table-g">
+        <div class="card-header bg-transparent py-3">
+          <div class="d-flex align-items-start justify-content-between">
+            <div>
+              <h4 class="h5 mb-0"><i class="bi bi-journal-text me-2 text-primary"></i>G - Theses</h4>
+              
+              <div class="mt-1 d-flex flex-wrap">
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">G4</strong>&nbsp;Doctoral dissertation (article-based)
+                  </span>
+                  
+                
+                  
+                  <span class="me-3 mt-1" style="font-size:0.78rem; color: var(--bs-secondary-color);">
+                    <strong style="font-size:0.76rem;">G5</strong>&nbsp;Doctoral dissertation (monograph)
+                  </span>
+                  
+                
+              </div>
+              
+            </div>
+            <span class="badge text-bg-success">1</span>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="p-3 border-bottom publication-filter-bar">
+            <div class="row g-2 align-items-end">
+              <div class="col-md-9">
+                <label for="search-pub-table-g" class="form-label small text-muted mb-1">Filter</label>
+                <input type="search" id="search-pub-table-g" class="form-control form-control-sm" placeholder="Search title, author, or venue..." autocomplete="off" data-pub-search="pub-table-g">
+              </div>
+            </div>
+          </div>
+          <div id="pub-table-g">
+            <div class="table-responsive">
+              <table class="table table-sm table-hover align-middle mb-0 pub-table">
+                <thead>
+                  <tr>
+                    <th class="text-center" style="width:70px">Year</th>
+                    <th style="width:80px">Class</th>
+                    <th>Title & Venue</th>
+                    <th style="width:200px">Author(s)</th>
+                    <th style="width:100px" class="text-center">Links</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td class="text-center font-monospace small fw-bold text-info">2012</td>
+                    <td><span class="badge bg-secondary" title="Type G5">G5</span></td>
+                    <td>
+                      <span class="fw-medium d-block mb-1">Scaffolding learning activities with collaborative scripts and mobile devices</span>
+                      <span class="text-muted small d-block fst-italic">Acta Universitatis Ouluensis E : Scientiae rerum socialium</span>
+                      
+                    </td>
+                    <td class="text-secondary small">Laru, Jari</td>
+                    <td class="text-center">
+                      
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+    
+  </div>
+</section>
+
+<!-- Chart.js & Dashboard Scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Inline data from Eleventy
+  const publications = [
+    
+    { year: 2026, type: "A1", authors: "Celik, Ismail; Kontkanen, Sini; Laru, Jari; Dalyanci, Alanur Ahsen", title: "Co-constructing adaptive lesson plans with GenAI: Pre-service teachers&#39; Intelligent-TPACK and prompt engineering strategies", peerReviewed: true, openAccess: 1, doi: "10.1016/j.compedu.2025.105485" },
+    
+    { year: 2026, type: "D2", authors: "Laru, Jari; Mäkitalo, Kati; Tedre, Matti; Valtonen, Teemu; Vartiainen, Henriikka", title: "Ohjelmoinnista ohjelmoinnilliseen ajatteluun ja tekoälytaitojen edistämiseen", peerReviewed: false, openAccess: 0, doi: "" },
+    
+    { year: 2025, type: "A4", authors: "Pope, Nicolas; Kahila, Juho; Vartiainen, Henriikka; Saqr, Mohammed; López-Pernas, Sonsoles; Roos, Teemu; Laru, Jari; Tedre, Matti", title: "An XAI Social Media Platform for Teaching K-12 Students AI-Driven Profiling, Clustering, and Engagement-Based Recommending", peerReviewed: true, openAccess: 1, doi: "10.1609/aaai.v39i28.35194" },
+    
+    { year: 2025, type: "A1", authors: "Laru, Jari; Celik, Ismail; Jokela, Iiris; Makitalo, Kati", title: "The antecedents of pre-service teachers&#39; AI literacy: perceptions about own AI driven applications, attitude towards AI and knowledge in machine learning", peerReviewed: true, openAccess: 1, doi: "10.1080/02619768.2025.2535623" },
+    
+    { year: 2025, type: "B3", authors: "Iwata, Megumi; Merikanto-Tolonen, Sanna; Laru, Jari; Mäkitalo, Kati", title: "An Explainable AI Tools for K-12 Classroom: Generation AI Teachable Machine", peerReviewed: false, openAccess: 1, doi: "" },
+    
+    { year: 2025, type: "E1", authors: "Davies, Sini; Faisal, Kamrul; Gröhn, Tommi; Honkela, Antti; Iwata, Megumi; Kangas, Kaiju; Laru, Jari; Merikanto-Tolonen, Sanna ; Mäkelin, Marianne; Mäkitalo, Kati; Roos, Teemu; Snell, Karoliina; Sormunen, Kati; Tedre, Matti; Ylikoski, Petri", title: "Mikä tekoäly?", peerReviewed: false, openAccess: 1, doi: "" },
+    
+    { year: 2025, type: "E1", authors: "Iwata, Megumi; Kahila, Juho; Laru, Jari; Lehto, Iiris; Lindroos-Hovinheimo, Susanna; Merikanto-Tolonen, Sanna ; Mäkitalo, Kati; Pietarinen, Tarja Hannele; Roos, Teemu; Silvennoinen, Elisa ; Snell, Karoliina; Sormunen, Milka", title: "Tekoäly ja data ihmisten arjessa", peerReviewed: false, openAccess: 1, doi: "" },
+    
+    { year: 2025, type: "E1", authors: "Alastalo, Marja; Faisal, Kamrul; Iisakka, Essi ; Iwata, Megumi; Laru, Jari; Lehto, Iiris; Merikanto-Tolonen, Sanna ; Mäkelin, Marianne; Mäkitalo, Kati; Tedre, Matti; Vartiainen, Henriikka; Vesikukka, Teppo Pentti Johannes", title: "Mitä tekoälyllä ja datalla tehdään?", peerReviewed: false, openAccess: 1, doi: "" },
+    
+    { year: 2024, type: "A4", authors: "Pope, Nicolas; Kahila, Juho; Laru, Jari; Vartiainen, Henriikka; Roos, Teemu; Tedre, Matti", title: "An Educational Tool for Learning about Social Media Tracking, Profiling, and Recommendation", peerReviewed: true, openAccess: 0, doi: "10.1109/icalt61570.2024.00038" },
+    
+    { year: 2024, type: "A4", authors: "Pope, Nicolas; Vartiainen, Henriikka; Kahila, Juho; Laru, Jari; Tedre, Matti", title: "A No-Code AI Education Tool for Learning AI in K-12 by Making Machine Learning-Driven Apps", peerReviewed: true, openAccess: 0, doi: "10.1109/icalt61570.2024.00037" },
+    
+    { year: 2024, type: "A3", authors: "Romero, Margarida; Frosig, Thomas; Taylor-Beswick, Amanda M.L.; Laru, Jari; Bernasco, Bastienne; Urmeneta, Alex; Strutynska, Oksana; Girard, Marc André", title: "Manifesto in Defence of Human-Centred Education in the Age of Artificial Intelligence", peerReviewed: true, openAccess: 1, doi: "10.1007/978-3-031-55272-4_12" },
+    
+    { year: 2024, type: "A3", authors: "Laru, Jari; Celik, Ismail; Kivioja, Iiris; Mäkitalo, Kati", title: "Learning AI literacy in collaborative projects with an AI education tool by making machine-learning-driven apps: A case study from Finnish pre-service teacher education", peerReviewed: true, openAccess: 0, doi: "10.1108/978-1-83608-852-320241015" },
+    
+    { year: 2024, type: "", authors: "", title: "Learning AI Literacy in Collaborative Projects with an AI Education Tool by Making Machine-Learning-Driven Apps: A Case Study from Finnish Pre-service Teacher Education", peerReviewed: true, openAccess: 0, doi: "10.1108/978-1-83608-852-320241015" },
+    
+    { year: 2024, type: "", authors: "", title: "Learning AI literacy in collaborative projects with an AI Education Tool by Making Machine Learning-Driven Apps: A case study from Finnish pre-service teacher education", peerReviewed: true, openAccess: 0, doi: "10.35542/osf.io/3qx2h" },
+    
+    { year: 2023, type: "A1", authors: "Vuopala, Essi; Laru, Jari; Näykki, Jussi", title: "Alakoululaiset yhteisöllisinä oppijoina– Tapaustutkimus 4. luokkalaisten STEAM-projektin kontekstissa", peerReviewed: true, openAccess: 1, doi: "10.23988/ad.120462" },
+    
+    { year: 2023, type: "", authors: "Tedre, Matti; Mäkitalo, Kati; Vartiainen, Henriikka; Kahila, Juho; Laru, Jari; Iwata, Megumi", title: "Generation AI: Participatory Machine Learning Co-Design Projects with K-9 Students in Finland", peerReviewed: true, openAccess: 0, doi: "10.1145/3587103.3594171" },
+    
+    { year: 2023, type: "B1", authors: "Mäkitalo, Kati; Laru, Jari; Dagienë, Valentina", title: "Editorial: Looking ahead: computational thinking in K12 education", peerReviewed: false, openAccess: 1, doi: "10.3389/feduc.2023.1248509" },
+    
+    { year: 2023, type: "C2", authors: "Mäkitalo, Kati; Laru, Jari;  Dagienë, Valentina", title: "Research topic: Looking Ahead: Computational Thinking in K12 education", peerReviewed: true, openAccess: 1, doi: "" },
+    
+    { year: 2023, type: "D3", authors: "Iwata,Megumi; Zabolotna, Kateryna; Mäkitalo, Kati; Laru, Jari; Malmberg, Jonna", title: "Identifying Computational Thinking Behaviors in the Robotics Programming Activity", peerReviewed: false, openAccess: 1, doi: "10.5281/zenodo.8431953" },
+    
+    { year: 2022, type: "A4", authors: "Iwata, Megumi; Laru, Jari; Mäkitalo, Kati", title: "How the Pre-service Teachers Associate Computational Thinking with Programming? A Case Study of an Introductory Programming Course in Teacher Education", peerReviewed: true, openAccess: 1, doi: "10.34641/ctestem.2022.467" },
+    
+    { year: 2020, type: "D2", authors: "Nitovuori, Veli-Pekka; Laru, Jari", title: "Lukivaikeuksien kompensointi ja oppimisen tukeminen tieto- ja viestintäteknologian avulla", peerReviewed: false, openAccess: 1, doi: "" },
+    
+    { year: 2020, type: "A1", authors: "Iwata, Megumi; Pitkänen, Kati; Laru, Jari; Mäkitalo, Kati", title: "Exploring Potentials and Challenges to Develop Twenty-First Century Skills and Computational Thinking in K-12 Maker Education", peerReviewed: true, openAccess: 1, doi: "10.3389/feduc.2020.00087" },
+    
+    { year: 2020, type: "D2", authors: "Laru, Jari; Mäkitalo, Kati; Tedre, Matti; Valtonen, Teemu; Vartiainen, Henriikka", title: "Ohjelmoinnista digitaaliseen ajatteluun – kuinka edistää   ohjelmoinnin ja tietotekniikan oppimista esi- ja alkuopetuksessa", peerReviewed: false, openAccess: 0, doi: "" },
+    
+    { year: 2020, type: "A4", authors: "Katz, M.; Ahmed, I.; Laru, J.; Häkkinen, J.", title: "Interactive Visible Light Communications (iVLC): Supporting Wireless Communications and Smart Visual Interaction with a Common Lighting Infrastructure", peerReviewed: true, openAccess: 0, doi: "10.1109/SACVLC50805.2020.9129897" },
+    
+    { year: 2020, type: "A1", authors: "Milara, I.S.; Pitkänen, K.; Laru, J.; Iwata, M.; Orduña, M.C.; Riekki, J.", title: "STEAM in Oulu: Scaffolding the development of a Community of Practice for local educators around STEAM and digital fabrication", peerReviewed: true, openAccess: 1, doi: "10.1016/j.ijcci.2020.100197" },
+    
+    { year: 2020, type: "A1", authors: "Pitkänen, K.; Iwata, M.; Laru, J.", title: "Exploring technology-oriented Fab Lab facilitators’ role as educators in K-12 education: Focus on scaffolding novice students’ learning in digital fabrication activities", peerReviewed: true, openAccess: 0, doi: "10.1016/j.ijcci.2020.100207" },
+    
+    { year: 2020, type: "A4", authors: "Iwata, Megumi; Laru, Jari; Mäkitalo, Kati; Pitkänen, Kati", title: "Integrating computational thinking in k-12 education: Exploring digital fabrication activities through ctpack framework", peerReviewed: true, openAccess: 1, doi: "" },
+    
+    { year: 2019, type: "B3", authors: "Sánchez Milara, Iván; Pitkänen, Kati; Niva, Arto; Iwata, Megumi; Laru, Jari; Riekki, Jukka", title: "&#92;&quot;The STEAM path&#92;&quot; : building a Community of Practice for local schools around STEAM and Digital Fabrication", peerReviewed: false, openAccess: 0, doi: "10.1145/3335055.3335072" },
+    
+    { year: 2019, type: "A4", authors: "Pitkänen, Kati; Iwata, Megumi; Laru, Jari", title: "Supporting Fab Lab facilitators to develop pedagogical practices   to improve learning in digital fabrication  activities", peerReviewed: true, openAccess: 0, doi: "10.1145/3335055.3335061" },
+    
+    { year: 2019, type: "B3", authors: "Iwata, Megumi; Pitkänen, Kati; Ylioja, Jani; Sánchez Milara, Iván; Laru, Jari", title: "How are Mobile Makerspaces Utilized in Schools?", peerReviewed: false, openAccess: 1, doi: "10.1145/3335055.3335069" },
+    
+    { year: 2019, type: "A1", authors: "Näykki, Piia; Laru, Jari; Vuopala, Essi; Siklander, Pirkko; Järvelä, Sanna", title: "Affective Learning in Digital Education—Case Studies of Social Networking Systems, Games for Learning, and Digital Fabrication", peerReviewed: true, openAccess: 1, doi: "10.3389/feduc.2019.00128" },
+    
+    { year: 2019, type: "A3", authors: "Laru, Jari; Vuopala, Essi; Iwata, Megumi; Pitkänen, Kati; Sánchez Milara, Iván; Mäntyniemi, Antti; Packalen, Markus; Näykki, Jussi", title: "Designing Seamless Learning Activities for School Visitors in the Context of Fab Lab Oulu", peerReviewed: true, openAccess: 0, doi: "10.1007/978-981-13-3071-1_8" },
+    
+    { year: 2019, type: "A4", authors: "Iwata, Megumi; Pitkänen, Kati; Laru, Jari; Mäkitalo, Kati", title: "Developing computational thinking practices through digital fabrication activities", peerReviewed: true, openAccess: 1, doi: "" },
+    
+    { year: 2019, type: "", authors: "", title: "Designing seamless learning activities for school visitors in the context of fab lab oulu", peerReviewed: true, openAccess: 0, doi: "10.1007/978-981-13-3071-1_8" },
+    
+    { year: 2016, type: "A1", authors: "Järvelä, Sanna; Kirschner, Paul A.; Hadwin, Allyson; Järvenoja, Hanna; Malmberg, Jonna; Miller, Mariel; Laru, Jari", title: "Socially shared regulation of learning in CSCL: understanding and prompting individual- and group-level shared regulatory activities", peerReviewed: true, openAccess: 0, doi: "10.1007/s11412-016-9238-2" },
+    
+    { year: 2015, type: "A4", authors: "Laru, Jari; Malmberg, Jonna; Järvenoja, Hanna; Sarenius, Vesa-Matti; Järvelä, Sanna", title: "Designing Simple Tools for Socially Shared Regulation: Experiences of Using Google Docs and Mobile SRL Tools in Mathematics Education", peerReviewed: true, openAccess: 1, doi: "" },
+    
+    { year: 2015, type: "A3", authors: "Laru, Jari; Järvelä, Sanna", title: "Integrated Use of Multiple Social Software Tools and Face-to-Face Activities to Support Self-Regulated Learning: A Case Study in a Higher Education Context", peerReviewed: true, openAccess: 0, doi: "10.1007/978-981-287-113-8_24" },
+    
+    { year: 2015, type: "A1", authors: "Laru, Jari; Näykki, Piia; Järvelä, Sanna", title: "Four Stages of Research on the Educational Use of Ubiquitous Computing", peerReviewed: true, openAccess: 0, doi: "10.1109/TLT.2014.2360862" },
+    
+    { year: 2015, type: "", authors: "", title: "Integrated use of multiple social software tools and face-to-face activities to support self-regulated learning: A case study in a higher education context", peerReviewed: true, openAccess: 0, doi: "" },
+    
+    { year: 2013, type: "A4", authors: "Laru, Jari; Järvelä, Sanna", title: "Using Gartner’s Hype Cycle as a basis to analyze research on theeducational use of ubiquitous computing", peerReviewed: true, openAccess: 1, doi: "" },
+    
+    { year: 2012, type: "A1", authors: "Laru J.; Järvelä S.; Clariana R.", title: "Supporting collaborative inquiry during a biology field trip with mobile peer-to-peer tools for learning: a case study with K-12 learners", peerReviewed: true, openAccess: 0, doi: "10.1080/10494821003771350" },
+    
+    { year: 2012, type: "G5", authors: "Laru, Jari", title: "Scaffolding learning activities with collaborative scripts and mobile devices", peerReviewed: true, openAccess: 1, doi: "" },
+    
+    { year: 2012, type: "A1", authors: "Laru, Jari; Näykki, Piia; Järvelä, Sanna", title: "Supporting small-group learning using multiple Web 2.0 tools : A case study in the higher education context", peerReviewed: true, openAccess: 0, doi: "10.1016/j.iheduc.2011.08.004" },
+    
+    { year: 2012, type: "D2", authors: "Laru, Jari", title: "Pienryhmätyöskentelyn tukeminen sosiaalisen median sovelluksilla: tapaustutkimus korkeakoulukontekstissa", peerReviewed: false, openAccess: 1, doi: "" },
+    
+    { year: 2009, type: "A4", authors: "Laru, Jari", title: "Onko olemassa mobiilioppimista tai ubiikkioppimista? Kolme tapaustutkimusta yhteisöllisen opiskelun tukemisesta kannettavilla pienoistietok", peerReviewed: true, openAccess: 1, doi: "" },
+    
+    { year: 2009, type: "A4", authors: "Laru, J., Näykki, P., &amp; Järvelä, S.", title: "Does social software fit for all?  Examining students profiles and activities in collaborative learning mediated by social software", peerReviewed: true, openAccess: 1, doi: "" },
+    
+    { year: 2009, type: "", authors: "", title: "Does social software fit for all? Examining student&#39;s profiles and activities in collaborative learning mediated by social software", peerReviewed: true, openAccess: 0, doi: "" },
+    
+    { year: 2008, type: "B3", authors: "Laru, Jari &amp; Järvelä, Sanna", title: "Collaborative-inquiry learning in the environment. Design experiment with distributed face-to-face and mobile scaffolds", peerReviewed: false, openAccess: 1, doi: "10.1109/WMUTE.2008.41" },
+    
+    { year: 2008, type: "B3", authors: "Laru, Jari &amp; Järvelä, Sanna", title: "Using web2.0 software and mobile devices for creating shared uunderstanding among virtual learning communities", peerReviewed: false, openAccess: 1, doi: "10.1109/WMUTE.2008.42" },
+    
+    { year: 2008, type: "", authors: "", title: "Social patterns in mobile technology mediated collaboration among members of the professional distance education community", peerReviewed: true, openAccess: 0, doi: "10.1080/09523980701847131" },
+    
+    { year: 2007, type: "", authors: "", title: "Structuring and regulating collaborative learning in higher education with wireless networks and mobile tools", peerReviewed: true, openAccess: 0, doi: "" },
+    
+    { year: 2007, type: "", authors: "", title: "Structuring and regulating collaborative learning in higher education with wireless networks and mobile tools", peerReviewed: true, openAccess: 0, doi: "" },
+    
+    { year: 2006, type: "B2", authors: "Laru, Jari &amp; Järvelä, Sanna", title: "Augmenting students&#39; collaborative inquiry learning in the nature trail with mobile tools", peerReviewed: false, openAccess: 1, doi: "" },
+    
+    { year: 2004, type: "B3", authors: "Laru, Jari &amp; Järvelä, Sanna", title: "Scaffolding different learning activities with mobile tools in three everyday contexts", peerReviewed: false, openAccess: 1, doi: "" },
+    
+    { year: 2003, type: "B3", authors: "Laru, Jari &amp; Järvelä, Sanna", title: "Applying wireless technology for coordinating collaboration in distributed university teachers&#39; team", peerReviewed: false, openAccess: 1, doi: "" },
+    
+  ];
+
+  // Semantic Scholar / OpenAlex data
+  const s2Citations = {"10.1007/s11412-016-9238-2":235,"10.1016/j.iheduc.2011.08.004":149,"10.1016/j.ijcci.2020.100197":58,"10.3389/feduc.2020.00087":48,"10.1080/02619768.2025.2535623":13,"10.1016/j.compedu.2025.105485":7,"10.1080/10494821003771350":55,"10.1016/j.tafmec.2004.06.002":46,"10.1109/tlt.2014.2360862":44,"10.3389/feduc.2019.00128":38,"10.1016/j.ijcci.2020.100207":34,"10.1145/3335055.3335061":28,"10.1007/978-3-031-55272-4_12":11,"10.1109/icalt61570.2024.00037":10,"10.1520/stp19148s":8,"10.1108/978-1-83608-852-320241015":3,"10.1007/s10209-025-01278-4":1,"10.1177/0892705705041157":39,"10.1016/j.tafmec.2009.06.008":29,"10.1007/978-981-287-113-8_24":19,"10.1080/09523980701847131":19,"10.1520/jai12147":11,"10.1007/978-981-13-3071-1_8":11,"10.1109/sacvlc50805.2020.9129897":8,"10.1145/3335055.3335069":7,"10.1145/3335055.3335072":7,"10.1145/3587103.3594171":4,"10.1609/aaai.v39i28.35194":3,"10.1520/stp14054s":21,"10.1520/stp14055s":13,"10.1520/jai12148":11,"10.1109/wmute.2008.42":9,"10.1179/1743289811y.0000000049":5,"10.3389/feduc.2023.1248509":2,"10.1109/icalt61570.2024.00038":5,"10.1520/stp19894s":6,"10.1520/stp14459s":4,"10.3115/1600053.1600121":2,"10.1109/wmute.2008.41":1,"10.23988/ad.120462":1,"10.7551/mitpress/14041.003.0013":1,"10.48550/arxiv.2402.01813":3,"10.1520/stp19174s":2,"10.1080/00222338908053844":2,"10.1520/stp14436s":0,"10.11606/issn.2318-3659.v41isupl.p242-243":0,"10.11606/issn.2318-3659.v41isupl.p61-61":0,"10.11606/issn.2318-3659.v41isupl.p240-241":0,"10.11606/issn.2318-3659.v41isupl.p237-237":0,"10.21125/inted.2019.2222":0,"10.35542/osf.io/3qx2h":0,"10.48550/arxiv.2412.13554":4,"10.1101/2025.01.20.633881":0,"10.34641/ctestem.2022.467":0,"10.3390/electronics15010051":0,"10.1016/j.celrep.2025.116770":0,"10.1002/widm.70060":0,"10.1016/j.softx.2026.102551":0,"10.5281/zenodo.8431953":0};
+
+  // 0. LASKETAAN TODELLISET METRIIKAT (vain tällä sivulla olevat julkaisut)
+  let verifiedTotalCitations = 0;
+  const citationArray = [];
+  
+  publications.forEach(p => {
+    if (p.doi && s2Citations[p.doi.toLowerCase()]) {
+      const cites = s2Citations[p.doi.toLowerCase()];
+      verifiedTotalCitations += cites;
+      citationArray.push(cites);
+    }
+  });
+  
+  // Lasketaan todellinen h-indeksi näille julkaisuille
+  citationArray.sort((a,b) => b - a);
+  let verifiedHIndex = 0;
+  for (let i = 0; i < citationArray.length; i++) {
+    if (citationArray[i] >= i + 1) {
+      verifiedHIndex = i + 1;
+    } else {
+      break;
+    }
+  }
+
+  // Päivitetään DOM
+  if (verifiedTotalCitations > 0) {
+    const totalEl = document.getElementById('dynamicTotalCitations');
+    totalEl.textContent = verifiedTotalCitations + ' citations';
+    totalEl.classList.remove('d-none');
+    
+    const hEl = document.getElementById('dynamicHIndex');
+    hEl.textContent = 'h-index ' + verifiedHIndex;
+    hEl.classList.remove('d-none');
+  }
+
+  const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+  const textColor = isDark ? '#ccc' : '#666';
+  const gridColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)';
+
+  Chart.defaults.color = textColor;
+  Chart.defaults.borderColor = gridColor;
+
+  // Pagination for pub tables
+  const ITEMS_PER_PAGE = 10;
+  const urlState = new URL(window.location.href);
+  const urlParams = urlState.searchParams;
+  const getPubSearchKey = (tableId) => `pq_${tableId}`;
+  const setFilterParam = (key, value) => {
+    if (!value) {
+      urlParams.delete(key);
+      return;
+    }
+    urlParams.set(key, String(value).trim());
+  };
+  const updateFilterUrl = () => {
+    const qs = urlParams.toString();
+    const next = qs ? `${window.location.pathname}?${qs}${window.location.hash}` : `${window.location.pathname}${window.location.hash}`;
+    window.history.replaceState({}, '', next);
+  };
+  const syncPublicationFiltersToUrl = () => {
+    document.querySelectorAll('[data-pub-search]').forEach((input) => {
+      setFilterParam(getPubSearchKey(input.dataset.pubSearch), input.value || '');
+    });
+    updateFilterUrl();
+  };
+  const applyPublicationFiltersFromUrl = () => {
+    document.querySelectorAll('[data-pub-search]').forEach((input) => {
+      const val = urlParams.get(getPubSearchKey(input.dataset.pubSearch));
+      if (val) input.value = val;
+    });
+  };
+  applyPublicationFiltersFromUrl();
+
+  function initPubPagination(tableId) {
+    const tableContainer = document.getElementById(tableId);
+    if (!tableContainer) return;
+
+    const table = tableContainer.querySelector('table');
+    if (!table) return;
+
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    
+      // 5. Build Pagination UI
+      let paginationNav = tableContainer.querySelector('.pub-pagination');
+      if (!paginationNav) {
+        paginationNav = document.createElement('nav');
+        const containerId = tableContainer.id || Math.random().toString(36).substring(7);
+        paginationNav.setAttribute('aria-label', `Table pagination ${containerId}`);
+        paginationNav.className = 'pub-pagination d-flex justify-content-center mt-3';
+        paginationNav.innerHTML = '<ul class="pagination pagination-sm mb-3"></ul>';
+        tableContainer.appendChild(paginationNav);
+      }
+    
+    const ul = paginationNav.querySelector('ul');
+    let currentPage = 1;
+    let filteredRows = [...rows];
+    
+    const searchInput = document.querySelector(`[data-pub-search="${tableId}"]`);
+
+    function renderPage(page) {
+      currentPage = page;
+      const totalPages = Math.ceil(filteredRows.length / ITEMS_PER_PAGE);
+      if (currentPage < 1) currentPage = 1;
+      if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
+
+      rows.forEach(r => r.style.display = 'none');
+      
+      const start = (currentPage - 1) * ITEMS_PER_PAGE;
+      const end = start + ITEMS_PER_PAGE;
+      filteredRows.slice(start, end).forEach(r => r.style.display = '');
+
+      renderPaginationControls(totalPages);
+    }
+
+    function renderPaginationControls(totalPages) {
+      ul.innerHTML = '';
+      if (totalPages <= 1) return;
+
+      const prevLi = document.createElement('li');
+      prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+      prevLi.innerHTML = `<button type="button" class="page-link" aria-label="Previous page">&laquo;</button>`;
+      prevLi.addEventListener('click', (e) => { e.preventDefault(); if(currentPage > 1) renderPage(currentPage - 1); });
+      ul.appendChild(prevLi);
+
+      for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        li.className = `page-item ${i === currentPage ? 'active' : ''}`;
+        li.innerHTML = `<button type="button" class="page-link" aria-label="Page ${i}">${i}</button>`;
+        li.addEventListener('click', (e) => { e.preventDefault(); renderPage(i); });
+        ul.appendChild(li);
+      }
+
+      const nextLi = document.createElement('li');
+      nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+      nextLi.innerHTML = `<button type="button" class="page-link" aria-label="Next page">&raquo;</button>`;
+      nextLi.addEventListener('click', (e) => { e.preventDefault(); if(currentPage < totalPages) renderPage(currentPage + 1); });
+      ul.appendChild(nextLi);
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        const q = searchInput.value.toLowerCase();
+        filteredRows = rows.filter(row => row.textContent.toLowerCase().includes(q));
+        syncPublicationFiltersToUrl();
+        renderPage(1);
+      });
+    }
+
+    if (searchInput && searchInput.value) {
+      const q = searchInput.value.toLowerCase();
+      filteredRows = rows.filter(row => row.textContent.toLowerCase().includes(q));
+      syncPublicationFiltersToUrl();
+    }
+    renderPage(1);
+  }
+
+  ['pub-table-a', 'pub-table-b', 'pub-table-c', 'pub-table-d', 'pub-table-e', 'pub-table-g'].forEach(initPubPagination);
+
+  // 1. VUOSIKAAVIO
+  const yearCounts = {};
+  publications.forEach(p => { if(p.year) yearCounts[p.year] = (yearCounts[p.year]||0)+1; });
+  const years = Object.keys(yearCounts).sort();
+  // Citation counts per year from S2 data
+  const citesPerYear = {};
+  if (s2Citations) {
+    publications.forEach(p => {
+      if (p.year && p.doi && s2Citations[p.doi.toLowerCase()]) {
+        citesPerYear[p.year] = (citesPerYear[p.year]||0) + s2Citations[p.doi.toLowerCase()];
+      }
+    });
+  }
+
+  new Chart(document.getElementById('yearChart'), {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [{
+        label: 'Publications',
+        data: years.map(y => yearCounts[y]),
+        backgroundColor: isDark ? 'rgba(56,189,248,0.6)' : 'rgba(13,110,253,0.7)',
+        borderRadius: 4,
+        borderSkipped: false,
+        yAxisID: 'y'
+      },{
+        label: 'Citations',
+        data: years.map(y => citesPerYear[y] || 0),
+        type: 'line',
+        borderColor: '#ffc107',
+        backgroundColor: 'rgba(255,193,7,0.15)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 3,
+        yAxisID: 'y1'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } } },
+      scales: {
+        y: { beginAtZero: true, ticks: { stepSize: 1 }, title: { display: true, text: 'Publications', font: { size: 10 } } },
+        y1: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Citations', font: { size: 10 } } },
+        x: { ticks: { maxRotation: 45 } }
+      }
+    }
+  });
+
+  // 2. TYYPPIKAAVIO
+  const typeCounts = {};
+  const typeLabels = {
+    'A1':'Journal article (A1)', 'A2':'Review article (A2)',
+    'A3':'Book section (A3)', 'A4':'Conference paper (A4)',
+    'B1':'Scientific writing (B1)', 'B3':'Conference paper, non-peer-reviewed (B3)',
+    'C1':'Scientific monograph (C1)', 'C2':'Edited scientific volume (C2)',
+    'D1':'Professional article (D1)', 'D2':'Professional edited volume (D2)',
+    'E1':'General audience publication (E1)', 'G4':'Doctoral dissertation (G4)', 'G5':'Doctoral dissertation (G5)'
+  };
+  publications.forEach(p => { typeCounts[p.type] = (typeCounts[p.type]||0)+1; });
+  const typeKeys = Object.keys(typeCounts).sort((a,b) => typeCounts[b]-typeCounts[a]);
+  const typeColors = ['#0d6efd','#6610f2','#6f42c1','#d63384','#dc3545','#fd7e14','#ffc107','#198754','#20c997','#0dcaf0','#6c757d','#adb5bd','#495057'];
+  new Chart(document.getElementById('typeChart'), {
+    type: 'doughnut',
+    data: {
+      labels: typeKeys.map(k => typeLabels[k]||k),
+      datasets: [{
+        data: typeKeys.map(k => typeCounts[k]),
+        backgroundColor: typeColors.slice(0, typeKeys.length),
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+      }
+    }
+  });
+
+  // 3. LAADULLISET (peer review & OA)
+  // Kategorisoidaan julkaisut toisensa poissulkeviin luokkiin
+  const isPeerReviewed = (value) => value === true || value === 1 || value === '1' || String(value).toLowerCase() === 'true';
+  const isOpenAccess = (value) => value === true || value === 1 || value === '1' || String(value).toLowerCase() === 'true';
+  const prAndOa = publications.filter(p => isPeerReviewed(p.peerReviewed) && isOpenAccess(p.openAccess)).length;
+  const prOnly = publications.filter(p => isPeerReviewed(p.peerReviewed) && !isOpenAccess(p.openAccess)).length;
+  // "Muu / ei vertaisarvioitu" sisältää sekä OA- että ei-OA-julkaisut.
+  const nonPeerReviewed = publications.filter(p => !isPeerReviewed(p.peerReviewed)).length;
+  
+  new Chart(document.getElementById('qualityChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Peer-reviewed & OA', 'Peer-reviewed only', 'Other / non-peer-reviewed'],
+      datasets: [{
+        data: [prAndOa, prOnly, nonPeerReviewed],
+        backgroundColor: ['#198754', '#20c997', '#dee2e6'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+      }
+    }
+  });
+
+  // 4. KANSSATUTKIJAT
+  const coauthors = {};
+  publications.forEach(p => {
+    const authors = p.authors.split(';').map(a => a.trim()).filter(a => a.length > 0);
+    authors.forEach(a => {
+      if (!a.toLowerCase().startsWith('laru')) {
+        coauthors[a] = (coauthors[a]||0) + 1;
+      }
+    });
+  });
+  const topCoauthors = Object.entries(coauthors).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  const tbody = document.querySelector('#coauthorTable tbody');
+  topCoauthors.forEach(([name, count]) => {
+    const tr = document.createElement('tr');
+    const isDarkTheme = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+    const badgeStyle = isDarkTheme ? 'background-color: rgba(56,189,248,0.3); color: #e2e6ec;' : 'background-color: rgba(13,110,253,0.15); color: #0d6efd;';
+    tr.innerHTML = `<td>${name}</td><td class="text-end"><span class="badge rounded-pill" style="${badgeStyle}">${count}</span></td>`;
+    tbody.appendChild(tr);
+  });
+
+  // 5. SANAPILVI (Otsikon sanat, alkuperäinen toimivaksi todettu tapa)
+  const stopwords = new Set(['the','of','in','for','a','an','and','to','on','with','from','by','at','as','is','are','was','were','or','using','based','their','its','towards','between','among','during','about','through','case','study','how','can','do','does','than','into','all','not','but','also','been','has','have','had','which','when','what','that','this','these','those','other','more','no','some','varhaiskasvatuksen']);
+  const wordCounts = {};
+  publications.forEach(p => {
+    const words = p.title.toLowerCase().replace(/[^a-zäöüå\s-]/g, '').split(/\s+/);
+    words.forEach(w => {
+      if (w.length > 3 && !stopwords.has(w)) {
+        wordCounts[w] = (wordCounts[w]||0) + 1;
+      }
+    });
+  });
+  const topWords = Object.entries(wordCounts).sort((a,b)=>b[1]-a[1]).slice(0,25);
+  const cloudEl = document.getElementById('wordCloud');
+  if (topWords.length > 0) {
+    const maxCount = topWords[0]?.[1] || 1;
+    topWords.forEach(([word, count]) => {
+      const size = 0.7 + (count / maxCount) * 1.0;
+      const opacity = 0.5 + (count / maxCount) * 0.5;
+      const span = document.createElement('span');
+      span.className = 'badge rounded-pill';
+      span.style.cssText = `font-size:${size}rem; opacity:${opacity}; background-color: ${isDark ? 'rgba(56,189,248,0.3)' : 'rgba(13,110,253,0.15)'}; color: ${isDark ? '#e2e6ec' : '#0d6efd'}; font-weight: 500;`;
+      span.textContent = `${word} (${count})`;
+      cloudEl.appendChild(span);
+    });
+  } else {
+    cloudEl.innerHTML = '<span class="text-muted small">No keywords available</span>';
+  }
+});
+</script>
+
+    </div>
+  </main>
+
+  
+<footer class="py-3 border-top bg-body-tertiary mt-3">
+  <div class="container">
+    <div class="row align-items-center gy-2">
+      <div class="col-md-4 text-center text-md-start">
+        <p class="mb-0 text-body-secondary small">
+          
+          &copy; Jari Laru. All rights reserved.
+          
+        </p>
+        <div class="footer-social-links mt-1 d-inline-flex align-items-center gap-2" aria-label="Social media links">
+          <a href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-social-link"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+          <a href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate" class="footer-social-link"><i class="bi bi-globe" aria-hidden="true"></i></a>
+          <a href="https://orcid.org/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer" aria-label="ORCID" class="footer-social-link"><i class="bi bi-person-vcard" aria-hidden="true"></i></a>
+          <a href="https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" class="footer-social-link"><i class="bi bi-mortarboard" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/jarilaru" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="footer-social-link"><i class="bi bi-youtube" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        
+        <a href="/www-staging/en/accessibility/" class="footer-wcag-badge text-decoration-none d-inline-flex align-items-center gap-2 px-3 py-1 rounded border" aria-label="WCAG 2.1 Level AA conformant – view accessibility statement">
+          <span class="footer-wcag-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2"></circle>
+              <text x="16" y="12" text-anchor="middle" font-size="7" font-weight="700" font-family="sans-serif" fill="currentColor">W3C</text>
+              <text x="16" y="21" text-anchor="middle" font-size="6" font-weight="600" font-family="sans-serif" fill="currentColor">WCAG 2.1</text>
+              <text x="16" y="28" text-anchor="middle" font-size="5.5" font-weight="700" font-family="sans-serif" fill="currentColor">Level AA</text>
+            </svg>
+          </span>
+          <span class="footer-wcag-label">
+            <span class="d-block fw-semibold" style="font-size:0.7rem;line-height:1.2;">WCAG 2.1 AA</span>
+            <span class="d-block" style="font-size:0.65rem;line-height:1.2;">Accessibility statement</span>
+          </span>
+        </a>
+        
+      </div>
+      <div class="col-md-4 text-center text-md-end">
+        <p class="mb-0 text-body-secondary small">
+          
+          Built with <a href="/www-staging/en/how-this-site-is-built/" class="text-decoration-none text-body-secondary fw-semibold">Eleventy</a> · <a href="/www-staging/en/privacy/#manage-embed-consent" class="text-decoration-none text-body-secondary fw-semibold">Privacy notice</a> · <a href="/www-staging/en/site-changes/" class="text-decoration-none text-body-secondary fw-semibold"><i class="bi bi-github me-1" aria-hidden="true"></i>GitHub changes</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <section class="site-news-ticker site-news-ticker--footer" aria-label="Latest content">
+    <div class="site-news-ticker-inner">
+      <span class="site-news-ticker-label">Latest</span>
+      <div class="site-news-ticker-viewport">
+        <div class="site-news-ticker-track" data-latest-track=""></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" defer=""></script>
+  <script src="/www-staging/js/bootstrap.min.js" defer=""></script>
+  <script src="/www-staging/js/external-media-consent.js" defer=""></script>
+  <script src="/www-staging/js/site-ui.js" defer=""></script>
+
+  <!-- Accessibility panel / Saavutettavuuspaneeli -->
+  <button class="a11y-fab" type="button" data-bs-toggle="offcanvas" data-bs-target="#a11yOffcanvas" aria-controls="a11yOffcanvas" aria-label="Open accessibility settings">
+    <i class="bi bi-person-wheelchair"></i>
+  </button>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="a11yOffcanvas" aria-labelledby="a11yOffcanvasLabel">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title fw-bold" id="a11yOffcanvasLabel"><i class="bi bi-universal-access-circle me-2"></i>Accessibility</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted small mb-4">Customise the appearance to suit your needs. Settings are saved in your browser.</p>
+
+      <div class="mb-4">
+        <label for="a11yTextSize" class="form-label fw-bold">Text size</label>
+        <select class="form-select" id="a11yTextSize">
+          <option value="normal">Normal</option>
+          <option value="large">Large (+15%)</option>
+          <option value="xlarge">Maximum (+30%)</option>
+        </select>
+      </div>
+
+      <div class="mb-3 form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="a11yHighContrast">
+        <label class="form-check-label" for="a11yHighContrast">High contrast</label>
+      </div>
+
+      <div class="mb-3 form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="a11yReducedMotion">
+        <label class="form-check-label" for="a11yReducedMotion">Reduce animations</label>
+      </div>
+
+      <div class="mb-4 form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="a11yDyslexiaFont">
+        <label class="form-check-label" for="a11yDyslexiaFont">Dyslexia-friendly font</label>
+      </div>
+
+      <hr>
+      <button type="button" class="btn btn-outline-danger w-100 mt-2" id="a11yResetBtn">
+        <i class="bi bi-arrow-counterclockwise me-1"></i> Reset to defaults
+      </button>
+    </div>
+  </div>
+
+  <script src="/www-staging/js/table-filters.js" defer=""></script>
+  <script src="/www-staging/js/a11y.js" defer=""></script>
+</body>
+</html>

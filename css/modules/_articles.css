@@ -1,0 +1,602 @@
+/* ===== _articles.css — Subpage, article and component styles =====
+ * Sections: SUBPAGE HERO, BBS ARTICLE & TERMINAL, TABLE HEADER FILTERS,
+ *           SHARED COMPONENTS (kynasta-hero, pub-table, KPI cards)
+ * Part of jarilaru.fi styles — imported by styles.css
+ */
+/* ===== SUBPAGE HERO ===== */
+.subpage-hero-placeholder {
+  margin: 0;
+  width: 100%;
+}
+
+.subpage-hero-image {
+  height: 260px;
+  width: 100%;
+  background:
+    linear-gradient(rgba(18, 42, 71, 0.22), rgba(4, 16, 36, 0.66)),
+    url("/img/WIN_20210329_16_06_01_Pro.jpg") center 35% / cover no-repeat;
+}
+
+html:not([data-bs-theme="dark"]) .subpage-hero-image {
+  background:
+    linear-gradient(112deg, rgba(205, 226, 248, 0.82) 0%, rgba(196, 221, 247, 0.58) 55%, rgba(187, 214, 244, 0.28) 100%),
+    linear-gradient(rgba(180, 206, 236, 0.15) 60%, rgba(220, 236, 252, 0.75) 100%),
+    url("/img/WIN_20210329_16_06_01_Pro.jpg") center 35% / cover no-repeat;
+}
+
+@media (max-width: 991.98px) {
+  .subpage-hero-image {
+    height: 200px;
+  }
+}
+
+/* ===== BBS ARTICLE & TERMINAL ===== */
+.bbs-article-narrow {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bbs-list-pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.78rem;
+  background: #0d0d0d;
+  color: #c8c8c8;
+  padding: 1.5rem;
+  border-radius: 0.4rem;
+  overflow-x: auto;
+  white-space: pre;
+  line-height: 1.45;
+  border: 1px solid #333;
+}
+
+/* BBS feature article styles */
+.bbs-hero {
+  background-color: #0a1a0a;
+  border-bottom: 2px solid #1a3a1a;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.bbs-terminal-header {
+  font-size: 0.85rem;
+  color: #33ff66;
+  opacity: 0.7;
+}
+
+.bbs-prompt {
+  color: #33ff66;
+}
+
+.bbs-cursor {
+  animation: bbs-blink 1s step-end infinite;
+  color: #33ff66;
+}
+
+@keyframes bbs-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.bbs-hero-title {
+  font-family: "Courier New", Courier, monospace;
+  color: #33ff66;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  letter-spacing: 0.03em;
+  text-shadow: 0 0 18px rgba(51, 255, 102, 0.4);
+}
+
+.bbs-hero-sub {
+  color: rgba(51, 255, 102, 0.65);
+  font-size: 1rem;
+}
+
+.bbs-stat-pill {
+  background: rgba(51, 255, 102, 0.1);
+  border: 1px solid rgba(51, 255, 102, 0.3);
+  color: rgba(51, 255, 102, 0.85);
+  border-radius: 2rem;
+  padding: 0.25rem 0.8rem;
+  font-size: 0.78rem;
+  font-family: "Courier New", monospace;
+}
+
+.bbs-callout {
+  border-left: 4px solid #fd7e14;
+  background: var(--bs-warning-bg-subtle, #fff3cd);
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.bbs-callout-header {
+  padding: 0.6rem 1rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  color: #7a4900;
+}
+
+.bbs-callout-body {
+  padding: 1rem;
+  font-size: 0.92rem;
+}
+
+[data-bs-theme="dark"] .bbs-callout {
+  background: rgba(253, 126, 20, 0.1);
+  border-left-color: #fd7e14;
+}
+
+[data-bs-theme="dark"] .bbs-callout-header {
+  color: #ffc27a;
+}
+
+.bbs-chapter {
+  border-left: 4px solid var(--chapter-color, #6c757d);
+  padding-left: 1.5rem;
+  scroll-margin-top: 6rem;
+}
+
+.bbs-chapter-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.bbs-chapter-num {
+  font-family: "Courier New", monospace;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--chapter-color, #6c757d);
+  line-height: 1;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.bbs-chapter-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.bbs-chapter-body {
+  padding-left: 0;
+}
+
+.bbs-video-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bs-secondary-color);
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.bbs-caption {
+  font-size: 0.8rem;
+  color: var(--bs-secondary-color);
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.bbs-figure {
+  margin: 0;
+}
+
+.fs-bbs {
+  font-size: 0.75rem !important;
+  font-family: "Courier New", monospace;
+}
+
+.bbs-lightning-box {
+  background: var(--bs-warning-bg-subtle, #fff3cd);
+  border: 1px solid var(--bs-warning-border-subtle, #ffe69c);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+}
+
+[data-bs-theme="dark"] .bbs-lightning-box {
+  background: rgba(255, 193, 7, 0.08);
+  border-color: rgba(255, 193, 7, 0.2);
+}
+
+.bbs-spec-box {
+  background: var(--bs-tertiary-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+}
+
+.bbs-spec-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  color: var(--bs-secondary-color);
+}
+
+.bbs-link-card {
+  border-color: var(--bs-border-color);
+  transition: transform 0.15s, box-shadow 0.15s;
+  color: inherit;
+}
+
+.bbs-link-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+  color: inherit;
+}
+
+.bbs-link-icon {
+  font-size: 1.4rem;
+  color: var(--bs-secondary-color);
+}
+
+.bbs-video-wrap {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  background: #111;
+  border-radius: 0.25rem;
+}
+
+.bbs-video-wrap > .external-media-consent {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.bbs-video-wrap .external-media-consent__notice {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: var(--bs-tertiary-bg);
+  padding: 1rem;
+  text-align: center;
+}
+
+.bbs-video-wrap .external-media-consent__iframe {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  border: 0 !important;
+}
+
+.bbs-video-wrap > iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.bbs-video-wrap + .bbs-caption {
+  display: block;
+  margin-top: 0.4rem;
+}
+
+[data-bs-theme="dark"] .bbs-chapter-num {
+  opacity: 0.65;
+}
+
+/* =============================================================
+   SHARED COMPONENT STYLES
+   Common across multiple pages — do not duplicate inline
+   ============================================================= */
+
+/* --- Hero section (kynasta-hero) — theme-aware base ---
+   Pages that want a permanently dark hero override this inline. */
+.kynasta-hero {
+  background-color: var(--bs-tertiary-bg, #f8f9fa);
+  border-bottom: 1px solid var(--bs-border-color);
+}
+html:not([data-bs-theme="dark"]) .kynasta-hero {
+  background-color: #eef3f8;
+  border-bottom-color: #c0cdd8;
+}
+[data-bs-theme="dark"] .kynasta-hero {
+  background-color: #1e2a3a !important;
+  border-bottom-color: rgba(255,255,255,0.1);
+}
+[data-bs-theme="dark"] .kynasta-hero h1,
+[data-bs-theme="dark"] .kynasta-hero p {
+  color: #e0e0e0;
+}
+
+/* --- Hero nav pills --- */
+.kynasta-hero .nav-link {
+  color: var(--bs-body-color);
+  background-color: var(--bs-secondary-bg);
+  border-radius: 2rem;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.kynasta-hero .nav-link:hover {
+  background-color: var(--bs-emphasis-color);
+  color: var(--bs-body-bg);
+}
+[data-bs-theme="dark"] .kynasta-hero .nav-link {
+  background-color: rgba(255,255,255,0.08);
+  color: #e0e0e0;
+}
+[data-bs-theme="dark"] .kynasta-hero .nav-link:hover {
+  background-color: rgba(255,255,255,0.18);
+  color: #ffffff;
+}
+
+/* --- Nav count badge inside hero pills --- */
+.nav-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  background-color: rgba(0,0,0,0.12);
+  color: inherit;
+  margin-left: 0.25rem;
+  vertical-align: middle;
+}
+[data-bs-theme="dark"] .nav-count {
+  background-color: rgba(255,255,255,0.18);
+}
+
+/* --- Card header border in dark mode --- */
+.card-header.bg-transparent {
+  border-bottom-color: var(--bs-border-color);
+}
+[data-bs-theme="dark"] .card-header.bg-transparent {
+  border-bottom-color: rgba(255,255,255,0.1) !important;
+}
+[data-bs-theme="dark"] .card-header.bg-transparent h2 {
+  color: #ffffff;
+}
+
+/* --- Section anchor scroll offset --- */
+section[id] {
+  scroll-margin-top: 7rem;
+}
+
+/* --- Pagination --- */
+.pagination .page-link {
+  border-radius: 0.4rem !important;
+  margin: 0 2px;
+}
+
+/* --- Data table (.pub-table) --- */
+.pub-table th {
+  white-space: nowrap;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--bs-secondary-bg);
+  padding: 0.75rem 0.5rem;
+}
+[data-bs-theme="dark"] .pub-table th {
+  background-color: #2e3f59 !important;
+  color: #c0d0e0;
+  border-color: rgba(255,255,255,0.1) !important;
+}
+.pub-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+.pub-table th.sortable:hover {
+  background-color: var(--bs-tertiary-bg) !important;
+}
+[data-bs-theme="dark"] .pub-table th.sortable:hover {
+  background-color: #3a5070 !important;
+}
+.pub-table th.sort-asc .sort-icon::before {
+  content: "\F128";
+  opacity: 1 !important;
+  color: var(--bs-primary);
+}
+.pub-table th.sort-desc .sort-icon::before {
+  content: "\F127";
+  opacity: 1 !important;
+  color: var(--bs-primary);
+}
+.pub-table td {
+  padding: 0.75rem 0.5rem;
+}
+[data-bs-theme="dark"] .pub-table td {
+  border-color: rgba(255,255,255,0.07) !important;
+}
+
+/* Tekijä vuosi-solun alla mobiilissa — oletuksena piilotettu */
+.pub-table .col-year-author {
+  display: none;
+}
+
+/* Sarakeleveydet — hallitaan CSS:ssä eikä inline-tyyleissä */
+.pub-table .col-year  { width: 60px; }
+.pub-table .col-type  { width: 120px; }
+.pub-table .col-title { min-width: 160px; }
+.pub-table .col-abstract { min-width: 220px; }
+.pub-table .col-subjects  { min-width: 160px; }
+.pub-table .col-author    { width: 160px; }
+
+/*
+ * Responsiivisuus: piilota raskaat sarakkeet portaittain
+ *
+ *  ≥ 1100px  — kaikki sarakkeet näkyvissä (koko näyttö tai iso ikkuna)
+ *  768–1099px — piilotetaan Tiivistelmä; sopii ~50 % leveydelle 1440 px+ näytöllä
+ *  < 768px   — piilotetaan Tiivistelmä, Avainsanat ja Tekijä → 2 saraketta (Vuosi + Otsikko)
+ *  < 576px   — piilotetaan myös Tyyppi; vuosi tiivistetty
+ */
+@media (max-width: 1099.98px) {
+  .pub-table .col-abstract { display: none !important; }
+  .pub-table .col-subjects  { min-width: 120px; }
+  .pub-table .col-author    { width: 130px; }
+}
+
+@media (max-width: 767.98px) {
+  .pub-table .col-abstract,
+  .pub-table .col-subjects,
+  .pub-table .col-author { display: none !important; }
+
+  /* Vuosi kompaktiksi: leveämpi jotta tekijä mahtuu alle */
+  .pub-table .col-year { width: 72px; }
+  .pub-table th.col-year,
+  .pub-table td.col-year {
+    padding-left: 6px;
+    padding-right: 6px;
+    white-space: normal;
+  }
+  .pub-table th.col-year { font-size: 0.72rem; }
+
+  /* Näytä tekijä vuosiluvun alla */
+  .pub-table .col-year-author {
+    display: block;
+    font-family: var(--bs-font-sans-serif);
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: var(--bs-secondary-color);
+    margin-top: 3px;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  /* Piilotetaan "Vie viite" -nappi — tilaa otsikkosolun tekstille */
+  .pub-table .thesis-bib-btn { display: none !important; }
+}
+
+@media (max-width: 575.98px) {
+  /* Tarkastajataulukossa Tyyppi-sarake piilotetaan myös */
+  .pub-table .col-type { display: none !important; }
+
+  .pub-table .col-year { width: 40px; }
+  .pub-table th.col-year,
+  .pub-table td.col-year { font-size: 0.7rem; }
+}
+
+/* --- Publication filter bar --- */
+.publication-filter-bar {
+  background-color: var(--bs-tertiary-bg);
+  border-color: var(--bs-border-color) !important;
+}
+.publication-filter-bar .form-control {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  border-color: var(--bs-border-color);
+}
+.publication-filter-bar .form-control::placeholder {
+  color: var(--bs-tertiary-color);
+}
+
+/* --- Summary KPI cards --- */
+.summary-kpi-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+.summary-kpi-link:hover .summary-kpi {
+  box-shadow: 0 0 0 2px currentColor;
+  opacity: 0.85;
+}
+.summary-kpi {
+  background: var(--bs-tertiary-bg);
+  border-left-width: 4px !important;
+}
+.summary-kpi-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--bs-secondary-color);
+}
+.summary-kpi-value {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.05;
+}
+.kpi-color-aloitteet   { border-left-color: #fd7e14 !important; }
+.kpi-color-blogi       { border-left-color: #6f42c1 !important; }
+.kpi-color-esitykset   { border-left-color: #0dcaf0 !important; }
+.kpi-color-julkaisut   { border-left-color: #198754 !important; }
+.kpi-color-kolumnit    { border-left-color: #20c997 !important; }
+.kpi-color-mielipiteet { border-left-color: #0d6efd !important; }
+.kpi-color-puheet      { border-left-color: #dc3545 !important; }
+
+/* --- Avainsanabadget: korkea kontrasti molemmille teemoille ---
+   Vaalea: #1e3a8a (#fff-pohja) kontrasti ~9:1
+   Tumma:  #bfdbfe (#1e293b-pohja) kontrasti ~8:1            */
+html:not([data-bs-theme="dark"]) .badge.text-bg-light {
+  /* WCAG 1.4.11: #eff6ff vs #f4f6f9 → ratio 1.01 (ei riitä ≥3.0)
+     Korjattu: tummempi taustaväri → ~5.8:1 komponenttikontrastia vasten sivun bg */
+  background-color: #4a6478 !important; /* slate-blue, L≈0.119 → 5.8:1 vs #f4f6f9 */
+  color: #ffffff !important;            /* valkoinen → 6.2:1 vs #4a6478 */
+  border-color: #4a6478 !important;
+}
+
+[data-bs-theme="dark"] .badge.text-bg-light {
+  background-color: #1e3a5f !important; /* tumma sininen */
+  color: #bfdbfe !important;            /* blue-200, kontrasti ~8:1 */
+  border-color: #3b82f6 !important;     /* blue-500 */
+}
+
+/* --- Card utilities --- */
+[data-bs-theme="dark"] .card .card-title a {
+  color: #ffffff !important;
+}
+[data-bs-theme="dark"] .card .card-title a:hover {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+/* ===== TABLE HEADER FILTERS ===== */
+.table-header-filter-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.table-header-filter-label {
+  display: block;
+}
+.table-header-filter-input {
+  width: 100%;
+  min-width: 7rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+.table-header-sort-select {
+  width: 100%;
+  min-width: 9rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+.header-filter-hidden {
+  display: none !important;
+}

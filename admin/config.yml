@@ -1,0 +1,231 @@
+backend:
+  name: github
+  repo: LaruX75/www
+  branch: main
+  base_url: https://sveltia-cms-auth.fc4ydtm5bs.workers.dev
+
+local_backend: true
+publish_mode: simple
+media_folder: "src/img/uploads"
+public_folder: "/img/uploads"
+site_url: https://www.jarilaru.fi
+display_url: https://www.jarilaru.fi
+locale: "fi"
+
+collections:
+  - name: "blog"
+    label: "Blogipostaukset"
+    folder: "src/blog"
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "Päivämäärä", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Kuvaus", name: "description", widget: "text", required: false }
+      - { label: "Kuva", name: "thumbnail", widget: "image", required: false }
+      - { label: "Kategoriat", name: "categories", widget: "list", required: false }
+      - { label: "Avainsanat", name: "keywords", widget: "list", required: false }
+      - { label: "Sisältö", name: "body", widget: "markdown" }
+
+  - name: "publications"
+    label: "Julkaisut (mielipiteet, kolumnit, puheet)"
+    folder: "src/publications"
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: ["date", "title", "type"]
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "Päivämäärä", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - label: "Tyyppi"
+        name: "type"
+        widget: "select"
+        options:
+          - label: "Mielipidekirjoitus"
+            value: "mielipide"
+          - label: "Kolumni"
+            value: "kolumni"
+          - label: "Puhe"
+            value: "puhe"
+          - label: "Tieteellinen julkaisu"
+            value: "tieteellinen"
+          - label: "Esitelmä"
+            value: "esitelma"
+      - { label: "Julkaisupaikka/lehti", name: "publication", widget: "string", required: false }
+      - { label: "Tapahtuma", name: "event", widget: "string", required: false, hint: "Puheen tai esitelmän tapahtuma" }
+      - { label: "Kuvaus", name: "description", widget: "text", required: false }
+      - { label: "Linkki", name: "url", widget: "string", required: false }
+      - { label: "Sisältö", name: "body", widget: "markdown", required: false }
+
+  - name: "politics"
+    label: "Aloitteet ja adressit"
+    folder: "src/politics"
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "Päivämäärä", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - label: "Tyyppi"
+        name: "initiative_type"
+        widget: "select"
+        options:
+          - label: "Valtuustoaloite"
+            value: "valtuustoaloite"
+          - label: "Adressi"
+            value: "adressi"
+          - label: "Kansalaisaloite"
+            value: "kansalaisaloite"
+          - label: "Muu"
+            value: "muu"
+      - { label: "Kuvaus", name: "description", widget: "text", required: false }
+      - { label: "Linkki", name: "url", widget: "string", required: false }
+      - { label: "Sisältö", name: "body", widget: "markdown", required: false }
+
+  - name: "training"
+    label: "Koulutukset ja materiaalit"
+    folder: "src/training"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "Päivämäärä", name: "date", widget: "datetime", format: "YYYY-MM-DD", required: false }
+      - label: "Tyyppi"
+        name: "training_type"
+        widget: "select"
+        options:
+          - label: "Kurssi"
+            value: "kurssi"
+          - label: "Workshop"
+            value: "workshop"
+          - label: "Luento"
+            value: "luento"
+          - label: "Materiaali"
+            value: "materiaali"
+          - label: "Muu"
+            value: "muu"
+      - { label: "Kohderyhmä", name: "target_group", widget: "string", required: false }
+      - { label: "Kesto", name: "duration", widget: "string", required: false }
+      - { label: "Kuvaus", name: "description", widget: "text", required: false }
+      - { label: "Järjestys", name: "order", widget: "number", required: false, default: 99 }
+      - label: "Materiaalit"
+        name: "materials"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Otsikko", name: "title", widget: "string" }
+          - { label: "URL", name: "url", widget: "string", required: false }
+          - { label: "Tyyppi", name: "type", widget: "string", required: false }
+          - { label: "Kuvaus", name: "description", widget: "string", required: false }
+      - { label: "Sisältö", name: "body", widget: "markdown" }
+
+  - name: "portfolio"
+    label: "Portfolio"
+    folder: "src/portfolio"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "Vuosi", name: "year", widget: "number" }
+      - { label: "Kuvaus", name: "description", widget: "text", required: false }
+      - { label: "Kuva", name: "thumbnail", widget: "image", required: false }
+      - { label: "Projektin URL", name: "project_url", widget: "string", required: false }
+      - { label: "Tagit", name: "tags", widget: "list", required: false }
+      - { label: "Sisältö", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Sivut"
+    folder: "src/pages"
+    create: true
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "page.njk" }
+      - { label: "Alaotsikko", name: "subtitle", widget: "string", required: false }
+      - { label: "Polku", name: "permalink", widget: "string", required: false }
+      - { label: "Sisältö", name: "body", widget: "markdown" }
+
+  - name: "curated_researchfi"
+    label: "Research.fi — piilotetut julkaisut"
+    folder: "src/curated/researchfi"
+    create: false
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "ID", name: "source_id", widget: "string" }
+      - { label: "Piilotettu", name: "hidden", widget: "boolean", default: false }
+
+  - name: "curated_slideshare"
+    label: "SlideShare — piilotetut esitykset"
+    folder: "src/curated/slideshare"
+    create: false
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "ID", name: "source_id", widget: "string" }
+      - { label: "Piilotettu", name: "hidden", widget: "boolean", default: false }
+
+  - name: "curated_canva"
+    label: "Canva — piilotetut esitykset"
+    folder: "src/curated/canva"
+    create: false
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "ID", name: "source_id", widget: "string" }
+      - { label: "Piilotettu", name: "hidden", widget: "boolean", default: false }
+
+  - name: "curated_finna"
+    label: "AOE/Finna — piilotetut oppimateriaalit"
+    folder: "src/curated/finna"
+    create: false
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "ID", name: "source_id", widget: "string" }
+      - { label: "Piilotettu", name: "hidden", widget: "boolean", default: false }
+
+  - name: "curated_youtube"
+    label: "YouTube — piilotetut soittolistat"
+    folder: "src/curated/youtube"
+    create: false
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "ID", name: "source_id", widget: "string" }
+      - { label: "Piilotettu", name: "hidden", widget: "boolean", default: false }
+
+  - name: "curated_theses"
+    label: "Opinnäytetyöt — piilotetut"
+    folder: "src/curated/theses"
+    create: false
+    fields:
+      - { label: "Otsikko", name: "title", widget: "string" }
+      - { label: "ID", name: "source_id", widget: "string" }
+      - { label: "Piilotettu", name: "hidden", widget: "boolean", default: false }
+
+  - name: "site_data"
+    label: "Sivuston data"
+    files:
+      - file: "src/_data/canva-links.json"
+        label: "Canva-esitykset"
+        name: "canva_links"
+        fields:
+          - label: "Canva julkiset jakolinkit"
+            name: "designLinks"
+            widget: "list"
+            hint: "Lisää yksi julkinen Canva-linkki per rivi."
+            field:
+              label: "Julkinen linkki"
+              name: "link"
+              widget: "string"
+          - label: "Skrollerissa näytettävien määrä"
+            name: "tickerLimit"
+            widget: "number"
+            required: false
+            min: 1
+            default: 12
+      - file: "src/_data/youtube-config.json"
+        label: "YouTube-soittolistat"
+        name: "youtube_config"
+        fields:
+          - { label: "YouTube profiililinkki", name: "profileUrl", widget: "string", required: false, hint: "Esim. https://www.youtube.com/jarilaru tai /@handle" }
+          - { label: "Channel ID", name: "channelId", widget: "string", required: false, hint: "Tarkin tunniste, jos tiedossa (UC...)." }
+          - { label: "Handle", name: "handle", widget: "string", required: false, hint: "Ilman @-merkkiä." }
+          - { label: "Username", name: "username", widget: "string", required: false }
+          - { label: "Hakufallback (channelQuery)", name: "channelQuery", widget: "string", required: false, default: "jarilaru" }
+          - { label: "Skrollerissa näytettävien määrä", name: "tickerLimit", widget: "number", required: false, min: 1, default: 12 }

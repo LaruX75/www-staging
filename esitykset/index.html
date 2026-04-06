@@ -1,0 +1,2738 @@
+<!DOCTYPE html>
+<html lang="fi" data-bs-theme="auto">
+<head>
+    <script>
+    // Teeman alustus (estää välkkymisen) - tarkistaa sijainnin localStorage tai OS prefers-color-scheme
+    const getStoredTheme = () => localStorage.getItem('theme');
+    const getPreferredTheme = () => {
+      const storedTheme = getStoredTheme();
+      if (storedTheme) {
+        return storedTheme;
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    const setTheme = function (theme) {
+      if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-bs-theme', theme);
+      }
+    };
+    setTheme(getPreferredTheme());
+
+    // Saavutettavuusasetusten alustus (FOUC esto)
+    function applyA11ySettings(settings) {
+      const htmlEl = document.documentElement;
+
+      // Tekstikoko
+      htmlEl.classList.remove('a11y-text-large', 'a11y-text-xlarge');
+      if (settings.textSize === 'large') htmlEl.classList.add('a11y-text-large');
+      else if (settings.textSize === 'xlarge') htmlEl.classList.add('a11y-text-xlarge');
+
+      // Kontrasti
+      if (settings.highContrast) htmlEl.classList.add('a11y-high-contrast');
+      else htmlEl.classList.remove('a11y-high-contrast');
+
+      // Animaatiot
+      if (settings.reducedMotion) htmlEl.classList.add('a11y-reduced-motion');
+      else htmlEl.classList.remove('a11y-reduced-motion');
+
+      // Fontti
+      if (settings.dyslexiaFont) htmlEl.classList.add('a11y-dyslexia-font');
+      else htmlEl.classList.remove('a11y-dyslexia-font');
+    }
+
+    try {
+      const a11yStored = localStorage.getItem('a11y-settings');
+      if (a11yStored) {
+        applyA11ySettings(JSON.parse(a11yStored));
+      }
+    } catch(e) {}
+  </script>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net data:; img-src 'self' data: https: https://cdn.slidesharecdn.com; connect-src 'self'; frame-src 'self' https: https://www.slideshare.net;">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <style id="antiClickjack">body{display:none !important;}</style>
+  <script>
+    if (self === top) {
+      var antiClickjack = document.getElementById("antiClickjack");
+      antiClickjack.parentNode.removeChild(antiClickjack);
+    } else {
+      top.location = self.location;
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <title>Esitykset ja opetusmateriaalit — Jari Laru</title>
+  <meta name="description" content="Jari Larun esitykset ja avoimet oppimateriaalit — Canva, AOE, Google Slides ja SlideShare">
+  
+  <meta name="google-site-verification" content="13_OZFDuN1d5oaDd6KEGtPWGDkMLpDYzahvDFzr4enw">
+  
+  <meta name="robots" content="index, follow, noai, noimageai">
+  <meta name="author" content="Jari Laru">
+  <link rel="canonical" href="https://www.jarilaru.fi/esitykset/">
+  
+  <link rel="alternate" hreflang="fi" href="https://www.jarilaru.fi/esitykset/">
+  
+  
+  <link rel="alternate" hreflang="en" href="https://www.jarilaru.fi/en/presentations/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://www.jarilaru.fi/esitykset/">
+  <meta property="og:site_name" content="Jari Laru">
+  <meta property="og:locale" content="fi_FI">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Esitykset ja opetusmateriaalit">
+  <meta property="og:description" content="Jari Larun esitykset ja avoimet oppimateriaalit — Canva, AOE, Google Slides ja SlideShare">
+  <meta property="og:url" content="https://www.jarilaru.fi/esitykset/">
+  <meta property="og:image" content="https://www.jarilaru.fi/img/WIN_20210329_16_06_01_Pro.jpg">
+  <meta property="og:image:alt" content="Jari Laru">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Esitykset ja opetusmateriaalit">
+  <meta name="twitter:description" content="Jari Larun esitykset ja avoimet oppimateriaalit — Canva, AOE, Google Slides ja SlideShare">
+  <meta name="twitter:image" content="https://www.jarilaru.fi/img/WIN_20210329_16_06_01_Pro.jpg">
+  <meta name="twitter:image:alt" content="Jari Laru">
+  
+  <link rel="stylesheet" href="/www-staging/css/bootstrap.min.css">
+  
+  <style>/* ===== _theme.css — Bootstrap token overrides (dark + light) + BSS-scope theming =====
+ * Part of jarilaru.fi styles — imported by styles.css
+ */
+/* ===== 1. THEME VARIABLES ===== */
+
+/* ===== Dark theme: Bootstrap-pohjavärien korvaus ===== */
+/* Kevennetty navy-paletti — aiempaa #131d2b kevyempi, parempi tason erottelu */
+[data-bs-theme="dark"] {
+  --bs-body-bg: #1a2638;
+  --bs-body-color: #dde4ee;
+  --bs-secondary-bg: #243549;
+  --bs-tertiary-bg: #1f2f42;
+  --bs-border-color: #354f68;
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== Light theme: viileä neutraali slate ===== */
+/* DNA-yhteys: body-color = tumman teeman taustasävy käännettynä tekstiksi */
+/* #1c2a38 (tekstiväri) ≈ #1a2638 (tumman body-bg) — sama perhe, eri rooli */
+html:not([data-bs-theme="dark"]) {
+  --bs-body-bg: #f4f6f9;
+  --bs-body-color: #1c2a38;
+  --bs-secondary-color: #48606e;
+  --bs-secondary-bg: #dde4ed;
+  --bs-tertiary-bg: #eef2f7;
+  --bs-border-color: #adbccc;
+  --bs-border-color-translucent: rgba(28, 42, 56, 0.13);
+  /* WCAG 1.4.3: Bootstrap default #0d6efc → 4.17:1 on #f4f6f9 (alle 4.5 AA)
+     Korjattu: #0453b4 → ~6.7:1 */
+  --bs-link-color: #0453b4;
+  --bs-link-color-rgb: 4, 83, 180;
+  --bs-link-hover-color: #023e8a;
+  --bs-link-hover-color-rgb: 2, 62, 138;
+}
+
+/* ===== BSS-SCOPE THEMING ===== */
+
+/* Light theme: bss-scope primary color + border reset */
+html:not([data-bs-theme="dark"]) .bss-scope {
+  --bs-primary: #0453b4;
+  --bs-primary-rgb: 4, 83, 180;
+  --bs-border-width: 1px;
+}
+
+/* Dark theme: bss-scope uses white as primary (white buttons on dark bg) */
+[data-bs-theme="dark"] .bss-scope {
+  --bs-primary: #ffffff;
+  --bs-primary-rgb: 255, 255, 255;
+  --bs-border-width: 0;
+}
+
+/* Light theme: btn-primary uses site blue */
+html:not([data-bs-theme="dark"]) .btn-primary {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #0453b4;
+  --bs-btn-border-color: #0453b4;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #023e8a;
+  --bs-btn-hover-border-color: #023e8a;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #023e8a;
+  --bs-btn-active-border-color: #023e8a;
+  --bs-btn-disabled-color: #ffffff;
+  --bs-btn-disabled-bg: #0453b4;
+  --bs-btn-disabled-border-color: #0453b4;
+  --bs-btn-focus-shadow-rgb: 4, 83, 180;
+}
+
+/* Light theme: btn-outline-primary uses site blue */
+html:not([data-bs-theme="dark"]) .btn-outline-primary {
+  --bs-btn-color: #0453b4;
+  --bs-btn-border-color: #0453b4;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #0453b4;
+  --bs-btn-hover-border-color: #0453b4;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #0453b4;
+  --bs-btn-active-border-color: #0453b4;
+  --bs-btn-disabled-color: #0453b4;
+  --bs-btn-disabled-border-color: #0453b4;
+  --bs-btn-focus-shadow-rgb: 4, 83, 180;
+}
+
+</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap">
+  </noscript>
+  <link rel="stylesheet" href="/www-staging/css/mega-menu.css">
+  <link rel="preload" as="style" href="/www-staging/css/modules/_typography.css">
+  <link rel="preload" as="style" href="/www-staging/css/modules/_global.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_typography.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_home.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_global.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_tables.css">
+  <link rel="stylesheet" href="/www-staging/css/modules/_articles.css">
+  <link rel="stylesheet" href="/www-staging/css/a11y.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preload" href="/www-staging/pagefind/pagefind-ui.css" as="style">
+  <link href="/www-staging/pagefind/pagefind-ui.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="/www-staging/pagefind/pagefind-ui.css" rel="stylesheet">
+  </noscript>
+  <script src="/www-staging/pagefind/pagefind-ui.js" defer=""></script>
+  
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Jari Laru",
+      "url": "https://www.jarilaru.fi",
+      "description": "Yliopistonlehtori, tutkija, kuntapäättäjä",
+      "inLanguage": "en-US",
+      "publisher": {
+        "@id": ""
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "",
+      "name": "Jari Laru",
+      "url": "https://www.jarilaru.fi",
+      "sameAs": ["https://orcid.org/0000-0003-0347-0182","https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en","https://www.linkedin.com/in/jarilaru/","https://www.researchgate.net/profile/Jari-Laru","https://www.youtube.com/jarilaru","https://www.slideshare.net/larux/presentations"]
+    }
+  </script>
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "",
+      "description": "",
+      "url": "",
+      "image": "https://www.jarilaru.fi/undefined",
+      "inLanguage": "en-US",
+      "author": {
+        "@id": ""
+      }
+    }
+  </script>
+  
+
+</head>
+<body>
+  
+  <a class="visually-hidden-focusable skip-link btn btn-primary m-2 position-absolute" style="z-index: 9999; top: 0; left: 0;" href="#main-content">Hyppää pääsisältöön</a>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav id="siteNav" class="navbar navbar-expand-md site-navbar sticky-top" aria-label="Päänavigaatio" style="z-index:1030; transition: background-color .3s ease, box-shadow .3s ease;">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/www-staging/">Jari Laru</a>
+    <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNavFi" aria-controls="mobileNavFi" aria-expanded="false" aria-label="Avaa mobiilivalikko">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav align-items-md-center flex-md-nowrap evelenty-main-nav ms-md-2 me-auto">
+        <li class="nav-item">
+          <a class="nav-link " href="/www-staging/">
+            <i class="bi bi-house-door-fill"></i> Etusivu
+          </a>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/tietoa/">
+    <i class="bi bi-person-fill"></i> Minä
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleMeFi" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuMeFi" aria-label="Avaa alavalikko: Minä">
+    <span class="visually-hidden">Avaa alavalikko: Minä</span>
+  </button>
+</div>
+
+          <div id="megaMenuMeFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMeFi">
+            <div class="mega-wrap grid-8-4">
+              <div class="mega-left three-cols">
+                
+                  <section>
+                    <h5>Jari lyhyesti</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/tietoa/"><i class="bi bi-info-circle me-2"></i><span>Tietoa minusta</span></a>
+                      
+                      
+                        <small class="menu-link-desc">Henkilökuva, elämä ja harrastukset.</small>
+                      
+                    
+                      
+                        <div class="menu-link menu-link-inline-group">
+                          <i class="bi bi-file-earmark-person me-2"></i>
+                          <span class="menu-link-inline-items">
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/cv/">Ansioluettelo</a><span class="menu-link-inline-separator" aria-hidden="true">|</span>
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/portfolio/">Opetusportfolio</a>
+                            
+                          </span>
+                        </div>
+                      
+                      
+                        <small class="menu-link-desc">Koulutus, kokemus ja pedagoginen ajattelu yhdessä.</small>
+                      
+                    
+                      
+                        <a href="/www-staging/palkinnot/"><i class="bi bi-award me-2"></i>Palkinnot</a>
+                      
+                      
+                        <small class="">Saadut tunnustukset opetuksen ja avoimen tieteen työstä.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Vapaa-aika</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/autolomat/"><i class="bi bi-car-front me-2"></i><span>Autolomat</span></a>
+                      
+                      
+                        <small class="menu-link-desc">Euroopan halki omalla autolla.</small>
+                      
+                    
+                      
+                        <a href="https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi" target="_blank" rel="noopener noreferrer"><i class="bi bi-egg-fried me-2"></i>Kulinaristi</a>
+                      
+                      
+                        <small class="">Intohimoinen ruoanlaittaja, leipuri ja keittokirjojen keräilijä.</small>
+                      
+                    
+                      
+                        <a href="https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi" target="_blank" rel="noopener noreferrer"><i class="bi bi-hammer me-2"></i>Hartiapankkiremontoija</a>
+                      
+                      
+                        <small class="">1970-luvun talon remontteja kaivinkoneen ohjaimista tapetointiin.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Roolini</h5>
+                    
+                      
+                        <a href="/www-staging/tyoni-yliopistonlehtorina/"><i class="bi bi-mortarboard me-2"></i>Yliopistonlehtori</a>
+                      
+                      
+                        <small class="">Opetus, tutkimus ja ohjaus yliopiston arjessa.</small>
+                      
+                    
+                      
+                        <a href="/www-staging/politiikka/"><i class="bi bi-bank2 me-2"></i>Poliitikko</a>
+                      
+                      
+                        <small class="">Paikallispolitiikan teemat, tavoitteet ja päätöksenteko.</small>
+                      
+                    
+                      
+                        <a href="/www-staging/larux-tmi/"><i class="bi bi-building me-2"></i>Yrittäjä</a>
+                      
+                      
+                        <small class="">Koulutus- ja asiantuntijapalvelut Larux t:mi:n kautta.</small>
+                      
+                    
+                  </section>
+                
+              </div>
+              <aside class="mega-right showcase-card">
+                <img src="/www-staging/img/uploads/2020/01/jari.laru_1397908734_26-e1610053137214.jpg" alt="Jari Laru" class="img-fluid rounded-3 mb-3" loading="lazy" decoding="async">
+                <h5>Jari Laru</h5>
+                <p>Isä, kulinaristi ja automatkailija – kun ei olla töissä.</p>
+                
+                  <a class="btn btn-accent btn-lg w-100" href="/www-staging/yhteystiedot/">Ota yhteyttä</a>
+                
+              </aside>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/tyoni-yliopistonlehtorina/">
+    <i class="bi bi-briefcase-fill"></i> Työ
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleWorkFi" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuWorkFi" aria-label="Avaa alavalikko: Työ">
+    <span class="visually-hidden">Avaa alavalikko: Työ</span>
+  </button>
+</div>
+
+          <div id="megaMenuWorkFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWorkFi">
+            
+            
+            <div class="mega-wrap">
+              <div class="mega-left four-cols">
+                
+                  <section>
+                    <h5>Opetus</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/tyoni-yliopistonlehtorina/"><i class="bi bi-briefcase me-2"></i><span>Työni yliopistonlehtorina</span></a>
+                        
+                          <small class="menu-link-desc">Kurssit, opetusvastuut ja pedagoginen kehitystyö.</small>
+                        
+                      
+                    
+                      
+                        <div class="menu-link menu-link-inline-group">
+                          <i class="bi bi-file-earmark-person me-2"></i>
+                          <span class="menu-link-inline-items">
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/cv/">Ansioluettelo</a><span class="menu-link-inline-separator" aria-hidden="true">|</span>
+                            
+                              <a class="menu-link-inline-anchor" href="/www-staging/portfolio/">Opetusportfolio</a>
+                            
+                          </span>
+                        </div>
+                        
+                          <small class="menu-link-desc">Koulutus, kokemus ja pedagoginen ajattelu yhdessä.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/esitykset/"><i class="bi bi-easel2 me-2"></i><span>Esitykset</span></a>
+                        
+                          <small class="menu-link-desc">Koulutus- ja konferenssiesityksiä eri teemoista.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/opinnaytteet/"><i class="bi bi-mortarboard me-2"></i><span>Opinnäytetyöt</span></a>
+                        
+                          <small class="menu-link-desc">Ohjatut kandidaatti- ja pro gradu -tutkielmat.</small>
+                        
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Tutkimus</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/tyoni-yliopistonlehtorina/"><i class="bi bi-briefcase me-2"></i><span>Työni yliopistonlehtorina</span></a>
+                        
+                          <small class="menu-link-desc">Tutkimusaiheet, opetus ja hankkeiden käytännön toteutus.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/cv/"><i class="bi bi-file-earmark-person me-2"></i><span>Ansioluettelo</span></a>
+                        
+                          <small class="menu-link-desc">Yhteenveto akateemisesta urasta, meriiteistä ja tehtävistä.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/julkaisut/"><i class="bi bi-journal-text me-2"></i><span>Julkaisuluettelo</span></a>
+                        
+                          <small class="menu-link-desc">Tieteelliset julkaisut, kirjoitukset ja muut tekstisisällöt.</small>
+                        
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Kouluttaja (yrittäjä)</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/larux-tmi/"><i class="bi bi-building me-2"></i><span>Tietoa yrityksestä</span></a>
+                        
+                          <small class="menu-link-desc">Larux t:mi:n palvelut, tausta ja toimintatapa.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="/www-staging/esitykset/"><i class="bi bi-easel2 me-2"></i><span>Esitykset</span></a>
+                        
+                          <small class="menu-link-desc">Näytteitä koulutus- ja keynote-esitysten sisällöistä.</small>
+                        
+                      
+                    
+                      
+                        <div class="work-inline-cta">
+                          <a class="menu-link" href="/www-staging/yhteystiedot/">
+                            <i class="bi bi-megaphone me-2"></i><span>Tilaa minut kouluttajaksi</span>
+                          </a>
+                          
+                            <small class="menu-link-desc">Koulutukset tekoälystä, oppimisteknologiasta ja modernista pedagogiikasta.</small>
+                          
+                          <a class="btn btn-accent btn-lg w-100 mt-2" href="/www-staging/yhteystiedot/">
+                            Pyydä tarjous
+                          </a>
+                        </div>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Sosiaalinen media</h5>
+                    
+                      
+                        <a class="menu-link" href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin me-2"></i><span>LinkedIN</span></a>
+                        
+                          <small class="menu-link-desc">Ammatillinen profiili, verkostot ja ajankohtaiset nostot.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer"><i class="bi bi-globe me-2"></i><span>ResearchGate</span></a>
+                        
+                          <small class="menu-link-desc">Tutkimusprofiili, julkaisut ja tutkimusverkostot.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="https://orcid.org/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer"><i class="bi bi-person-vcard me-2"></i><span>ORCID</span></a>
+                        
+                          <small class="menu-link-desc">Pysyvä tutkijatunniste ja julkaisujen metatiedot.</small>
+                        
+                      
+                    
+                      
+                        <a class="menu-link" href="https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer"><i class="bi bi-mortarboard me-2"></i><span>Google Scholar</span></a>
+                        
+                          <small class="menu-link-desc">Viittaukset, h-indeksi ja julkaisujen näkyvyys.</small>
+                        
+                      
+                    
+                  </section>
+                
+              </div>
+            </div>
+            
+            
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/politiikka/">
+    <i class="bi bi-bank2"></i> Politiikka
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaTogglePoliticsFi" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuPoliticsFi" aria-label="Avaa alavalikko: Politiikka">
+    <span class="visually-hidden">Avaa alavalikko: Politiikka</span>
+  </button>
+</div>
+
+          <div id="megaMenuPoliticsFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaTogglePoliticsFi">
+            <div class="mega-wrap">
+              <div class="mega-left three-cols">
+                
+                  <section>
+                    <h5>Rooli &amp; läpinäkyvyys</h5>
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/politiikka/">
+                          <i class="bi bi-person-badge me-2"></i>
+                          <span>Jari Laru, poliitikko</span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Luottamustoimet, tavoitteet ja historia.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/sidonnaisuudet/">
+                          <i class="bi bi-link-45deg me-2"></i>
+                          <span>Sidonnaisuudet</span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Avoimet ilmoitukset jäsenyyksistä.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook me-2"></i>Facebook</a>
+                      
+                      
+                        <small class="">Ajankohtaiset päivitykset ja keskustelu somessa.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Vaikuttaminen</h5>
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/kynasta/#aloitteet">
+                          <i class="bi bi-megaphone me-2"></i>
+                          <span>Valtuustoaloitteet <span class="menu-link-count">9</span></span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Aloitteet kaupunginvaltuustossa.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/kynasta/#puheet">
+                          <i class="bi bi-mic me-2"></i>
+                          <span>Puheenvuorot <span class="menu-link-count">24</span></span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Valtuustopuheenvuorot ja esittelyt.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/kynasta/#mielipiteet">
+                          <i class="bi bi-chat-text me-2"></i>
+                          <span>Mielipiteet <span class="menu-link-count">42</span></span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Kannanotot ja lehtijutut.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/kynasta/"><i class="bi bi-pencil-square me-2"></i>Kaikki kirjoitukset</a>
+                      
+                      
+                        <small class="">Kooste puheista, aloitteista, kolumneista ja mielipiteistä.</small>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Vaalihistoria</h5>
+                    
+                      
+                      
+                      
+                        <a class="menu-link" href="/www-staging/vaalihistoria/">
+                          <i class="bi bi-calendar-event me-2"></i>
+                          <span>Vaalikaudet</span>
+                        </a>
+                      
+                      
+                        <small class="menu-link-desc">Vaalit ja luottamustoimet vaalikausittain.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/kunta-ja-aluevaalit-2025/"><i class="bi bi-chevron-right me-2"></i>Kuntavaalit 2025</a>
+                      
+                      
+                        <small class="">Kampanjateemat ja tulos kuntavaaleissa 2025.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/kuntavaalit-2021/"><i class="bi bi-chevron-right me-2"></i>Kuntavaalit 2021</a>
+                      
+                      
+                        <small class="">Vaaliteemat, tavoitteet ja kampanjasisällöt vuodelta 2021.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/jari-laru-aluevaltuustoon/"><i class="bi bi-chevron-right me-2"></i>Aluevaalit 2022</a>
+                      
+                      
+                        <small class="">Näkemykset hyvinvointialueen päätöksenteon kehittämiseen.</small>
+                      
+                    
+                      
+                      
+                      
+                        <a href="/www-staging/kunnallisvaalit-2012/"><i class="bi bi-chevron-right me-2"></i>Kunnallisvaalit 2012</a>
+                      
+                      
+                        <small class="">Ensimmäisen kampanjan teemat ja taustatiedot.</small>
+                      
+                    
+                  </section>
+                
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/kynasta/">
+    <i class="bi bi-pencil-fill"></i> Kynästä
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleWritingsFi" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuWritingsFi" aria-label="Avaa alavalikko: Kynästä">
+    <span class="visually-hidden">Avaa alavalikko: Kynästä</span>
+  </button>
+</div>
+
+          <div id="megaMenuWritingsFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleWritingsFi">
+            <div class="mega-wrap writings-mega-layout">
+              
+                <section class="writings-group-head">
+                  <h5>Minun kynästä ja suusta</h5>
+                  <p class="menu-desc">Kaikki tuotettu sisältö yhdessä paikassa.</p>
+                </section>
+                
+                  <section class="writings-main-col">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/kynasta/#aloitteet">
+                        <span><i class="bi bi-megaphone me-2"></i>Aloitteet</span>
+                        <span class="menu-link-count">9</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Valtuustoaloitteet ja muut kirjalliset avaukset päätöksentekoon.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/blogi/">
+                        <span><i class="bi bi-pen me-2"></i>Blogi</span>
+                        <span class="menu-link-count">58</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Ajankohtaiset kirjoitukset opetuksesta, teknologiasta ja yhteiskunnasta.</small>
+                      
+                    
+                  </section>
+                
+                  <section class="writings-main-col">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/esitykset/">
+                        <span><i class="bi bi-easel2 me-2"></i>Esitykset</span>
+                        <span class="menu-link-count">132</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Koulutus- ja konferenssiesityksiä tekoälystä, oppimisesta ja pedagogiikasta.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/julkaisut/">
+                        <span><i class="bi bi-journal-text me-2"></i>Julkaisuluettelo</span>
+                        <span class="menu-link-count">81</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Tieteelliset julkaisut, artikkelit ja muut kirjoitukset yhdessä näkymässä.</small>
+                      
+                    
+                  </section>
+                
+                  <section class="writings-main-col">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/kynasta/#kolumnit">
+                        <span><i class="bi bi-journal-richtext me-2"></i>Kolumnit</span>
+                        <span class="menu-link-count">9</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Taustoittavia näkökulmatekstejä yhteiskunnasta ja koulutuksesta.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/kynasta/#mielipiteet">
+                        <span><i class="bi bi-chat-text me-2"></i>Mielipiteet</span>
+                        <span class="menu-link-count">42</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Lehdissä julkaistuja kannanottoja paikallisista ja valtakunnallisista aiheista.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/kynasta/#puheet">
+                        <span><i class="bi bi-mic me-2"></i>Puheet</span>
+                        <span class="menu-link-count">24</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Valtuustossa ja tapahtumissa pidettyjä puheenvuoroja.</small>
+                      
+                    
+                  </section>
+                
+                
+                  <section class="writings-side-head">
+                    <h5>Katso myös</h5>
+                    
+                      <p class="menu-desc">Ohjaamiani opinnäytteitä</p>
+                    
+                  </section>
+                  <section class="writings-side-links">
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/opinnaytteet/#card-bachelor">
+                        <span><i class="bi bi-book-half me-2"></i>Kandidaatintutkielmat</span>
+                        <span class="menu-link-count">26</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Ohjaamani opinnäytteet aihepiireittäin ja vuosittain.</small>
+                      
+                    
+                      
+                      
+                        
+                      
+                      <a class="menu-link-with-count" href="/www-staging/opinnaytteet/#card-master">
+                        <span><i class="bi bi-mortarboard me-2"></i>Pro gradut</span>
+                        <span class="menu-link-count">74</span>
+                      </a>
+                      
+                        <small class="menu-link-desc">Ohjaamani opinnäytteet aihepiireittäin ja vuosittain.</small>
+                      
+                    
+                  </section>
+                
+              
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown mega-dropdown">
+          
+<div class="mega-nav-trigger">
+  <a class="nav-link mega-nav-link" href="/www-staging/yhteystiedot/">
+    <i class="bi bi-envelope"></i> Ota yhteyttä
+  </a>
+  <button class="nav-link mega-nav-toggle dropdown-toggle" type="button" id="megaToggleContactFi" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="megaMenuContactFi" aria-label="Avaa alavalikko: Ota yhteyttä">
+    <span class="visually-hidden">Avaa alavalikko: Ota yhteyttä</span>
+  </button>
+</div>
+
+          <div id="megaMenuContactFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleContactFi">
+            <div class="mega-wrap">
+              <section class="w-100 mb-3">
+                <h5>Ota yhteyttä</h5>
+                <p class="menu-desc">Lähetä viesti tai valitse suora yhteydenottotapa.</p>
+              </section>
+              <div class="mega-left four-cols contact-mega-cols">
+                
+                  <section>
+                    <h5>Lähetä viesti</h5>
+                    
+                      <form class="contact-mega-form" action="https://formspree.io/f/xlgwqwzk" method="POST">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaNameFi">Nimi</label>
+                        <input id="contactMegaNameFi" type="text" name="name" class="form-control form-control-sm mb-2" placeholder="Nimi" autocomplete="name">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaEmailFi">Sähköposti</label>
+                        <input id="contactMegaEmailFi" type="email" name="email" class="form-control form-control-sm mb-2" placeholder="Sähköposti" autocomplete="email" required="">
+                        <label class="form-label small fw-semibold mb-1" for="contactMegaMessageFi">Viesti</label>
+                        <textarea id="contactMegaMessageFi" name="message" class="form-control form-control-sm mb-2" rows="3" placeholder="Viesti" required=""></textarea>
+                        <button type="submit" class="btn btn-accent btn-lg w-100">Lähetä</button>
+                      </form>
+                      <a class="contact-mega-mobile-cta btn btn-accent btn-lg w-100 mt-2" href="/www-staging/yhteystiedot/">
+                        <i class="bi bi-envelope-check me-2"></i>Avaa yhteydenottolomake
+                      </a>
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Työyhteys</h5>
+                    
+                      
+                        <a class="menu-link" href="mailto:jari.laru@oulu.fi">
+                          <i class="bi bi-envelope me-2"></i><span>Sähköposti</span>
+                        </a>
+                      
+                        <a class="menu-link" href="tel:+358294483810">
+                          <i class="bi bi-telephone me-2"></i><span>Puhelin</span>
+                        </a>
+                      
+                        <a class="menu-link" href="http://www.zoom.us/my/larux" target="_blank" rel="noopener noreferrer">
+                          <i class="bi bi-camera-video me-2"></i><span>Zoom</span>
+                        </a>
+                      
+                        <a class="menu-link" href="https://www.oulu.fi" target="_blank" rel="noopener noreferrer">
+                          <i class="bi bi-building me-2"></i><span>Oulun yliopisto</span>
+                        </a>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Larux tmi &amp; politiikka</h5>
+                    
+                      
+                        <a class="menu-link" href="tel:+358405118478">
+                          <i class="bi bi-whatsapp me-2"></i><span>Yritysyhteys</span>
+                        </a>
+                      
+                        <a class="menu-link" href="mailto:jari.laru@ouka.fi">
+                          <i class="bi bi-bank2 me-2"></i><span>Politiikan sähköposti</span>
+                        </a>
+                      
+                        <a class="menu-link" href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer">
+                          <i class="bi bi-facebook me-2"></i><span>Facebook</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/yhteystiedot/">
+                          <i class="bi bi-person-lines-fill me-2"></i><span>Yhteystiedot-sivu</span>
+                        </a>
+                      
+                    
+                  </section>
+                
+                  <section>
+                    <h5>Pikalinkit</h5>
+                    
+                      
+                        <a class="menu-link" href="/www-staging/larux-tmi/">
+                          <i class="bi bi-briefcase me-2"></i><span>Larux tmi</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/esitykset/">
+                          <i class="bi bi-easel2 me-2"></i><span>Esitykset</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/politiikka/">
+                          <i class="bi bi-megaphone me-2"></i><span>Politiikka</span>
+                        </a>
+                      
+                        <a class="menu-link" href="/www-staging/tietosuojaseloste/">
+                          <i class="bi bi-shield-check me-2"></i><span>Tietosuojaseloste</span>
+                        </a>
+                      
+                    
+                  </section>
+                
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item ms-md-auto mt-2 mt-md-0">
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="searchToggleBtn" data-search-toggle="" style="width: 38px; height: 38px;" aria-label="Hae sivustolta" title="Hae sivustolta">
+              <i class="bi bi-search"></i>
+            </button>
+            <button class="btn btn-sm rounded-circle d-flex align-items-center justify-content-center" id="themeToggleBtn" data-theme-toggle="" style="width: 38px; height: 38px;" aria-label="Vaihda teemaa" title="Vaihda teemaa">
+              <i class="bi bi-moon-stars-fill" id="themeToggleIcon" data-theme-icon=""></i>
+            </button>
+          </div>
+        </li>
+        <li class="nav-item ms-md-2 mt-2 mt-md-0">
+          <a class="nav-link py-0 d-flex align-items-center gap-1 text-decoration-none" href="/www-staging/en/presentations/" lang="en" aria-label="Switch language to English">
+            <span aria-hidden="true">🇬🇧</span><span>EN</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileNavFi" aria-labelledby="mobileNavFiLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title fw-bold" id="mobileNavFiLabel">Valikko</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Sulje"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form class="mb-3" data-search-form="">
+      <label for="mobileNavFiSearchInput" class="form-label small text-muted">Hae sivustolta</label>
+      <div class="input-group input-group-sm">
+        <input id="mobileNavFiSearchInput" type="search" class="form-control" placeholder="Hae..." autocomplete="off" name="q">
+        <button class="btn btn-outline-primary" type="submit" aria-label="Avaa haku">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </form>
+    <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+      <div class="btn-group btn-group-sm" role="group" aria-label="Kielen vaihto">
+        <a class="btn btn-outline-primary active" href="/www-staging/esitykset/" lang="fi">FI</a>
+        <a class="btn btn-outline-primary" href="/www-staging/en/presentations/" lang="en">EN</a>
+      </div>
+      <button class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-2" type="button" data-theme-toggle="" aria-label="Vaihda teemaa">
+        <i class="bi bi-moon-stars-fill" data-theme-icon=""></i><span>Teema</span>
+      </button>
+    </div>
+    <div class="d-grid gap-2 mb-3">
+      <a class="btn btn-outline-primary rounded-pill" href="/www-staging/">Etusivu</a>
+    </div>
+    <div class="accordion accordion-flush mobile-nav-accordion" id="mobileNavAccordionFi">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiMeHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiMe" aria-expanded="false" aria-controls="mobileNavFiMe">Minä</button>
+        </h2>
+        <div id="mobileNavFiMe" class="accordion-collapse collapse" aria-labelledby="mobileNavFiMeHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/tietoa/">Avaa Minä-sivu</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Jari lyhyesti</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/tietoa/">Tietoa minusta</a>
+                  
+                
+                  
+                    <div class="mobile-nav-link d-flex align-items-center gap-2 flex-wrap">
+                      
+                        <a class="mobile-nav-link inline-link" href="/www-staging/cv/">Ansioluettelo</a><span class="mobile-nav-inline-separator" aria-hidden="true">|</span>
+                      
+                        <a class="mobile-nav-link inline-link" href="/www-staging/portfolio/">Opetusportfolio</a>
+                      
+                    </div>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/palkinnot/">Palkinnot</a>
+                  
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Vapaa-aika</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/autolomat/">Autolomat</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="https://www.instagram.com/stories/highlights/18134958520132291/?hl=fi" target="_blank" rel="noopener noreferrer">Kulinaristi</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="https://www.instagram.com/stories/highlights/17917732456477538/?hl=fi" target="_blank" rel="noopener noreferrer">Hartiapankkiremontoija</a>
+                  
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Roolini</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/tyoni-yliopistonlehtorina/">Yliopistonlehtori</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/politiikka/">Poliitikko</a>
+                  
+                
+                  
+                    <a class="mobile-nav-link" href="/www-staging/larux-tmi/">Yrittäjä</a>
+                  
+                
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiWorkHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiWork" aria-expanded="false" aria-controls="mobileNavFiWork">Työ</button>
+        </h2>
+        <div id="mobileNavFiWork" class="accordion-collapse collapse" aria-labelledby="mobileNavFiWorkHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/tyoni-yliopistonlehtorina/">Avaa Työ-sivu</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Opetus</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/tyoni-yliopistonlehtorina/">Työni yliopistonlehtorina</a>
+                
+                  <a class="mobile-nav-link" href=".">Ansioluettelo | Opetusportfolio</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/esitykset/">Esitykset</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/opinnaytteet/">Opinnäytetyöt</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Tutkimus</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/tyoni-yliopistonlehtorina/">Työni yliopistonlehtorina</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/cv/">Ansioluettelo</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/julkaisut/">Julkaisuluettelo</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Kouluttaja (yrittäjä)</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/larux-tmi/">Tietoa yrityksestä</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/esitykset/">Esitykset</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/yhteystiedot/">Tilaa minut kouluttajaksi</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Sosiaalinen media</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer">LinkedIN</a>
+                
+                  <a class="mobile-nav-link" href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer">ResearchGate</a>
+                
+                  <a class="mobile-nav-link" href="https://orcid.org/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer">ORCID</a>
+                
+                  <a class="mobile-nav-link" href="https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+                
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiPoliticsHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiPolitics" aria-expanded="false" aria-controls="mobileNavFiPolitics">Politiikka</button>
+        </h2>
+        <div id="mobileNavFiPolitics" class="accordion-collapse collapse" aria-labelledby="mobileNavFiPoliticsHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/politiikka/">Avaa Politiikka-sivu</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Rooli &amp; läpinäkyvyys</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/politiikka/">Jari Laru, poliitikko</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/sidonnaisuudet/">Sidonnaisuudet</a>
+                
+                  <a class="mobile-nav-link" href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Vaikuttaminen</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/kynasta/#aloitteet">Valtuustoaloitteet</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/kynasta/#puheet">Puheenvuorot</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/kynasta/#mielipiteet">Mielipiteet</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/kynasta/">Kaikki kirjoitukset</a>
+                
+              </div>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Vaalihistoria</p>
+              <div class="d-grid gap-1 mb-2">
+                
+                  <a class="mobile-nav-link" href="/www-staging/vaalihistoria/">Vaalikaudet</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/kunta-ja-aluevaalit-2025/">Kuntavaalit 2025</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/kuntavaalit-2021/">Kuntavaalit 2021</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/jari-laru-aluevaltuustoon/">Aluevaalit 2022</a>
+                
+                  <a class="mobile-nav-link" href="/www-staging/kunnallisvaalit-2012/">Kunnallisvaalit 2012</a>
+                
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiWritingsHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiWritings" aria-expanded="false" aria-controls="mobileNavFiWritings">Kynästä</button>
+        </h2>
+        <div id="mobileNavFiWritings" class="accordion-collapse collapse" aria-labelledby="mobileNavFiWritingsHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/kynasta/">Avaa Kynästä-sivu</a>
+            
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/kynasta/#aloitteet">Aloitteet</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/blogi/">Blogi</a>
+                  
+                </div>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/esitykset/">Esitykset</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/julkaisut/">Julkaisuluettelo</a>
+                  
+                </div>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/kynasta/#kolumnit">Kolumnit</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/kynasta/#mielipiteet">Mielipiteet</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/kynasta/#puheet">Puheet</a>
+                  
+                </div>
+              
+              
+                <p class="text-uppercase small text-muted mb-1 mt-2">Katso myös</p>
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/opinnaytteet/#card-bachelor">Kandidaatintutkielmat</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/opinnaytteet/#card-master">Pro gradut</a>
+                  
+                </div>
+              
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="mobileNavFiContactHead">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavFiContact" aria-expanded="false" aria-controls="mobileNavFiContact">Ota yhteyttä</button>
+        </h2>
+        <div id="mobileNavFiContact" class="accordion-collapse collapse" aria-labelledby="mobileNavFiContactHead" data-bs-parent="#mobileNavAccordionFi">
+          <div class="accordion-body">
+            <a class="btn btn-sm btn-outline-primary rounded-pill mb-3" href="/www-staging/yhteystiedot/">Avaa Yhteystiedot</a>
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Lähetä viesti</p>
+              
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Työyhteys</p>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="mailto:jari.laru@oulu.fi">Sähköposti</a>
+                  
+                    <a class="mobile-nav-link" href="tel:+358294483810">Puhelin</a>
+                  
+                    <a class="mobile-nav-link" href="http://www.zoom.us/my/larux" target="_blank" rel="noopener noreferrer">Zoom</a>
+                  
+                    <a class="mobile-nav-link" href="https://www.oulu.fi" target="_blank" rel="noopener noreferrer">Oulun yliopisto</a>
+                  
+                </div>
+              
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Larux tmi &amp; politiikka</p>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="tel:+358405118478">Yritysyhteys</a>
+                  
+                    <a class="mobile-nav-link" href="mailto:jari.laru@ouka.fi">Politiikan sähköposti</a>
+                  
+                    <a class="mobile-nav-link" href="https://www.facebook.com/jari.laru.poliitikko/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/yhteystiedot/">Yhteystiedot-sivu</a>
+                  
+                </div>
+              
+            
+              <p class="text-uppercase small text-muted mb-1 mt-2">Pikalinkit</p>
+              
+                <div class="d-grid gap-1 mb-2">
+                  
+                    <a class="mobile-nav-link" href="/www-staging/larux-tmi/">Larux tmi</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/esitykset/">Esitykset</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/politiikka/">Politiikka</a>
+                  
+                    <a class="mobile-nav-link" href="/www-staging/tietosuojaseloste/">Tietosuojaseloste</a>
+                  
+                </div>
+              
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="searchOverlay" class="search-overlay" role="dialog" aria-modal="true" aria-labelledby="searchOverlayTitle" aria-hidden="true" hidden="">
+  <div class="search-overlay-inner">
+    <div class="container py-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0" id="searchOverlayTitle"><i class="bi bi-search me-2"></i>Hae sivustolta</h3>
+        <button class="btn btn-sm rounded-circle" id="searchCloseBtn" aria-label="Sulje haku" style="width: 38px; height: 38px;">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div id="pagefindSearch"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  
+  
+  
+  
+    
+  
+
+  
+  <section class="subpage-hero-placeholder" aria-hidden="true">
+    <div class="subpage-hero-image"></div>
+  </section>
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="container py-2" aria-label="Murupolku">
+  <ol class="breadcrumb mb-0 small">
+    <li class="breadcrumb-item"><a href="/www-staging/">Etusivu</a></li>
+    
+      
+      
+        
+      
+        
+          
+            <li class="breadcrumb-item">
+              
+                <a href="/www-staging/tyoni-yliopistonlehtorina/">Työ</a>
+              
+            </li>
+          
+        
+      
+        
+          
+            <li class="breadcrumb-item active" aria-current="page">Esitykset</li>
+          
+        
+      
+      
+    
+  </ol>
+</nav>
+
+
+
+  <main id="main-content" class="site-main">
+    <div class="bss-scope">
+      
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+<div class="container py-5">
+  <header class="mb-5 text-center">
+    <h1 class="display-4 fw-bold mb-3">Esitykset ja opetusmateriaalit</h1>
+    <p class="lead text-muted">Esitykset, avoimet oppimateriaalit ja muuta sisältöä eri palveluista.</p>
+  </header>
+
+  
+  <div class="row justify-content-center mb-5">
+    <div class="col-lg-8">
+      <aside class="card border-0 bg-light">
+        <div class="card-body p-3">
+          <p class="text-uppercase small text-muted mb-2">Sisällys</p>
+          <nav class="toc">
+        <ol><li><a href="#aoe-heading">AOE-oppimateriaalit</a></li><li><a href="#canva-heading">Canva-esitykset</a></li><li><a href="#google-heading">Google Slides -esitykset</a></li><li><a href="#slideshare-heading">SlideShare-esitykset</a></li><li><a href="#youtube-heading">YouTube-soittolistat</a></li></ol>
+      </nav>
+        </div>
+      </aside>
+    </div>
+  </div>
+  
+
+  
+  <section class="mb-5" aria-labelledby="aoe-heading">
+    <h2 id="aoe-heading" class="section-title mb-4">
+      <i class="bi bi-book-fill text-success me-2" style="font-size: 1rem;"></i>AOE-oppimateriaalit
+    </h2>
+    
+      <div class="presentation-scroller mb-4" data-key="aoe" aria-label="AOE-esitysten skrolleri">
+        <div class="presentation-scroller-track"></div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 pub-table">
+          <thead>
+            <tr>
+              <th>Otsikko</th>
+              <th>Kuvaus</th>
+              <th class="text-nowrap">Päiväys / vuosi</th>
+              <th class="text-nowrap">Avaa</th>
+            </tr>
+          </thead>
+          <tbody id="table-body-aoe"></tbody>
+        </table>
+      </div>
+      <nav class="mt-3" aria-label="AOE-sivutus">
+        <ul class="pagination pagination-sm mb-0" id="pagination-aoe"></ul>
+      </nav>
+      <div class="mt-3 text-muted small">
+        Lähde: <a href="https://www.finna.fi/" target="_blank" rel="noopener noreferrer">Finna</a> / <a href="https://aoe.fi/" target="_blank" rel="noopener noreferrer">Avointen oppimateriaalien kirjasto (AOE)</a>.
+      </div>
+    
+  </section>
+
+  
+  <section class="mb-5" aria-labelledby="canva-heading">
+    <h2 id="canva-heading" class="section-title mb-4">
+      <i class="bi bi-star-fill text-warning me-2" style="font-size: 1rem;"></i>Canva-esitykset
+    </h2>
+
+    
+    <div class="card border-0 shadow-sm mb-4 border-start border-4 border-warning">
+      <div class="card-body p-4">
+        <div class="row align-items-center g-3">
+          <div class="col-auto d-none d-sm-block">
+            <i class="bi bi-bar-chart-line text-warning" style="font-size:2rem;"></i>
+          </div>
+          <div class="col">
+            <p class="text-uppercase text-muted fw-semibold small mb-1">Analyysi</p>
+            <h3 class="h5 fw-bold mb-1">Canva-esitykset 2021–2026 – 83 esitystä analysoituna</h3>
+            <p class="text-muted small mb-0">Teemat, kehityskaaret, laajimmat esitykset ja punaiset langat – tekoälylukutaidon vuosikymmen.</p>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <a href="/www-staging/esitykset/canva-analyysi/" class="btn btn-warning btn-sm px-3 text-dark">
+              Lue analyysi <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+      <div class="presentation-scroller mb-4" data-key="canva" aria-label="Canva-esitysten skrolleri">
+        <div class="presentation-scroller-track"></div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 pub-table">
+          <thead>
+            <tr>
+              <th class="text-center" style="width:140px">Päivämäärä</th>
+              <th style="min-width:170px">Esikatselu</th>
+              <th style="min-width:200px;max-width:260px;">Otsikko</th>
+              <th style="min-width:220px">Tiivistelmä</th>
+              <th style="min-width:190px">Avainsanat</th>
+              <th style="width:90px" class="text-center">Avaa</th>
+            </tr>
+          </thead>
+          <tbody id="table-body-canva"></tbody>
+        </table>
+      </div>
+      <nav class="mt-3" aria-label="Canva-sivutus">
+        <ul class="pagination pagination-sm mb-0" id="pagination-canva"></ul>
+      </nav>
+
+      <div class="mt-3 text-muted small">
+        Lähde: Canva (JSON).
+      </div>
+    
+  </section>
+
+  
+  <section class="mb-5" aria-labelledby="google-heading">
+    <h2 id="google-heading" class="section-title mb-4">
+      <i class="bi bi-file-earmark-slides me-2" style="font-size: 1rem;"></i>Google Slides -esitykset
+    </h2>
+    
+      <div class="presentation-scroller mb-4" data-key="google" aria-label="Google Slides -esitysten skrolleri" tabindex="0">
+        <div class="presentation-scroller-track"></div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 pub-table">
+          <thead>
+            <tr>
+              <th>Otsikko</th>
+              <th>Kuvaus</th>
+              <th class="text-nowrap">Päiväys / vuosi</th>
+              <th class="text-nowrap">Avaa</th>
+            </tr>
+          </thead>
+          <tbody id="table-body-google"></tbody>
+        </table>
+      </div>
+      <nav class="mt-3" aria-label="Google Slides -sivutus">
+        <ul class="pagination pagination-sm mb-0" id="pagination-google"></ul>
+      </nav>
+    
+  </section>
+
+  
+  <section class="mb-5" aria-labelledby="slideshare-heading">
+
+    <h2 id="slideshare-heading" class="section-title mb-4">
+      <i class="bi bi-collection-play me-2" style="font-size: 1rem;"></i>SlideShare-esitykset
+    </h2>
+
+    
+    <div class="card border-0 shadow-sm mb-4 border-start border-4 border-primary">
+      <div class="card-body p-4">
+        <div class="row align-items-center g-3">
+          <div class="col-auto d-none d-sm-block">
+            <i class="bi bi-bar-chart-line text-primary" style="font-size:2rem;"></i>
+          </div>
+          <div class="col">
+            <p class="text-uppercase text-muted fw-semibold small mb-1">Analyysi</p>
+            <h3 class="h5 fw-bold mb-1">SlideShare-esitykset 2009–2020 – 117 esitystä analysoituna</h3>
+            <p class="text-muted small mb-0">Teemat, kehityskaaret, katsotuimmat ja punaiset langat vuosikymmenittäin – mobiilioppimisesta tekoälyyn.</p>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <a href="/www-staging/esitykset/slideshare-analyysi/" class="btn btn-primary btn-sm px-3">
+              Lue analyysi <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="presentation-scroller mb-4" data-key="slideshare" aria-label="SlideShare-esitysten skrolleri">
+        <div class="presentation-scroller-track"></div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 pub-table">
+          <thead>
+            <tr>
+              <th class="text-center" style="width:140px">Päivämäärä</th>
+              <th style="min-width:170px">Esikatselu</th>
+              <th style="min-width:200px;max-width:260px;">Otsikko</th>
+              <th style="min-width:220px">Tiivistelmä</th>
+              <th style="min-width:190px">Avainsanat</th>
+              <th style="width:90px" class="text-center">Avaa</th>
+            </tr>
+          </thead>
+          <tbody id="table-body-slideshare"></tbody>
+        </table>
+      </div>
+      <nav class="mt-3" aria-label="SlideShare-sivutus">
+        <ul class="pagination pagination-sm mb-0" id="pagination-slideshare"></ul>
+      </nav>
+    
+
+    <div class="mt-4 text-center">
+      <a href="https://www.slideshare.net/larux" target="_blank" rel="noopener noreferrer" class="btn btn-primary px-4 py-2">
+        Katso kaikki SlideSharessa (117) <i class="bi bi-arrow-up-right"></i>
+      </a>
+    </div>
+  </section>
+
+  
+  <section class="mb-5" aria-labelledby="youtube-heading">
+    <h2 id="youtube-heading" class="section-title mb-4">
+      <i class="bi bi-youtube text-danger me-2" style="font-size: 1rem;"></i>YouTube-soittolistat
+    </h2>
+
+    
+      <div class="card border-0 bg-light-subtle">
+        <div class="card-body">
+          <p class="mb-2 fw-semibold">YouTube-soittolistoja ei saatu haettua.</p>
+          <p class="text-muted mb-0 small">
+            Lisää ympäristömuuttujat <code>YOUTUBE_API_KEY</code> ja tarvittaessa <code>YOUTUBE_CHANNEL_ID</code> tai <code>YOUTUBE_HANDLE</code>.
+          </p>
+        </div>
+      </div>
+    
+  </section>
+
+</div>
+
+<script>
+(() => {
+  const PAGE_SIZE = 6;
+  const rawData = {
+    aoe: [{"id":"aoe.5456","title":"Ai ai, kieliä ja AI -koulutuspaketti","url":"https://www.finna.fi/Record/aoe.5456","image":"https://www.finna.fi/Cover/Show?source=Solr&id=aoe.5456&index=0&size=large","year":"2026","summary":"Kieliä ja AI -hanke pähkinänkuoressa: MITÄ: Kieltenopettajien ymmärryksen & osaamisen vahvistaminen tekoälyn (AI) mahdollisuuksista kieltenopettamisessa & oppimisessa. Paniikkijarrutuksen sijaan tutustutaan mahdollisuuksiin uudistaa opetusta päivittäen opettajien TVT & AI-osaamista ja annetaan autenttisia onnistumiskokemuksia: Active Learning, tehtävien asettelu & motivointi (erit. yläasteella). MITEN: Osallistujat tutustuvat AI:n ja tutkimustietoon. He harjoittelevat käytännön AI- kokemuksia omaavien kouluttajien kanssa AI:n hyödyntämistä opetuksessa. He saavat lisätietoa motivoinnista & tekevät TVT & AI -kokeiluja oppitunneillaan & jakavat kokemuksensa monimuotokoulutuksessa. MIKÄ: Opettajien pelko AI:sta ja ”oppijoiden lunttaamisesta” hälvenee, kun oma osaaminen ja AI-pedag. ajattelu lisääntyy. Opet monipuolistavat oppimistehtäviään, saavat ideoita motivoinnista (alas- ja ylöspäin eriyttämisestä) ja yksilöllisyys.","format":"Oppimateriaali"},{"id":"aoe.2047","title":"Esitykseni STEAM (k)Oulussa –etäseminaarissa 21.4.2022","url":"https://www.finna.fi/Record/aoe.2047","image":null,"year":"2022","summary":"Esitys, jossa esitän tiiviisti \"STEAMin höyryävä historia, teknologiakasvatuksen juurilta nykypäivään\" kirjankappaleen päähavaintoja.","format":"Oppimateriaali"},{"id":"aoe.2370","title":"Teknologiatuettu oppiminen ja työskentely luentodiat syksy 2022","url":"https://www.finna.fi/Record/aoe.2370","image":null,"year":"2022","summary":"Teknologiatuettu oppiminen ja työskentely kurssin johdantoluennon materiaalit. Tällä luennolla käsiteltiin EU Digital Decade 2030 ohjelmaa, digitaalisia kompetensseja ja niiden EDU-versiota. Lisäksi käytiin läpi kurssin yleisiä käytänteitä ja oppimisympäristöä","format":"Oppimateriaali"},{"id":"aoe.2409","title":"ITK2022:","url":"https://www.finna.fi/Record/aoe.2409","image":"https://www.finna.fi/Cover/Show?source=Solr&id=aoe.2409&index=0&size=large","year":"2022","summary":"Interaktiivinen tekniikka koulutuksessa tapahtumassa 6.7.2022 pitämäni diaesitys.","format":"Oppimateriaali"},{"id":"aoe.1501","title":"Etäopetuksen hyvät käytännöt - mitä ovat opetus ja oppiminen digitaalisuuden puristuksessa?","url":"https://www.finna.fi/Record/aoe.1501","image":null,"year":"2021","summary":"Pidin tämän puheenvuoron oppimisen avoimuuden asiantuntijaryhmän* järjestämässä verkkotapahtumassa \"Avoimeen oppimiseen ja opetukseen – työkaluja ja hyviä käytäntöjä avointen oppimateriaalien ja etäopetuksen haltuunottoon\"\n\n*On osa avoimen tieteen kansallista koordinaatiota ja tieteellisten seurain valtuuskunnan toimintaa.","format":"Oppimateriaali"},{"id":"aoe.1518","title":"History of Technology Enhanced Learning","url":"https://www.finna.fi/Record/aoe.1518","image":"https://www.finna.fi/Cover/Show?source=Solr&id=aoe.1518&index=0&size=large","year":"2021","summary":"Puheenvuoroni Oulun yliopiston oppimisen ja koulutusteknologian maisteriohjelman 15v. juhlissa.","format":"Oppimateriaali"},{"id":"aoe.1698","title":"Joko vihdoin tästä tulee valtavirtaa - Teknologiatuettu oppiminen ja opetus post-korona maailmassa.","url":"https://www.finna.fi/Record/aoe.1698","image":null,"year":"2021","summary":"Pidin puheenvuoron Itä-Suomen yliopiston kutsumana PE 10.9. yliopiston henkilöstölle, digierko-oppiskelijoille ja muille heidän sidosryhmilleen. \n\nTarkastelen esityksessäni koronakokemuksia niin UNESCON kuin ILOn raporttien valossa ja pohdiskelen miten se on vaikuttanut teknologiatuetun oppimisen ja opetuksen tulevaisuusnäkymiin. \n\nTallennetta ei valitettavasti ole käytettävissä, se on tehty vain UEF:in sisäiseen käyttöön.","format":"Oppimateriaali"},{"id":"aoe.1789","title":"Ohjelmointi perusopetuksessa kurssin projektityön lopputuotos 2021","url":"https://www.finna.fi/Record/aoe.1789","image":"https://www.finna.fi/Cover/Show?source=Solr&id=aoe.1789&index=0&size=large","year":"2021","summary":"Ohjelmointi perusopetuksessa (5op) kurssin projektityön tuloksena syntynyt materiaali, jota tullaan käyttämään TET-jaksolla osana muita TET-materiaaleja. \n\nMateriaalin sisällöntuottajien joukosta puuttuvat toistaiseksi kurssilla olleiden opiskelijoiden nimet.","format":"Oppimateriaali"},{"id":"aoe.1813","title":"Hybridiopetus on täällä, oletko valmis? Näkemysten ja kokemusten jakamista kokeilevalla otteella!","url":"https://www.finna.fi/Record/aoe.1813","image":"https://www.finna.fi/Cover/Show?source=Solr&id=aoe.1813&index=0&size=large","year":"2021","summary":"Digitalisaatio on muuttanut pysyvästi ihmisten tapaa opiskella, työskennellä ja viettää vapaa-aikaa. Tästä huolimatta etä- ja hybridiopetuksen/työskentekyä on pidetty koronakriisiin saakka usein erillisenä, ylimääräisenä tai jopa haitallisena ilmiönä, joka ei edistä tehokasta työskentelyä tai oppimista.Tähän voi olla tulossa muutos, sillä koronakriisin vuoksi merkittävä osa länsimaiden väestöstä on saanut 2020-luvun taitteessa arkisia kokemuksia hybridi- ja/tai etäopetuksesta tai työskentelystä. Tieto- ja viestintätekniikan tai vaikkapa tietokoneavusteisen yhteisöllisen oppimisen tutkijat ovat tutkineet ilmiötä jo vuosikymmenten ajan, joten ilmiö ei ole tutkimusmielessä uusi. Korona toi etä/hybridiopetukseen soveltuvan teknologian kuitenkin merkittävällä tavalla osaksi arkeamme, jonka vuoksi myös laite- ja ohjelmistovalmistajat ovat heränneet tarjoamaan ennennäkemättömiä ratkaisuja tukemaan näitä työskentelyn ja opiskelun muotoja. \n\nTällaisia uusia tai kuluttajakäyttöön kypsyneitä teknologisia välineitä ja sovelluksia ovat erilaisten videoneuvottelu- ja verkkotyöskentely-ympäristöjen ohella erilaiset kamerat, mikrofonit ja muut vuorovaikutusta lisäävät työkalut ja sovellukset. Tällaisia ovat esimerkiksi sosiaalista läsnäoloa lisäävät osallistujien seurannalla varustetut 360-kokouskamerat, opettajan seurantaan kykenevät web-kamerat, koko opetustilan kattavat laajalinssiset kamerat sekä erilaiset älykkäät mikrofonit ja muut ratkaisut. Oulun yliopistossa ja Oulun ammattikorkeakoulussa on tehty 2020-luvun taitteessa merkittävää kehitystyötä hybridiopetusratkaisujen suhteen. Erilaisia toimintamalleja ja ratkaisuja on useita. \n\nTässä toimintasessiossa pyrimme omien esimerkkiemme ohella käsittelemään myös osallistujien kokemuksia ja näkemysiä tähän aiheeseen liittyen. Yhteisten kokemusten jakamisen ohella tarjoamme mahdollisuuden kokeilla näitä hybridiopetusta tukevia välineitä ja sovelluksia tässä sessiossa","format":"Oppimateriaali"}],
+    canva: [{"id":"a8TJ_RbQs_LW9GT","title":"Finnish Teacher Education & Professional Development","description":"Esitys suomalaisen opettajankoulutuksen mallista ja opettajien täydennyskoulutuksen haasteista. Käsittelee opettajien autonomiaa, luottamuskulttuuria ja ammatillisen kehittymisen pirstaleisuutta Suomessa.","url":"https://www.canva.com/d/a8TJ_RbQs_LW9GT","thumbnail":"/images/canva-thumbnails/finnish-teacher-education-professional-development.png","date":"2025-09-22","categories":["opettajankoulutus","täydennyskoulutus","Suomi-malli","Kosovo"],"location":"Kosovo","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"px0GJMQVZGdY1tc","title":"Teachable Machine and Somekone – Demo Session EARLI 2025","description":"Demonstraatiosessio Generation AI -hankkeen Teachable Machine- ja Somekone-työkaluista K9-oppilaille. Esittelee selainpohjaisia, avoimia työkaluja tekoälylukutaidon opettamiseen peruskoulussa.","url":"https://www.canva.com/d/px0GJMQVZGdY1tc","thumbnail":"/images/canva-thumbnails/teachable-machine-and-somekone-demo-session-earli-2025.png","date":"2025-08-24","categories":["EARLI","Teachable Machine","Somekone","Generation AI"],"location":"Graz, Itävalta","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"8CAKI6TEeKKQMug","title":"How to Teach AI Literacy to Primary School Children","description":"Tekoälylukutaidon opettaminen alakoululaisille turvallisilla ja helposti lähestyttävillä teknologioilla. Generation AI -työpaja, jossa esitellään käytännön menetelmiä tekoälyn toimintaperiaatteiden ymmärtämiseen.","url":"https://www.canva.com/d/8CAKI6TEeKKQMug","thumbnail":"/images/canva-thumbnails/how-to-teach-ai-literacy-to-primary-school-children.png","date":"2025-08-14","categories":["tekoälylukutaito","alakoulu","Generation AI","työpaja"],"location":"Viro","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"V9AijpSSvQKvkcE","title":"Miksi some koukuttaa? Somekoneen uusi työkalu","description":"Esitys Somekoneen uudesta osiosta, joka auttaa ymmärtämään sosiaalisen median koukuttavuuden mekanismeja. Digipedan verkostojen verkostolle suunnattu puheenvuoro Generation AI -hankkeen uusista ominaisuuksista.","url":"https://www.canva.com/d/V9AijpSSvQKvkcE","thumbnail":"/images/canva-thumbnails/miksi-some-koukuttaa-somekoneen-uusi-tyokalu.png","date":"2025-05-15","categories":["Somekone","sosiaalinen media","koukuttavuus","Generation AI"],"location":"Helsinki","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"XWm6gUjnr5i7hZI","title":"ITK2025 Areena","description":"Interaktiivinen Tekniikka Koulutuksessa -konferenssin areenaesitys tekoälylukutaidosta ja sen opettamisesta. Katsaus ajankohtaisiin tekoälyn opetuskäytön kysymyksiin ja Generation AI -hankkeen tuloksiin.","url":"https://www.canva.com/d/XWm6gUjnr5i7hZI","thumbnail":"/images/canva-thumbnails/itk2025-areena.png","date":"2025-04-24","categories":["ITK","tekoälylukutaito","opetuskäyttö","areena"],"location":"Hämeenlinna","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"GigvSSlS47bsFgv","title":"Miksi some koukuttaa? Miten tekoäly toimii? – ITK2025 Foorum","description":"ITK-konferenssin foorumiesitys sosiaalisen median koukuttavuudesta ja tekoälyn toimintaperiaatteista. Käsittelee Somekoneen ja Opetettavan koneen käyttöä opetuksessa käytännön esimerkkien kautta.","url":"https://www.canva.com/d/GigvSSlS47bsFgv","thumbnail":"/images/canva-thumbnails/miksi-some-koukuttaa-miten-tekoaly-toimii-itk2025-foorum.png","date":"2025-04-22","categories":["ITK","sosiaalinen media","tekoäly","Somekone"],"location":"Hämeenlinna","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"lziCAse2aAKA0_L","title":"Tekoäly arjessa – Helsinki Education HUB","description":"Laaja luentoesitys tekoälyn arkipäiväistymisestä ja sen integroitumisesta sosiaalisen median palveluihin. Käsittelee tekoälyn läpitunkevuutta ja sen vaikutuksia opetukseen ja oppimiseen.","url":"https://www.canva.com/d/lziCAse2aAKA0_L","thumbnail":"/images/canva-thumbnails/tekoaly-arjessa-helsinki-education-hub.png","date":"2025-04-09","categories":["tekoäly arjessa","sosiaalinen media","Education HUB","luento"],"location":"Helsinki","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"2-2zcSZVNsE0Cip","title":"Robotiikkaa ja selitettävää tekoälyä – Opetettavan koneen ja Somekoneen uudet ominaisuudet","description":"IT Kouluttajat ry:n laivaseminaariesitys Opetettavan koneen ja Somekoneen uusista ominaisuuksista. Esittelee robotiikkaintegraatioita ja someanalytiikan mahdollisuuksia opetuskäytössä.","url":"https://www.canva.com/d/2-2zcSZVNsE0Cip","thumbnail":"/images/canva-thumbnails/robotiikkaa-ja-selitettavaa-tekoalya-opetettavan-koneen-ja-s.png","date":"2025-03-20","categories":["robotiikka","selitettävä tekoäly","Somekone","IT Kouluttajat"],"location":"Tallinna (laivaseminaari)","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"Kk2fGTLAVSdDMHz","title":"Generation AI – Esittely japanilaiselle vieraalle","description":"Generation AI -hankkeen ja Shield-ohjelman esittely kansainväliselle vieraalle. Kuvaa hankkeen roolia tekoäly- ja turvallisuuskasvatuksen tutkimuspohjaisessa kehittämisessä.","url":"https://www.canva.com/d/Kk2fGTLAVSdDMHz","thumbnail":"/images/canva-thumbnails/generation-ai-esittely-japanilaiselle-vieraalle.png","date":"2025-03-18","categories":["Generation AI","Shield-ohjelma","kansainvälisyys","hanke-esittely"],"location":"Oulu","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"k2U-B9pZNbblMHV","title":"Selitettävä tekoäly opetuksessa – ITK-webinaari","description":"Webinaariesitys selitettävän tekoälyn (XAI) käsitteestä ja sen merkityksestä opetuksessa. Käsittelee miksi tekoälyjärjestelmien läpinäkyvyys on tärkeää oppimiskontekstissa.","url":"https://www.canva.com/d/k2U-B9pZNbblMHV","thumbnail":"/images/canva-thumbnails/selitettava-tekoaly-opetuksessa-itk-webinaari.png","date":"2025-03-11","categories":["selitettävä tekoäly","XAI","ITK","webinaari"],"location":"Webinaari (verkossa)","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"PMswB92SaPgn7TJ","title":"Generative AI as a Tool to Adapt Teaching to Learner's Needs","description":"Englanninkielinen esitys generatiivisen tekoälyn hyödyntämisestä opetuksen yksilöllistämisessä. Lithuania AI Accelerator -tapahtuman laaja katsaus tekoälyn opetuskäyttöön ja opettajankoulutukseen.","url":"https://www.canva.com/d/PMswB92SaPgn7TJ","thumbnail":"/images/canva-thumbnails/generative-ai-as-a-tool-to-adapt-teaching-to-learner-s-needs.png","date":"2025-02-25","categories":["generatiivinen tekoäly","eriyttäminen","AI Accelerator","opettajankoulutus"],"location":"Liettua","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"G7w2ekHickUAteR","title":"Generative AI as a Professional Tool – Agent, Coach or Friend?","description":"Labquality Days -konferenssin esitys generatiivisesta tekoälystä ammatillisena työkaluna. Tutkimuspohjaisia näkökulmia tekoälyn varhaiseen käyttöönottoon, sääntelyyn ja tekoälylukutaitoon.","url":"https://www.canva.com/d/G7w2ekHickUAteR","thumbnail":"/images/canva-thumbnails/generative-ai-as-a-professional-tool-agent-coach-or-friend.png","date":"2025-02-05","categories":["Labquality Days","ammatillinen työkalu","sääntely","tekoälylukutaito"],"location":"Helsinki","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"E3P5mb4b-XNkVRh","title":"Tekoälyosaamista kieltenopetukseen","description":"Luentoesitys tekoälyn roolista kieltenopetuksessa ja shadow AI -ilmiöstä. Käsittelee miten tekoälyä käytetään kieltenoppimisessa riippumatta siitä, onko se sallittua vai ei.","url":"https://www.canva.com/d/E3P5mb4b-XNkVRh","thumbnail":"/images/canva-thumbnails/tekoalyosaamista-kieltenopetukseen.png","date":"2025-01-10","categories":["kieltenopetus","shadow AI","tekoälyosaaminen","luento"],"location":"Ei paikkakuntatietoa","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"zyK9giWkhlIbgdA","title":"Learning AI Literacy in Collaborative Projects with an AI Education Tool","description":"Tapaustutkimus suomalaisesta opettajankoulutuksesta, jossa opiskelijat oppivat tekoälylukutaitoa yhteistoiminnallisissa projekteissa. Esittelee koneoppimispohjaisten sovellusten rakentamista Generation AI -työkaluilla.","url":"https://www.canva.com/d/zyK9giWkhlIbgdA","thumbnail":"/images/canva-thumbnails/learning-ai-literacy-in-collaborative-projects-with-an-ai-ed.png","date":"2024-12-10","categories":["tapaustutkimus","opettajankoulutus","yhteistoiminnallinen oppiminen","koneoppiminen"],"location":"Ei paikkakuntatietoa","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"BbLfV3z4HKRbLLv","title":"Annie Advisor – Generative AI as a Tool to Adapt Teaching","description":"Annie Advisor -alustan esittely ja generatiivisen tekoälyn mahdollisuudet opetuksen mukauttamisessa oppijan tarpeisiin. Käsittelee tutkimuspohjaisia oivalluksia tekoälyn hyödyntämisestä oppimisen tukena.","url":"https://www.canva.com/d/BbLfV3z4HKRbLLv","thumbnail":"/images/canva-thumbnails/annie-advisor-generative-ai-as-a-tool-to-adapt-teaching.png","date":"2024-11-05","categories":["Annie Advisor","generatiivinen tekoäly","eriyttäminen","oppimisen tuki"],"location":"Ei paikkakuntatietoa","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"xnifP159rmy3Rko","title":"Generation AI Workshop","description":"Laaja Generation AI -hankkeen työpajaesitys, jossa osallistujat pääsevät kokeilemaan hankkeen tekoälylukutaitotyökaluja. Käytännönläheinen sessio Opetettavan koneen ja Somekoneen käytöstä opetuksessa.","url":"https://www.canva.com/d/xnifP159rmy3Rko","thumbnail":"/images/canva-thumbnails/generation-ai-workshop.png","date":"2024-11-05","categories":["Generation AI","työpaja","tekoälylukutaito","käytännön harjoitukset"],"location":"Ei paikkakuntatietoa","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"LCz5VdKUVtKqunC","title":"International Conference on the Advancement of STEAM 2024","description":"Kansainvälinen STEAM-konferenssiesitys tekoälylukutaidon integroinnista STEAM-opetukseen. Esittelee Generation AI -hankkeen tuloksia ja työkaluja tieteidenvälisessä kontekstissa.","url":"https://www.canva.com/d/LCz5VdKUVtKqunC","thumbnail":"/images/canva-thumbnails/international-conference-on-the-advancement-of-steam-2024.png","date":"2024-10-28","categories":["STEAM","kansainvälinen konferenssi","tekoälylukutaito","Generation AI"],"location":"Ei paikkakuntatietoa","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"nnjyj2JS29sOSpy","title":"Digivoo kommenttipuheenvuoro","description":"Kommenttipuheenvuoro Digivoo-tilaisuudessa digitalisaation ja tekoälyn ajankohtaisista teemoista koulutuskontekstissa. Laaja diasetti, joka käsittelee tekoälyn vaikutuksia opetukseen ja oppimiseen.","url":"https://www.canva.com/d/nnjyj2JS29sOSpy","thumbnail":"/images/canva-thumbnails/digivoo-kommenttipuheenvuoro.png","date":"2024-09-02","categories":["Digivoo","kommenttipuheenvuoro","digitalisaatio","koulutuspolitiikka"],"location":"Ei paikkakuntatietoa","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"PuZdC-Ya2XePGL9","title":"From EU AI Act to National AI Guidelines","description":"Esitys EU:n tekoälysäädöksestä (AI Act) ja sen kansallisista sovelluksista koulutuskontekstissa. Käsittelee sääntelyn vaikutuksia opetuskäyttöön ja tekoälylukutaidon kehittämiseen.","url":"https://www.canva.com/d/PuZdC-Ya2XePGL9","thumbnail":"/images/canva-thumbnails/from-eu-ai-act-to-national-ai-guidelines.png","date":"2024-06-27","categories":["EU AI Act","sääntely","kansalliset linjaukset","koulutuspolitiikka"],"location":"Ei paikkakuntatietoa","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"TbQb-poTWQA8frV","title":"Fedutalk – Generative AI in Education","description":"Fedutalk-esitys generatiivisen tekoälyn mahdollisuuksista ja haasteista koulutuksessa. Kansainväliselle yleisölle suunnattu katsaus suomalaiseen tekoälylukutaidon opetukseen.","url":"https://www.canva.com/d/TbQb-poTWQA8frV","thumbnail":"/images/canva-thumbnails/fedutalk-generative-ai-in-education.png","date":"2024-06-26","categories":["Fedutalk","generatiivinen tekoäly","kansainvälisyys","koulutus"],"location":"Kosovo","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"mPO7rS-FQTQJdax","title":"ITK2024","description":"Interaktiivinen Tekniikka Koulutuksessa 2024 -konferenssiesitys tekoälyn opetuskäytön ajankohtaisista kysymyksistä. Laaja diasetti Generation AI -hankkeen tuloksista ja tekoälylukutaidon edistämisestä.","url":"https://www.canva.com/d/mPO7rS-FQTQJdax","thumbnail":"/images/canva-thumbnails/itk2024.png","date":"2024-04-12","categories":["ITK","tekoäly opetuksessa","Generation AI","konferenssi"],"location":"Hämeenlinna","folder":"Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit","source":"json"},{"id":"HQSqasOBm9SJgUx","title":"Riko, rakenna ja ymmärrä – Kohti kriittistä tekoälylukutaitoa","description":"Finnoschool-koulutuksen esitys kriittisen tekoälylukutaidon kehittämisestä. Yhdistää luento-osuuden ja käytännön työpajan, jossa harjoitellaan tekoälyn kriittistä arviointia ja käyttöä opetuksessa.","url":"https://www.canva.com/d/HQSqasOBm9SJgUx","thumbnail":"/images/canva-thumbnails/riko-rakenna-ja-ymmarra-kohti-kriittista-tekoalylukutaitoa.png","date":"2026-02-16","categories":["kriittinen lukutaito","Finnoschool","tekoälylukutaito","työpaja"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"Bfxu8HjaUJaIbxH","title":"Ihmeitä tekevä tekoäly vai tavallinen työkalu? – VESO 2026","description":"VESO-koulutuspäivän esitys tekoälylukutaidon perusteista opettajille. Käsittelee tekoälyn demystifiointia ja askeleita kohti käytännön tekoälylukutaitoa kouluarjessa.","url":"https://www.canva.com/d/Bfxu8HjaUJaIbxH","thumbnail":"/images/canva-thumbnails/ihmeita-tekeva-tekoaly-vai-tavallinen-tyokalu-veso-2026.png","date":"2026-01-22","categories":["VESO","tekoälylukutaito","opettajien koulutus","käytäntö"],"location":"Riihimäki","folder":"Täydennyskoulutus","source":"json"},{"id":"bZb22nPNQeUAMNt","title":"VESO 2026 – Tekoäly opetuksessa","description":"Kempeleen kunnan VESO-koulutuspäivän esitys tekoälyn roolista opetuksessa. Käsittelee tekoälylukutaidon perusteita, käytännön työkaluja ja ajankohtaisia linjauksia.","url":"https://www.canva.com/d/bZb22nPNQeUAMNt","thumbnail":"/images/canva-thumbnails/veso-2026-tekoaly-opetuksessa.png","date":"2026-01-21","categories":["VESO","Kempele","tekoäly opetuksessa","täydennyskoulutus"],"location":"Kempele","folder":"Täydennyskoulutus","source":"json"},{"id":"GBChTzIIJa-gqf_","title":"Konenäkö, vibe coding ja robotiikka – Robokampus 2026","description":"Robokampus-koulutuksen esitys konenäön, vibe coding -lähestymistavan ja robotiikan yhdistämisestä opetuksessa. Käytännönläheinen työpaja tekoälyn ja fyysisen laskennan rajapinnasta.","url":"https://www.canva.com/d/GBChTzIIJa-gqf_","thumbnail":"/images/canva-thumbnails/konenako-vibe-coding-ja-robotiikka-robokampus-2026.png","date":"2026-01-20","categories":["konenäkö","robotiikka","vibe coding","Robokampus"],"location":"Riihimäki","folder":"Täydennyskoulutus","source":"json"},{"id":"Ew18HDBbqCzHmyL","title":"Tekoälyagentit","description":"Opettajankoulutusfoorumin (OKF) esitys tekoälyagenttien toiminnasta ja merkityksestä. Katsaus agenttipohjaisen tekoälyn tulevaisuuteen koulutuskontekstissa.","url":"https://www.canva.com/d/Ew18HDBbqCzHmyL","thumbnail":"/images/canva-thumbnails/tekoalyagentit.png","date":"2025-11-18","categories":["tekoälyagentit","OKF","tulevaisuus","agenttipohjaisuus"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"gE1bwVNfZDH-caB","title":"Tekoäly opettajan työkaluna","description":"Käytännönläheinen esitys tekoälystä opettajan päivittäisenä työkaluna. Esittelee konkreettisia tapoja hyödyntää tekoälyä opetuksen suunnittelussa, toteutuksessa ja arvioinnissa.","url":"https://www.canva.com/d/gE1bwVNfZDH-caB","thumbnail":"/images/canva-thumbnails/tekoaly-opettajan-tyokaluna.png","date":"2025-11-17","categories":["opettajan työkalu","tekoäly","opetuskäyttö","käytännön vinkit"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"wTxp20g73BPxwk_","title":"Opettaja tekoälyn ja -älyttömyyden turbulenssissa","description":"Laaja esitys synteettisten sisältöjen vaikutuksesta internetin tietoympäristöön ja opettajien sekä oppilaiden tekoälylukutaidon kehittämisestä. Henkilökohtainen teknologiahistoriallinen näkökulma opetuksen muutokseen.","url":"https://www.canva.com/d/wTxp20g73BPxwk_","thumbnail":"/images/canva-thumbnails/opettaja-tekoalyn-ja-alyttomyyden-turbulenssissa.png","date":"2025-10-30","categories":["synteettiset sisällöt","tekoälylukutaito","opettajuuden muutos","teknologiahistoria"],"location":"Tampere","folder":"Täydennyskoulutus","source":"json"},{"id":"ed_YYFIwhxYUW_X","title":"Digipedailtapäivä – Tekoäly opetuksessa","description":"Tampereen digipedailtapäivän esitys tekoälyn käytännön soveltamisesta opetukseen. Käsittelee ajankohtaisia tekoälytyökaluja, pedagogisia lähestymistapoja ja tekoälylukutaidon edistämistä.","url":"https://www.canva.com/d/ed_YYFIwhxYUW_X","thumbnail":"/images/canva-thumbnails/digipedailtapaiva-tekoaly-opetuksessa.png","date":"2025-10-29","categories":["digipeda","iltapäivä","tekoäly opetuksessa","käytäntö"],"location":"Tampere","folder":"Täydennyskoulutus","source":"json"},{"id":"O9-nqpHd58I_zrE","title":"Kuinka tekoäly toimii? – Webinaari","description":"Tiivis webinaari tekoälyn toimintaperiaatteista kansantajuisesti selitettynä. Sopii opettajille, jotka haluavat ymmärtää tekoälyn perusteita ennen sen soveltamista opetuksessa.","url":"https://www.canva.com/d/O9-nqpHd58I_zrE","thumbnail":"/images/canva-thumbnails/kuinka-tekoaly-toimii-webinaari.png","date":"2025-10-21","categories":["webinaari","tekoälyn perusteet","toimintaperiaatteet","opettajat"],"location":"Webinaari (verkossa)","folder":"Täydennyskoulutus","source":"json"},{"id":"Or2PXVqHLXeZgXV","title":"Tekoälylukutaitoinen digiosaaja – Millaisia taitoja opettajalla tulisi olla?","description":"OKM:n Osaava DigiOpe -hankkeen kick off -webinaarin esitys opettajien digitaalisista kompetensseista tekoälyaikana. Käsittelee homo digitalis -käsitettä ja opettajan tarvitsemia tekoälylukutaitoja.","url":"https://www.canva.com/d/Or2PXVqHLXeZgXV","thumbnail":"/images/canva-thumbnails/tekoalylukutaitoinen-digiosaaja-millaisia-taitoja-opettajall.png","date":"2025-10-07","categories":["OKM","Osaava DigiOpe","digiosaaminen","opettajan kompetenssit"],"location":"Webinaari (verkossa)","folder":"Täydennyskoulutus","source":"json"},{"id":"AkclkQk7PSDfsfd","title":"Tekoäly: opettajan ystävä vai vihollinen? Matkalla kohti tekoälylukutaitoa","description":"Koulutuspäivän esitys tekoälyn roolista opettajan arjessa – onko se uhka vai mahdollisuus. Käsittelee tekoälylukutaidon kehittämisen polkua ja käytännön askeleita opettajille.","url":"https://www.canva.com/d/AkclkQk7PSDfsfd","thumbnail":"/images/canva-thumbnails/tekoaly-opettajan-ystava-vai-vihollinen-matkalla-kohti-tekoa.png","date":"2025-09-30","categories":["tekoälylukutaito","opettajan arki","uhka vai mahdollisuus","koulutuspäivä"],"location":"Kokkola","folder":"Täydennyskoulutus","source":"json"},{"id":"jQk9wkvNugrtWYa","title":"Tekoäly yhdistystoiminnassa","description":"OK Opintokeskuksen tilaisuuden esitys tekoälyn hyödyntämisestä järjestö- ja yhdistystoiminnassa. Käytännönläheinen katsaus tekoälytyökaluihin, joita vapaaehtoisorganisaatiot voivat hyödyntää.","url":"https://www.canva.com/d/jQk9wkvNugrtWYa","thumbnail":"/images/canva-thumbnails/tekoaly-yhdistystoiminnassa.png","date":"2025-09-10","categories":["yhdistystoiminta","OK Opintokeskus","tekoälytyökalut","järjestöt"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"qJBv9goo1nib9RV","title":"AI, Friend or Foe? (EN)","description":"Englanninkielinen esitys tekoälystä opetuskontekstissa – ystävä vai vihollinen. Kansainväliselle yleisölle suunnattu katsaus tekoälylukutaitoon ja sen opettamiseen.","url":"https://www.canva.com/d/qJBv9goo1nib9RV","thumbnail":"/images/canva-thumbnails/ai-friend-or-foe-en.png","date":"2025-08-18","categories":["AI literacy","friend or foe","international","education"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"3WxONxP2X5DrAtD","title":"Tekoäly, ystävä vai vihollinen? (FIN)","description":"Suomenkielinen versio esityksestä tekoälyn roolista opetuksessa. Käsittelee tekoälylukutaidon kehittämistä ja ajankohtaisia haasteita opettajan näkökulmasta.","url":"https://www.canva.com/d/3WxONxP2X5DrAtD","thumbnail":"/images/canva-thumbnails/tekoaly-ystava-vai-vihollinen-fin.png","date":"2025-08-18","categories":["tekoäly","ystävä vai vihollinen","opetus","tekoälylukutaito"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"ce1ztDN1A097hxv","title":"Tekoälyluento ja työpaja (EN)","description":"Kansainvälisen kesäyliopiston (KYK) englanninkielinen tekoälyluento ja käytännön työpaja. Laaja kokonaisuus tekoälyn perusteista sovellusten rakentamiseen Generation AI -työkaluilla.","url":"https://www.canva.com/d/ce1ztDN1A097hxv","thumbnail":"/images/canva-thumbnails/tekoalyluento-ja-tyopaja-en.png","date":"2025-08-05","categories":["KYK","kesäyliopisto","tekoälyluento","työpaja"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"WA08O6OZNJgEYwF","title":"Tekoälyluento ja työpaja (FIN)","description":"Kansainvälisen kesäyliopiston (KYK) suomenkielinen tekoälyluento ja käytännön työpaja. Sisältää luento-osuuden tekoälyn perusteista ja hands-on-työpajan Generation AI -työkaluilla.","url":"https://www.canva.com/d/WA08O6OZNJgEYwF","thumbnail":"/images/canva-thumbnails/tekoalyluento-ja-tyopaja-fin.png","date":"2025-08-04","categories":["KYK","kesäyliopisto","tekoälyluento","työpaja"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"lDWm97aOE4B28EZ","title":"Tekoälyn vaikutuksia korkeakoulupedagogiikkaan","description":"Laaja esitys tekoälyn muutosvoimasta korkeakoulupedagogiikassa. Käsittelee miten generatiivinen tekoäly haastaa perinteiset opetus- ja arviointikäytännöt yliopistoissa ja ammattikorkeakouluissa.","url":"https://www.canva.com/d/lDWm97aOE4B28EZ","thumbnail":"/images/canva-thumbnails/tekoalyn-vaikutuksia-korkeakoulupedagogiikkaan.png","date":"2025-05-11","categories":["korkeakoulupedagogiikka","generatiivinen tekoäly","arviointi","muutos"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"G94vRAQGi4Wm6s7","title":"Älyä! Teko! Tekoälyajan kognitiiviset työkalut ja ydintaidot","description":"Esitys tekoälyajan ihmisen kognitiivisista työkaluista ja elämässä tarvittavista ydintaidoista. Pohtii mitä osaamista ja valmiuksia tarvitaan aikana, jolloin tekoäly muuttaa tietotyötä perustavanlaatuisesti.","url":"https://www.canva.com/d/G94vRAQGi4Wm6s7","thumbnail":"/images/canva-thumbnails/alya-teko-tekoalyajan-kognitiiviset-tyokalut-ja-ydintaidot.png","date":"2025-05-05","categories":["kognitiiviset työkalut","ydintaidot","tekoälyaika","osaaminen"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"AdGUM0l2lPCb8xW","title":"Miten tekoälyn kehitys on muuttanut korkeakoulujen toimintaa?","description":"Esitys tekoälyn vaikutuksista korkeakoulujen toimintaan ja pedagogiikkaan. Käsittelee konkreettisia muutoksia opetuksessa, tutkimuksessa ja hallinnossa tekoälyn yleistymisen myötä.","url":"https://www.canva.com/d/AdGUM0l2lPCb8xW","thumbnail":"/images/canva-thumbnails/miten-tekoalyn-kehitys-on-muuttanut-korkeakoulujen-toimintaa.png","date":"2025-04-14","categories":["korkeakoulut","tekoälyn vaikutukset","muutos","pedagogiikka"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"-On5aqOKGOQuCfP","title":"Kuinka opettaa tekoälytaitoja esi- ja perusopetuksessa? – PraBa","description":"PraBa-tilaisuuden esitys Generation AI -hankkeen ratkaisuista tekoälytaitojen opettamiseen esi- ja perusopetuksessa. Käsittelee hankkeen menetelmiä ja pedagogisia lähestymistapoja lasten tekoälykasvatukseen.","url":"https://www.canva.com/d/-On5aqOKGOQuCfP","thumbnail":"/images/canva-thumbnails/kuinka-opettaa-tekoalytaitoja-esi-ja-perusopetuksessa-praba.png","date":"2025-04-02","categories":["PraBa","esiopetus","perusopetus","Generation AI"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"U7Jc8G6SA5vA9cV","title":"Tekoäly, opettajan työ ja arvioinnin muutos","description":"Esitys tekoälyn vaikutuksista opettajan työhön ja erityisesti arvioinnin muutokseen. Pohtii miten generatiivinen tekoäly haastaa perinteiset arviointikäytännöt ja mitä uusia ratkaisuja tarvitaan.","url":"https://www.canva.com/d/U7Jc8G6SA5vA9cV","thumbnail":"/images/canva-thumbnails/tekoaly-opettajan-tyo-ja-arvioinnin-muutos.png","date":"2025-02-04","categories":["arviointi","opettajan työ","muutos","generatiivinen tekoäly"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"WZSKbPekk77B4pV","title":"Voiko tekoälyn käyttöä oikeasti kieltää?","description":"Provokatiivinen esitys tekoälyn kieltämisen mahdottomuudesta koulutuskontekstissa. Käsittelee shadow AI -ilmiötä ja argumentoi miksi lukutaidon kehittäminen on kieltämistä parempi strategia.","url":"https://www.canva.com/d/WZSKbPekk77B4pV","thumbnail":"/images/canva-thumbnails/voiko-tekoalyn-kayttoa-oikeasti-kieltaa.png","date":"2025-02-03","categories":["shadow AI","kieltäminen","tekoälylukutaito","strategia"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"2QprnRPEvK80-VQ","title":"Generatiivinen tekoäly – Tekoäly työkaluna III","description":"Opettajien ja kieltenopettajien koulutussarjan kolmas osa generatiivisesta tekoälystä. Syventää ymmärrystä tekoälyn käytännön soveltamisesta kieltenopetuksen kontekstissa.","url":"https://www.canva.com/d/2QprnRPEvK80-VQ","thumbnail":"/images/canva-thumbnails/generatiivinen-tekoaly-tekoaly-tyokaluna-iii.png","date":"2025-01-16","categories":["generatiivinen tekoäly","kieltenopetus","koulutussarja","opettajat"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"h6l_XR-jvfUDrZI","title":"Tekoäly osana arkisia sovelluksia","description":"Esitys tekoälyn integroitumisesta jokapäiväisiin sovelluksiin ja palveluihin. Avaa silmiä sille, miten tekoäly on jo läsnä arjessa usein huomaamattomasti.","url":"https://www.canva.com/d/h6l_XR-jvfUDrZI","thumbnail":"/images/canva-thumbnails/tekoaly-osana-arkisia-sovelluksia.png","date":"2025-01-16","categories":["arkiset sovellukset","tekoäly arjessa","integraatio","tietoisuus"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"c23TW_-XY9lQL8H","title":"Miten tekoäly toimii? Miksi some koukuttaa?","description":"Kaksoisteemainen esitys tekoälyn toimintaperiaatteista ja sosiaalisen median koukuttavuusmekanismeista. Sopii opettajille, jotka haluavat ymmärtää molempia ilmiöitä ja opettaa niitä oppilailleen.","url":"https://www.canva.com/d/c23TW_-XY9lQL8H","thumbnail":"/images/canva-thumbnails/miten-tekoaly-toimii-miksi-some-koukuttaa.png","date":"2025-01-16","categories":["tekoälyn toiminta","sosiaalinen media","koukuttavuus","opettajat"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"_01s5INj0QGDoOc","title":"Tekoälyn ajankohtaiskatsaus – OTAVIA 2025","description":"OTAVIA-verkoston koulutuksen ajankohtaiskatsaus tekoälyn kehitykseen ja opetuskäyttöön. Käsittelee tuoreimpia tekoälykehityskulkuja ja niiden merkitystä opettajille ja koulutukselle.","url":"https://www.canva.com/d/_01s5INj0QGDoOc","thumbnail":"/images/canva-thumbnails/tekoalyn-ajankohtaiskatsaus-otavia-2025.png","date":"2025-01-02","categories":["OTAVIA","ajankohtaiskatsaus","tekoälykehitys","opetuskäyttö"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"wmeqcm8l_fwMxMP","title":"Digitutorit 2024 – Tekoäly opetuksessa","description":"Keravan digitutorikoulutuksen esitys tekoälyn hyödyntämisestä opetuksessa. Käytännönläheinen koulutus digitutoreille, jotka toimivat tekoälyn jalkauttajina omissa kouluissaan.","url":"https://www.canva.com/d/wmeqcm8l_fwMxMP","thumbnail":"/images/canva-thumbnails/digitutorit-2024-tekoaly-opetuksessa.png","date":"2024-12-10","categories":["digitutorit","Kerava","tekoäly opetuksessa","jalkauttaminen"],"location":"Kerava","folder":"Täydennyskoulutus","source":"json"},{"id":"wTmChnWYt3Ped63","title":"DIGIERKO 2024 – Risteilyesitys","description":"DIGIERKO-verkoston risteilyseminaarin esitys tekoälylukutaidon ajankohtaisista teemoista. Käsittelee digipedagogiikan ja tekoälyn leikkauspisteitä opettajankoulutuksen kontekstissa.","url":"https://www.canva.com/d/wTmChnWYt3Ped63","thumbnail":"/images/canva-thumbnails/digierko-2024-risteilyesitys.png","date":"2024-11-29","categories":["DIGIERKO","digipedagogiikka","tekoälylukutaito","opettajankoulutus"],"location":"Risteily","folder":"Täydennyskoulutus","source":"json"},{"id":"JKkFuEnkM0_ce7t","title":"Millaisia tekoälytaitoja peruskoulussa tulisi opettaa 2020-luvulla?","description":"Laaja esitys peruskoulun tekoälytaitojen opettamisesta ja menetelmistä 2020-luvun kontekstissa. Käsittelee mitä tekoälytaitoja oppilaat tarvitsevat ja miten niitä voidaan opettaa käytännössä.","url":"https://www.canva.com/d/JKkFuEnkM0_ce7t","thumbnail":"/images/canva-thumbnails/millaisia-tekoalytaitoja-peruskoulussa-tulisi-opettaa-2020-l.png","date":"2024-11-21","categories":["peruskoulu","tekoälytaidot","2020-luku","menetelmät"],"location":"Pori / Kerava","folder":"Täydennyskoulutus","source":"json"},{"id":"mYXkbfKWsXK3JX9","title":"Tekoälyluento – OSYK","description":"Oulun seudun yhteiskoulutuksen (OSYK) tekoälyluento opetushenkilöstölle. Katsaus tekoälyn perusteisiin, opetuskäyttöön ja ajankohtaisiin kehityskulkuihin.","url":"https://www.canva.com/d/mYXkbfKWsXK3JX9","thumbnail":"/images/canva-thumbnails/tekoalyluento-osyk.png","date":"2024-10-08","categories":["OSYK","tekoälyluento","opetushenkilöstö","perusteet"],"location":"Oulu","folder":"Täydennyskoulutus","source":"json"},{"id":"JzlZ5gP4WPed_PF","title":"Opopassi-koulutus – Tekoäly ohjauksessa","description":"Laaja Opopassi-koulutuksen esitys tekoälyn hyödyntämisestä opinto-ohjauksessa. Käsittelee tekoälytyökalujen mahdollisuuksia ohjaustyössä ja oppilaiden tekoälylukutaidon tukemista.","url":"https://www.canva.com/d/JzlZ5gP4WPed_PF","thumbnail":"/images/canva-thumbnails/opopassi-koulutus-tekoaly-ohjauksessa.png","date":"2024-10-03","categories":["Opopassi","opinto-ohjaus","tekoäly","ohjaustyö"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"MN9vT3UJBqN4H9S","title":"AVI-koulutus – Tekoäly opetuksessa","description":"Aluehallintoviraston (AVI) koulutustilaisuuden esitys tekoälyn opetuskäytöstä. Laaja kokonaisuus tekoälyn perusteista käytännön työkaluihin ja pedagogisiin sovelluksiin.","url":"https://www.canva.com/d/MN9vT3UJBqN4H9S","thumbnail":"/images/canva-thumbnails/avi-koulutus-tekoaly-opetuksessa.png","date":"2024-10-01","categories":["AVI","aluehallintovirasto","tekoäly opetuksessa","koulutus"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"nbQifEidO25m3AN","title":"Monilukutaito on opettajan supervoima – Tekoälylukutaito","description":"Erittäin laaja koulutusesitys monilukutaidosta ja tekoälylukutaidosta opettajan supervoimana. Yhdistää tekoälyn opetuskäytön ja tekoälylukutaidon kehittämisen monilukutaidon viitekehykseen.","url":"https://www.canva.com/d/nbQifEidO25m3AN","thumbnail":"/images/canva-thumbnails/monilukutaito-on-opettajan-supervoima-tekoalylukutaito.png","date":"2024-09-26","categories":["monilukutaito","tekoälylukutaito","supervoima","koulutus"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"sMkIbG8Bla2iwe1","title":"Tekoäly on jo kaikkialla – Miten ilmiötä tulisi lähestyä?","description":"Esitys tekoälyn kaikkiallisuudesta ja siitä, miten opettajien ja koulujen tulisi suhtautua ilmiöön. Tarjoaa tutkimuspohjaisen lähestymistavan tekoälyn ymmärtämiseen ja opettamiseen.","url":"https://www.canva.com/d/sMkIbG8Bla2iwe1","thumbnail":"/images/canva-thumbnails/tekoaly-on-jo-kaikkialla-miten-ilmiota-tulisi-lahestya.png","date":"2024-09-26","categories":["tekoäly kaikkialla","lähestymistapa","tutkimuspohjainen","koulut"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"cmlFpB5HszXczTV","title":"Tekoälytyökalut – Webinaari 2024","description":"Webinaari tekoälytyökalujen käytännön esittelystä opetuskontekstissa. Esittelee konkreettisia tekoälytyökaluja, joita opettajat voivat hyödyntää työssään välittömästi.","url":"https://www.canva.com/d/cmlFpB5HszXczTV","thumbnail":"/images/canva-thumbnails/tekoalytyokalut-webinaari-2024.png","date":"2024-09-24","categories":["tekoälytyökalut","webinaari","käytännön esittely","opettajat"],"location":"Webinaari (verkossa)","folder":"Täydennyskoulutus","source":"json"},{"id":"AaRWnwipAMVZJdm","title":"Tekoäly arjessa – EDUTEN/Opinvirta","description":"EDUTEN/Opinvirta-tilaisuuden esitys tekoälyn arkipäiväistymisestä ja sen integroitumisesta sosiaalisen median palveluihin. Käsittelee tekoälyn läsnäoloa jokapäiväisessä elämässä ja sen vaikutuksia opetukseen.","url":"https://www.canva.com/d/AaRWnwipAMVZJdm","thumbnail":"/images/canva-thumbnails/tekoaly-arjessa-eduten-opinvirta.png","date":"2024-09-19","categories":["EDUTEN","Opinvirta","tekoäly arjessa","sosiaalinen media"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"fnAUnBpF_P4ZtME","title":"VESO 2024 – Tekoäly opetuksessa","description":"Simon kunnan VESO-koulutuspäivän esitys tekoälyn perusteista ja opetuskäytöstä. Käytännönläheinen koulutus opettajille tekoälyn ymmärtämiseen ja hyödyntämiseen kouluarjessa.","url":"https://www.canva.com/d/fnAUnBpF_P4ZtME","thumbnail":"/images/canva-thumbnails/veso-2024-tekoaly-opetuksessa.png","date":"2024-08-30","categories":["VESO","Simo","tekoälyn perusteet","opetuskäyttö"],"location":"Simo","folder":"Täydennyskoulutus","source":"json"},{"id":"qpdY7c05mW9ZASD","title":"VESO elokuu 2024 – Tekoäly koulussa","description":"Simon kunnan elokuun VESO-koulutuksen esitys tekoälyn käytöstä kouluympäristössä. Tiivis katsaus tekoälyn mahdollisuuksiin lukuvuoden alkaessa.","url":"https://www.canva.com/d/qpdY7c05mW9ZASD","thumbnail":"/images/canva-thumbnails/veso-elokuu-2024-tekoaly-koulussa.png","date":"2024-08-30","categories":["VESO","Simo","elokuu","lukuvuoden alku"],"location":"Simo","folder":"Täydennyskoulutus","source":"json"},{"id":"Q8qT7ofNNdJ7oQB","title":"VESO 2024 – Tekoäly oppimassa ja opettamassa","description":"Kainuun alueen VESO-koulutuspäivän esitys tekoälyn roolista oppimisessa ja opettamisessa. Käsittelee tekoälyn kaikkiallisuutta ja sen integroitumista sosiaalisen median palveluihin.","url":"https://www.canva.com/d/Q8qT7ofNNdJ7oQB","thumbnail":"/images/canva-thumbnails/veso-2024-tekoaly-oppimassa-ja-opettamassa.png","date":"2024-08-05","categories":["VESO","Kainuu","tekoäly oppimisessa","opetuskäyttö"],"location":"Kainuu","folder":"Täydennyskoulutus","source":"json"},{"id":"SLsETfEwX-042Jb","title":"FCLAB ja norssit – Generation AI","description":"Fab Lab Oulun ja harjoittelukoulujen yhteistyöesitys Generation AI -hankkeen työkalujen käytöstä. Käytännönläheinen koulutus tekoälylukutaidon opettamiseen normaalikoulukontekstissa.","url":"https://www.canva.com/d/SLsETfEwX-042Jb","thumbnail":"/images/canva-thumbnails/fclab-ja-norssit-generation-ai.png","date":"2024-04-17","categories":["Fab Lab","normaalikoulu","Generation AI","käytännön koulutus"],"location":"Oulu","folder":"Täydennyskoulutus","source":"json"},{"id":"fXyXDyp46aaqEQM","title":"Tekoäly opettajan työkaluna – Inspiraatiosessio","description":"Inspiraatioesitys tekoälyn käyttömahdollisuuksista opettajan arjessa. Nostaa esiin, miten monet opettajien jo käyttämät työkalut hyödyntävät tekoälyä taustalla.","url":"https://www.canva.com/d/fXyXDyp46aaqEQM","thumbnail":"/images/canva-thumbnails/tekoaly-opettajan-tyokaluna-inspiraatiosessio.png","date":"2024-03-13","categories":["inspiraatio","opettajan työkalut","tekoäly arjessa","tietoisuus"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"Ydm_zuT2hy52jat","title":"Kuntaliitto digiverkosto – Tekoäly koulutuksessa","description":"Kuntaliiton digiverkoston tilaisuuden esitys tekoälyn ajankohtaisista teemoista kuntien koulutuskontekstissa. Käsittelee kuntien roolia tekoälyn jalkauttamisessa kouluihin.","url":"https://www.canva.com/d/Ydm_zuT2hy52jat","thumbnail":"/images/canva-thumbnails/kuntaliitto-digiverkosto-tekoaly-koulutuksessa.png","date":"2024-03-11","categories":["Kuntaliitto","digiverkosto","kunnat","koulutuspolitiikka"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"HummOtHBF1XJgt6","title":"Oppiva verkosto – Analytiikkaesitys","description":"Oppiva verkosto -hankkeen analytiikkaesitys data-analytiikan ja tekoälyn hyödyntämisestä koulutuksen kehittämisessä. Käsittelee oppimisanalytiikan mahdollisuuksia verkostomaisessa kehittämistyössä.","url":"https://www.canva.com/d/HummOtHBF1XJgt6","thumbnail":"/images/canva-thumbnails/oppiva-verkosto-analytiikkaesitys.png","date":null,"categories":["Oppiva verkosto","analytiikka","data","kehittäminen"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"qBrYnp25Ihen-or","title":"OAJ SAUNA – Tekoäly ja opettajuus","description":"OAJ:n SAUNA-tilaisuuden esitys tekoälyn vaikutuksista opettajuuteen ja koulutukseen. Ammattijärjestökontekstissa käsiteltävä puheenvuoro opettajan ammatin tulevaisuudesta tekoälyaikana.","url":"https://www.canva.com/d/qBrYnp25Ihen-or","thumbnail":"/images/canva-thumbnails/oaj-sauna-tekoaly-ja-opettajuus.png","date":"2024-02-06","categories":["OAJ","ammattijärjestö","opettajuus","tulevaisuus"],"location":"Ei paikkakuntatietoa","folder":"Täydennyskoulutus","source":"json"},{"id":"UABjX-QDJZZZmoJ","title":"OPH-webinaari – Tekoäly opetuksessa 2023","description":"Opetushallituksen webinaariesitys tekoälyn opetuskäytöstä. Varhainen katsaus generatiivisen tekoälyn vaikutuksiin suomalaisessa koulutuskentässä.","url":"https://www.canva.com/d/UABjX-QDJZZZmoJ","thumbnail":"/images/canva-thumbnails/oph-webinaari-tekoaly-opetuksessa-2023.png","date":"2023-11-20","categories":["OPH","Opetushallitus","webinaari","generatiivinen tekoäly"],"location":"Webinaari (verkossa)","folder":"Täydennyskoulutus","source":"json"}],
+    youtube: [],
+    google: [{"id":"gs1","title":"Luento 2. Ohjelmointi ja ohjelmallinen ajattelu","thumbnail":null,"url":"https://drive.google.com/open?id=1aRmJbeMAX_ks-XCdkccfJyrr3pVfSircO04gICc-fZ8","date":null,"source":"google"},{"id":"gs2","title":"Miten uudistuvan ylioppilastutkinnon (tai tämän vuosituhannen taitojen) tulisi näkyä luokassa","thumbnail":null,"url":null,"date":"1.2.2014","source":"google"},{"id":"gs3","title":"Luento 1. Syksy 2019","thumbnail":null,"url":null,"date":"Syksy 2019","source":"google"},{"id":"gs4","title":"VOOT_Luento1.pptx","thumbnail":null,"url":null,"date":null,"source":"google"},{"id":"gs5","title":"TVTLuento2_2014.pptx","thumbnail":null,"url":null,"date":"2014","source":"google"},{"id":"gs6","title":"Taso 1: dime2014","thumbnail":null,"url":null,"date":"2014","source":"google"},{"id":"gs7","title":"Luento_11092019","thumbnail":null,"url":null,"date":"11.09.2019","source":"google"}],
+    slideshare: [{"title":"\"Digital enabled learning\" (Arctic frontiers speech 2020)","url":"https://www.slideshare.net/slideshow/digital-enabled-learning-arctic-frontiers-speech-2020/228552429","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/arcticfrontiers2020-200218114651-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2020-02-18T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Developing Computational Thinking Practises through Digital Fabrication Activities","url":"https://www.slideshare.net/slideshow/developing-computational-thinking-practises-through-digital-fabrication-activities/149380656","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/ct-konffa-megumi-et-al-190613064605-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2019-06-13T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Supporting Fab Lab facilitators to develop pedagogical practices to improve learning in digital fabrication activities","url":"https://www.slideshare.net/slideshow/supporting-fab-lab-facilitators-to-develop-pedagogical-practices-to-improve-learning-in-digital-fabrication-activities/148128991","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/supportingfablabfacilitators-fablearneurope2019-pitkneniwatalaru-190529140006-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2019-05-29T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Digitaalinen tulevaisuus 2030 – kuinka ”tukiäly” tukee ihmisten arkea, oppimista ja työtä jo lähitulevaisuudessa.","url":"https://www.slideshare.net/slideshow/digitaalinen-tulevaisuus-2030-kuinka-tukily-tukee-ihmisten-arkea-oppimista-ja-tyt-jo-lhitulevaisuudessa/146730753","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/kalajoki2019-190520115603-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2019-05-20T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"”Davidin ja Goljatin taistelu: kesyttääkö opettaja teknologian vai jyrääkö teknologia opettajan? Teknologiatuetun oppimisen ja opettamisen nykyhetken ja tulevaisuuden tarkastelua eri näkökulmista","url":"https://www.slideshare.net/slideshow/davidin-ja-goljatin-taistelu-kesyttk-opettajateknologian-vai-jyrk-teknologia-opettajan-teknologiatuetun-oppimisen-ja-opettamisen-nykyhetken-ja-tulevaisuuden-tarkastelua-eri-nkkulmista/140995534","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/digigogo2019-190416100008-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2019-04-16T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Digitaalisen oppimisen välineitä yhdessä kehittämässä – varhainen omaksuja, uhka vai mahdollisuus tietohallinnolle?","url":"https://www.slideshare.net/slideshow/digitaalisen-oppimisen-vlineit-yhdess-kehittmss-varhainen-omaksuja-uhka-vai-mahdollisuus-tietohallinnolle-137649224/137649224","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/itpaivat2018-190322085500-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2019-03-22T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Digitaaliset välineet opetuksessa ja oppimisessa opettajankoulutuksen kontekstissa – tasapainoilua tulevaisuuden mahdollisuuksien ja teknologian opetuskäytön arkirealismin välillä","url":"https://www.slideshare.net/slideshow/digitaaliset-vlineet-opetuksessa-ja-oppimisessa-opettajankoulutuksen-kontekstissa-tasapainoilua-tulevaisuuden-mahdollisuuksien-ja-teknologian-opetuskytn-arkirealismin-vlill/137666039","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/itk2019-190322111109-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2019-03-22T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Are we currently moving from the age of mobolism to age of artificail intelligence, learning analytics and robotics? Yes were are! How to couple emerging technology with learning and teaching?","url":"https://www.slideshare.net/slideshow/are-we-currently-moving-from-the-age-of-mobilism-to-age-of-artificial-intelligence-learning-analytics-and-robotics-yes-we-arehow-to-couple-emergent-technology-with-learning-and-teaching/135625316","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/inted2019laru-190311120530-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2019-03-11T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"PREDICTING FUTURE OF EDTECH 2030 v2","url":"https://www.slideshare.net/slideshow/predicting-future-of-edtech-2030-v2/129224523","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/bett-lea2019-190125140028-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2019-01-25T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Digitaalisen oppimisen välineitä yhdessä kehittämässä – varhainen omaksuja, uhka vai mahdollisuus tietohallinnolle?","url":"https://www.slideshare.net/slideshow/digitaalisen-oppimisen-vlineit-yhdess-kehittmss-varhainen-omaksuja-uhka-vai-mahdollisuus-tietohallinnolle/122776081","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/itpaivat2018-181112091722-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2018-11-12T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Miten opettajien uusi sukupolvi mullistaa opetuksen? Vai mullistaako sittenkään?","url":"https://www.slideshare.net/slideshow/miten-opettajien-uusi-sukupolvi-mullistaa-opetuksen-vai-mullistaako-sittenkn/114255330","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/sett2018b-180913114820-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2018-09-13T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Social media as a tool for researchers","url":"https://www.slideshare.net/slideshow/social-media-as-a-tool-for-researchers/104399008","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/socialmediaasatoolforresearchers-jure2018workshop-180705173600-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2018-07-05T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Puheenvuoro RAKLI:n vierailulla: Teknologiatuettu oppiminen ja oppimisen uudet ympäristöt","url":"https://www.slideshare.net/slideshow/puheenvuoro-raklin-vierailulla-teknologiatuettu-oppiminen-ja-oppimisen-uudet-ympristt/102588039","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/rakli2018oulu-180618101216-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2018-06-18T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Lito2018 workshop arviointi suurilla verkkokursseilla","url":"https://www.slideshare.net/slideshow/lito2018-workshop-arviointi-suurilla-verkkokursseilla/99171640","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/lito2018workshoparviointisuurillaverkkokursseilla-180528074227-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2018-05-28T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Mulla olis ny yksi hopea ja kuusi pronssia! osaamismerkit opetuksessa","url":"https://www.slideshare.net/slideshow/mulla-olis-ny-yksi-hopea-ja-kuusi-pronssia-osaamismerkit-opetuksessa-99170565/99170565","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/mullaolisnyyksihopeajakuusipronssiaosaamismerkitopetuksessa-180528073533-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2018-05-28T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Kuullun ja nähdyn kommentontia: tarua vai totta (tekoälyä, lohkoketjuja sekä yritysyhteistyötä -seminaari)","url":"https://www.slideshare.net/slideshow/kuullun-ja-nahdyn-kommentontia-tarua-vai-totta-tekoly-lohkoketjuja-sek-yritysyhteistyt-seminaari/87972554","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/kuullunjanahdynkommentontiataruavaitotta-180214083059-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2018-02-14T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Teknologiatuettu oppiminen ja opetus 4op - johdantoluento + digitalisaatio","url":"https://www.slideshare.net/slideshow/teknologiatuettu-oppiminen-ja-opetus-4op-johdantoluento-digitalisaatio/79479675","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/tooluento1johdanto-170906091023-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2017-09-06T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Stadin ammattiopiston lukuvuoden aloitus: teknologiatuettua oppimista ja opetusta uudistamassa","url":"https://www.slideshare.net/slideshow/stadin-ammattiopiston-lukuvuoden-aloitus-teknologiatuettua-oppimista-ja-opetusta-uudistamassa/78629473","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/stadi2017aloitus-170807130903-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2017-08-07T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Teknologiatuettu oppiminen ja opetus - luento asiantuntijafoorumissa","url":"https://www.slideshare.net/slideshow/teknologiatuettu-oppiminen-ja-opetus-luento-asiantuntijafoorumissa/71802225","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/too-ppl-asiantuntijafoorumi-2017-170206090520-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2017-02-06T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luento 1: ilmiöstä","url":"https://www.slideshare.net/slideshow/luento-1-ilmist/56928812","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/dime2016luento1-160111214316-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2016-01-11T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"OSAAVA VESO: Tieto- ja viestintätekniikka pedagogisena työvälineenä. Raahe 2015","url":"https://www.slideshare.net/slideshow/tieto-ja-viestinttekniikka-pedagogisena-tyvlineen-raahe-2015/53761850","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/raaheesitys-151010050205-lva1-app6892-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2015-10-10T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Tieto ja viestintätekniikka pedagogisena työvälineenä. luento 1","url":"https://www.slideshare.net/slideshow/tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-luento-1/52268646","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/tieto-javiestintatekniikkapedagogisenatyovalineena-150831212326-lva1-app6892-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2015-08-31T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Tuulta purjeisiin ja täyttä vauhtia kohti tuulimyllyjä","url":"https://www.slideshare.net/slideshow/tuulta-purjeisiin-ja-tytt-vauhtia-kohti-tuulimyllyj/52076297","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/savolinnatayttavauhtia2015-150826050149-lva1-app6891-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2015-08-26T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Alustus: Digitaalisuus koulutuksessa","url":"https://www.slideshare.net/slideshow/alustus-digitaalisuus-koulutuksessa/51713522","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/eag6kxiet4os7uqnh6mw-signature-69f4bcf19410d81d7e697565c49c61debdcdb03d0de8ce3ca291d56212adb709-poli-150817103329-lva1-app6892-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2015-08-17T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Wrap up luento (dime 2015)","url":"https://www.slideshare.net/slideshow/wrap-up-luento-dime-2015/47760384","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/wrap-upluentodime2015-150505015514-conversion-gate02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2015-05-05T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Paljonko sulla on pisteitä? Kokemuksia pelillistetystä opetuksesta.","url":"https://www.slideshare.net/slideshow/paljonko-sulla-on-pisteit-kokemuksia-pelillistetyst-opetuksesta/47137891","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/itkfoorumi225-150418030403-conversion-gate01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2015-04-18T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Mobiililaitteilla tuettu oppiminen (BYOD): miten suunnitella tämän vuosisadan ydintaitoja tukevaa osaamisen kehittämistä?","url":"https://www.slideshare.net/slideshow/webinari-esitysrapo/46310032","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/webinariesitysrapo-150326051837-conversion-gate01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2015-03-26T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Digitaalinen media oppimisessa ja opettamisessa (2015)","url":"https://www.slideshare.net/slideshow/digitaalinen-media-oppimisessa-ja-opettamisessa-2015/45880729","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/dime2015periodib-150316051531-conversion-gate01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2015-03-16T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Teknologia ja monilukutaito – merkittävä osa tämän vuosisadan ydintaitoja","url":"https://www.slideshare.net/slideshow/sukol2015seinajoki-44375884/44375884","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/sukol2015seinajoki-150207010139-conversion-gate01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2015-02-07T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luentodiat digitaalinen media oppimisessa ja opettamisessa (410017Y) 2015","url":"https://www.slideshare.net/slideshow/luentodiat-digitaalinen-media-oppimisessa-ja-opettamisessa-410017y-2015/44064982","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/luentodiatdime2015-150130034408-conversion-gate01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2015-01-30T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Designing learning activities for socially shared regulation in seamless learning contexts.","url":"https://www.slideshare.net/slideshow/designing-learning-activities-for-socially-shared-regulation-in-seamless-learning-contexts/42192519","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/iccepanel2014-141130164426-conversion-gate01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-11-30T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luentosali II: 2000-luvun taidot & luento, mahdollista? Kyllä.","url":"https://www.slideshare.net/slideshow/luentosali-ii-2000luvun-taidot-luento-mahdollista-kyll/42187867","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/l2harjakaiset-141130131600-conversion-gate02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-11-30T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Tutkija ja sosiaalinen media","url":"https://www.slideshare.net/slideshow/tutkija-ja-sosiaalinen-media/41848237","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/kt-paivat2014-141121044435-conversion-gate02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-11-21T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Lähidemokratiatoimikunnan toiminta Oulussa","url":"https://www.slideshare.net/slideshow/lhidemokratiatoimikunta-oulun-kaupungissa/41789438","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/ltmk2014-141120011816-conversion-gate01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-11-20T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"The role and importance of social media in science","url":"https://www.slideshare.net/slideshow/the-role-and-importance-of-social-media-in-science/40101721","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/someuniogs2014-141010030003-conversion-gate02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-10-10T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luento5 suunnittelu ja pedagogiset mallit","url":"https://www.slideshare.net/slideshow/luento5-suunnittelu-ja-pedagogiset-mallit/38677440","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/luento5suunnittelu-140904001015-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-09-04T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"410014Y Luento 4: Sopimukset ja tekijänoikeudet","url":"https://www.slideshare.net/slideshow/410014y-luento-4-sopimukset-ja-tekijnoikeudet/38636228","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/tvtluento4-140903040552-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-09-03T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"LUENTO 3: TPACK-taidot – teknologiatuettu oppiminen ja opetus","url":"https://www.slideshare.net/slideshow/luento-3-tpacktaidot-teknologiatuettu-oppiminen-ja-opetus/38595557","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/tvtluento3-140902061428-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-09-02T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"410014Y Johdantoluento. Tieto- ja viestintätekniikka pedagogisena työvälineenä 2014","url":"https://www.slideshare.net/slideshow/410014y-johdantoluento-tieto-ja-viestinttekniikka-pedagogisena-tyvlineen-2014/38480588","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/tvtluento12014-140829033023-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-08-29T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"410014Y LUENTO 2: Tämän vuosisadan ydintaidot – 21th skills (ja koulun muutospaineet)","url":"https://www.slideshare.net/slideshow/410014y-luento-2-tmn-vuosisadan-ydintaidot-21th-skills-ja-koulun-muutospaineet/38481523","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/tvtluento22014-140829041057-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-08-29T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"2000-luvun taidot ja opettajan roolin muutos.","url":"https://www.slideshare.net/slideshow/2000luvun-taidot-ja-opettajan-roolin-muutos-38305877/38305877","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/pohtodiat2014-140824151623-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-08-24T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"MUMMO Näkökulma sukupuun juurelta.. Tai ainakin melkein.. Sukujuhla 2014","url":"https://www.slideshare.net/slideshow/mummo-nkkulma-sukupuun-juurelta-tai-ainakin-melkein-sukujuhla-2014/37584942","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/mummo2014sukujuhlalaru-140801154905-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-08-01T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Professional use of social media (web2.0)","url":"https://www.slideshare.net/slideshow/professional-use-of-social-media-web20/34945863","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/some2014researchersa-140521054059-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-05-21T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Ei pelkkää välineiden opettelua: Case opettajankoulutus","url":"https://www.slideshare.net/slideshow/ei-pelkk-vlineiden-opettelua-case-opettajankoulutus/33410525","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/itk2014teemaseminaari-140411080106-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-04-11T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Se on vain väline!","url":"https://www.slideshare.net/slideshow/se-on-vain-vline/33290750","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/seonvainvlinepuheenvuoro-140408153954-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-04-08T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Tämän vuosituhannen ydintaidot ja teknologian opetus- ja oppimiskäyttö","url":"https://www.slideshare.net/slideshow/tmn-vuosituhannen-ydintaidot-ja-teknologian-opetus-ja-oppimiskytt/33125143","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/elukio21thskills-140404062036-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-04-04T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luento II: Yhteisöllinen ongelmalähtöinen oppiminen","url":"https://www.slideshare.net/slideshow/voot-luento2/32397040","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/vootluento2-140317075520-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-03-17T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Tämän vuosituhannen taidot ja koulun muutospaineet","url":"https://www.slideshare.net/slideshow/voot-luento1/32214653","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/vootluento1-140312043420-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-03-12T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Mitä teknologiatuetun oppimisen rintamalla tapahtuu, minne ollaan menossa","url":"https://www.slideshare.net/slideshow/mit-teknologiatuetun-oppimisen-rintamalla-tapahtuu-minne-ollaan-menossa/30820903","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/mitteknologiatuetunoppimisenrintamallatapahtuuminneollaanmenossa-140204165246-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-02-04T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Miten uudistuvan ylioppilastutkinnon (tai tämän vuosituhannen taitojen) tulisi näkyä luokassa","url":"https://www.slideshare.net/slideshow/miten-uudistuvan-ylioppilastutkinnon-tai-taman-vuosituhannen-taitojen-tulisi-nakya-luokassa-30692066/30692066","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/mitenuudistuvanylioppilastutkinnontaitamanvuosituhannentaitojentulisinakyaluokassa-140131235630-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-01-31T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luento 1: mediakasvatuksesta kohti monilukutaitoa (digitaalinen media oppimisprojektina 2014)","url":"https://www.slideshare.net/slideshow/luento-1-mediakasvatuksesta-kohti-monilukutaitoa-digitaalinen-media-oppimisprojektina-2014/29836950","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/luento1dime2014-140109043712-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2014-01-09T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Designing and supporting use of emergent technology in teacher education. Case: ICT workshops for teacher education students","url":"https://www.slideshare.net/slideshow/designing-and-supporting-use-of-emergent-technology-in-teacher-education-case-ict-workshops-for-teacher-education-students/28707610","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/eapril2013laru-131128065659-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-11-28T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Opettajien orientoivia tvt-opintoja kehittämässä. CASE: Oulun yliopisto","url":"https://www.slideshare.net/slideshow/kt-paivat-2013/28483217","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/ktpaivat2013-131121034708-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-11-21T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Teknologiatuettu oppiminen - luksia.","url":"https://www.slideshare.net/slideshow/teknologiatuettu-oppiminen-luksia/27954193","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/teknologiatuettuoppiminenluksia2013b-131106014522-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-11-06T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luento 5: haasteet ja koulun todellisuus (410014Y)","url":"https://www.slideshare.net/slideshow/luento-5-haasteet-ja-koulun-todellisuus-410014y/26060987","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/luento5haasteet-130910084845-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-09-10T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luento 3. Suunnittelu ja pedagogiset mallit (410014Y) Tieto- ja viestintätekniikka pedagogisena välineenä","url":"https://www.slideshare.net/slideshow/luento-2-teoria-410014y-tieto-ja-viestinttekniikka-pedagogisena-vlineen-144-views-presentations63-luento-2-teoria-410014y-tieto-ja-viestinttekniikka-pedagogisena-vlineen-luento1-johdanto-410014y-tvt-pedagogiset-perusteet-using-gartners-hype-curve-as-a-bas/25871563","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/luento3suunnittelu-130904013351--thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-09-04T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luento 2. Teoria (410014Y) Tieto- ja viestintätekniikka pedagogisena välineenä","url":"https://www.slideshare.net/slideshow/luento-2-teoria-410014y-tieto-ja-viestinttekniikka-pedagogisena-vlineen/25706607","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/luento2teoriac-130829015527-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-08-29T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luento1. Johdanto (410014Y TVT pedagogiset perusteet)","url":"https://www.slideshare.net/slideshow/luento1-johdanto-410014y-tvt-pedagogiset-perusteet/25638735","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/luento1johdanto-130827081217-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-08-27T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Using Gartner’s Hype Curve as a basis to analyze research on the educational use of ubiquitous computing�","url":"https://www.slideshare.net/slideshow/cscl-laru-presentationbfinc-23201943/23201943","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/cscllarupresentationbfinc-130619121606-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-06-19T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Tekn sovellukset ja_valineet_ao","url":"https://www.slideshare.net/slideshow/tekn-sovellukset-javalineetao/21158606","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/teknsovelluksetjavalineetao-130514054341-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-05-14T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Teoria suunnittelu a_otvt","url":"https://www.slideshare.net/slideshow/teoria-suunnittelu-aotvt/21178375","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/teoriasuunnitteluaotvt-130514160615-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-05-14T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Yhteiskunnallisia haasteita & johdanto aiheeseen 050091A Tieto- ja viestintätekniikka opetuksessa ja opiskelussa","url":"https://www.slideshare.net/slideshow/yhteiskunnallisia-haasteita-johdanto-aiheeseen050091a-tieto-ja-viestinttekniikka-opetuksessa-ja-opiskelussa/20643075","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/aoluento1yhtkunta-130506034954-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-05-06T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Mobiililaitteiden mahdollisuudet oppimisen tukena","url":"https://www.slideshare.net/slideshow/mobiililaitteiden-mahdollisuudet-oppimisen-tukena/18987329","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/momaoppitukenalaru0413-130417052602-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-04-17T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Koulu (tieto)yhteiskunnassa (TEL2)","url":"https://www.slideshare.net/slideshow/koulu-tieto-yhtkuntatel2/17179684","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/koulutietoyhtkuntatel2-130313175505-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-03-13T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Technology choices (TEL1)","url":"https://www.slideshare.net/slideshow/technology-choices-tel1/17178124","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/techchoices-130313164835-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-03-13T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Quali lecture 1: Understanding the research process","url":"https://www.slideshare.net/slideshow/quali-lecture-1-17116725/17116725","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/qualilecture1-130311180011-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-03-11T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Teknologia, oppiminen ja osaaminen yhteiskunnassa - uudet teknologiat isännän vai rengin roolissa","url":"https://www.slideshare.net/slideshow/teknologia-oppiminen-ja-osaaminen-yhteiskunnassa-uudet-teknologiat-isnnn-vai-rengin-roolissa/16672046","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/teknologiaoppiminenjaosaaminenyhteiskunnassa-130221090334-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-02-21T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"\"mobiilioppiminen\" -mitä se teknologia tahtoo","url":"https://www.slideshare.net/slideshow/mobiilioppiminen-mit-se-teknologia-tahtoo/16502363","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/topiktvtjohtvlineen-130213044702-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2013-02-13T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"\"Mobiilioppiminen\"","url":"https://www.slideshare.net/slideshow/mobiilioppiminen-15204317/15204317","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/mobiilioppiminen12olkkari-121116013440-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-11-16T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Mobiililaitteet ja koulu: hypeä ja arkirealismia","url":"https://www.slideshare.net/slideshow/mobiililaitteet-ja-koulu-hype-ja-arkirealismia/14657236","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/kotuopekoulutus2012b-121009151706-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-10-09T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"TVT Oppimisen tukena (ääni ei ole synkassa diojen kanssa, kiitos slidesharen)","url":"https://www.slideshare.net/slideshow/tvt-oppimisen-tukena/14647647","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/oosaluento2012b-121009023851-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-10-09T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luento 5: Tietotekniiikan opetuskäytön suunnittelu (ääni ei ole synkassa diojen kanssa, kiitos slidesharen)","url":"https://www.slideshare.net/slideshow/luento-5-tietotekniiikan-opetuskytn-suunnittelu/14847181","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/tietotekniikanopetuskaytonsuunnittelu-120920015721-phpapp02-1-121023050403-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-09-20T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luento 4: Oppimisen uudet mallit ja teoriat (diat ja ääni eivät ole synkassa, kiitos siitä slidesharelle)","url":"https://www.slideshare.net/slideshow/luento-4-oppimisen-uudet-mallit-ja-teoriat/14244953","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/luento4theory2012-120911020350-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-09-11T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luento 2: Tieto- ja viestintätekniikan opetuskäyttö ja yhteiskunta (diat ja ääni eivät ole synkassa, kiittäkäämme siitä slidesharea)","url":"https://www.slideshare.net/slideshow/ktk-tvt-luento2yhteiskunta/14161524","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/ktktvtluento2yhteiskunta-120904013709-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-09-04T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luento 3: Opetuksen uudet ympäristöt ja teknologiat (äänet eivät ole synkassa diojen kanssa, kiitos slidesharen)","url":"https://www.slideshare.net/slideshow/opetuksen-uudet-ympristt-ja-teknologiat/14169484","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/luento3-120904160720-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-09-04T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luento 1: Tieto- ja viestintätekniikka pedagogisena työvälineenä (ääni ja diat eivät ole synkassa, siitä saa kiiittää Slidesharea)","url":"https://www.slideshare.net/slideshow/tieto-ja-viestinttekniikan/14116017","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/tvtperusteetluento12012-120830040146-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-08-30T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"My life 9 months before the defence","url":"https://www.slideshare.net/slideshow/my-life-9-months-before-the-defence/13140146","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/mylife9mbeforedefence1-120530171458-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-05-30T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Scaffolding learning activities in real life contexts with collaborative scripts and mobile computers","url":"https://www.slideshare.net/slideshow/laru-thesisintro2012/12684734","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/laruthesisintro2012-120425075745-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-04-25T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Multimedia V: Opetussuunnitelmasta digitarinaan","url":"https://www.slideshare.net/slideshow/luento-5-opetussuunnitelmasta-digitarinaan/11248661","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/multimediaoproluento5-120125013821-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-01-25T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Multimedia IV: valmiiden tuotosten käyttäminen ja omien jakaminen tekijänoikeuden valossa","url":"https://www.slideshare.net/slideshow/multimedia-iv-valmiiden-tuotosten-kyttminen-ja-omien-jakaminen-tekijnoikeuden-valossa/11127436","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/multimediaoproluento4b-120118020709-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-01-18T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Multimedia III: Itse tuotettu multimedia","url":"https://www.slideshare.net/slideshow/multimedia-iii-itse-tuotettu-multimedia/11072883","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/multimediaopro2012luento3b-120116020225-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-01-16T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Multimedia II. multimedian peruselementit: ääni, kuva, video, teksti","url":"https://www.slideshare.net/slideshow/multimedia-ii-multimedian-peruselementit-ni-kuva-video-teksti/10957217","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/multimediaopro2012luento2b-120111021327-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-01-11T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Multimedia I “perinteinen” tuotettu multimedia murroksessa","url":"https://www.slideshare.net/slideshow/multimedia-i-perinteinen-tuotettu-multimedia-murroksessa/10904451","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/multimediaopro2012perusteetluento1b2-120109010129-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2012-01-09T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luento: Powerpoint harjoitus","url":"https://www.slideshare.net/slideshow/powerpoint-harjoitus/10557979","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/powerpointharjoitusb-111212041407-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-12-12T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Yhteisöllisen oppimisen tukeminen mobiililaitteiden avulla: Kolme tapaustutkimusta kolmessa eri kontekstissa","url":"https://www.slideshare.net/slideshow/yhteisllisen-oppimisen-tukeminen-mobiililaitteiden-avulla-kolme-tapaustutkimusta-kolmessa-eri-kontekstissa/10488594","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/mobiililuento1211-111206152733-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-12-06T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"CSCL Luento B: Esimerkkejä todellisesta elämästä ja laboratorion perukoilta","url":"https://www.slideshare.net/slideshow/cscl-luento-b-esimerkkej-todellisesta-elmst-ja-laboratorion-perukoilta/10410352","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/kotuluentob-111201011019-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-12-01T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"CSCL - Tietokoneavusteinen yhteisöllinen oppiminen (kotu2011A)","url":"https://www.slideshare.net/slideshow/cscl-tietokoneavusteinen-yhteisllinen-oppiminen-kotu2011a/10410251","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/kotuluentoa-111201010538-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-12-01T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Scaffolding collaborative learning with cognitive tools based on mobile computers","url":"https://www.slideshare.net/slideshow/scaffolding-collaborative-learning-with-cognitive-tools-based-on-mobile-computers-10188888/10188888","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/scaffoldingcollaborativelearningwithcognitivetoolsbasedonmobilecomputerslaru2011-111116111846-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-11-16T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Mobiilioppimisesta - About Mobile learning","url":"https://www.slideshare.net/slideshow/mobiilioppimisesta-about-mobile-learning/9581844","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/kyamkmobile-111006162855-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-10-06T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Affordances short introduction_laru_let_2011","url":"https://www.slideshare.net/slideshow/affordances-short-introductionlarulet2011/9467539","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/affordancesshortintroductionlarulet2011-110929015606-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-09-29T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"5. Luento tieto- ja viestintätekniikan pedagogiset perusteet: tulevaisuus syntyy tutkimalla","url":"https://www.slideshare.net/slideshow/luento5tutkimus-final/9318465","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/luento5tutkimusfinal-110919040535-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-09-19T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Harjoitus: Dokumenttien jakaminen ja upottaminen. Case: Slideshare -> Wordpress","url":"https://www.slideshare.net/slideshow/dokumenttien-jakaminen-ja-upottaminen-case-slideshare-wordpress/9264090","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/dokumenttienjakaminenjaupottaminenfinallaru011-110915021909-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-09-15T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"4. luento: tieto ja viestintätekniikan pedagogiset perusteet: nykyajan medialukutataito","url":"https://www.slideshare.net/slideshow/4-luento-tieto-ja-viestinttekniikan-pedagogiset-perusteet-nykyajan-medialukutataito/9195772","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/media2000c-110909124229-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-09-09T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"3. luento tieto- ja viestintätekniikan pedagogiset perusteet: tietokoneavusteinen yhteisöllinen oppiminen (CSCL)","url":"https://www.slideshare.net/slideshow/3-luento-tieto-ja-viestinttekniikan-pedagogiset-perusteet-tietokoneavusteinen-yhteisllinen-oppiminen-cscl/9167433","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/tvt3luentocscl-110907162303-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-09-07T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"2. luento tieto- ja viestintätekniikan pedagogiset perusteet kurssilla. TVT ja yhteiskunta","url":"https://www.slideshare.net/slideshow/2-luento-tieto-ja-viestinttekniikan-pedagogiset-perusteet-kurssilla-tvt-ja-yhteiskunta/9101048","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/tvt2luentoyhteiskunta-110901155707-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-09-01T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"1. luento tieto- ja viestintätekniikan perusteet opintojaksolla: TVT opetuskäytön historia","url":"https://www.slideshare.net/slideshow/1-luento-tieto-ja-viestinttekniikan-perusteet-opintojaksolla-tvt-opetuskytn-historia/9088829","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/tvt1luentohistoria-110831172503-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-08-31T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Blogs&education","url":"https://www.slideshare.net/slideshow/blogseducation/9087908","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/blogseducation-110831155844-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-08-31T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Johdantoluento tieto- ja viestintätekniikan perusteet opintojaksolle","url":"https://www.slideshare.net/slideshow/johdantoluento-tieto-ja-viestinttekniikan-perusteet-opintojaksolle/9088693","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/intro-110831170815-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-08-31T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"405514Y Multimedia as a Learning Project, 3 c","url":"https://www.slideshare.net/slideshow/405514y-multimedia-as-a-learning-project-3-c/6958208","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/multimediakurssi011-110217035350-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-02-17T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Tietotyon pedagogisia haasteita","url":"https://www.slideshare.net/slideshow/tietotyon-p-haasteita/6568725","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/tietotyonphaasteita-110114130957-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2011-01-14T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"TVT opetuskäytön historiaa [finnish]","url":"https://www.slideshare.net/slideshow/tvt-opetuskytn-historiaa-finnish/5361471","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/tvthistory-101005071904-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2010-10-05T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Evoluutiota vai Revoluutiota? Koulu ja oppilaat mediamaailman muutoksien myllerryksessä","url":"https://www.slideshare.net/slideshow/evoluutiota-vai-revoluutiota-koulu-ja-oppilaat-mediamaailman-muutoksien-myllerryksess/3078856","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/lastenmediamaailma2010-100205073823-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2010-02-05T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Median jakaminen on helppoa, mutta poistaminen vaikeata","url":"https://www.slideshare.net/slideshow/median-jakaminen-on-helppoa-mutta-poistaminen-vaikeata/3078857","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/medianjakaminenonhelppoa-100205073819-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2010-02-05T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Koe oppimisymparistona osa I","url":"https://www.slideshare.net/slideshow/koe-oppimisymparistona-osa-i/2542679","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/etaopettajapaiva1-091120005804-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2009-11-20T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Koe oppimisympäristönä osa II","url":"https://www.slideshare.net/slideshow/koe-oppimisympristn-osa-ii/2542680","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/etaopettajapaiva2-091120005810-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2009-11-20T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Luova Ja Kriittinen Ajattelu","url":"https://www.slideshare.net/slideshow/luova-ja-kriittinen-ajattelu/2537552","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/qaiku2luovajakriittinenajattelu-bluemink-2-091119095229-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2009-11-19T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Oppiminen Ja Vuorovaikutus","url":"https://www.slideshare.net/slideshow/oppiminen-ja-vuorovaikutus/2537550","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/qaiku1oppiminenjavuorovaikutus-bluemink-091119095239-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2009-11-19T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Osallistuminen sitoutumisen sytyttäjänä","url":"https://www.slideshare.net/slideshow/osallistuminen-sitoutumisen-sytyttjn/2537573","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/qaiku3osallistuminen-bluemink-091119095434-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2009-11-19T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Sosiaalinen media opetuskäytössä","url":"https://www.slideshare.net/slideshow/sosiaalinen-media-opetuskytss/2537603","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/elukio09-091119095749-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2009-11-19T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Scaffolding collaborative learning with cognitive tools based on mobile computers","url":"https://www.slideshare.net/slideshow/scaffolding-collaborative-learning-with-cognitive-tools-based-on-mobile-computers/2481780","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/opmon-091112023134-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2009-11-12T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"What they did really do with the social software and mobile devices? A temporal analysis of long-term technology mediated collaboration.","url":"https://www.slideshare.net/slideshow/what-they-did-really-do-with-the-social-software-and-mobile-devices-a-temporal-analysis-of-longterm-technology-mediated-collaboration/2228659","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/whattheydidreallydowiththesocialsoftwareandmobiledevicesatemporalanalysisoflong-termtechnologymediatedcollaboration-091015053723-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2009-10-15T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Teknologian Kehitys Ja Mahdollisuudet Oppimisen Tukena","url":"https://www.slideshare.net/slideshow/teknologian-kehitys-ja-mahdollisuudet-oppimisen-tukena/2217477","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/teknologiankehitysjamahdollisuudetoppimisentukena-091014025318-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2009-10-14T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Sosiaalinen media ja sen sovellutukset - koulutusteknologin näkökulma medialasien läpi katsottuna","url":"https://www.slideshare.net/slideshow/sosiaalinen-media-ja-sen-sovellutukset-koulutusteknologin-nkkulma-medialasien-lpi-katsottuna/1386778","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/oamk0509-090505044318-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2009-05-05T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Erilaisten oppimisyhteisöjen tukeminen mobiiliteknologian ja sosiaalisen median sovellusten avulla","url":"https://www.slideshare.net/slideshow/erilaisten-oppimisyhteisjen-tukeminen-mobiiliteknologian-ja-sosiaalisen-median-sovellusten-avulla/1356113","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/270409-090428053030-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2009-04-28T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Soutelua tendiallokossa - Web 2.0, onko sitä edes olemassa? Ajatuksia ja kokemuksia sosiaalisen webin hyödyntämisestä opetuksessa.","url":"https://www.slideshare.net/slideshow/soutelua-tendiallokossa-web-20-onko-sit-edes-olemassa-ajatuksia-ja-kokemuksia-sosiaalisen-webin-hydyntmisest-opetuksessa/202129","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/soutelua-tendiallokossa-web-20-onko-sit-edes-olemassa-ajatuksia-ja-kokemuksia-sosiaalisen-webin-hydyntmisest-opetuksessa-119755229132023-2-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2008-11-19T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"TVT-opetuskäytön historiaa: visionääreistä web2.0:n aikakauteen","url":"https://www.slideshare.net/slideshow/tvtopetuskytn-historiaa-visionreist-web20n-aikakauteen-presentation/744528","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/tvthistoryvisiot08b-1226475982426063-8-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2008-11-12T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]},{"title":"Edtech Info English07","url":"https://www.slideshare.net/slideshow/edtech-info-english07/183740","thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/edtech-info-english07-1196243380238272-2-thumbnail.jpg?width=640&height=640&fit=bounds","date":"2007-11-28T00:00:00.000Z","description":"SlideShare-esitys","categories":[],"keywords":[]}]
+  };
+
+  const iconByKey = {
+    aoe: "bi-book",
+    canva: "bi-file-earmark-slides",
+    youtube: "bi-youtube",
+    google: "bi-file-earmark-slides",
+    slideshare: "bi-collection-play"
+  };
+
+  const linkLabelByKey = {
+    aoe: "Avaa Finnassa",
+    canva: "Avaa",
+    youtube: "YouTube",
+    google: "Avaa",
+    slideshare: "SlideShare"
+  };
+
+  function escHtml(value) {
+    return String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+  }
+
+  function truncate(value, max = 120) {
+    const text = String(value || "").trim();
+    if (!text) return "";
+    return text.length > max ? `${text.slice(0, max).trim()}…` : text;
+  }
+
+  function toDisplayDate(value) {
+    if (!value) return "";
+    const parsed = new Date(value);
+    if (!Number.isNaN(parsed.getTime())) {
+      return new Intl.DateTimeFormat("fi-FI").format(parsed);
+    }
+    return String(value);
+  }
+
+  function toIsoDate(value) {
+    if (!value) return null;
+    const raw = String(value).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
+    const parsed = new Date(raw);
+    if (Number.isNaN(parsed.getTime())) return null;
+    const year = parsed.getUTCFullYear();
+    const month = String(parsed.getUTCMonth() + 1).padStart(2, "0");
+    const day = String(parsed.getUTCDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  function extractSlideshareDateFromThumbnail(thumbnailUrl) {
+    if (!thumbnailUrl) return null;
+    // Kaikki SlideShare-formaatit: -YYMMDDHHMMSS- (12 numeroa väliviivojen välissä)
+    // Uusi: -190322085500-thumbnail, Vanha: -120125013821-phpapp01-, -conversion-gate01- jne.
+    const match = String(thumbnailUrl).match(/-(\d{6})\d{6}-/);
+    if (!match) return null;
+    const yymmdd = match[1];
+    const yy = Number.parseInt(yymmdd.slice(0, 2), 10);
+    const mm = Number.parseInt(yymmdd.slice(2, 4), 10);
+    const dd = Number.parseInt(yymmdd.slice(4, 6), 10);
+    if (!Number.isFinite(yy) || !Number.isFinite(mm) || !Number.isFinite(dd)) return null;
+    if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return null;
+    const year = yy >= 90 ? 1900 + yy : 2000 + yy;
+    return `${year}-${String(mm).padStart(2, "0")}-${String(dd).padStart(2, "0")}`;
+  }
+
+  function normalizeSlideshareIsoDate(value, thumbnailUrl) {
+    // Thumbnail-URL on luotettavin lähde (sisältää latauspäivän tiedostonimessä).
+    // Front matter -päivämäärä toimii fallbackina tiedostoille joilla thumbnail puuttuu.
+    return extractSlideshareDateFromThumbnail(thumbnailUrl) || toIsoDate(value) || "";
+  }
+
+  function normalizeRows(key, rows) {
+    if (!Array.isArray(rows)) return [];
+
+    if (key === "aoe") {
+      return rows.map((r) => ({
+        title: r.title || "Nimetön oppimateriaali",
+        url: r.url || "",
+        thumbnail: r.image || "",
+        description: r.summary || "",
+        meta: "AOE / Oppimateriaali",
+        date: r.year || ""
+      }));
+    }
+
+    if (key === "canva") {
+      return rows.map((r) => ({
+        title: r.title || "Nimetön esitys",
+        url: r.url || "",
+        thumbnail: r.thumbnail || "",
+        description: r.description || "",
+        keywords: Array.isArray(r.categories) ? r.categories.filter(Boolean) : [],
+        meta: "Canva",
+        date: toDisplayDate(toIsoDate(r.date || r.publishedAt || r.createdAt || r.updatedAt || "") || "")
+      }));
+    }
+
+    if (key === "youtube") {
+      return rows.map((r) => ({
+        title: r.title || "Nimetön soittolista",
+        url: r.url || "",
+        thumbnail: r.thumbnail || "",
+        description: r.description || "",
+        meta: `${r.itemCount || 0} videota`,
+        date: toDisplayDate(r.publishedAt || "")
+      }));
+    }
+
+    if (key === "google") {
+      return rows.map((r) => ({
+        title: r.title || "Nimetön esitys",
+        url: r.url || "",
+        thumbnail: r.thumbnail || "",
+        description: "Google Slides -esitys",
+        meta: "Google Slides",
+        date: r.date || ""
+      }));
+    }
+
+    if (key === "slideshare") {
+      return rows.map((r) => ({
+        date: toDisplayDate(normalizeSlideshareIsoDate(r.date || "", r.thumbnail || "")),
+        title: r.title || "Nimetön esitys",
+        url: r.url || "",
+        thumbnail: r.thumbnail || "",
+        description: r.description || "",
+        keywords: [
+          ...(Array.isArray(r.categories) ? r.categories : []),
+          ...(Array.isArray(r.keywords) ? r.keywords : [])
+        ].map((value) => String(value || "").trim()).filter(Boolean)
+      }));
+    }
+
+    return [];
+  }
+
+  function pickFourRandom(rows) {
+    if (!rows.length) return [];
+    const shuffled = [...rows];
+    for (let i = shuffled.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const picked = shuffled.slice(0, Math.min(4, shuffled.length));
+    while (picked.length < 4) {
+      picked.push(shuffled[picked.length % shuffled.length]);
+    }
+    return picked;
+  }
+
+  function renderScroller(key, rows) {
+    const host = document.querySelector(`.presentation-scroller[data-key="${key}"] .presentation-scroller-track`);
+    if (!host) return;
+    const cards = pickFourRandom(rows);
+    if (!cards.length) {
+      host.innerHTML = "";
+      return;
+    }
+
+    const htmlCards = cards.map((item) => {
+      const thumb = item.thumbnail
+        ? `<div class="scroller-media">
+             <img src="${escHtml(item.thumbnail)}" class="card-img-top" alt="${escHtml(item.title)}" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+             <div class="scroller-placeholder" style="display:none;"><i class="bi ${escHtml(iconByKey[key] || "bi-file-earmark")}"></i></div>
+           </div>`
+        : `<div class="scroller-placeholder"><i class="bi ${escHtml(iconByKey[key] || "bi-file-earmark")}"></i></div>`;
+      const link = item.url
+        ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Avaa")} <i class="bi bi-arrow-up-right"></i></a>`
+        : `<span class="text-muted small"><i class="bi bi-link-45deg"></i> Ei linkkiä</span>`;
+      return `
+        <article class="card border-0 shadow-sm presentation-scroller-card">
+          ${thumb}
+          <div class="card-body p-3">
+            <h3 class="h6 mb-1">${escHtml(item.title)}</h3>
+            ${item.date ? `<p class="text-muted small mb-1"><i class="bi bi-calendar3 me-1"></i>${escHtml(item.date)}</p>` : ""}
+            <p class="text-muted small mb-3">${escHtml(truncate(item.meta || item.description, 72))}</p>
+            ${link}
+          </div>
+        </article>
+      `;
+    }).join("");
+
+    host.innerHTML = `${htmlCards}${htmlCards}`;
+  }
+
+  function renderPagination(key, rows, page, onChange) {
+    const host = document.getElementById(`pagination-${key}`);
+    if (!host) return;
+    const pageCount = Math.ceil(rows.length / PAGE_SIZE);
+    if (pageCount <= 1) {
+      host.innerHTML = "";
+      return;
+    }
+
+    let html = "";
+    for (let p = 1; p <= pageCount; p += 1) {
+      html += `
+        <li class="page-item ${p === page ? "active" : ""}">
+          <button class="page-link" type="button" data-page="${p}">${p}</button>
+        </li>
+      `;
+    }
+    host.innerHTML = html;
+    host.querySelectorAll("button[data-page]").forEach((btn) => {
+      btn.addEventListener("click", () => onChange(Number(btn.dataset.page)));
+    });
+  }
+
+  function renderTable(key, rows, page, onChange) {
+    const tbody = document.getElementById(`table-body-${key}`);
+    if (!tbody) return;
+    const start = (page - 1) * PAGE_SIZE;
+    const pageRows = rows.slice(start, start + PAGE_SIZE);
+
+    if (key === "canva" || key === "slideshare") {
+      tbody.innerHTML = pageRows.map((item) => {
+        const keywords = Array.isArray(item.keywords) ? item.keywords : [];
+        const keywordHtml = keywords.length
+          ? keywords.map((k) => `<span class="badge text-bg-light text-dark border me-1 mb-1">${escHtml(k)}</span>`).join("")
+          : '<span class="text-muted small">Ei saatavilla</span>';
+        const preview = item.thumbnail
+          ? `<img src="${escHtml(item.thumbnail)}" alt="${escHtml(item.title)}" class="img-fluid border" style="max-height:72px;object-fit:cover;" loading="lazy" decoding="async" onerror="this.outerHTML='<span class=&quot;text-muted small&quot;>Ei saatavilla</span>';">`
+          : '<span class="text-muted small">Ei saatavilla</span>';
+        const summary = item.description ? escHtml(truncate(item.description, 220)) : '<span class="text-muted small">Ei saatavilla</span>';
+        return `
+          <tr>
+            <td class="text-center small text-muted font-monospace" data-label="Päivämäärä">${escHtml(item.date || "Ei saatavilla")}</td>
+            <td class="small text-muted text-center" data-label="Esikatselu">${preview}</td>
+            <td class="fw-semibold" data-label="Otsikko">${escHtml(item.title)}</td>
+            <td class="small" data-label="Tiivistelmä">${summary}</td>
+            <td data-label="Avainsanat">${keywordHtml}</td>
+            <td class="text-center" data-label="Avaa">
+              ${item.url
+                ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-2" title="Avaa esitys"><i class="bi bi-arrow-up-right"></i></a>`
+                : `<span class="text-muted small">Ei linkkiä</span>`}
+            </td>
+          </tr>
+        `;
+      }).join("");
+    } else {
+      tbody.innerHTML = pageRows.map((item) => `
+        <tr>
+          <td class="fw-semibold" data-label="Otsikko">${escHtml(item.title)}</td>
+          <td data-label="Kuvaus">
+            <div class="small">${escHtml(truncate(item.description, 140) || "-")}</div>
+            <div class="small text-muted">${escHtml(item.meta || "")}</div>
+          </td>
+          <td class="text-nowrap" data-label="Päiväys / vuosi">${escHtml(item.date || "-")}</td>
+          <td data-label="Avaa">
+            ${item.url
+              ? `<a href="${escHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">${escHtml(linkLabelByKey[key] || "Avaa")}</a>`
+              : `<span class="text-muted small">Ei linkkiä</span>`}
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    renderPagination(key, rows, page, onChange);
+  }
+
+  Object.entries(rawData).forEach(([key, rows]) => {
+    const normalized = normalizeRows(key, rows);
+    if (!normalized.length) return;
+    renderScroller(key, normalized);
+    let currentPage = 1;
+    const rerender = (newPage) => {
+      currentPage = newPage;
+      renderTable(key, normalized, currentPage, rerender);
+    };
+    rerender(1);
+  });
+})();
+</script>
+
+<style>
+/* Section headings */
+.section-title {
+  font-family: 'Bree Serif', serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  border-bottom: none;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 3px;
+  margin: 0.65rem auto 0;
+  border-radius: 999px;
+  background: var(--bs-primary);
+}
+.section-title--subgroup {
+  font-size: 1.35rem;
+  color: #b02a37;
+}
+[data-bs-theme="dark"] .section-title {
+  color: #ffffff;
+}
+[data-bs-theme="dark"] .section-title::after {
+  background: #76b7ff;
+}
+[data-bs-theme="dark"] .section-title--subgroup {
+  color: #ff9ba5;
+}
+
+/* Placeholder when no thumbnail */
+.bg-placeholder {
+  background-color: #dee2e6;
+  border-radius: 0;
+}
+[data-bs-theme="dark"] .bg-placeholder {
+  background-color: #2e3f59;
+}
+
+/* Card title links — white in dark mode */
+.card .card-title a {
+  color: var(--bs-body-color) !important;
+}
+[data-bs-theme="dark"] .card .card-title a {
+  color: #ffffff !important;
+}
+[data-bs-theme="dark"] .card .card-title a:hover {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+.hover-shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+.hover-shadow:hover .card-img-top {
+  transform: scale(1.05);
+}
+.transition-transform {
+  transition: transform 0.5s ease-in-out;
+}
+.transition {
+  transition: all 0.3s ease-in-out;
+}
+.card-img-overlay:hover {
+  opacity: 1!important;
+}
+
+/* Category scroller */
+.presentation-scroller {
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.presentation-scroller-track {
+  display: flex;
+  gap: 1.2rem;
+  min-width: max-content;
+  animation: presentations-scroll 24s linear infinite;
+}
+
+.presentation-scroller:hover .presentation-scroller-track {
+  animation-play-state: paused;
+}
+
+.presentation-scroller-card {
+  width: 280px;
+  flex: 0 0 280px;
+}
+
+.scroller-media {
+  height: 150px;
+}
+
+.presentation-scroller-card .card-img-top,
+.scroller-placeholder {
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.scroller-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dee2e6;
+  color: #6c757d;
+  font-size: 2rem;
+}
+[data-bs-theme="dark"] .scroller-placeholder {
+  background: #2e3f59;
+  color: #d2d9e2;
+}
+
+@keyframes presentations-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 0.6rem)); }
+}
+
+@media (max-width: 767.98px) {
+  .presentation-scroller-card {
+    width: 260px;
+    flex-basis: 260px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .presentation-scroller-track {
+    animation: none !important;
+  }
+}
+
+/* Kynästä-tyyliset taulukot */
+.pub-table th {
+  white-space: nowrap;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--bs-tertiary-bg) !important;
+  padding: 0.75rem 0.5rem;
+}
+[data-bs-theme="dark"] .pub-table th {
+  background-color: #2e3f59 !important;
+  color: #c0d0e0;
+}
+.pub-table td {
+  padding: 0.75rem 0.5rem;
+}
+[data-bs-theme="dark"] .pub-table td {
+  border-color: rgba(255,255,255,0.07) !important;
+}
+
+@media (max-width: 767.98px) {
+  .pub-table thead {
+    display: none;
+  }
+  .pub-table,
+  .pub-table tbody,
+  .pub-table tr,
+  .pub-table td {
+    display: block;
+    width: 100%;
+  }
+  .pub-table tr {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.65rem;
+    margin: 0.65rem 0;
+    padding: 0.4rem 0.55rem;
+    background: var(--bs-body-bg);
+  }
+  .pub-table td {
+    border: 0 !important;
+    padding: 0.38rem 0.2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.7rem;
+    text-align: right !important;
+  }
+  .pub-table td::before {
+    content: attr(data-label);
+    color: var(--bs-secondary-color);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-align: left;
+    flex: 0 0 45%;
+  }
+  .pub-table td > * {
+    max-width: 55%;
+  }
+  .pub-table td:last-child {
+    margin-top: 0.25rem;
+    padding-top: 0.55rem;
+    border-top: 1px dashed var(--bs-border-color) !important;
+  }
+}
+</style>
+
+    </div>
+  </main>
+
+  
+<footer class="py-3 border-top bg-body-tertiary mt-3">
+  <div class="container">
+    <div class="row align-items-center gy-2">
+      <div class="col-md-4 text-center text-md-start">
+        <p class="mb-0 text-body-secondary small">
+          
+          &copy; Jari Laru. Kaikki oikeudet pidätetään.
+          
+        </p>
+        <div class="footer-social-links mt-1 d-inline-flex align-items-center gap-2" aria-label="Sosiaalisen median linkit">
+          <a href="https://www.linkedin.com/in/jarilaru/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-social-link"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+          <a href="https://www.researchgate.net/profile/Jari-Laru" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate" class="footer-social-link"><i class="bi bi-globe" aria-hidden="true"></i></a>
+          <a href="https://orcid.org/0000-0003-0347-0182" target="_blank" rel="noopener noreferrer" aria-label="ORCID" class="footer-social-link"><i class="bi bi-person-vcard" aria-hidden="true"></i></a>
+          <a href="https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" class="footer-social-link"><i class="bi bi-mortarboard" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/jarilaru" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="footer-social-link"><i class="bi bi-youtube" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        
+        <a href="/www-staging/saavutettavuus/" class="footer-wcag-badge text-decoration-none d-inline-flex align-items-center gap-2 px-3 py-1 rounded border" aria-label="WCAG 2.1 taso AA -vaatimustenmukaisuus – katso saavutettavuusseloste">
+          <span class="footer-wcag-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2"></circle>
+              <text x="16" y="12" text-anchor="middle" font-size="7" font-weight="700" font-family="sans-serif" fill="currentColor">W3C</text>
+              <text x="16" y="21" text-anchor="middle" font-size="6" font-weight="600" font-family="sans-serif" fill="currentColor">WCAG 2.1</text>
+              <text x="16" y="28" text-anchor="middle" font-size="5.5" font-weight="700" font-family="sans-serif" fill="currentColor">Taso AA</text>
+            </svg>
+          </span>
+          <span class="footer-wcag-label">
+            <span class="d-block fw-semibold" style="font-size:0.7rem;line-height:1.2;">WCAG 2.1 AA</span>
+            <span class="d-block" style="font-size:0.65rem;line-height:1.2;">Saavutettavuusseloste</span>
+          </span>
+        </a>
+        
+      </div>
+      <div class="col-md-4 text-center text-md-end">
+        <p class="mb-0 text-body-secondary small">
+          
+          Rakennettu <a href="/www-staging/miten-sivusto-on-rakennettu/" class="text-decoration-none text-body-secondary fw-semibold">Eleventyllä</a> · <a href="/www-staging/tietosuojaseloste/#upotusten-suostumuksen-hallinta" class="text-decoration-none text-body-secondary fw-semibold">Tietosuojaseloste</a> · <a href="/www-staging/sivuston-muutokset/" class="text-decoration-none text-body-secondary fw-semibold"><i class="bi bi-github me-1" aria-hidden="true"></i>GitHub-muutokset</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <section class="site-news-ticker site-news-ticker--footer" aria-label="Uusimmat sisällöt">
+    <div class="site-news-ticker-inner">
+      <span class="site-news-ticker-label">Uusimmat</span>
+      <div class="site-news-ticker-viewport">
+        <div class="site-news-ticker-track" data-latest-track=""></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" defer=""></script>
+  <script src="/www-staging/js/bootstrap.min.js" defer=""></script>
+  <script src="/www-staging/js/external-media-consent.js" defer=""></script>
+  <script src="/www-staging/js/site-ui.js" defer=""></script>
+
+  <!-- Accessibility panel / Saavutettavuuspaneeli -->
+  <button class="a11y-fab" type="button" data-bs-toggle="offcanvas" data-bs-target="#a11yOffcanvas" aria-controls="a11yOffcanvas" aria-label="Avaa saavutettavuusasetukset">
+    <i class="bi bi-person-wheelchair"></i>
+  </button>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="a11yOffcanvas" aria-labelledby="a11yOffcanvasLabel">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title fw-bold" id="a11yOffcanvasLabel"><i class="bi bi-universal-access-circle me-2"></i>Saavutettavuus</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Sulje"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted small mb-4">Mukauta sivuston ulkoasua omiin tarpeisiisi sopivaksi. Valinnat tallentuvat selaimeesi.</p>
+
+      <div class="mb-4">
+        <label for="a11yTextSize" class="form-label fw-bold">Tekstin koko</label>
+        <select class="form-select" id="a11yTextSize">
+          <option value="normal">Normaali koko</option>
+          <option value="large">Suuri (+15%)</option>
+          <option value="xlarge">Maksimi (+30%)</option>
+        </select>
+      </div>
+
+      <div class="mb-3 form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="a11yHighContrast">
+        <label class="form-check-label" for="a11yHighContrast">Korkea kontrasti</label>
+      </div>
+
+      <div class="mb-3 form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="a11yReducedMotion">
+        <label class="form-check-label" for="a11yReducedMotion">Vähennä animaatioita</label>
+      </div>
+
+      <div class="mb-4 form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="a11yDyslexiaFont">
+        <label class="form-check-label" for="a11yDyslexiaFont">Lukihäiriöystävällinen fontti</label>
+      </div>
+
+      <hr>
+      <button type="button" class="btn btn-outline-danger w-100 mt-2" id="a11yResetBtn">
+        <i class="bi bi-arrow-counterclockwise me-1"></i> Palauta oletukset
+      </button>
+    </div>
+  </div>
+
+  <script src="/www-staging/js/table-filters.js" defer=""></script>
+  <script src="/www-staging/js/a11y.js" defer=""></script>
+</body>
+</html>
